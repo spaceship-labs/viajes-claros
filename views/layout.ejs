@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>New Sails App</title>
+
+    <!-- Viewport mobile tag for sensible mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--STYLES-->
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bower_components/leaflet/dist/leaflet.css">
+    <link rel="stylesheet" href="/bower_components/leaflet.markerclusterer/dist/MarkerCluster.Default.css">
+    <link rel="stylesheet" href="/bower_components/leaflet.markerclusterer/dist/MarkerCluster.css">
+    <link rel="stylesheet" href="/bower_components/Leaflet.awesome-markers/dist/leaflet.awesome-markers.css">
+    <link rel="stylesheet" href="/bower_components/animate.css/animate.min.css">
+    <link rel="stylesheet" href="/bower_components/less-prefixer/prefixer.less">
+    <link rel="stylesheet" href="/styles/importer.css">
+    <link rel="stylesheet" href="/styles/reset.css">
+    <link rel="stylesheet" href="/styles/stickyFooter.css">
+    <!--STYLES END-->
+  </head>
+
+  <body ng-app="viajesTransparentes">
+    <div id="wrap" ><div id="main" class="clearfix"><div id="topBackRepeat">
+        <%- partial('global/header') -%>
+            <div id='content'>
+                <%- body %>
+                <div class='clear'></div>
+            </div>
+        </div>   
+        <div class='clear'></div>   
+    </div><div class='clear'></div></div>        
+
+    <!--SCRIPTS-->
+    <script src="/js/dependencies/sails.io.js"></script>
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/leaflet/dist/leaflet.js"></script>
+    <script src="/bower_components/leaflet.markerclusterer/dist/leaflet.markercluster.js"></script>
+    <script src="/bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.min.js"></script>
+    <script src="/bower_components/Leaflet.awesome-markers/dist/leaflet.awesome-markers.min.js"></script>
+    <script src="/js/controller.js"></script>
+    <script src="/js/homeController.js"></script>
+    <!--SCRIPTS END-->
+  </body>
+</html>

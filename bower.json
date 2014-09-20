@@ -1,0 +1,31 @@
+{
+  "name": "viajestransparentes",
+  "version": "0.0.0",
+  "authors": [
+    "luis <luis19prz@gmail.com>"
+  ],
+  "description": "viajes transparentes",
+  "main": "app.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.25",
+    "Leaflet.awesome-markers": "~2.0.2",
+    "leaflet": "~0.7.3",
+    "angular-sails": "~1.0.4",
+    "leaflet.markerclusterer": "~0.4.0",
+    "less-prefixer": "*",
+    "angularjs-geolocation": "~0.1.1",
+    "jquery": "~2.1.1",
+    "animate.css": "~3.2.0",
+    "angular-leaflet-directive": "~0.7.8",
+    "bootstrap": "~3.2.0",
+    "angular-bootstrap": "~0.11.0"
+  }
+}
