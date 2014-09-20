@@ -1,14 +1,19 @@
 <div id="home" class="container">
-	<div class="map-container" ng-controller="mapCtrl">
-		<h1>Mapa de viajes</h1>
-		<!--bounds='bounds' -->
-		<leaflet center='mapCenter' ng-class='mapClass' class='map' layers="layers" markers='markers' defaults='options' ></leaflet>		
-	</div>
-	<div class="total">
-		<h1><strong>$387,568,355.00</strong></h1>
-		<p>Gastos totales de viajes de servidores publicos</p>
+	<div class="row map-container" ng-controller="mapCtrl">
+		<div class="col-md-12">
+			<h1>Mapa de viajes</h1>
+			<!--bounds='bounds' -->
+			<leaflet center='mapCenter' ng-class='mapClass' class='map' layers="layers" markers='markers' defaults='options' ></leaflet>	
+		</div>
+	</div>	
+	<div class="row">
+		<div class="col-md-12 total">
+			<h1><strong>$387,568,355.00</strong></h1>
+			<p>Gastos totales de viajes de servidores publicos</p>
+		</div>
 	</div>
 	<div class="row top-people">
+		<h2>Los 3 servidores publicos con mas gastos de viajes AL MES | AÑO</h2>
 		<div class="col-md-4 person">
 			<div class="person-content">
 				<p>Nombre</p>
@@ -34,5 +39,45 @@
 			</div>
 		</div>
 		<div class="clear"></div>
+	</div>
+	<div class="row ranks top-ranks">
+		<div class="col-md-6 top-hotels">
+			<div class="inner-content">
+				<h4>Hoteles más visitados por los servidores publicos</h4>
+			</div>
+		</div>
+		<div class="col-md-6 top-places">
+			<div class="inner-content">
+				<h4>Ciudades Internacionales/Nacionales mas visitadas por los servidores publicos</h4>
+				<ol>
+					<li>Las vegas</li>
+					<li>Cancun</li>
+					<li>Los angeles</li>
+					<li>Tizimin</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+	<div class="row ranks percentage-ranks">
+		<div class="col-md-6 block">
+			<div class="inner-content">
+				<h4>Porcentaje de vuelos privados</h4>
+				<h4>Porcentaje de aeorlineas</h4>
+				<p>Principales 5 aeorlineas usadas</p>
+				<ul>
+					<li>Aerolinea</li>
+					<li>Aerolinea</li>
+					<li>Aerolinea</li>
+					<li>Aerolinea</li>
+					<li>Aerolinea</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-6 block">
+			<div class="inner-content">
+				<h4>Porcentaje de viajes nacionales</h4>
+				<h4>Porcentaje de viajes internacionales</h4>
+			</div>
+		</div>
 	</div>
 </div>

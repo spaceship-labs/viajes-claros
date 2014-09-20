@@ -49,6 +49,10 @@
 }
 
 .clear{clear: both;}
+.row{}
+.table-container{display: table;width: 100%}
+.row-container{display: table-row;}
+.cell-container{display: table-cell;}
 
 .container{
 	margin: 0 auto;max-width: 960px;
@@ -59,6 +63,7 @@
 		.animate-bg;
 	}
 	.custom-button:hover{background: #fff}
+	.row + .row{margin-top: 20px}
 }
 
 #header{
@@ -85,5 +90,18 @@
 			}
 		}
 
+	}
+	.ranks{
+		.col-md-6{
+			.inner-content{background: #C4C4C4;padding: 20px}
+			@media (min-width: 992px){
+				padding-left: 0;
+			}
+		}
+		.col-md-6 + .col-md-6{
+			@media (min-width: 992px){
+				padding-left: 15px;padding-right: 0;
+			}
+		}
 	}
 }
