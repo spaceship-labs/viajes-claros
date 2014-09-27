@@ -1,5 +1,7 @@
 app.controller("mapCtrl", function ($scope, $http) {
 	$scope.nombre = 'mapa';
+	$scope.toggleJumbotron = true;
+	$scope.toggleAdvancedSearch = false;
 	$scope.layers =  {
         baselayers: {
             xyz: {
@@ -50,7 +52,30 @@ app.controller("mapCtrl", function ($scope, $http) {
 		);
 	}
 
+	$scope.addTextRadial = function(radialId,string){
+		var txt = $('#'+radialId).first('.label');
+		console.log(txt);
+		txt.append(string);
+	}
+
+	$scope.startRadialD3 = function(){
+        var rp1 = radialProgress(document.getElementById('radial-international-trips'))
+                .diameter(150)
+                .value(79)
+                .render();	
+
+        var rp2 = radialProgress(document.getElementById('radial-national-trips'))
+                .diameter(150)
+                .value(21)
+                .render();	
+
+        //$scope.addTextRadial('radial-international-trips','Internacionales');
+        //$scope.addTextRadial('radial-rnational-trips','Nacionales');
+
+	}
+
     $scope.get_markers();
+    $scope.startRadialD3();
 
 
 });
