@@ -177,7 +177,7 @@ a:hover{text-decoration: none!important;}
 	.ranks{
 		.col-md-6{
 			.inner-content{
-				color:  @gray;background: #fff;border: 1px solid @gray-light;border-radius: 4px;padding: 20px;
+				color:  @gray;background: #fff;border: 1px solid @gray-light;border-radius: 4px;padding: 20px 20px 40px 20px;
 				h4{font-size: 20px;font-weight: 300;text-align: center;}
 			}
 			@media (min-width: 992px){
@@ -191,16 +191,23 @@ a:hover{text-decoration: none!important;}
 		}
 		.top-places{
 			.inner-content{
+
 				ul{margin: 0 auto;max-width: 90%;}
 				ul li{
-					font-weight: 300;padding: 5px 0;
+					font-weight: 300;padding: 5px 0;text-align: left;
 					p{margin: 0}
 					.picture{border-radius: 50%;float: left;height: 42px;margin-right: 8px;width: 42px;}
 					.place{color: @blue;font-size: 18px}
 					.location a{color: @gray;font-size: 13px;text-transform: uppercase;}
 				}
-				li + li{border-top: 1px solid @gray-light}				
+				li + li{border-top: 1px solid @gray-light}			
 			}
+			.carousel-indicators{
+				bottom: 0;
+				li{background: @gray;border:0}
+				.active{background: @blue;border: 0}
+			}	
+			.carousel-control{display: none;}
 		}
 		.percentage-rank{
 			.total{border-radius: 4px;border: 1px solid @gray-light;color: @gray;max-width: 75%;margin: 10px auto 0;padding: 4px;text-align: center;}

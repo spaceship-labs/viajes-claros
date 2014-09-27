@@ -87,31 +87,60 @@
 				<div class="col-md-6 percentage-rank">
 					<div class="inner-content">
 						<h4><strong>Las principales aerolineas</strong><br/>usadas por los servidores publicos</h4>
+						<div id="chart-aerolineas"><svg></svg></div>
 						<p class="total">Total de aerolineas usadas: 2302</p>
 					</div>
 				</div>
 				<div class="col-md-6 top-places">
-					<div class="inner-content">
-						<h4><strong>Ciudades Internacionales</strong><br/>mas visitadas por los servidores publicos</h4>
-						<ul>
-							<li>
-								<a href="#"><img src="/images/pinlugar.png" alt="" class="picture" /></a>
-								<p class="place"><a href="#">Miami</a></p>
-								<p class="location"><a href="#">Estados unidos</a></p>
-							</li>
-							<li>
-								<a href="#"><img src="/images/fotovegas.png" alt="" class="picture" /></a>
-								<p class="place"><a href="#">Las Vegas</a></p>
-								<p class="location"><a href="#">Estados unidos</a></p>
-							</li>
-							<li>
-								<a href="#"><img src="/images/fotovegas.png" alt="" class="picture" /></a>
-								<p class="place"><a href="#">Montreal</a></p>
-								<p class="location"><a href="#">Canada</a></p>
-							</li>
-						</ul>
-					</div>
+					<carousel interval="5000">
+						<slide  active="slide.active" >
+							<div class="inner-content">
+								<h4><strong>Ciudades Internacionales</strong><br/>mas visitadas por los servidores publicos</h4>
+								<ul>
+									<li>
+										<a href="#"><img src="/images/pinlugar.png" alt="" class="picture" /></a>
+										<p class="place"><a href="#">Miami</a></p>
+										<p class="location"><a href="#">Estados unidos</a></p>
+									</li>
+									<li>
+										<a href="#"><img src="/images/fotovegas.png" alt="" class="picture" /></a>
+										<p class="place"><a href="#">Las Vegas</a></p>
+										<p class="location"><a href="#">Estados unidos</a></p>
+									</li>
+									<li>
+										<a href="#"><img src="/images/fotovegas.png" alt="" class="picture" /></a>
+										<p class="place"><a href="#">Montreal</a></p>
+										<p class="location"><a href="#">Canada</a></p>
+									</li>
+								</ul>
+							</div>
+						</slide>
+						<slide active="" >
+							<div class="inner-content">
+								<h4><strong>Ciudades Nacionales</strong><br/>mas visitadas por los servidores publicos</h4>
+								<ul>
+									<li>
+										<a href="#"><img src="/images/pinlugar.png" alt="" class="picture" /></a>
+										<p class="place"><a href="#">Cancun</a></p>
+										<p class="location"><a href="#">Mexico</a></p>
+									</li>
+									<li>
+										<a href="#"><img src="/images/fotovegas.png" alt="" class="picture" /></a>
+										<p class="place"><a href="#">Los cabos</a></p>
+										<p class="location"><a href="#">Mexico</a></p>
+									</li>
+									<li>
+										<a href="#"><img src="/images/fotovegas.png" alt="" class="picture" /></a>
+										<p class="place"><a href="#">Guadalajara</a></p>
+										<p class="location"><a href="#">Mexico</a></p>
+									</li>
+								</ul>
+							</div>
+						</slide>
+					</carousel>
+
 				</div>
+
 			</div>			
 		</div>
 	</div>

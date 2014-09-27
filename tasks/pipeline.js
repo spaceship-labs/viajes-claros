@@ -19,6 +19,7 @@ var cssFilesToInject = [
 
   'bower_components/bootstrap/dist/css/bootstrap.min.css',
   'bower_components/leaflet/dist/leaflet.css',
+  'bower_components/nvd3/nv.d3.min.css',
   'bower_components/leaflet.markerclusterer/dist/MarkerCluster.Default.css',
   'bower_components/leaflet.markerclusterer/dist/MarkerCluster.css',
   'bower_components/Leaflet.awesome-markers/dist/leaflet.awesome-markers.css',
@@ -40,6 +41,9 @@ var jsFilesToInject = [
   'bower_components/bootstrap/dist/js/bootstrap.min.js',
   'bower_components/angular/angular.min.js',
   'bower_components/angular/angular-animeate.min.js',
+  'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+  'bower_components/d3/d3.min.js',
+  'bower_components/nvd3/nv.d3.min.js',
   'bower_components/leaflet/dist/leaflet.js',
   'bower_components/leaflet.markerclusterer/dist/leaflet.markercluster.js',
   'bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.min.js',
