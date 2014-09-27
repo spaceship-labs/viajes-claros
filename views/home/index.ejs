@@ -1,83 +1,89 @@
-<div id="home" class="container">
-	<div class="row map-container" ng-controller="mapCtrl">
-		<div class="col-md-12">
-			<h1>Mapa de viajes</h1>
-			<!--bounds='bounds' -->
+<div id="home">
+	<div class="home-content-top">
+		<div class="map-container" ng-controller="mapCtrl">
 			<leaflet center='mapCenter' ng-class='mapClass' class='map' layers="layers" markers='markers' defaults='options' ></leaflet>	
-		</div>
-	</div>	
-	<div class="row">
-		<div class="col-md-12 total">
+		</div>	
+		<div class="total">
 			<h1><strong>$387,568,355.00</strong></h1>
-			<p>Gastos totales de viajes de servidores publicos</p>
+			<p>Presupuesto gastado hasta el 2014 en viajes de servidores publicos</p>
 		</div>
 	</div>
-	<div class="row top-people">
-		<h2>Los 3 servidores publicos con mas gastos de viajes AL MES | AÑO</h2>
-		<div class="col-md-4 person">
-			<div class="person-content">
-				<p>Nombre</p>
-				<p>Cargo</p>
-				<p class="money"><strong>$345,000</strong></p>
-				<a href="#" class="custom-button">Ver más</a>
+	<div class="centered-content">
+		<div class="container-fluid">
+			<div class="row top-people">
+				<h2>Los 3 servidores publicos <br/> <span class="big">con mas gastos de viajes AL MES</span></h2>
+				<div class="col-sm-4 person">
+					<div class="person-content">
+						<p class="name">Nombre</p>
+						<p class="charge">Cargo</p>
+						<p class="dependency">Dependencia</p>
+						<p class="money">$345,000</p>
+						<p class="gray">Gastos al mes</p>
+						<a href="#" class="custom-button">Ver perfil</a>
+					</div>
+				</div>
+				<div class="col-sm-4 person">
+					<div class="person-content">
+						<p class="name">Nombre</p>
+						<p class="charge">Cargo</p>
+						<p class="dependency">Dependencia</p>
+						<p class="money">$345,000</p>
+						<p class="gray">Gastos al mes</p>
+						<a href="#" class="custom-button">Ver perfil</a>
+					</div>
+				</div>
+				<div class="col-sm-4 person">
+					<div class="person-content">
+						<p class="name">Nombre</p>
+						<p class="charge">Cargo</p>
+						<p class="dependency">Dependencia</p>
+						<p class="money">$345,000</p>
+						<p class="gray">Gastos al mes</p>
+						<a href="#" class="custom-button">Ver perfil</a>
+					</div>
+				</div>
+				<div class="clear"></div>
 			</div>
-		</div>
-		<div class="col-md-4 person">
-			<div class="person-content">
-				<p>Nombre</p>
-				<p>Cargo</p>
-				<p class="money"><strong>$345,000</strong></p>
-				<a href="#" class="custom-button">Ver más</a>
+			<div class="row ranks top-ranks">
+				<div class="col-md-6 top-hotels">
+					<div class="inner-content">
+						<h4>Hoteles más visitados por los servidores publicos</h4>
+					</div>
+				</div>
+				<div class="col-md-6 top-places">
+					<div class="inner-content">
+						<h4>Ciudades Internacionales/Nacionales mas visitadas por los servidores publicos</h4>
+						<ol>
+							<li>Las vegas</li>
+							<li>Cancun</li>
+							<li>Los angeles</li>
+							<li>Tizimin</li>
+						</ol>
+					</div>
+				</div>
 			</div>
-		</div>
-		<div class="col-md-4 person">
-			<div class="person-content">
-				<p>Nombre</p>
-				<p>Cargo</p>
-				<p class="money"><strong>$345,000</strong></p>
-				<a href="#" class="custom-button">Ver más</a>
-			</div>
-		</div>
-		<div class="clear"></div>
-	</div>
-	<div class="row ranks top-ranks">
-		<div class="col-md-6 top-hotels">
-			<div class="inner-content">
-				<h4>Hoteles más visitados por los servidores publicos</h4>
-			</div>
-		</div>
-		<div class="col-md-6 top-places">
-			<div class="inner-content">
-				<h4>Ciudades Internacionales/Nacionales mas visitadas por los servidores publicos</h4>
-				<ol>
-					<li>Las vegas</li>
-					<li>Cancun</li>
-					<li>Los angeles</li>
-					<li>Tizimin</li>
-				</ol>
-			</div>
-		</div>
-	</div>
-	<div class="row ranks percentage-ranks">
-		<div class="col-md-6 block">
-			<div class="inner-content">
-				<h4>Porcentaje de vuelos privados</h4>
-				<h4>Porcentaje de aeorlineas</h4>
-				<p>Principales 5 aeorlineas usadas</p>
-				<ul>
-					<li>Aerolinea</li>
-					<li>Aerolinea</li>
-					<li>Aerolinea</li>
-					<li>Aerolinea</li>
-					<li>Aerolinea</li>
-				</ul>
-			</div>
-		</div>
-		<div class="col-md-6 block">
-			<div class="inner-content">
-				<h4>Porcentaje de viajes nacionales</h4>
-				<h4>Porcentaje de viajes internacionales</h4>
-			</div>
+			<div class="row ranks percentage-ranks">
+				<div class="col-md-6 block">
+					<div class="inner-content">
+						<h4>Porcentaje de vuelos privados</h4>
+						<h4>Porcentaje de aeorlineas</h4>
+						<p>Principales 5 aeorlineas usadas</p>
+						<ul>
+							<li>Aerolinea</li>
+							<li>Aerolinea</li>
+							<li>Aerolinea</li>
+							<li>Aerolinea</li>
+							<li>Aerolinea</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-6 block">
+					<div class="inner-content">
+						<h4>Porcentaje de viajes nacionales</h4>
+						<h4>Porcentaje de viajes internacionales</h4>
+					</div>
+				</div>
+			</div>			
 		</div>
 	</div>
 </div>
