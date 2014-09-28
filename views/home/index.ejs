@@ -1,6 +1,6 @@
 <div id="home">
-	<div class="home-content-top">
-		<div class="map-container" ng-controller="homeCtrl">
+	<div class="home-content-top" ng-controller="mapCtrl">
+		<div class="map-container">
 			<%- partial('../global/jumbotron') -%>
 			<leaflet center='mapCenter' ng-class='mapClass' class='map' layers="layers" markers='markers' defaults='options' event-broadcast="events" ></leaflet>
 			<div class="aside" ng-show="toggleSidebar">
@@ -31,12 +31,12 @@
 			</div>	
 		</div>	
 		<div class="total-money">
-			<h1><strong>$387,568,355.00</strong></h1>
+			<h1><strong>{{totalGastado | currency}}</strong></h1>
 			<p>Presupuesto gastado hasta el 2014 en viajes de servidores publicos</p>
 		</div>
 	</div>
 	<div class="centered-content">
-		<div class="container-fluid">
+		<div class="container-fluid" ng-controller="statisticsCTL">
 			<div class="row top-people">
 				<h2>Los 3 servidores publicos <br/> <span class="big">con mas gastos de viajes AL MES</span></h2>
 				<div class="col-sm-4 person">
