@@ -28,7 +28,7 @@ app.controller("mapCtrl", function ($scope, $http) {
 
 
 	$scope.get_markers = function(){
-	    $http({method: 'POST', url: '/home/markersJson'})
+	    $http({method: 'POST', url: '/home/vajesJson'})
 	    .success(
 		//$http.post('https://erp.consejosano.com/api-health-service-locator?callback=JSON_CALLBACK')
 		//.then(
@@ -36,11 +36,10 @@ app.controller("mapCtrl", function ($scope, $http) {
 		        	var markers = [];
 					$scope.markers = [];
 					data.forEach(function(marker){
-							var messageClinic = marker.text + '<br/>';
 							markers.push({
-								lat: parseFloat(marker.latitude),
-								lng: parseFloat(marker.longitude),
-								message: messageClinic
+								lat: parseFloat(marker.destino_latitud),
+								lng: parseFloat(marker.destino_longitud),
+								message: marker.ciudad_destino
 							});
 					});
 					$scope.markers = markers;
