@@ -1,5 +1,5 @@
 <div id="home">
-	<div class="home-content-top" ng-controller="mapCtrl">
+	<div class="home-content-top" ng-controller="homeCtrl">
 		<div class="map-container">
 			<%- partial('../global/jumbotron') -%>
 			<leaflet center='mapCenter' ng-class='mapClass' class='map' layers="layers" markers='markers' defaults='options' event-broadcast="events" ></leaflet>
