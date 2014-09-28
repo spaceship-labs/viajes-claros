@@ -29,8 +29,10 @@ app.controller("homeCtrl", function ($scope, $http) {
 	};
 
 	$scope.$on('leafletDirectiveMarker.click', function(event, args){
-	    //console.log( $scope.markers[args.markerName]);
-	    $scope.mapPlace = $scope.markers[args.markerName].message;
+	    var place = $scope.markers[args.markerName].message;
+	    place = $.parseHTML(place);
+	    place = place[2].innerHTML;
+	    $scope.mapPlace = place;
 	    $scope.toggleSidebar = true;
 	});
 
@@ -50,11 +52,14 @@ app.controller("homeCtrl", function ($scope, $http) {
 		        function(data) {
 		        	var markers = [];
 					$scope.markers = [];
+					var msg;
 					data.forEach(function(marker){
+							msg = '<p><strong>'+'$230,000.00 MXP'+'</strong></p>Gasto anual de viajes en <span class="place">'
+								  + marker.ciudad_destino + '</span>';
 							markers.push({
 								lat: parseFloat(marker.destino_latitud),
 								lng: parseFloat(marker.destino_longitud),
-								message: marker.ciudad_destino,
+								message: msg,
 								icon : $scope.leafIcon
 							});
 					});
