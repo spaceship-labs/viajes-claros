@@ -1,4 +1,4 @@
-app.controller("homeCtrl", function ($scope, $http) {
+app.controller("homeCtrl", function ($scope, $http ,$filter) {
 	$scope.nombre = 'mapa';
 	$scope.toggleJumbotron = true;
 	$scope.toggleSidebar = false;
@@ -30,8 +30,10 @@ app.controller("homeCtrl", function ($scope, $http) {
 	};
 
 	$scope.$on('leafletDirectiveMarker.click', function(event, args){
-	    //console.log( $scope.markers[args.markerName]);
-	    $scope.mapPlace = $scope.markers[args.markerName].message;
+	    var place = $scope.markers[args.markerName].message;
+	    place = $.parseHTML(place);
+	    place = place[2].innerHTML;
+	    $scope.mapPlace = place;
 	    $scope.toggleSidebar = true;
 	});
 
@@ -52,14 +54,18 @@ app.controller("homeCtrl", function ($scope, $http) {
 		        	var markers = [];
                     var totalGastado = 0;
 					$scope.markers = [];
+					var msg;
 					data.forEach(function(marker){
+                            totalGastado += (parseInt(marker.gasto_pasaje,10) ? parseInt(marker.gasto_pasaje,10) : 0) + (parseInt(marker.gasto_viatico,10) ? parseInt(marker.gasto_viatico,10) : 0);
+							totalGastadoStr = $filter('currency')(totalGastado, '$');
+							msg = '<p><strong>' + totalGastadoStr +' MXP'+'</strong></p>Gasto anual de viajes en <span class="place">'
+								  + marker.ciudad_destino + '</span>';
 							markers.push({
 								lat: parseFloat(marker.destino_latitud),
 								lng: parseFloat(marker.destino_longitud),
-								message: marker.ciudad_destino,
+								message: msg,
 								icon : $scope.leafIcon
 							});
-                            totalGastado += (parseInt(marker.gasto_pasaje,10) ? parseInt(marker.gasto_pasaje,10) : 0) + (parseInt(marker.gasto_viatico,10) ? parseInt(marker.gasto_viatico,10) : 0);
 					});
 					$scope.markers = markers;
                     $scope.totalGastado = totalGastado;
