@@ -224,14 +224,16 @@ a:hover{text-decoration: none!important;}
 				ul{margin: 0 auto;max-width: 90%;}
 				ul li{
 					font-weight: 300;padding: 5px 0;text-align: left;
-					p{line-height: 18px;margin: 0}
-					.picture{border-radius: 50%;float: left;height: 42px;margin-right: 8px;width: 42px;}
-					.big-blue , .big-blue a{color: @blue;font-size: 16px}
-					.location a{color: @gray;font-size: 13px;font-weight: 400;text-transform: uppercase;}
-					.activity{font-size: 12px}
 				}
 				ul li:after{content: '';display: block;clear: both;}
-				li + li{border-top: 1px solid @gray-light}			
+				li + li{border-top: 1px solid @gray-light}	
+
+				p{line-height: 18px;margin: 0}
+				.picture{border-radius: 50%;float: left;height: 42px;margin-right: 8px;width: 42px;}
+				.big-blue , .big-blue a{color: @blue;font-size: 16px}
+				.location a{color: @gray;font-size: 13px;font-weight: 400;text-transform: uppercase;}
+				.activity{font-size: 12px}
+
 			}
 			.carousel-indicators{
 				bottom: 0;
@@ -246,10 +248,11 @@ a:hover{text-decoration: none!important;}
 			#radial-two .arc{fill: @turquoise;}
 			.charts-container{
 				max-width: 70%;margin: 0 auto;
-				.radial-chart .label{font-family: 'Open Sans', sans-serif!important;font-size: 34px!important;font-weight: 300;}
+				.radial-chart .labels .label{font-family: 'Open Sans', sans-serif!important;font-size: 34px!important;font-weight: 300;}
+				.radial-chart .component .label{fill:@gray;color: @gray;font-weight: 300;font-size: 12px;text-align: center;text-transform: uppercase;}
 				.radial-chart{float: left;}
 				.radial-chart + .radial-chart{float: right;}
-				.radial-chart .radial-svg{max-height: 125px;max-width: 125px}
+				.radial-chart .radial-svg{height: 160px;max-width: 125px}
 			}
 		}
 	}
@@ -259,7 +262,7 @@ a:hover{text-decoration: none!important;}
 		.funcionario-info{
 			.inner-content{
 				.gradient-blue;color: #fff;text-align: center;
-				.funcionario-icon{display: block;margin: 0 auto;width: 60px}
+				.funcionario-icon{display: block;margin: 0 auto;height: 105px;line-height: 40px;font-size: 98px}
 				h1{font-weight: 300;margin: 10px 0 5px}
 				p{
 					margin: 0;font-size: 13px;
@@ -281,6 +284,22 @@ a:hover{text-decoration: none!important;}
 		}
 		.top-places{
 			.big-blue , .big-blue a{color: @turquoise;}
+		}
+		.trips{
+			margin-top: 20px;
+			h2{color: @gray;font-size: 28px;text-align: center;}
+			.row{
+				.col-sm-4{padding-bottom: 20px;padding-top:20px;}
+				.duration{
+					i{float: left;font-size: 50px}
+					p{
+						color: @gray;font-size: 13px;margin: 0;
+						strong{text-transform: uppercase;}
+					}
+				}
+				.custom-button{max-width: none;margin-top: 10px}
+			}
+			.row + .row{border-top: 1px solid @gray-light;margin-top: 0}
 		}
 	}
 
