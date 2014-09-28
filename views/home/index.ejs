@@ -1,9 +1,10 @@
 <div id="home">
 	<div class="home-content-top">
 		<div class="map-container" ng-controller="mapCtrl">
+			<%- partial('../global/jumbotron') -%>
 			<leaflet center='mapCenter' ng-class='mapClass' class='map' layers="layers" markers='markers' defaults='options' ></leaflet>	
 		</div>	
-		<div class="total">
+		<div class="total-money">
 			<h1><strong>$387,568,355.00</strong></h1>
 			<p>Presupuesto gastado hasta el 2014 en viajes de servidores publicos</p>
 		</div>
@@ -14,6 +15,7 @@
 				<h2>Los 3 servidores publicos <br/> <span class="big">con mas gastos de viajes AL MES</span></h2>
 				<div class="col-sm-4 person">
 					<div class="person-content">
+						<img src="/images/funcionario-default.png" alt="" class="picture">
 						<p class="name">Nombre</p>
 						<p class="charge">Cargo</p>
 						<p class="dependency">Dependencia</p>
@@ -24,6 +26,7 @@
 				</div>
 				<div class="col-sm-4 person">
 					<div class="person-content">
+						<img src="/images/funcionario1.png" alt="" class="picture">
 						<p class="name">Nombre</p>
 						<p class="charge">Cargo</p>
 						<p class="dependency">Dependencia</p>
@@ -34,6 +37,7 @@
 				</div>
 				<div class="col-sm-4 person">
 					<div class="person-content">
+						<img src="/images/funcionario2.png" alt="" class="picture">
 						<p class="name">Nombre</p>
 						<p class="charge">Cargo</p>
 						<p class="dependency">Dependencia</p>
@@ -44,46 +48,101 @@
 				</div>
 				<div class="clear"></div>
 			</div>
-			<div class="row ranks top-ranks">
-				<div class="col-md-6 top-hotels">
+			<div class="row ranks">
+				<div class="col-md-6 top-places top-hotels">
 					<div class="inner-content">
-						<h4>Hoteles más visitados por los servidores publicos</h4>
-					</div>
-				</div>
-				<div class="col-md-6 top-places">
-					<div class="inner-content">
-						<h4>Ciudades Internacionales/Nacionales mas visitadas por los servidores publicos</h4>
-						<ol>
-							<li>Las vegas</li>
-							<li>Cancun</li>
-							<li>Los angeles</li>
-							<li>Tizimin</li>
-						</ol>
-					</div>
-				</div>
-			</div>
-			<div class="row ranks percentage-ranks">
-				<div class="col-md-6 block">
-					<div class="inner-content">
-						<h4>Porcentaje de vuelos privados</h4>
-						<h4>Porcentaje de aeorlineas</h4>
-						<p>Principales 5 aeorlineas usadas</p>
+						<h4><strong>Hoteles más visitados</strong><br/>por los servidores publicos</h4>
 						<ul>
-							<li>Aerolinea</li>
-							<li>Aerolinea</li>
-							<li>Aerolinea</li>
-							<li>Aerolinea</li>
-							<li>Aerolinea</li>
+							<li>
+								<a href="#"><img src="/images/hotel_foto.png" alt="" class="picture" /></a>
+								<p class="place"><a href="#">The Fairmont Pierre Mayakoba</a></p>
+								<p class="location"><a href="#">Riviera Maya Cancún México</a></p>
+							</li>
+							<li>
+								<a href="#"><img src="/images/hotel_icon.png" alt="" class="picture" /></a>
+								<p class="place"><a href="#">The Fairmont Pierre Mayakoba</a></p>
+								<p class="location"><a href="#">Riviera Maya Cancún México</a></p>
+							</li>
+							<li>
+								<a href="#"><img src="/images/hotel_foto.png" alt="" class="picture" /></a>
+								<p class="place"><a href="#">The Fairmont Pierre Mayakoba</a></p>
+								<p class="location"><a href="#">Riviera Maya Cancún México</a></p>
+							</li>
 						</ul>
 					</div>
 				</div>
-				<div class="col-md-6 block">
+				<div class="col-md-6 percentage-rank">
 					<div class="inner-content">
-						<h4>Porcentaje de viajes nacionales</h4>
-						<h4>Porcentaje de viajes internacionales</h4>
+						<h4><strong>Viajes nacionales e internacionales</strong><br/>de los servidores públicos</h4>
+						<div class="charts-container">
+							<div id="radial-international-trips" class="radial-chart"></div>
+							<div id="radial-national-trips" class="radial-chart"></div>
+						</div>
+						<div class="clear"></div>
+						<p class="total">Total de viajes al año: 2302</p>
 					</div>
 				</div>
+			</div>
+			<div class="row ranks">
+				<div class="col-md-6 percentage-rank">
+					<div class="inner-content">
+						<h4><strong>Las principales aerolineas</strong><br/>usadas por los servidores publicos</h4>
+						<div id="chart-aerolineas"><svg></svg></div>
+						<p class="total">Total de aerolineas usadas: 2302</p>
+					</div>
+				</div>
+				<div class="col-md-6 top-places">
+					<carousel interval="5000">
+						<slide  active="slide.active" >
+							<div class="inner-content">
+								<h4><strong>Ciudades Internacionales</strong><br/>mas visitadas por los servidores publicos</h4>
+								<ul>
+									<li>
+										<a href="#"><img src="/images/pinlugar.png" alt="" class="picture" /></a>
+										<p class="place"><a href="#">Miami</a></p>
+										<p class="location"><a href="#">Estados unidos</a></p>
+									</li>
+									<li>
+										<a href="#"><img src="/images/fotovegas.png" alt="" class="picture" /></a>
+										<p class="place"><a href="#">Las Vegas</a></p>
+										<p class="location"><a href="#">Estados unidos</a></p>
+									</li>
+									<li>
+										<a href="#"><img src="/images/fotovegas.png" alt="" class="picture" /></a>
+										<p class="place"><a href="#">Montreal</a></p>
+										<p class="location"><a href="#">Canada</a></p>
+									</li>
+								</ul>
+							</div>
+						</slide>
+						<slide active="" >
+							<div class="inner-content">
+								<h4><strong>Ciudades Nacionales</strong><br/>mas visitadas por los servidores publicos</h4>
+								<ul>
+									<li>
+										<a href="#"><img src="/images/pinlugar.png" alt="" class="picture" /></a>
+										<p class="place"><a href="#">Cancun</a></p>
+										<p class="location"><a href="#">Mexico</a></p>
+									</li>
+									<li>
+										<a href="#"><img src="/images/fotovegas.png" alt="" class="picture" /></a>
+										<p class="place"><a href="#">Los cabos</a></p>
+										<p class="location"><a href="#">Mexico</a></p>
+									</li>
+									<li>
+										<a href="#"><img src="/images/fotovegas.png" alt="" class="picture" /></a>
+										<p class="place"><a href="#">Guadalajara</a></p>
+										<p class="location"><a href="#">Mexico</a></p>
+									</li>
+								</ul>
+							</div>
+						</slide>
+					</carousel>
+
+				</div>
+
 			</div>			
 		</div>
 	</div>
 </div>
+

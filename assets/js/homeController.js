@@ -1,5 +1,7 @@
 app.controller("mapCtrl", function ($scope, $http) {
 	$scope.nombre = 'mapa';
+	$scope.toggleJumbotron = true;
+	$scope.toggleAdvancedSearch = false;
 	$scope.layers =  {
         baselayers: {
             xyz: {
@@ -49,7 +51,87 @@ app.controller("mapCtrl", function ($scope, $http) {
 		);
 	};
 
+	$scope.addTextRadial = function(radialId,string){
+		var txt = $('#'+radialId).first('.label');
+		console.log(txt);
+		txt.append(string);
+	}
+
+	$scope.startRadialD3 = function(){
+        var rp1 = radialProgress(document.getElementById('radial-international-trips'))
+                .diameter(150)
+                .value(79)
+                .render();	
+
+        var rp2 = radialProgress(document.getElementById('radial-national-trips'))
+                .diameter(150)
+                .value(21)
+                .render();	
+
+        //$scope.addTextRadial('radial-international-trips','Internacionales');
+        //$scope.addTextRadial('radial-rnational-trips','Nacionales');
+
+	}
+
+
+
+
+    $scope.drawChartAerolineas = function(){
+		nv.addGraph(function() {
+		  var chart = nv.models.discreteBarChart()
+		      .x(function(d) { return d.label })    //Specify the data accessors.
+		      .y(function(d) { return d.value })
+		      .staggerLabels(true)    //Too many bars and not enough room? Try staggering labels.
+		      .tooltips(false)        //Don't show tooltips
+		      .showValues(true)       //...instead, show the bar value right on top of each bar.
+		      .transitionDuration(350)
+		      ;
+
+		  d3.select('#chart-aerolineas svg')
+		      .datum($scope.setData())
+		      .call(chart);
+
+		  nv.utils.windowResize(chart.update);
+
+		  return chart;
+		});
+	}
+
+	//Each bar represents a single discrete quantity.
+	$scope.setData = function() {
+	 return  [ 
+	    {
+	      key: "Cumulative Return",
+	      values: [
+	        { 
+	          "label" : "A Label" ,
+	          "value" : 29.765957771107
+	        } , 
+	        { 
+	          "label" : "B Label" , 
+	          "value" : 0
+	        } , 
+	        { 
+	          "label" : "C Label" , 
+	          "value" : 32.807804682612
+	        } , 
+	        { 
+	          "label" : "D Label" , 
+	          "value" : 196.45946739256
+	        } , 
+	        { 
+	          "label" : "E Label" ,
+	          "value" : 0.19434030906893
+	        }
+	      ]
+	    }
+	  ]
+
+	}
+
     $scope.get_markers();
+    $scope.startRadialD3();
+    $scope.drawChartAerolineas();
 
 
 });
