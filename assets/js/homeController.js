@@ -3,6 +3,7 @@ app.controller("homeCtrl", function ($scope, $http) {
 	$scope.toggleJumbotron = true;
 	$scope.toggleSidebar = false;
 	$scope.toggleAdvancedSearch = false;
+    $scope.totalGastado = 0;
 	$scope.mapPlace = '';
 	$scope.layers =  {
         baselayers: {
@@ -51,6 +52,7 @@ app.controller("homeCtrl", function ($scope, $http) {
 	    .success(
 		        function(data) {
 		        	var markers = [];
+                    var totalGastado = 0;
 					$scope.markers = [];
 					var msg;
 					data.forEach(function(marker){
@@ -62,8 +64,10 @@ app.controller("homeCtrl", function ($scope, $http) {
 								message: msg,
 								icon : $scope.leafIcon
 							});
+                            totalGastado += (parseInt(marker.gasto_pasaje,10) ? parseInt(marker.gasto_pasaje,10) : 0) + (parseInt(marker.gasto_viatico,10) ? parseInt(marker.gasto_viatico,10) : 0);
 					});
 					$scope.markers = markers;
+                    $scope.totalGastado = totalGastado;
 		        }, 
 		        function(e) {
 		        	console.log('error');
@@ -163,4 +167,14 @@ app.controller("homeCtrl", function ($scope, $http) {
     $scope.drawChartAerolineas();
 
 
+});
+
+app.controller("statisticsCTL", function ($scope, $http) {
+    $scope.initialize = function(){
+        $http({method: 'POST', url: '/home/statisticsJson'}).success(function(data){
+                console.log(data);
+        });
+    };
+
+    $scope.initialize();
 });

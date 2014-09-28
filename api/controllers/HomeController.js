@@ -14,5 +14,15 @@ module.exports = {
             if (e) res.json({ text : "error",error : e });
             res.json(viajes);
         });
-    }
+    },
+
+    statisticsJson : function(req,res) {
+        Viaje.find({groupBy : [ 'nombre' ],sum : ['gasto_viatico','gasto_pasaje'] }).exec(function(e,viajes){
+            if (e) res.json({ text : "error",error : e });
+            console.log(viajes);
+            res.json(viajes);
+        });
+    },
+
+
 };
