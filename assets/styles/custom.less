@@ -166,7 +166,14 @@ a:hover{text-decoration: none!important;}
 	}
 	.map{
 		height: 400px;
-		.leaflet-popup-content{color: @gray;text-align: center;font-weight: 700}
+		.leaflet-popup-content{
+			color: @gray;text-align: center;font-weight: 700;
+			p{
+				margin: 0;
+				strong{color: @blue;font-size: 18px}
+			}
+		}
+
 	}
 	.total-money{
 		.gradient-blue;
