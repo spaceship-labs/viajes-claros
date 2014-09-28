@@ -39,12 +39,8 @@ app.controller("homeCtrl", function ($scope, $http ,$filter) {
 
     $scope.leafIcon = {
         iconUrl: '../images/pin_mapa.png',
-        //shadowUrl: '../images/',
         iconSize:     [33, 46], // size of the icon
-        //shadowSize:   [50, 64], // size of the shadow
         iconAnchor:   [16, 36] // point of the icon which will correspond to marker's location
-        //shadowAnchor: [4, 62],  // the same for the shadow
-        //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
     };
 
 	$scope.get_markers = function(){
@@ -99,12 +95,12 @@ app.controller("statisticsCTL", function ($scope, $http) {
     }
 
     $scope.startRadialD3 = function(){
-        var rp1 = radialProgress(document.getElementById('radial-international-trips'))
+        var rp1 = radialProgress(document.getElementById('radial-one'))
             .diameter(150)
             .value(79)
             .render();
 
-        var rp2 = radialProgress(document.getElementById('radial-national-trips'))
+        var rp2 = radialProgress(document.getElementById('radial-two'))
             .diameter(150)
             .value(21)
             .render();
@@ -128,7 +124,7 @@ app.controller("statisticsCTL", function ($scope, $http) {
                     .transitionDuration(350)
                 ;
 
-            d3.select('#chart-aerolineas svg')
+            d3.select('#chart-bar svg')
                 .datum($scope.setData())
                 .call(chart);
 
