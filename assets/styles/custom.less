@@ -144,11 +144,33 @@ a:hover{text-decoration: none!important;}
 		.jumbotron.ng-hide {
 			opacity: 0;
 		}
+		.aside{
+			background: #fff;height: 100%;position: absolute;right: 0;top: 0;width: 30%;
+        	.scroller {
+                height: 100%;
+                width: 100%;
+                overflow: hidden;
+                position: relative;
+        	}
+			.arrow-button{background: @turquoise;display: block;height: 100%;left: -28px;position: absolute;width: 28px;}
+			.aside-inner-content{
+				position: relative;
+				h3{background: #fff;color: @gray;font-weight: 400;margin: 0;padding: 10px 15px}
+				ul li{
+					background: #fff;position: relative;
+					a{background: url(../images/funcionario-default.png) 9px center no-repeat;background-size: 23px;color: @gray;display: block;font-size: 14px;font-weight: 300;padding:8px 8px 8px 40px;}
+				}
+				ul li + li{border-top: 1px solid @gray-light}
+			}
+		}
 	}
-	.map{height: 400px}
+	.map{
+		height: 400px;
+		.leaflet-popup-content{color: @gray;text-align: center;font-weight: 700}
+	}
 	.total-money{
 		.gradient-blue;
-		padding: 40px 0;text-align: center;
+		padding: 40px 20px;text-align: center;
 		h1{color: #fff;font-size: 42px;font-weight: 700;margin: 0}
 		p{color: #fff;font-size: 22px;font-weight: 300;max-width: 360px;margin: 0 auto}
 	}
@@ -226,4 +248,12 @@ a:hover{text-decoration: none!important;}
 
 @media (max-width: 960px){
 	.top-people{margin: 20px 0!important}
+}
+@media (max-width: 480px){
+	#home .map-container .jumbotron .content-jumbotron .text-jumbotron h1{font-size: 32px;padding: 0 10px}
+	#home .map-container .jumbotron .content-jumbotron .text-jumbotron p{font-size: 16px;padding: 0 10px}
+	#home .total-money h1{font-size: 32px}
+	#home .total-money p{font-size: 18px}	
+	#home .ranks .percentage-rank .charts-container .radial-chart{float: none!important;margin-bottom: 5px}
+	#home .top-people .person{margin-bottom: 10px}
 }
