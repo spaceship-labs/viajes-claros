@@ -15,31 +15,30 @@ app.controller("mapCtrl", function ($scope, $http) {
 	$scope.options = {
         attributionControl : true, 
         zoomControlPosition: 'bottomright',
-        imagePath : '/consejosano/static/src/css/images-leaflet',
+        imagePath : '/consejosano/static/src/css/images-leaflet'
     };
 
 	$scope.mapCenter = {
 		lng : -99.133208,
 		lat : 19.4326077,
 		zoom : 4,
-	}
+	};
 
 
 	$scope.get_markers = function(){
-	    $http({method: 'POST', url: 'https://erp.consejosano.com/api-health-service-locator'})
+	    $http({method: 'POST', url: '/home/markersJson'})
 	    .success(
 		//$http.post('https://erp.consejosano.com/api-health-service-locator?callback=JSON_CALLBACK')
 		//.then(
-		        function(s) { 
+		        function(data) {
 		        	var markers = [];
 					$scope.markers = [];
-					data = s.objects;
-					data.forEach(function(clinicObject){
-							var messageClinic = clinicObject.name + '<br/>';
+					data.forEach(function(marker){
+							var messageClinic = marker.text + '<br/>';
 							markers.push({
-								lat: parseFloat(clinicObject.latitude),
-								lng: parseFloat(clinicObject.longitude),
-								message: messageClinic,
+								lat: parseFloat(marker.latitude),
+								lng: parseFloat(marker.longitude),
+								message: messageClinic
 							});
 					});
 					$scope.markers = markers;
@@ -48,7 +47,7 @@ app.controller("mapCtrl", function ($scope, $http) {
 		        	console.log('error');
 		        }
 		);
-	}
+	};
 
     $scope.get_markers();
 
