@@ -1,4 +1,4 @@
-app.controller("homeCtrl", function ($scope, $http) {
+app.controller("homeCtrl", function ($scope, $http ,$filter) {
 	$scope.nombre = 'mapa';
 	$scope.toggleJumbotron = true;
 	$scope.toggleSidebar = false;
@@ -56,7 +56,9 @@ app.controller("homeCtrl", function ($scope, $http) {
 					$scope.markers = [];
 					var msg;
 					data.forEach(function(marker){
-							msg = '<p><strong>'+'$230,000.00 MXP'+'</strong></p>Gasto anual de viajes en <span class="place">'
+                            totalGastado += (parseInt(marker.gasto_pasaje,10) ? parseInt(marker.gasto_pasaje,10) : 0) + (parseInt(marker.gasto_viatico,10) ? parseInt(marker.gasto_viatico,10) : 0);
+							totalGastadoStr = $filter('currency')(totalGastado, '$');
+							msg = '<p><strong>' + totalGastadoStr +' MXP'+'</strong></p>Gasto anual de viajes en <span class="place">'
 								  + marker.ciudad_destino + '</span>';
 							markers.push({
 								lat: parseFloat(marker.destino_latitud),
@@ -64,7 +66,6 @@ app.controller("homeCtrl", function ($scope, $http) {
 								message: msg,
 								icon : $scope.leafIcon
 							});
-                            totalGastado += (parseInt(marker.gasto_pasaje,10) ? parseInt(marker.gasto_pasaje,10) : 0) + (parseInt(marker.gasto_viatico,10) ? parseInt(marker.gasto_viatico,10) : 0);
 					});
 					$scope.markers = markers;
                     $scope.totalGastado = totalGastado;
