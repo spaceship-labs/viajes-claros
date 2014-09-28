@@ -19,7 +19,9 @@ var cssFilesToInject = [
 
   'bower_components/bootstrap/dist/css/bootstrap.min.css',
   'bower_components/leaflet/dist/leaflet.css',
+  'bower_components/bootstrap-touch-carousel/dist/css/bootstrap-touch-carousel.css',
   'bower_components/nvd3/nv.d3.min.css',
+  'bower_components/perfect-scrollbar/min/perfect-scrollbar.min.css',
   'bower_components/leaflet.markerclusterer/dist/MarkerCluster.Default.css',
   'bower_components/leaflet.markerclusterer/dist/MarkerCluster.css',
   'bower_components/Leaflet.awesome-markers/dist/leaflet.awesome-markers.css',
@@ -39,9 +41,12 @@ var jsFilesToInject = [
 
   'bower_components/jquery/dist/jquery.min.js',
   'bower_components/bootstrap/dist/js/bootstrap.min.js',
+  'bower_components/perfect-scrollbar/min/perfect-scrollbar.min.js',
   'bower_components/angular/angular.min.js',
-  'bower_components/angular/angular-animeate.min.js',
+  'bower_components/angular/angular-animate.min.js',
+  'bower_components/angular-perfect-scrollbar/src/angular-perfect-scrollbar.js',
   'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+  'bower_components/bootstrap-touch-carousel/dist/js/bootstrap-touch-carousel.js',
   'bower_components/d3/d3.min.js',
   'bower_components/nvd3/nv.d3.min.js',
   'bower_components/leaflet/dist/leaflet.js',
