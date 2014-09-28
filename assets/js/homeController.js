@@ -2,6 +2,7 @@ app.controller("mapCtrl", function ($scope, $http) {
 	$scope.nombre = 'mapa';
 	$scope.toggleJumbotron = true;
 	$scope.toggleAdvancedSearch = false;
+    $scope.totalGastado = 0;
 	$scope.layers =  {
         baselayers: {
             xyz: {
@@ -34,6 +35,7 @@ app.controller("mapCtrl", function ($scope, $http) {
 		//.then(
 		        function(data) {
 		        	var markers = [];
+                    var totalGastado = 0;
 					$scope.markers = [];
 					data.forEach(function(marker){
 							markers.push({
@@ -41,8 +43,10 @@ app.controller("mapCtrl", function ($scope, $http) {
 								lng: parseFloat(marker.destino_longitud),
 								message: marker.ciudad_destino
 							});
+                            totalGastado += (parseInt(marker.gasto_pasaje,10) ? parseInt(marker.gasto_pasaje,10) : 0) + (parseInt(marker.gasto_viatico,10) ? parseInt(marker.gasto_viatico,10) : 0);
 					});
 					$scope.markers = markers;
+                    $scope.totalGastado = totalGastado;
 		        }, 
 		        function(e) {
 		        	console.log('error');
@@ -133,4 +137,14 @@ app.controller("mapCtrl", function ($scope, $http) {
     $scope.drawChartAerolineas();
 
 
+});
+
+app.controller("statisticsCTL", function ($scope, $http) {
+    $scope.initialize = function(){
+        $http({method: 'POST', url: '/home/statisticsJson'}).success(function(data){
+                console.log(data);
+        });
+    };
+
+    $scope.initialize();
 });
