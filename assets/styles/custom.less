@@ -72,7 +72,7 @@ a,p,h1,h2,h3,h4,a[href],input,textarea,span{font-family: 'Open Sans', sans-serif
 .cell-container{display: table-cell;}
 .centered-content{margin: 0 auto;max-width: 960px;}
 a:hover{text-decoration: none!important;}
-
+#main{padding-bottom: 80px}
 #content{
 	h1{font-size: 32px}
 	strong{font-weight: bold;}
@@ -275,7 +275,7 @@ a:hover{text-decoration: none!important;}
 				.share-links{
 					max-width: 75%;margin: 10px auto 0;
 					.col-sm-4{padding-right: 5px;padding-left: 5px;}
-					.share-link{background: #fff;display: block;font-weight: 700;font-size: 11px;padding: 8px;text-transform: uppercase;}
+					.share-link{background: #fff;display: block;font-weight: 700;font-size: 11px;margin-top: 5px;padding: 8px;text-transform: uppercase;}
 					.share-link.fb{color: @blue}
 					.share-link.tw{color: mix(@blue, @turquoise, 50%)}
 					.share-link.sb{color: @turquoise}
@@ -305,6 +305,10 @@ a:hover{text-decoration: none!important;}
 
 }
 
+#footer{
+	.gradient-blue;min-height: 80px;margin-top: -80px!important;
+}
+
 @media (max-width: 960px){
 	.top-people{margin: 20px 0!important}
 }
@@ -313,6 +317,6 @@ a:hover{text-decoration: none!important;}
 	#home .map-container .jumbotron .content-jumbotron .text-jumbotron p{font-size: 16px;padding: 0 10px}
 	#home .total-money h1{font-size: 32px}
 	#home .total-money p{font-size: 18px}	
-	#home .ranks .percentage-rank .charts-container .radial-chart{float: none!important;margin-bottom: 5px}
+	.radial-chart{float: none!important;margin-bottom: 5px}
 	#home .top-people .person{margin-bottom: 10px}
 }
