@@ -116,7 +116,7 @@ a:hover{text-decoration: none!important;}
 	}
 }
 
-#home{
+#content{
 	.map-container{
 		position: relative;
 		.jumbotron{
@@ -224,11 +224,13 @@ a:hover{text-decoration: none!important;}
 				ul{margin: 0 auto;max-width: 90%;}
 				ul li{
 					font-weight: 300;padding: 5px 0;text-align: left;
-					p{margin: 0}
+					p{line-height: 18px;margin: 0}
 					.picture{border-radius: 50%;float: left;height: 42px;margin-right: 8px;width: 42px;}
-					.place{color: @blue;font-size: 18px}
-					.location a{color: @gray;font-size: 13px;text-transform: uppercase;}
+					.big-blue , .big-blue a{color: @blue;font-size: 16px}
+					.location a{color: @gray;font-size: 13px;font-weight: 400;text-transform: uppercase;}
+					.activity{font-size: 12px}
 				}
+				ul li:after{content: '';display: block;clear: both;}
 				li + li{border-top: 1px solid @gray-light}			
 			}
 			.carousel-indicators{
@@ -240,8 +242,8 @@ a:hover{text-decoration: none!important;}
 		}
 		.percentage-rank{
 			.total{border-radius: 4px;border: 1px solid @gray-light;color: @gray;max-width: 75%;margin: 10px auto 0;padding: 4px;text-align: center;}
-			#radial-national-trips .arc{fill: @blue;}
-			#radial-international-trips .arc{fill: @turquoise;}
+			#radial-one .arc{fill: @blue;}
+			#radial-two .arc{fill: @turquoise;}
 			.charts-container{
 				max-width: 70%;margin: 0 auto;
 				.radial-chart .label{font-family: 'Open Sans', sans-serif!important;font-size: 34px!important;font-weight: 300;}
@@ -251,6 +253,37 @@ a:hover{text-decoration: none!important;}
 			}
 		}
 	}
+
+	#funcionario{
+		padding: 20px 0;
+		.funcionario-info{
+			.inner-content{
+				.gradient-blue;color: #fff;text-align: center;
+				.funcionario-icon{display: block;margin: 0 auto;width: 60px}
+				h1{font-weight: 300;margin: 10px 0 5px}
+				p{
+					margin: 0;font-size: 13px;
+					strong{
+						text-transform: uppercase;
+						small{font-size: 12px}
+					}
+				}
+				.money{font-size: 30px;margin-top: 20px;}
+				.share-links{
+					max-width: 75%;margin: 10px auto 0;
+					.col-sm-4{padding-right: 5px;padding-left: 5px;}
+					.share-link{background: #fff;display: block;font-weight: 700;font-size: 11px;padding: 8px;text-transform: uppercase;}
+					.share-link.fb{color: @blue}
+					.share-link.tw{color: mix(@blue, @turquoise, 50%)}
+					.share-link.sb{color: @turquoise}
+				}
+			}
+		}
+		.top-places{
+			.big-blue , .big-blue a{color: @turquoise;}
+		}
+	}
+
 }
 
 @media (max-width: 960px){
