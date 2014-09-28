@@ -1,7 +1,9 @@
-app.controller("mapCtrl", function ($scope, $http) {
+app.controller("homeCtrl", function ($scope, $http) {
 	$scope.nombre = 'mapa';
 	$scope.toggleJumbotron = true;
+	$scope.toggleSidebar = false;
 	$scope.toggleAdvancedSearch = false;
+	$scope.mapPlace = '';
 	$scope.layers =  {
         baselayers: {
             xyz: {
@@ -17,7 +19,7 @@ app.controller("mapCtrl", function ($scope, $http) {
 	$scope.options = {
         attributionControl : true, 
         zoomControlPosition: 'bottomright',
-        imagePath : '/consejosano/static/src/css/images-leaflet'
+        imagePath : '/bower_components/leaflet/dist/images/'
     };
 
 	$scope.mapCenter = {
@@ -26,12 +28,25 @@ app.controller("mapCtrl", function ($scope, $http) {
 		zoom : 4,
 	};
 
+	$scope.$on('leafletDirectiveMarker.click', function(event, args){
+	    //console.log( $scope.markers[args.markerName]);
+	    $scope.mapPlace = $scope.markers[args.markerName].message;
+	    $scope.toggleSidebar = true;
+	});
+
+    $scope.leafIcon = {
+        iconUrl: '../images/pin_mapa.png',
+        //shadowUrl: '../images/',
+        iconSize:     [33, 46], // size of the icon
+        //shadowSize:   [50, 64], // size of the shadow
+        iconAnchor:   [16, 36] // point of the icon which will correspond to marker's location
+        //shadowAnchor: [4, 62],  // the same for the shadow
+        //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+    };
 
 	$scope.get_markers = function(){
 	    $http({method: 'POST', url: '/home/vajesJson'})
 	    .success(
-		//$http.post('https://erp.consejosano.com/api-health-service-locator?callback=JSON_CALLBACK')
-		//.then(
 		        function(data) {
 		        	var markers = [];
 					$scope.markers = [];
@@ -39,7 +54,8 @@ app.controller("mapCtrl", function ($scope, $http) {
 							markers.push({
 								lat: parseFloat(marker.destino_latitud),
 								lng: parseFloat(marker.destino_longitud),
-								message: marker.ciudad_destino
+								message: marker.ciudad_destino,
+								icon : $scope.leafIcon
 							});
 					});
 					$scope.markers = markers;
@@ -49,6 +65,15 @@ app.controller("mapCtrl", function ($scope, $http) {
 		        }
 		);
 	};
+
+	angular.extend($scope, {
+	    events: {
+	      markers: {
+	        enable: ['click'],
+	        logic: 'emit'
+	      }
+	    }
+	});
 
 	$scope.addTextRadial = function(radialId,string){
 		var txt = $('#'+radialId).first('.label');

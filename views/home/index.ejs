@@ -1,8 +1,34 @@
 <div id="home">
 	<div class="home-content-top">
-		<div class="map-container" ng-controller="mapCtrl">
+		<div class="map-container" ng-controller="homeCtrl">
 			<%- partial('../global/jumbotron') -%>
-			<leaflet center='mapCenter' ng-class='mapClass' class='map' layers="layers" markers='markers' defaults='options' ></leaflet>	
+			<leaflet center='mapCenter' ng-class='mapClass' class='map' layers="layers" markers='markers' defaults='options' event-broadcast="events" ></leaflet>
+			<div class="aside" ng-show="toggleSidebar">
+				<a href="#" ng-click="toggleSidebar = !toggleSidebar" class="arrow-button"></a>
+				<perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="50" refresh-on-change="someArray">
+					<div class="aside-inner-content">
+						<h3>Estos son los servidores publicos que han estado en {{mapPlace}}</h3>
+						<ul>
+							<li><a href="#">Nombre del servidor publico</a></li>
+							<li><a href="#">Nombre del servidor publico</a></li>
+							<li><a href="#">Nombre del servidor publico</a></li>
+							<li><a href="#">Nombre del servidor publico</a></li>
+							<li><a href="#">Nombre del servidor publico</a></li>
+							<li><a href="#">Nombre del servidor publico</a></li>
+							<li><a href="#">Nombre del servidor publico</a></li>
+							<li><a href="#">Nombre del servidor publico</a></li>
+							<li><a href="#">Nombre del servidor publico</a></li>
+							<li><a href="#">Nombre del servidor publico</a></li>
+							<li><a href="#">Nombre del servidor publico</a></li>
+							<li><a href="#">Nombre del servidor publico</a></li>
+							<li><a href="#">Nombre del servidor publico</a></li>
+							<li><a href="#">Nombre del servidor publico</a></li>
+							<li><a href="#">Nombre del servidor publico</a></li>
+							<li><a href="#">Nombre del servidor publico</a></li>
+						</ul>
+					</perfect-scrollbar>
+				</div>
+			</div>	
 		</div>	
 		<div class="total-money">
 			<h1><strong>$387,568,355.00</strong></h1>
