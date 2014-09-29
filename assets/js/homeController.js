@@ -33,8 +33,7 @@ app.controller("homeCtrl", ['$scope', '$http','$filter',function ($scope, $http 
 	    var place = $scope.markers[args.markerName].message;
 	    place = $.parseHTML(place);
 	    place = place[2].innerHTML;
-	    $scope.mapPlace = place;
-	    $scope.toggleSidebar = true;
+        $scope.loadViajes(place);
 	});
 
     $scope.leafIcon = {
@@ -72,6 +71,16 @@ app.controller("homeCtrl", ['$scope', '$http','$filter',function ($scope, $http 
 		        }
 		);
 	};
+
+    $scope.loadViajes = function(ciudad) {
+        $scope.mapPlace = ciudad;
+        $scope.toggleSidebar = true;
+
+        $http({method: 'POST', url: '/home/vajesPorCiudadJson?ciudad=' + ciudad})
+            .success(function(data){
+                $scope.items = data;
+            });
+    };
 
 	angular.extend($scope, {
 	    events: {

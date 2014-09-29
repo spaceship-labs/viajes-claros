@@ -7,27 +7,14 @@
 				<a href="#" ng-click="toggleSidebar = !toggleSidebar" class="arrow-button"></a>
 				<perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="50" refresh-on-change="someArray">
 					<div class="aside-inner-content">
-						<h3>Estos son los servidores publicos que han estado en {{mapPlace}}</h3>
+						<h3>Estos son los viajes en {{mapPlace}}</h3>
 						<ul>
-							<li><a href="#">Nombre del servidor publico</a></li>
-							<li><a href="#">Nombre del servidor publico</a></li>
-							<li><a href="#">Nombre del servidor publico</a></li>
-							<li><a href="#">Nombre del servidor publico</a></li>
-							<li><a href="#">Nombre del servidor publico</a></li>
-							<li><a href="#">Nombre del servidor publico</a></li>
-							<li><a href="#">Nombre del servidor publico</a></li>
-							<li><a href="#">Nombre del servidor publico</a></li>
-							<li><a href="#">Nombre del servidor publico</a></li>
-							<li><a href="#">Nombre del servidor publico</a></li>
-							<li><a href="#">Nombre del servidor publico</a></li>
-							<li><a href="#">Nombre del servidor publico</a></li>
-							<li><a href="#">Nombre del servidor publico</a></li>
-							<li><a href="#">Nombre del servidor publico</a></li>
-							<li><a href="#">Nombre del servidor publico</a></li>
-							<li><a href="#">Nombre del servidor publico</a></li>
+							<li ng-repeat="item in items">
+                                <a href="{{'/viaje?id=' + item.id}}">{{item.fecha_inicio_com | date}}</a>|<a href="{{'/funcionario?id=' + item.funcionario.id}}">{{item.funcionario.nombre_completo}}</a>
+                            </li>
 						</ul>
-					</perfect-scrollbar>
-				</div>
+                    </div>
+			    </perfect-scrollbar>
 			</div>	
 		</div>	
 		<div class="total-money">
