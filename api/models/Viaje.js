@@ -55,7 +55,7 @@ module.exports = {
         fecha_fin_com : 'string',
         gasto_pasaje : 'float',
         gasto_viatico : 'float',
-        gast_total : 'float',
+        gasto_total : 'float',
         inst_hospedaje : 'string',
         hotel : 'string',
         fecha_inicio_hotel : 'string',

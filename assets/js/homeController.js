@@ -99,12 +99,12 @@ app.controller("statisticsCTL", function ($scope, $http) {
         $scope.totalViajes = $scope.internacionalesList.length ? ($scope.internacionalesList[0].total + $scope.internacionalesList[1].total) : 0;
         var internationalPercentage = $scope.internacionalesList[0].total/$scope.totalViajes * 100;
         var nationalPercentage = $scope.internacionalesList[1].total/$scope.totalViajes * 100;
-        var rp1 = radialProgress(document.getElementById('radial-international-trips'))
+        var rp1 = radialProgress(document.getElementById('radial-one'))
             .diameter(100)
             .value(internationalPercentage)
             .render();
 
-        var rp2 = radialProgress(document.getElementById('radial-national-trips'))
+        var rp2 = radialProgress(document.getElementById('radial-two'))
             .diameter(100)
             .value(nationalPercentage)
             .render();
@@ -113,32 +113,6 @@ app.controller("statisticsCTL", function ($scope, $http) {
         //$scope.addTextRadial('radial-rnational-trips','Nacionales');
 
     }
-
-
-    $scope.drawChartHorizontal = function(){
-          nv.addGraph(function() {
-            var chart = nv.models.multiBarHorizontalChart()
-                .x(function(d) { return d.label })
-                .y(function(d) { return d.value })
-                //.margin({top: 30, right: 20, bottom: 50, left: 175})
-                .showValues(true)           //Show bar value next to each bar.
-                .tooltips(true)             //Show tooltips on hover.
-                .transitionDuration(350)
-                .showControls(true);        //Allow user to switch between "Grouped" and "Stacked" mode.
-
-            chart.yAxis
-                .tickFormat(d3.format(',.2f'));
-
-            d3.select('#chart-horizontal svg')
-                .datum($scope.setData())
-                .call(chart);
-
-            nv.utils.windowResize(chart.update);
-
-            return chart;
-          });
-    }
-
 
     $scope.drawChartAerolineas = function(){
         nv.addGraph(function() {
@@ -183,5 +157,4 @@ app.controller("statisticsCTL", function ($scope, $http) {
     };
 
     $scope.loadData();
-    $scope.drawChartHorizontal();
 });
