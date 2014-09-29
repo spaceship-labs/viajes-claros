@@ -36,7 +36,7 @@ module.exports = {
                 "order by sum(gasto_total) desc";
             Viaje.query(query,
                 function(e,viajes){
-                    if (e) res.json({ text : "error 1",error : e });
+                    if (e) res.json({ text : "error viajes por nombre",error : e });
                     viajesPorNombre = viajes;
                     cb();
                 });
@@ -44,7 +44,7 @@ module.exports = {
         asyncTasks.push(function(cb){
             Viaje.query("select ciudad_destino,pais_destino,tipo_viaje,sum(gasto_total) as gasto_total,count(*) as total from viaje group by ciudad_destino,pais_destino,tipo_viaje order by count(*) desc,sum(gasto_total) desc",
                 function(e,viajes){
-                    if (e) res.json({ text : "error 2",error : e });
+                    if (e) res.json({ text : "error ciudades",error : e });
                     ciudadesVisitadas = viajes;
                     cb();
                 });
@@ -52,14 +52,14 @@ module.exports = {
         asyncTasks.push(function(cb){
             Viaje.query("select linea_origen,count(*) as total from viaje where pasaje_tipo = 'Aéreo' and linea_origen != '' group by linea_origen",
                 function(e,vo){
-                    if (e) res.json({ text : "error 3",error : e });
+                    if (e) res.json({ text : "error aerolineas",error : e });
                     aerolineas = vo;
                     cb();
             });
         });
         asyncTasks.push(function(cb){
             Viaje.query("select tipo_viaje,count(*) total from viaje where tipo_viaje != '' group by tipo_viaje",function(e,vo){
-                if (e) res.json({ text : "error 4",error : e });
+                if (e) res.json({ text : "error internacionales-nacionales",error : e });
                 viajesInternacionalesNacionales = vo;
                 cb();
             });
@@ -67,7 +67,7 @@ module.exports = {
         asyncTasks.push(function(cb){
             Viaje.query("select hotel,ciudad_destino,pais_destino,sum(gasto_viatico) as gasto_viatico from viaje where hotel != 'No aplica' and hotel != 'No disponible' group by hotel,ciudad_destino,pais_destino order by sum(gasto_viatico) desc limit 0,3",
                 function(e,viajes){
-                    if (e) res.json({ text : "error 5",error : e });
+                    if (e) res.json({ text : "error hoteles",error : e });
                     hotelVisitado = viajes;
                     cb();
                 });

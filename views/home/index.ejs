@@ -47,7 +47,7 @@
 						<p class="dependency">{{funcionario.unidad_administrativa ? funcionario.unidad_administrativa : "no disponible"}}</p>
 						<p class="money">{{funcionario.gasto_total | currency}}</p>
 						<p class="gray">Gastos al mes</p>
-						<a href="/funcionario/{{funcionario.funcionario}}" class="custom-button">Ver perfil</a>
+						<a href="/funcionario?id={{funcionario.funcionario}}" class="custom-button">Ver perfil</a>
 					</div>
 				</div>
 				<div class="clear"></div>
@@ -69,8 +69,8 @@
 					<div class="inner-content">
 						<h4><strong>Viajes nacionales e internacionales</strong><br/>de los servidores públicos</h4>
 						<div class="charts-container">
-							<div id="radial-international-trips" class="radial-chart">Internacionales</div>
-							<div id="radial-national-trips" class="radial-chart">Nacionales</div>
+							<div id="radial-one" class="radial-chart">Internacionales</div>
+							<div id="radial-two" class="radial-chart">Nacionales</div>
 							<div class="clear"></div>
 						</div>
 						<div class="clear"></div>
