@@ -30,12 +30,12 @@ app.controller("funcionarioCTL", ['$scope', '$http','$filter',function ($scope, 
         });
 
         var rp1 = radialProgress(document.getElementById('radial-one'))
-            .diameter(100)
+            .diameter(150)
             .value((days/day) * 100)
             .render();
 
         var rp2 = radialProgress(document.getElementById('radial-two'))
-            .diameter(100)
+            .diameter(150)
             .value(((day-days)/day) * 100)
             .render();
 
