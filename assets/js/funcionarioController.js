@@ -5,7 +5,11 @@ app.controller("funcionarioCTL", function ($scope, $http, $filter) {
 
     $scope.viajes = window.viajes;
     $scope.funcionario = window.funcionario;
-    $scope.totalViaticos = 0;
+    $scope.totalViaticos = 0.0;
+    for (var i=0;i<$scope.viajes.length;i++) {
+        var el = $scope.viajes[i];
+        $scope.totalViaticos += el.gasto_viatico;
+    }
 
 
     $scope.startRadialD3 = function(){
@@ -60,12 +64,13 @@ app.controller("funcionarioCTL", function ($scope, $http, $filter) {
         var comprobados = 0;
         var sincomprobar = 0;
         var devuelto = 0;
-        $scope.viajes.forEach(function(el){
+        for (var i=0;i<$scope.viajes.length;i++) {
+            var el = $scope.viajes[i];
             comprobados += el.viatico_comprobado;
             sincomprobar += el.viatico_sin_comprobar;
             devuelto += el.viatico_devuelto;
-            $scope.totalViaticos += el.gasto_viatico;
-        });
+        }
+        console.log($scope.totalViaticos);
         var values = [
             {label : 'comprobados',value : comprobados},
             {label : 'sin comprobar',value : sincomprobar},
@@ -97,11 +102,6 @@ app.controller("funcionarioCTL", function ($scope, $http, $filter) {
             return chart;
         });
     };
-
-    $scope.loadData = function(){
-
-    };
-
 
     $scope.startRadialD3();
     $scope.drawChartHorizontal();
