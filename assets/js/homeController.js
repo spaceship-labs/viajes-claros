@@ -100,12 +100,12 @@ app.controller("statisticsCTL", ['$scope', '$http',function ($scope, $http) {
         var internationalPercentage = $scope.internacionalesList[0].total/$scope.totalViajes * 100;
         var nationalPercentage = $scope.internacionalesList[1].total/$scope.totalViajes * 100;
         var rp1 = radialProgress(document.getElementById('radial-one'))
-            .diameter(100)
+            .diameter(150)
             .value(internationalPercentage)
             .render();
 
         var rp2 = radialProgress(document.getElementById('radial-two'))
-            .diameter(100)
+            .diameter(150)
             .value(nationalPercentage)
             .render();
 
