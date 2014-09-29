@@ -23,8 +23,8 @@
 					<div class="inner-content">
 						<i class="icon-senior funcionario-icon"></i> 
 						<h1>{{funcionario.nombre_completo}}</h1>
-						<p><strong>Cargo: {{funcionario.cargo_nombre ? funcionario.cargo_nombre : "no disponible"}}</strong></p>
-						<p><strong>Dependencia: {{funcionario.unidad_administrativa ? funcionario.unidad_administrativa : "no disponible"}}</strong></p>
+						<p><strong>Cargo: {{funcionario.nombre_puesto ? funcionario.nombre_puesto : "no disponible"}}</strong></p>
+						<p><strong>Area: {{funcionario.cargo_nombre_superior ? funcionario.cargo_nombre_superior : "no disponible"}}</strong></p>
 						<p class="money"><strong>{{getTotal() | currency}}</strong></p>
 						<p><strong><small>Gastos al año en viajes</small></strong></p>
 						<div class="share-links">
@@ -62,8 +62,8 @@
                             </li>
                             <li ng-if="viajes.length < 2">
                                 <a href="#"><img src="/images/hotel_foto.png" alt="" class="picture" /></a>
-                                <p class="big-blue">$20,000 MXP</p>
-                                <p class="location"><a href="#">Los cabos México</a></p>
+                                <p class="big-blue">$35,000 MXP</p>
+                                <p class="location"><a href="#">Riviera Maya Cancún México</a></p>
                                 <p class="activity">Nombre del evento o actividad</p>
                             </li>
 						</ul>
@@ -76,7 +76,7 @@
 					<div class="inner-content">
 						<h4><strong>Monto de viaticos</strong><br/>usados al año por este servidor</h4>
 						<div id="chart-horizontal"><svg></svg></div>
-						<p class="total">Total de viaticos al año: $2302</p>
+						<p class="total">Total de viaticos al año: {{totalViaticos | currency}}</p>
 					</div>
 				</div>
 				<div class="col-md-6 percentage-rank">

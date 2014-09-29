@@ -1,0 +1,44 @@
+<div id="fb-root"></div>
+<script>
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&appId=1475058902713106&version=v2.0";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    window.twttr=(function(d,s,id){var t,js,fjs=d.getElementsByTagName(s)[0];if(d.getElementById(id)){return}js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);return window.twttr||(t={_e:[],ready:function(f){t._e.push(f)}})}(document,"script","twitter-wjs"));
+</script>
+
+<div id="funcionario">
+	<div class="centered-content">
+        <script type="text/javascript">
+            window.funcionario = <%- JSON.stringify(funcionario) %>;
+            window.viaje = <%- JSON.stringify(viaje) %>;
+        </script>
+		<div class="container-fluid" ng-controller="viajeCTL">
+			<div class="row ranks">
+				<div class="col-md-6 funcionario-info">
+					<div class="inner-content">
+						<i class="icon-senior funcionario-icon"></i> 
+						<h1>{{funcionario.nombre_completo}}</h1>
+						<p><strong>Cargo: {{funcionario.nombre_puesto ? funcionario.nombre_puesto : "no disponible"}}</strong></p>
+						<p><strong>Area: {{funcionario.cargo_nombre_superior ? funcionario.cargo_nombre_superior : "no disponible"}}</strong></p>
+						<p class="money"><strong>{{viaje.gasto_total | currency}}</strong></p>
+						<p><strong><small>Gastos al año en viajes</small></strong></p>
+						<div class="share-links">
+							<div class="row">
+								<div class="col-sm-4 fb-share-button" data-href="<%- fullUrl %>">Compartir</div>
+								<div class="col-sm-4"><a class="twitter-share-button" href="<%- fullUrl %>" data-via="twitterdev">Tweet</a></div>
+								<div class="col-sm-4"><a href="#" class="share-link sb">Suscribirme</a></div>
+							</div>
+						</div>
+                        <p ng-repeat="(attribute,value) in viaje">{{attribute}} ({{value}})</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
