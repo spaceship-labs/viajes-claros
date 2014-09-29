@@ -101,7 +101,7 @@ a:hover{text-decoration: none!important;}
 			input[type="text"]input:-moz-placeholder { color:#fff; }
 			.advanced-search{
 				color: #fff;position: absolute;right: 0;top:0;height: 100%;padding: 0 6px;
-				span{font-size: 12px;font-weight: 700;position: relative;top: 20px;text-transform: uppercase;}
+				span{font-size: 12px;font-weight: 700;position: relative;top: 24px;text-transform: uppercase;}
 			}
 			.advanced-search:hover , .advanced-search.on{background: #fff;color: @turquoise}
 			.select-inputs{
@@ -158,7 +158,11 @@ a:hover{text-decoration: none!important;}
 				h3{background: #fff;color: @gray;font-weight: 400;margin: 0;padding: 10px 15px}
 				ul li{
 					background: #fff;position: relative;
-					a{background: url(../images/funcionario-default.png) 9px center no-repeat;background-size: 23px;color: @gray;display: block;font-size: 14px;font-weight: 300;padding:8px 8px 8px 40px;}
+					p{
+						background: url(../images/funcionario-default.png) 9px 6px no-repeat;background-size: 22px;color: @gray;display: block;font-size: 14px;font-weight: 300;margin: 0;padding:8px 8px 0px 40px;
+						a{color: @blue;font-weight: 400}
+					}
+					p + p {background: none;padding:0px 8px 8px 40px;}
 				}
 				ul li + li{border-top: 1px solid @gray-light}
 			}
@@ -193,9 +197,9 @@ a:hover{text-decoration: none!important;}
 				background: #F7F7F7;color: @gray;padding: 20px;
 				p{margin: 0}
 				.picture{display: block;border-radius: 50%;height: 55px;width: 55px;margin:0 auto 20px;}
-				.name{font-size: 18px}
+				.name{font-size: 18px;text-transform: capitalize;}
 				.charge , .dependency{font-size: 13px;text-transform: uppercase;}
-				.dependency{font-weight: 700}
+				.dependency{font-weight: 700;min-height: 58px}
 				.money{color: @blue;font-size: 30px;font-weight: 300;margin: 8px 0;}
 				.gray{color: @gray;font-size: 14px;font-weight: 700;margin-bottom: 8px}
 				.custom-button{font-size: 12px;max-width: none;}
@@ -263,7 +267,7 @@ a:hover{text-decoration: none!important;}
 			.inner-content{
 				.gradient-blue;color: #fff;text-align: center;
 				.funcionario-icon{display: block;margin: 0 auto;height: 105px;line-height: 40px;font-size: 98px}
-				h1{font-weight: 300;margin: 10px 0 5px}
+				h1{font-weight: 300;margin: 10px 0 5px;text-transform: capitalize;}
 				p{
 					margin: 0;font-size: 13px;
 					strong{
@@ -275,6 +279,8 @@ a:hover{text-decoration: none!important;}
 				.share-links{
 					max-width: 75%;margin: 10px auto 0;
 					.col-sm-4{padding-right: 5px;padding-left: 5px;}
+					.fb_iframe_widget{position: absolute;top: 5px;left: 21px;opacity: 0;}
+					#twitter-widget-0{position: absolute;top: 8px;left: 25px;opacity: 0;}
 					.share-link{background: #fff;display: block;font-weight: 700;font-size: 11px;margin-top: 5px;padding: 8px;text-transform: uppercase;}
 					.share-link.fb{color: @blue}
 					.share-link.tw{color: mix(@blue, @turquoise, 50%)}
@@ -292,6 +298,27 @@ a:hover{text-decoration: none!important;}
 				.col-sm-4{padding-bottom: 20px;padding-top:20px;}
 				.duration{
 					i{float: left;font-size: 50px}
+					p{
+						color: @gray;font-size: 13px;margin: 0;
+						strong{text-transform: uppercase;}
+					}
+				}
+				.custom-button{max-width: none;margin-top: 10px}
+			}
+			.row + .row{border-top: 1px solid @gray-light;margin-top: 0}
+		}
+	}
+	#list{
+		padding-top: 20px;
+		.results{
+			margin-top: 20px;
+			h2{color: @gray;font-size: 28px;text-align: center;}
+			.row{
+				.col-sm-4{
+					color: @gray;padding-bottom: 20px;padding-top:20px;
+					.picture{margin-bottom: 20px;}
+				}
+				.second{
 					p{
 						color: @gray;font-size: 13px;margin: 0;
 						strong{text-transform: uppercase;}
