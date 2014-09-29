@@ -56,9 +56,10 @@ app.controller("homeCtrl", function ($scope, $http ,$filter) {
 					$scope.markers = [];
 					var msg;
 					data.forEach(function(marker){
-                            totalGastado += (parseInt(marker.gasto_pasaje,10) ? parseInt(marker.gasto_pasaje,10) : 0) + (parseInt(marker.gasto_viatico,10) ? parseInt(marker.gasto_viatico,10) : 0);
-							totalGastadoStr = $filter('currency')(totalGastado, '$');
-							msg = '<p><strong>' + totalGastadoStr +' MXP'+'</strong></p>Gasto anual de viajes en <span class="place">'
+                            var parcialGastado = (parseInt(marker.gasto_pasaje,10) ? parseInt(marker.gasto_pasaje,10) : 0) + (parseInt(marker.gasto_viatico,10) ? parseInt(marker.gasto_viatico,10) : 0);
+                            totalGastado += parcialGastado;
+							var parcialGastadoStr = $filter('currency')(parcialGastado, '$');
+							msg = '<p><strong>' + parcialGastadoStr +' MXP'+'</strong></p>Gasto anual de viajes en <span class="place">'
 								  + marker.ciudad_destino + '</span>';
 							markers.push({
 								lat: parseFloat(marker.destino_latitud),
@@ -91,22 +92,25 @@ app.controller("homeCtrl", function ($scope, $http ,$filter) {
 });
 
 app.controller("statisticsCTL", function ($scope, $http) {
-
-    $scope.addTextRadial = function(radialId,string){
-        var txt = $('#'+radialId).first('.label');
-        console.log(txt);
-        txt.append(string);
-    }
+    $scope.hotelList = [];
+    $scope.ciudadesList = [];
+    $scope.aerolineasList = [];
+    $scope.funcionariosList = [];
+    $scope.internacionalesList = [];
+    $scope.totalViajes = 0;
 
     $scope.startRadialD3 = function(){
+        $scope.totalViajes = $scope.internacionalesList.length ? ($scope.internacionalesList[0].total + $scope.internacionalesList[1].total) : 0;
+        var internationalPercentage = $scope.internacionalesList[0].total/$scope.totalViajes * 100;
+        var nationalPercentage = $scope.internacionalesList[1].total/$scope.totalViajes * 100;
         var rp1 = radialProgress(document.getElementById('radial-international-trips'))
-            .diameter(150)
-            .value(79)
+            .diameter(100)
+            .value(internationalPercentage)
             .render();
 
         var rp2 = radialProgress(document.getElementById('radial-national-trips'))
-            .diameter(150)
-            .value(21)
+            .diameter(100)
+            .value(nationalPercentage)
             .render();
 
         //$scope.addTextRadial('radial-international-trips','Internacionales');
@@ -136,47 +140,28 @@ app.controller("statisticsCTL", function ($scope, $http) {
 
             return chart;
         });
-    }
+    };
 
-    //Each bar represents a single discrete quantity.
     $scope.setData = function() {
-        return  [
-            {
-                key: "Cumulative Return",
-                values: [
-                    {
-                        "label" : "A Label" ,
-                        "value" : 29.765957771107
-                    } ,
-                    {
-                        "label" : "B Label" ,
-                        "value" : 0
-                    } ,
-                    {
-                        "label" : "C Label" ,
-                        "value" : 32.807804682612
-                    } ,
-                    {
-                        "label" : "D Label" ,
-                        "value" : 196.45946739256
-                    } ,
-                    {
-                        "label" : "E Label" ,
-                        "value" : 0.19434030906893
-                    }
-                ]
-            }
-        ]
-
-    }
+        var values = $scope.aerolineasList.map(function(el){
+            return { label : el.linea_origen,value : el.total };
+        });
+        return [{ key: "Cumulative Return",values : values }];
+    };
 
     $scope.loadData = function(){
         $http({method: 'POST', url: '/home/statisticsJson'}).success(function(data){
                 console.log(data);
+                $scope.hotelList = data.hotelList;
+                $scope.ciudadesList = data.ciudadesList;
+                $scope.aerolineasList = data.aerolineasList;
+                $scope.funcionariosList = data.funcionariosList;
+                $scope.internacionalesList = data.internacionalesList;
+
+                $scope.startRadialD3();
+                $scope.drawChartAerolineas();
         });
     };
 
     $scope.loadData();
-    $scope.startRadialD3();
-    $scope.drawChartAerolineas();
 });
