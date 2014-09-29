@@ -43,8 +43,8 @@
 					<div class="person-content">
 						<img src="/images/funcionario-default.png" alt="" class="picture">
 						<p class="name">{{funcionario.nombre_completo}}</p>
-						<p class="charge">{{funcionario.cargo_nombre ? funcionario.cargo_nombre : "no disponible"}}</p>
-						<p class="dependency">{{funcionario.unidad_administrativa ? funcionario.unidad_administrativa : "no disponible"}}</p>
+						<p class="charge">{{funcionario.nombre_puesto != 0 ? funcionario.nombre_puesto : "no disponible"}}</p>
+						<p class="dependency">{{funcionario.cargo_nombre_superior != 0 ? funcionario.cargo_nombre_superior : "no disponible"}}</p>
 						<p class="money">{{funcionario.gasto_total | currency}}</p>
 						<p class="gray">Gastos al mes</p>
 						<a href="/funcionario?id={{funcionario.funcionario}}" class="custom-button">Ver perfil</a>
@@ -83,7 +83,7 @@
 					<div class="inner-content">
 						<h4><strong>Las principales aerolineas</strong><br/>usadas por los servidores publicos</h4>
 						<div id="chart-bar"><svg></svg></div>
-						<p class="total">Total de aerolineas usadas: 2302</p>
+						<p class="total">Total de aerolineas usadas: {{aerolineasList.length}}</p>
 					</div>
 				</div>
 				<div class="col-md-6 top-places">
@@ -113,9 +113,7 @@
 							</div>
 						</slide>
 					</carousel>
-
 				</div>
-
 			</div>			
 		</div>
 	</div>

@@ -19,14 +19,15 @@ app.controller("funcionarioCTL", function ($scope, $http, $filter) {
         var oneDay = 1000 * 60 * 60 * 24;
         var day = Math.floor(diff / oneDay);
 
-        var days = $scope.viajes.map(function(viaje){
+        var days = 0;
+
+        $scope.viajes.map(function(viaje){
            var dateInicio = new Date(viaje.fecha_inicio_com);
            var dateFin = new Date(viaje.fecha_fin_com);
            var dateDiff = dateFin - dateInicio;
            var vacas = Math.floor(dateDiff / oneDay);
-           return vacas;
+           days += days + vacas;
         });
-        console.log(day);
 
         var rp1 = radialProgress(document.getElementById('radial-one'))
             .diameter(100)
