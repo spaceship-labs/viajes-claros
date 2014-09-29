@@ -1,4 +1,4 @@
-app.controller("homeCtrl", function ($scope, $http ,$filter) {
+app.controller("homeCtrl", ['$scope', '$http','$filter',function ($scope, $http ,$filter) {
 	$scope.nombre = 'mapa';
 	$scope.toggleJumbotron = true;
 	$scope.toggleSidebar = false;
@@ -85,9 +85,9 @@ app.controller("homeCtrl", function ($scope, $http ,$filter) {
 
     $scope.get_markers();
 
-});
+}]);
 
-app.controller("statisticsCTL", function ($scope, $http) {
+app.controller("statisticsCTL", ['$scope', '$http',function ($scope, $http) {
     $scope.hotelList = [];
     $scope.ciudadesList = [];
     $scope.aerolineasList = [];
@@ -157,4 +157,4 @@ app.controller("statisticsCTL", function ($scope, $http) {
     };
 
     $scope.loadData();
-});
+}]);
