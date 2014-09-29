@@ -1,7 +1,7 @@
 /**
  * Created by Owner on 9/29/2014.
  */
-app.controller("funcionarioCTL", function ($scope, $http, $filter) {
+app.controller("funcionarioCTL", ['$scope', '$http','$filter',function ($scope, $http, $filter) {
 
     $scope.viajes = window.viajes;
     $scope.funcionario = window.funcionario;
@@ -106,4 +106,4 @@ app.controller("funcionarioCTL", function ($scope, $http, $filter) {
 
     $scope.startRadialD3();
     $scope.drawChartHorizontal();
-});
+}]);
