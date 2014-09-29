@@ -1,0 +1,98 @@
+<div id="funcionario">
+	<div class="centered-content">
+		<div class="container-fluid" ng-controller="statisticsCTL">
+			<div class="row ranks">
+				<div class="col-md-6 funcionario-info">
+					<div class="inner-content">
+						<i class="icon-senior funcionario-icon"></i> 
+						<h1>Diana Pérez Bautista</h1>
+						<p><strong>Cargo: funcionario conciliador</strong></p>
+						<p><strong>Dependencia: Junta federal #56</strong></p>
+						<p class="money"><strong>$345,000 MXP</strong></p>
+						<p><strong><small>Gastos al año en viajes</small></strong></p>
+						<div class="share-links">
+							<div class="row">
+								<div class="col-sm-4"><a href="#" class="share-link fb">Compartir</a></div>
+								<div class="col-sm-4"><a href="#" class="share-link tw">Compartir</a></div>
+								<div class="col-sm-4"><a href="#" class="share-link sb">Suscribirme</a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 top-places">
+					<div class="inner-content">
+						<h4><strong>Top 3 viajes mas costosos</strong><br/>realizados por este servidor publico</h4>
+						<ul>
+							<li>
+								<a href="#"><img src="/images/hotel_foto.png" alt="" class="picture" /></a>
+								<p class="big-blue">$35,000 MXP</p>
+								<p class="location"><a href="#">Riviera Maya Cancún México</a></p>
+								<p class="activity">Nombre del evento o actividad</p>
+							</li>
+							<li>
+								<a href="#"><img src="/images/hotel_foto.png" alt="" class="picture" /></a>
+								<p class="big-blue">$35,000 MXP</p>
+								<p class="location"><a href="#">Riviera Maya Cancún México</a></p>
+								<p class="activity">Nombre del evento o actividad</p>
+							</li>
+							<li>
+								<a href="#"><img src="/images/hotel_foto.png" alt="" class="picture" /></a>
+								<p class="big-blue">$35,000 MXP</p>
+								<p class="location"><a href="#">Riviera Maya Cancún México</a></p>
+								<p class="activity">Nombre del evento o actividad</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+			<div class="row ranks">
+				<div class="col-md-6 percentage-rank">
+					<div class="inner-content">
+						<h4><strong>Monto de viaticos</strong><br/>usados al año por este servidor</h4>
+						<div id="chart-horizontal"><svg></svg></div>
+						<p class="total">Total de viaticos al año: $2302</p>
+					</div>
+				</div>
+				<div class="col-md-6 percentage-rank">
+					<div class="inner-content">
+						<h4><strong>Tiempo viajando y tiempo</strong><br/>que ha estado en México</h4>
+						<div class="charts-container">
+							<div id="radial-one" class="radial-chart"></div>
+							<div id="radial-two" class="radial-chart"></div>
+							<div class="clear"></div>
+						</div>
+						<div class="clear"></div>
+						<p class="total">Total de viajes al año: 32</p>
+					</div>
+				</div>
+			</div>
+			<div class="trips">
+				<h2><strong>Viajes realizados</strong></h2>
+				<% for(i=0;i<5;i++){ %>
+					<div class="row trip-item ranks ">
+						<div class="col-sm-4 top-places">
+							<div class="inner-content">
+								<a href="#"><img src="/images/hotel_foto.png" alt="" class="picture" /></a>
+								<p class="big-blue">$35,000 MXP</p>
+								<p class="location"><a href="#"><strong>Riviera Maya Cancún México</strong></a></p>
+								<p class="activity">Nombre del evento o actividad</p>
+							</div>
+						</div>
+						<div class="col-sm-4 duration">
+							<div class="inner-content">
+								<i class="icon-calendar"></i>
+								<p><strong>Duracion del viaje:</strong></p>
+								<p>12 de diciembre del 2013 al 22 de diciembre del 2013</p>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="inner-content"><a href="#" class="custom-button">Ver detalle del viaje</a></div>
+						</div>
+					</div>
+				<% } %>
+			</div>			
+		</div>
+	</div>
+</div>
+

@@ -39,12 +39,8 @@ app.controller("homeCtrl", function ($scope, $http ,$filter) {
 
     $scope.leafIcon = {
         iconUrl: '../images/pin_mapa.png',
-        //shadowUrl: '../images/',
         iconSize:     [33, 46], // size of the icon
-        //shadowSize:   [50, 64], // size of the shadow
         iconAnchor:   [16, 36] // point of the icon which will correspond to marker's location
-        //shadowAnchor: [4, 62],  // the same for the shadow
-        //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
     };
 
 	$scope.get_markers = function(){
@@ -119,6 +115,29 @@ app.controller("statisticsCTL", function ($scope, $http) {
     }
 
 
+    $scope.drawChartHorizontal = function(){
+          nv.addGraph(function() {
+            var chart = nv.models.multiBarHorizontalChart()
+                .x(function(d) { return d.label })
+                .y(function(d) { return d.value })
+                //.margin({top: 30, right: 20, bottom: 50, left: 175})
+                .showValues(true)           //Show bar value next to each bar.
+                .tooltips(true)             //Show tooltips on hover.
+                .transitionDuration(350)
+                .showControls(true);        //Allow user to switch between "Grouped" and "Stacked" mode.
+
+            chart.yAxis
+                .tickFormat(d3.format(',.2f'));
+
+            d3.select('#chart-horizontal svg')
+                .datum($scope.setData())
+                .call(chart);
+
+            nv.utils.windowResize(chart.update);
+
+            return chart;
+          });
+    }
 
 
     $scope.drawChartAerolineas = function(){
@@ -129,10 +148,10 @@ app.controller("statisticsCTL", function ($scope, $http) {
                     .staggerLabels(true)    //Too many bars and not enough room? Try staggering labels.
                     .tooltips(false)        //Don't show tooltips
                     .showValues(true)       //...instead, show the bar value right on top of each bar.
-                    .transitionDuration(350)
+                    .transitionDuration(3000)
                 ;
 
-            d3.select('#chart-aerolineas svg')
+            d3.select('#chart-bar svg')
                 .datum($scope.setData())
                 .call(chart);
 
@@ -164,4 +183,5 @@ app.controller("statisticsCTL", function ($scope, $http) {
     };
 
     $scope.loadData();
+    $scope.drawChartHorizontal();
 });
