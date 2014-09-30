@@ -36,16 +36,13 @@
 						<div class="container-fluid">
 							<div class="share-links">
 								<div class="row">
-									<div class="col-sm-4">
+									<div class="col-sm-6">
 		                                <a href="#" class="share-link fb"><i class="icon-face"></i> Compartir</a>
 		                                <a class="fb-share-button" data-href="<%- fullUrl %>">Compartir</a>
 		                            </div>
-									<div class="col-sm-4">
+									<div class="col-sm-6">
 		                                <a href="#" class="share-link tw"><i class="icon-twit"></i> Compartir</a>
 		                                <a class="twitter-share-button" href="<%- fullUrl %>" data-via="twitterdev">Tweet</a>
-		                            </div>
-									<div class="col-sm-4">
-		                                <a href="#" class="share-link sb">Suscribirme</a>
 		                            </div>
 		                            <div class="clear"></div>
 								</div>
@@ -54,125 +51,138 @@
 					</div>
 				</div>
 			</div>
-			<div class="row travel-info">
-				<div class="info-box foo col-md-6">
-					<div class="inner-content">
-						<i class="icon-senor info-icon"></i>
-						<ul>
-							<li><p><strong>Mecanismo que origina la comisión</strong></p><p>{{viaje.mec_origen}}</p></li>
-							<li><p><strong>Quién invita / Quién solicita</strong></p><p>{{viaje.institucion_genera}}</p></li>
-							<li><p><strong>Unidad responsable</strong></p><p>{{funcionario.unidad_administrativa}}</p></li>
-							<li><p><strong>Tipo de representación</strong></p><p>{{viaje.tipo_rep}}</p></li>
-						</ul>							
+			<div class="row travel-info" id="travel-info">
+				<div class="col-md-6 column">
+					<div class="info-box ">
+						<div class="inner-content">
+							<p><i class="icon-comicion info-icon"></i></p>
+							<ul>
+								<li><p><strong>Mecanismo que origina la comisión</strong></p><p>{{viaje.mec_origen}}</p></li>
+								<li><p><strong>Quién invita / Quién solicita</strong></p><p>{{viaje.institucion_genera}}</p></li>
+								<li><p><strong>Unidad responsable</strong></p><p>{{funcionario.unidad_administrativa}}</p></li>
+								<li><p><strong>Tipo de representación</strong></p><p>{{viaje.tipo_rep}}</p></li>
+							</ul>							
+						</div>
 					</div>
-				</div>
-				<div class="info-box col-md-6">
-					<div class="inner-content">
-						<ul>
-							<li><p><strong>Tipo viaje</strong></p><p>{{viaje.tipo_viaje}}</p></li>
-							<li><p><strong>Numero de acuerdo autorización</strong></p><p>{{viaje.acuerdo}}</p></li>
-							<li><p><strong>Numero de oficio</strong></p><p>{{viaje.oficio}}</p></li>
-							<li><p><strong>País de origen</strong></p><p>{{viaje.pais_origen}}</p></li>
-							<li><p><strong>Estados de origen</strong></p><p>{{viaje.estado_origen}}</p></li>
-							<li><p><strong>Ciudad de origen</strong></p><p>{{viaje.ciudad_origen}}</p></li>
-							<li><p><strong>País de destino</strong></p><p>{{viaje.pais_destino}}</p></li>
-							<li><p><strong>Estados de destino</strong></p><p>{{viaje.estado_destino}}</p></li>
-							<li><p><strong>Ciudad de destino</strong></p><p>{{viaje.ciudad_destino}}</p></li>
-						</ul>
+					<div class="info-box ">
+						<div class="inner-content">
+							<p><i class="icon-tipodeviaje info-icon"></i></p>
+							<ul>
+								<li><p><strong>Tipo viaje</strong></p><p>{{viaje.tipo_viaje}}</p></li>
+								<li><p><strong>Numero de acuerdo autorización</strong></p><p>{{viaje.acuerdo}}</p></li>
+								<li><p><strong>Numero de oficio</strong></p><p>{{viaje.oficio}}</p></li>
+								<li><p><strong>País de origen</strong></p><p>{{viaje.pais_origen}}</p></li>
+								<li><p><strong>Estados de origen</strong></p><p>{{viaje.estado_origen}}</p></li>
+								<li><p><strong>Ciudad de origen</strong></p><p>{{viaje.ciudad_origen}}</p></li>
+								<li><p><strong>País de destino</strong></p><p>{{viaje.pais_destino}}</p></li>
+								<li><p><strong>Estados de destino</strong></p><p>{{viaje.estado_destino}}</p></li>
+								<li><p><strong>Ciudad de destino</strong></p><p>{{viaje.ciudad_destino}}</p></li>
+							</ul>
+						</div>
 					</div>
-				</div>
-				<div class="info-box col-md-6">
-					<div class="inner-content">
-						<ul>
-							<li><p><strong>Motivo de la comision</strong></p><p>{{viaje.motivo}}</p></li>
-							<li><p><strong>Antecedentes</strong></p><p>{{viaje.antecedente}}</p></li>
-						</ul>
+					<div class="info-box ">
+						<div class="inner-content">
+							<p><i class="icon-motivo info-icon"></i></p>
+							<ul>
+								<li><p><strong>Motivo de la comision</strong></p><p>{{viaje.motivo}}</p></li>
+								<li><p><strong>Antecedentes</strong></p><p>{{viaje.antecedente}}</p></li>
+							</ul>
+						</div>
 					</div>
-				</div>
-				<div class="info-box col-md-6">
-					<div class="inner-content">
-						<ul>
-							<li><p><strong>Resultados obtenidos</strong></p><p>{{viaje.resultado}}</p></li>
-							<li><p><strong>Contribucion </strong></p><p>{{viaje.contribucion_ifai}}</p></li>
-							<li><p><strong>Link al comunicado</strong></p><p><a href="{{viaje.url_comunicado}}">{{viaje.url_comunicado}}</a></p></li>
-						</ul>
+					<div class="info-box ">
+						<div class="inner-content">
+							<p><i class="icon-resultados info-icon"></i></p>
+							<ul>
+								<li><p><strong>Resultados obtenidos</strong></p><p>{{viaje.resultado}}</p></li>
+								<li><p><strong>Contribucion </strong></p><p>{{viaje.contribucion_ifai}}</p></li>
+								<li><p><strong>Link al comunicado</strong></p><p><a href="{{viaje.url_comunicado}}">{{viaje.url_comunicado}}</a></p></li>
+							</ul>
+						</div>
 					</div>
-				</div>
-				<div class="info-box col-md-6">
-					<div class="inner-content">
-						<ul>
-							<li><p><strong>Gasto por viaticos m.n.</strong></p><p>{{viaje.gasto_viatico | currency}}</p></li>
-							<li><p><strong>Institución que cubre el hospedaje</strong></p><p>{{viaje.inst_hospedaje}}</p></li>
-							<li><p><strong>Nombre del hotel</strong></p><p>{{viaje.hotel}}</p></li>
-							<li><p><strong>Fecha de entrada</strong></p><p>{{viaje.fecha_inicio_hotel}}</p></li>
-							<li><p><strong>Fecha de salida</strong></p><p>{{viaje.fecha_fin_hotel}}</p></li>
-							<li><p><strong>Costo total del hospedaje</strong></p><p>{{viaje.costo_hotel | currency}}</p></li>
-							<li><p><strong>Monto comprobado de viaticos</strong></p><p>{{viaje.viatico_comprobado | currency}}</p></li>
-							<li><p><strong>Monto de viaticos sin comprobación</strong></p><p>{{viaje.viatico_sin_comprobar | currency}}</p></li>
-							<li><p><strong>Monto de viaticos devueltos</strong></p><p>{{viaje.viatico_devuelto | currency}}</p></li>
+					<div class="info-box ">
+						<div class="inner-content">
+							<p><i class="icon-viaticos info-icon"></i></p>
+							<ul>
+								<li><p><strong>Gasto por viaticos m.n.</strong></p><p>{{viaje.gasto_viatico | currency}}</p></li>
+								<li><p><strong>Institución que cubre el hospedaje</strong></p><p>{{viaje.inst_hospedaje}}</p></li>
+								<li><p><strong>Nombre del hotel</strong></p><p>{{viaje.hotel}}</p></li>
+								<li><p><strong>Fecha de entrada</strong></p><p>{{viaje.fecha_inicio_hotel}}</p></li>
+								<li><p><strong>Fecha de salida</strong></p><p>{{viaje.fecha_fin_hotel}}</p></li>
+								<li><p><strong>Costo total del hospedaje</strong></p><p>{{viaje.costo_hotel | currency}}</p></li>
+								<li><p><strong>Monto comprobado de viaticos</strong></p><p>{{viaje.viatico_comprobado | currency}}</p></li>
+								<li><p><strong>Monto de viaticos sin comprobación</strong></p><p>{{viaje.viatico_sin_comprobar | currency}}</p></li>
+								<li><p><strong>Monto de viaticos devueltos</strong></p><p>{{viaje.viatico_devuelto | currency}}</p></li>
 
-						</ul>
+							</ul>
+						</div>
 					</div>
+					<div class="clear"></div>
 				</div>
-				<div class="info-box col-md-6">
-					<div class="inner-content">
-						<ul>
-							<li><p><strong>Numero de comisión</strong></p><p>{{viaje.consecutivo}}</p></li>
-							<li><p><strong>Servidor publico comisionado</strong></p><p>{{funcionario.nombre}}</p></li>
-							<li><p><strong>Cargo</strong></p><p>{{funcionario.nombre_puesto}}</p></li>
-							<li><p><strong>Grupo jerarquico</strong></p><p>{{funcionario.cargo_nombre_superior}}</p></li>
-						</ul>
+				<div class="col-md-6 column">
+					<div class="info-box ">
+						<div class="inner-content">
+							<p><i class="icon-senor info-icon"></i></p>
+							<ul>
+								<li><p><strong>Numero de comisión</strong></p><p>{{viaje.consecutivo}}</p></li>
+								<li><p><strong>Servidor publico comisionado</strong></p><p>{{funcionario.nombre}}</p></li>
+								<li><p><strong>Cargo</strong></p><p>{{funcionario.nombre_puesto}}</p></li>
+								<li><p><strong>Grupo jerarquico</strong></p><p>{{funcionario.cargo_nombre_superior}}</p></li>
+							</ul>
+						</div>
 					</div>
-				</div>
-				<div class="info-box col-md-6">
-					<div class="inner-content">
-						<ul>
-							<li><p><strong>Tarifa diaria para viaticos</strong></p><p>{{viaje.tarifa_diaria | currency}}</p></li>
-							<li><p><strong>Moneda</strong></p><p>{{viaje.moneda}}</p></li>
-						</ul>
+					<div class="info-box ">
+						<div class="inner-content">
+							<p><i class="icon-moneda info-icon"></i></p>
+							<ul>
+								<li><p><strong>Tarifa diaria para viaticos</strong></p><p>{{viaje.tarifa_diaria | currency}}</p></li>
+								<li><p><strong>Moneda</strong></p><p>{{viaje.moneda}}</p></li>
+							</ul>
+						</div>
 					</div>
-				</div>
-				<div class="info-box col-md-6">
-					<div class="inner-content">
-						<ul>
-							<li><p><strong>Tema</strong></p><p>{{viaje.tema}}</p></li>
-							<li><p><strong>Tipo de comisión</strong></p><p>{{viaje.tipo_com}}</p></li>
-							<li><p><strong>Nombre del evento o actividad</strong></p><p>{{viaje.evento}}</p></li>
-							<li><p><strong>URL del evento</strong></p><p>{{viaje.evento_url}}</p></li>
-						</ul>
+					<div class="info-box ">
+						<div class="inner-content">
+							<p><i class="icon-tema info-icon"></i></p>
+							<ul>
+								<li><p><strong>Tema</strong></p><p>{{viaje.tema}}</p></li>
+								<li><p><strong>Tipo de comisión</strong></p><p>{{viaje.tipo_com}}</p></li>
+								<li><p><strong>Nombre del evento o actividad</strong></p><p>{{viaje.evento}}</p></li>
+								<li><p><strong>URL del evento</strong></p><p>{{viaje.evento_url}}</p></li>
+							</ul>
+						</div>
 					</div>
-				</div>
-				<div class="info-box scollable col-md-6">
-					<div class="inner-content">
-						<ul>
-							<li><p><strong>Actividades realizadas</strong></p><p>{{viaje.actividad}}</p></li>
-						</ul>
+					<div class="info-box">
+						<div class="inner-content">
+							<ul>
+								<li><p><strong>Actividades realizadas</strong></p><p>{{viaje.actividad}}</p></li>
+							</ul>
+						</div>
 					</div>
-				</div>
-				<div class="info-box col-md-6">
-					<div class="inner-content">
-						<ul>
-							<li><p><strong>Institución que cubre el pasaje</strong></p><p>{{viaje.pasaje_cubre}}</p></li>
-							<li><p><strong>Tipo de pasaje</strong></p><p>{{viaje.pasaje_tipo}}</p></li>
-							<li><p><strong>Aerolinea de ida</strong></p><p>{{viaje.linea_origen}}</p></li>
-							<li><p><strong>Aerolinea de regreso</strong></p><p>{{viaje.linea_regreso}}</p></li>
-							<li><p><strong>Número de vuelo de ida</strong></p><p>{{viaje.vuelo_origen}}</p></li>
-							<li><p><strong>Número de vuelo de regreso</strong></p><p>{{viaje.vuelo_regreso}}</p></li>
-							<li><p><strong>Fecha inicio comisión</strong></p><p>{{viaje.fecha_inicio_com}}</p></li>
-							<li><p><strong>Fecha termino comisión</strong></p><p>{{viaje.fecha_fin_com}}</p></li>
-							<li><p><strong>Gasto por pasajes en m.n.</strong></p><p>{{viaje.gasto_pasaje}}</p></li>
-						</ul>
-					</div>
-				</div>	
-				<div class="info-box col-md-6">
-					<div class="inner-content">
-						<ul>
-							<li><p><strong>Observaciones</strong></p><p>{{viaje.observaciones}}</p></li>
-						</ul>
+					<div class="info-box ">
+						<div class="inner-content">
+							<p><i class="icon-vuelos info-icon"></i></p>
+							<ul>
+								<li><p><strong>Institución que cubre el pasaje</strong></p><p>{{viaje.pasaje_cubre}}</p></li>
+								<li><p><strong>Tipo de pasaje</strong></p><p>{{viaje.pasaje_tipo}}</p></li>
+								<li><p><strong>Aerolinea de ida</strong></p><p>{{viaje.linea_origen}}</p></li>
+								<li><p><strong>Aerolinea de regreso</strong></p><p>{{viaje.linea_regreso}}</p></li>
+								<li><p><strong>Número de vuelo de ida</strong></p><p>{{viaje.vuelo_origen}}</p></li>
+								<li><p><strong>Número de vuelo de regreso</strong></p><p>{{viaje.vuelo_regreso}}</p></li>
+								<li><p><strong>Fecha inicio comisión</strong></p><p>{{viaje.fecha_inicio_com}}</p></li>
+								<li><p><strong>Fecha termino comisión</strong></p><p>{{viaje.fecha_fin_com}}</p></li>
+								<li><p><strong>Gasto por pasajes en m.n.</strong></p><p>{{viaje.gasto_pasaje}}</p></li>
+							</ul>
+						</div>
+					</div>	
+					<div class="info-box ">
+						<div class="inner-content">
+							<ul>
+								<li><p><strong>Observaciones</strong></p><p>{{viaje.observaciones}}</p></li>
+							</ul>
+						</div>
 					</div>
 				</div>			
 			</div>
-			<div class="row ranks">
+			<!--<div class="row ranks">
 				<div class="col-md-6 funcionario-info">
 					<div class="inner-content">
 						<i class="icon-senior funcionario-icon"></i> 
@@ -191,7 +201,7 @@
                         <p ng-repeat="(attribute,value) in viaje">{{attribute}} ({{value}})</p>
 					</div>
 				</div>
-			</div>
+			</div>-->
 			<div class="row top-people">
 				<h2>Servidores públicos que fueron a ese evento</h2>
 				<% for(i=0;i<3;i++){ %>
