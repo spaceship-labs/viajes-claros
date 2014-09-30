@@ -22,6 +22,10 @@ module.exports = {
         unidad_administrativa : 'string',
         clave_puesto : 'string',
         nombre_puesto : 'string',
-        email : 'string'
+        email : 'string',
+        viajes : {
+            collection : 'Viaje',
+            via : 'funcionario'
+        }
     }
 };
