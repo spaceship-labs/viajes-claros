@@ -44,7 +44,7 @@
 								<a href="#"><img src="/images/hotel_foto.png" alt="" class="picture" /></a>
 								<p class="big-blue">{{viaje.gasto_total | currency}}</p>
 								<p class="location"><a href="#">{{viaje.ciudad_destino}} {{viaje.pais_destino}}</a></p>
-								<p class="activity">{{viaje.evento}}</p>
+								<p class="activity">{{viaje.evento | limitTo:50 }}</p>
 							</li>
                             <li ng-if="viajes.length < 3">
                                 <a href="#"><img src="/images/hotel_foto.png" alt="" class="picture" /></a>
@@ -92,7 +92,7 @@
                             <a href="#"><img src="/images/hotel_foto.png" alt="" class="picture" /></a>
                             <p class="big-blue">{{viaje.gasto_total | currency}}</p>
                             <p class="location"><a href="#"><strong>{{viaje.ciudad_destino}}, {{viaje.pais_destino}}</strong></a></p>
-                            <p class="activity">{{viaje.evento}}</p>
+                            <p class="activity">{{viaje.evento | limitTo:50}}</p>
                         </div>
                     </div>
                     <div class="col-sm-4 duration">
@@ -103,7 +103,7 @@
                         </div>
                     </div>
                     <div class="col-sm-4">
-                        <div class="inner-content"><a href="#" class="custom-button">Ver detalle del viaje</a></div>
+                        <div class="inner-content"><a href="{{'/viaje?id='+viaje.id}}" class="custom-button">Ver detalle del viaje</a></div>
                     </div>
                 </div>
                 <% for(i=viajes.length;i<5;i++){ %>
