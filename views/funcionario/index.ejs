@@ -23,8 +23,9 @@
 					<div class="inner-content">
 						<i class="icon-senor funcionario-icon"></i> 
 						<h1>{{funcionario.nombre_completo}}</h1>
-						<p><strong>Cargo: {{funcionario.nombre_puesto ? funcionario.nombre_puesto : "no disponible"}}</strong></p>
-						<p><strong>Area: {{funcionario.cargo_nombre_superior ? funcionario.cargo_nombre_superior : "no disponible"}}</strong></p>
+						<p><strong>Cargo: </strong>{{funcionario.nombre_puesto != 0 ? funcionario.nombre_puesto : "no disponible"}}</p>
+						<p><strong>Area: </strong>{{funcionario.cargo_nombre_superior != 0 ? funcionario.cargo_nombre_superior : "no disponible"}}</p>
+                        <p><strong>Dependencia: IFAI</strong></p>
 						<p class="money"><strong>{{getTotal() | currency}}</strong></p>
 						<p><strong><small>Gastos al año en viajes</small></strong></p>
 						<div class="share-links">

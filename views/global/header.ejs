@@ -2,8 +2,8 @@
 	<div class="container">
 		<div class="menu">
 			<a href="/" class="logo"><img src="/images/viajeslogo.png" alt="logo"></a>
-			<form action="#" method="POST" class="search-form">
-				<input type="text" placeholder="Busca el nombre del servidor publico" />
+			<form action="/funcionario/search" method="POST" class="search-form">
+				<input type="text" name="filtro" id="filtro" placeholder="Busca el nombre del servidor publico" />
 				<a href="#" class="advanced-search" ng-click="toggleAdvancedSearch = !toggleAdvancedSearch" ng-class="{on : toggleAdvancedSearch}"><span>Busqueda avanzada</span></a>
 				<div class="select-inputs" ng-show="toggleAdvancedSearch">
 					<select name="#" id="#">
