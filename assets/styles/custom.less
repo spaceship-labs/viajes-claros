@@ -117,6 +117,16 @@ a:hover{text-decoration: none!important;}
 }
 
 #content{
+	.share-links{
+		max-width: 75%;margin: 10px auto 0;
+		.col-sm-4{padding-right: 5px;padding-left: 5px;}
+		.fb_iframe_widget{position: absolute;top: 5px;left: 21px;opacity: 0;}
+		#twitter-widget-0{position: absolute;top: 8px;left: 25px;opacity: 0;}
+		.share-link{background: #fff;display: block;font-weight: 700;font-size: 11px;margin-top: 5px;padding: 8px;text-transform: uppercase;text-align: center;}
+		.share-link.fb{color: @blue}
+		.share-link.tw{color: mix(@blue, @turquoise, 50%)}
+		.share-link.sb{color: @turquoise}
+	}
 	.map-container{
 		position: relative;
 		.jumbotron{
@@ -276,16 +286,6 @@ a:hover{text-decoration: none!important;}
 					}
 				}
 				.money{font-size: 30px;margin-top: 20px;}
-				.share-links{
-					max-width: 75%;margin: 10px auto 0;
-					.col-sm-4{padding-right: 5px;padding-left: 5px;}
-					.fb_iframe_widget{position: absolute;top: 5px;left: 21px;opacity: 0;}
-					#twitter-widget-0{position: absolute;top: 8px;left: 25px;opacity: 0;}
-					.share-link{background: #fff;display: block;font-weight: 700;font-size: 11px;margin-top: 5px;padding: 8px;text-transform: uppercase;}
-					.share-link.fb{color: @blue}
-					.share-link.tw{color: mix(@blue, @turquoise, 50%)}
-					.share-link.sb{color: @turquoise}
-				}
 			}
 		}
 		.top-places{
@@ -329,6 +329,39 @@ a:hover{text-decoration: none!important;}
 			.row + .row{border-top: 1px solid @gray-light;margin-top: 0}
 		}
 	}
+	#viaje{
+		padding-top: 20px;
+		.travel-title{
+			.gradient-blue;border-radius: 4px;
+			padding: 20px;
+			.travel-name{
+				h1{margin: 30px 0 0;color: #fff;font-size: 16px;font-weight: 700}
+				p{
+					font-size: 13px;
+					a{color:#fff;font-weight: 300}
+				}
+			}
+			.date{
+				.calendar{border: 2px solid #fff;border-radius: 50%;font-size: 20px;margin: 0 8px 20px 0;float: left;padding: 4px}
+				p{color: #fff;margin: 0;font-weight: 300;font-size: 13px;}
+				.share-links{max-width: 100%;margin: 0}
+			}
+			.inner-content{padding: 20px}
+		}
+		.travel-info{
+			.info-box{
+				.inner-content{
+					border: 1px solid @gray-light;border-radius: 4px;padding: 20px 25px;
+					p{
+						color:@gray;font-size: 13px;margin: 0;
+						strong{text-transform: uppercase;}
+					}
+					li{padding: 6px 0;}
+					li + li{border-top: 1px solid @gray-light;}
+				}
+			}
+		}
+	}
 
 }
 
@@ -337,7 +370,8 @@ a:hover{text-decoration: none!important;}
 }
 
 @media (max-width: 960px){
-	.top-people{margin: 20px 0!important}
+	.top-people,
+	#viaje .travel-title{margin: 20px 0!important}
 }
 @media (max-width: 480px){
 	#home .map-container .jumbotron .content-jumbotron .text-jumbotron h1{font-size: 32px;padding: 0 10px}
