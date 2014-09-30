@@ -111,11 +111,13 @@ app.controller("statisticsCTL", ['$scope', '$http',function ($scope, $http) {
         var rp1 = radialProgress(document.getElementById('radial-one'))
             .diameter(150)
             .value(internationalPercentage)
+            .label('Internacionales')
             .render();
 
         var rp2 = radialProgress(document.getElementById('radial-two'))
             .diameter(150)
             .value(nationalPercentage)
+            .label('Nacionales')
             .render();
 
         //$scope.addTextRadial('radial-international-trips','Internacionales');
