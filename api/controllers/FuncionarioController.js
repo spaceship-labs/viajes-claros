@@ -20,11 +20,17 @@ module.exports = {
 
 	},
 
-    statisticsJson : function(req,res) {
-        Viaje.find().exec(function(e,viajes){
-            if (e) res.json({ text : "error viajes por nombre",error : e });
-            res.json(viajes);
-            cb();
-        });
-    }
+  search : function(req,res){
+    res.view();
+
+  },
+  
+
+  statisticsJson : function(req,res) {
+      Viaje.find().exec(function(e,viajes){
+          if (e) res.json({ text : "error viajes por nombre",error : e });
+          res.json(viajes);
+          cb();
+      });
+  }
 };

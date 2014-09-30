@@ -32,11 +32,13 @@ app.controller("funcionarioCTL", ['$scope', '$http','$filter',function ($scope, 
         var rp1 = radialProgress(document.getElementById('radial-one'))
             .diameter(150)
             .value((days/day) * 100)
+            .label('De viaje')
             .render();
 
         var rp2 = radialProgress(document.getElementById('radial-two'))
             .diameter(150)
             .value(((day-days)/day) * 100)
+            .label('En casa')
             .render();
 
         //$scope.addTextRadial('radial-international-trips','Internacionales');

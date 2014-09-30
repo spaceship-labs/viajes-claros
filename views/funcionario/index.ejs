@@ -21,7 +21,7 @@
 			<div class="row ranks">
 				<div class="col-md-6 funcionario-info">
 					<div class="inner-content">
-						<i class="icon-senior funcionario-icon"></i> 
+						<i class="icon-senor funcionario-icon"></i> 
 						<h1>{{funcionario.nombre_completo}}</h1>
 						<p><strong>Cargo: {{funcionario.nombre_puesto ? funcionario.nombre_puesto : "no disponible"}}</strong></p>
 						<p><strong>Area: {{funcionario.cargo_nombre_superior ? funcionario.cargo_nombre_superior : "no disponible"}}</strong></p>
@@ -29,9 +29,17 @@
 						<p><strong><small>Gastos al año en viajes</small></strong></p>
 						<div class="share-links">
 							<div class="row">
-								<div class="col-sm-4 fb-share-button" data-href="<%- fullUrl %>">Compartir</div>
-								<div class="col-sm-4"><a class="twitter-share-button" href="<%- fullUrl %>" data-via="twitterdev">Tweet</a></div>
-								<div class="col-sm-4"><a href="#" class="share-link sb">Suscribirme</a></div>
+								<div class="col-sm-4">
+                                    <a href="#" class="share-link fb"><i class="icon-face"></i> Compartir</a>
+                                    <a class="fb-share-button" data-href="<%- fullUrl %>">Compartir</a>
+                                </div>
+								<div class="col-sm-4">
+                                    <a href="#" class="share-link tw"><i class="icon-twit"></i> Compartir</a>
+                                    <a class="twitter-share-button" href="<%- fullUrl %>" data-via="twitterdev">Tweet</a>
+                                </div>
+								<div class="col-sm-4">
+                                    <a href="#" class="share-link sb">Suscribirme</a>
+                                </div>
 							</div>
 						</div>
 					</div>
@@ -75,8 +83,8 @@
 					<div class="inner-content">
 						<h4><strong>Tiempo viajando y tiempo</strong><br/>que ha estado en México</h4>
 						<div class="charts-container">
-							<div id="radial-one" class="radial-chart">De viaje</div>
-							<div id="radial-two" class="radial-chart">En casa</div>
+							<div id="radial-one" class="radial-chart"></div>
+							<div id="radial-two" class="radial-chart"></div>
 							<div class="clear"></div>
 						</div>
 						<div class="clear"></div>
