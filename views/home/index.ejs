@@ -21,13 +21,13 @@
 		</div>	
 		<div class="total-money">
 			<h1><strong>{{totalGastado | currency}}</strong></h1>
-			<p>Presupuesto gastado hasta el 2014 en viajes de servidores publicos</p>
+			<p>Presupuesto gastado hasta el 2014 en viajes de servidores públicos</p>
 		</div>
 	</div>
 	<div class="centered-content">
 		<div class="container-fluid" ng-controller="statisticsCTL">
 			<div class="row top-people">
-				<h2>Los 3 servidores publicos <br/> <span class="big">con mas gastos de viajes</span></h2>
+				<h2>Los 3 servidores públicos <br/> <span class="big">con mas gastos de viajes</span></h2>
 				<div class="col-sm-4 person" ng-repeat="funcionario in funcionariosList | limitTo:3">
 					<div class="person-content">
 						<img src="/images/funcionario-default.png" alt="" class="picture">
@@ -44,7 +44,7 @@
 			<div class="row ranks">
 				<div class="col-md-6 top-places top-hotels">
 					<div class="inner-content">
-						<h4><strong>Hoteles más visitados</strong><br/>por los servidores publicos</h4>
+						<h4><strong>Hoteles más visitados</strong><br/>por los servidores públicos</h4>
 						<ul>
 							<li ng-repeat="hotel in hotelList">
 								<a href="#"><img src="/images/hotel_foto.png" alt="" class="picture" /></a>
@@ -70,7 +70,7 @@
 			<div class="row ranks">
 				<div class="col-md-6 percentage-rank">
 					<div class="inner-content">
-						<h4><strong>Las principales aerolineas</strong><br/>usadas por los servidores publicos</h4>
+						<h4><strong>Las principales aerolineas</strong><br/>usadas por los servidores públicos</h4>
 						<div id="chart-bar"><svg></svg></div>
 						<p class="total">Total de aerolineas usadas: {{aerolineasList.length}}</p>
 					</div>
@@ -79,7 +79,7 @@
 					<carousel interval="5000">
 						<slide  active="slide.active" >
 							<div class="inner-content">
-								<h4><strong>Ciudades Internacionales</strong><br/>mas visitadas por los servidores publicos</h4>
+								<h4><strong>Ciudades Internacionales</strong><br/>mas visitadas por los servidores públicos</h4>
 								<ul>
 									<li ng-repeat="ciudad in ciudadesList | filter:{tipo_viaje:'Internacional'} | limitTo:3">
 										<a href="#"><img src="/images/pinlugar.png" alt="" class="picture" /></a>
@@ -91,7 +91,7 @@
 						</slide>
 						<slide active="" >
 							<div class="inner-content">
-								<h4><strong>Ciudades Nacionales</strong><br/>mas visitadas por los servidores publicos</h4>
+								<h4><strong>Ciudades Nacionales</strong><br/>mas visitadas por los servidores públicos</h4>
 								<ul>
                                     <li ng-repeat="ciudad in ciudadesList |filter:{pais_destino:'Mexico'} | limitTo:3">
 										<a href="#"><img src="/images/pinlugar.png" alt="" class="picture" /></a>

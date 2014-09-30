@@ -1,26 +1,30 @@
 <div id="list">
     <div class="centered-content">
     	<div class="results">
-    		<h2><strong>Resultados de la busqueda: Juan Perez</strong></h2>
-            <% for(i=0;i<3;i++){ %>
+    		<h2><strong>Resultados de la busqueda: '<%- term %>'</strong></h2>
+            <% for(i=0;i<funcionarios.length;i++){
+                var funcionario = funcionarios[i];
+            %>
             <div class="row trip-item ranks ">
                 <div class="col-sm-4 top-places">
                     <div class="inner-content">
-                        <a href="#"><img src="/images/funcionario-default.png" alt="" class="picture" /></a>
-                        <p class="big-blue"><a href="#">Maria Elena Perez-Jaen Zermeño</a></p>
-                        <p class="location"><strong>Cargo: </strong> Conciliador</p>
-                        <p class="location"><strong>Dependencia: </strong> Junta federal de conciliacion</p>
-
+                        <a href="/funcionario?id=<%- funcionario.id %>"><img src="/images/funcionario-default.png" alt="" class="picture" /></a>
+                        <p class="big-blue"><a href="/funcionario?id=<%- funcionario.id %>"><%- funcionario.nombre_completo %></a></p>
+                        <p class="location"><strong>Cargo: </strong> <%- funcionario.nombre_puesto %></p>
+                        <p class="location"><strong>Area: </strong> <%- funcionario.cargo_nombre_superior %></p>
+                        <p class="location"><strong>Dependencia: </strong> IFAI</p>
                     </div>
                 </div>
                 <div class="col-sm-4 second">
                     <div class="inner-content">
                         <p><strong>Gasto al año en viajes:</strong></p>
-                        <p>$39,276.00</p>
+                        <p>$ <%- funcionario.viajes.length ? _.reduce(funcionario.viajes,function(sum,num){
+                              return sum + num;
+                            }) : "0.00" %></p>
                     </div>
                 </div>
                 <div class="col-sm-4">
-                    <div class="inner-content"><a href="#" class="custom-button">Ver perfil</a></div>
+                    <div class="inner-content"><a href="/funcionario?id=<%- funcionario.id %>" class="custom-button">Ver perfil</a></div>
                 </div>
             </div>
             <% } %>
