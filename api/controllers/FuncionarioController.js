@@ -7,21 +7,28 @@
 module.exports = {
 	index : function(req,res){
         var id = req.param('id');
-        Funcionario.findOne({ id : id}).exec(function(err,funcionario){
-           Viaje.find({funcionario : id}).exec(function(err,viajes){
+        Funcionario.findOne({ id : id}).populate('viajes').exec(function(err,funcionario){
                if (err) {
                    console.log(err);
                } else {
                    var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
-                   res.view({ funcionario : funcionario,viajes : viajes,fullUrl : fullUrl });
+                   res.view({ funcionario : funcionario,viajes : funcionario.viajes,fullUrl : fullUrl });
                }
-           });
         });
 
 	},
 
   search : function(req,res){
-    res.view();
+    var term = req.param('filtro');
+      if (term) {
+          Funcionario.find({ nombre_completo : { 'like' : "%" + term + "%" }}).populate('viajes').exec(function(err,funcionarios) {
+              if (err) console.log(err);
+              res.view({ funcionarios : funcionarios || [],term : term});
+          });
+      } else {
+        res.forbidden();
+      }
+
 
   },
   
