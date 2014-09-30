@@ -38,23 +38,24 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="row top-people">
-			<h2>Servidores públicos que fueron a ese evento</h2>
-			<div class="col-sm-4 person">
+			<div class="row top-people">
+				<h2>Servidores públicos que fueron a ese evento</h2>
 				<% for(i=0;i<3;i++){ %>
-					<div class="person-content">
-						<img src="/images/funcionario-default.png" alt="" class="picture">
-						<p class="name">{{funcionario.nombre_completo}}</p>
-						<p class="charge">{{funcionario.nombre_puesto != 0 ? funcionario.nombre_puesto : "no disponible"}}</p>
-						<p class="dependency">{{funcionario.cargo_nombre_superior != 0 ? funcionario.cargo_nombre_superior : "no disponible"}}</p>
-						<p class="money">{{funcionario.gasto_total | currency}}</p>
-						<p class="gray">Gastos al mes</p>
-						<a href="/funcionario?id={{funcionario.funcionario}}" class="custom-button">Ver perfil</a>
+					<div class="col-sm-4 person">
+							<div class="person-content">
+								<img src="/images/funcionario-default.png" alt="" class="picture">
+								<p class="name">{{funcionario.nombre_completo}}</p>
+								<p class="charge">{{funcionario.nombre_puesto != 0 ? funcionario.nombre_puesto : "no disponible"}}</p>
+								<p class="dependency">{{funcionario.cargo_nombre_superior != 0 ? funcionario.cargo_nombre_superior : "no disponible"}}</p>
+								<p class="money">{{funcionario.gasto_total | currency}}</p>
+								<p class="gray">Gastos al mes</p>
+								<a href="/funcionario?id={{funcionario.funcionario}}" class="custom-button">Ver perfil</a>
+							</div>
 					</div>
 				<% } %>
+
+				<div class="clear"></div>
 			</div>
-			<div class="clear"></div>
 		</div>
 	</div>
 </div>
