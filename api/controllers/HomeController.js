@@ -21,6 +21,14 @@ module.exports = {
         });
     },
 
+    vajesPorCiudadJson : function(req,res) {
+        var ciudad = req.param('ciudad');
+        Viaje.find({ ciudad_destino : ciudad }).populate('funcionario').exec(function(err,viajes) {
+            if (err) res.json({ text : "error",error : err });
+            res.json(viajes);
+        });
+    },
+
     statisticsJson : function(req,res) {
         var asyncTasks = [];
         var viajesPorNombre = [];

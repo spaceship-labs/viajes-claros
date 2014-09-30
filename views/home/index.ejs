@@ -7,17 +7,17 @@
 				<a href="#" ng-click="toggleSidebar = !toggleSidebar" class="arrow-button"></a>
 				<perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="50" refresh-on-change="someArray">
 					<div class="aside-inner-content">
-						<h3>Estos son los viajes realizados hacia: {{mapPlace}}</h3>
+						<h3>Estos son los viajes en: {{mapPlace}}</h3>
 						<ul>
 							<% for(i=0;i<8;i++){ %>
 								<li>
-									<p>Fecha del viaje: <a href="#">27/09/2014</a></p>
-									<p>Funcionario: <a href="#">Juan Perez</a></p>
+									<p>Fecha del viaje: <a href="{{'/viaje?id=' + item.id}}">{{item.fecha_inicio_com | date}}</a></p>
+									<p>Funcionario: <a href="{{'/funcionario?id=' + item.funcionario.id}}">{{item.funcionario.nombre_completo}}</a></p>
 								</li>
 							<% } %>
 						</ul>
-					</perfect-scrollbar>
-				</div>
+                    </div>
+			    </perfect-scrollbar>
 			</div>	
 		</div>	
 		<div class="total-money">
