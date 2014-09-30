@@ -91,7 +91,10 @@ a:hover{text-decoration: none!important;}
 	a:hover{text-decoration:none;}
 	.menu{
 		padding-bottom: 12px;padding-top: 12px;padding-right: 145px;position: relative;
-		.logo{float: left;color: #fff;font-size: 26px;font-weight: 300}
+		.logo{
+			float: left;color: #fff;font-size: 26px;font-weight: 300;
+			img{/*width: 20%;*/max-width: 250px}
+		}
 		.search-form{
 			float: right;padding: 6px 10px 0 0;
 			input[type="text"]{background: transparent;border: 1px solid #fff;color: #fff;font-size: 13px;margin-right: 5px;padding: 6px;width: 270px}
@@ -136,7 +139,7 @@ a:hover{text-decoration: none!important;}
 				.text-jumbotron{
 					position: absolute;width: 100%;top: 110px;
 					h1,p{color: #fff}
-					h1{margin-top:0;}
+					h1{margin-top:0;font-weight: 300}
 					p{max-width: 590px;margin: 0 auto}
 					.custom-button{margin-top: 15px}
 				}
@@ -349,11 +352,24 @@ a:hover{text-decoration: none!important;}
 			.inner-content{padding: 20px}
 		}
 		.travel-info{
+			.col-md-6{
+				@media (min-width: 992px){
+					padding-left: 0;padding-right: 15px;
+				}	
+			}
+			.col-md-6 + .col-md-6{
+				@media (min-width: 992px){
+					padding-left: 15px;padding-right: 0;
+				}	
+			}
+			.col-md-6 + .col-md-6{padding-right: 0}
 			.info-box{
+				margin-bottom: 20px;
 				.inner-content{
 					border: 1px solid @gray-light;border-radius: 4px;padding: 20px 25px;
+					.info-icon{display: block;font-size: 20px;margin: 0 auto;}
 					p{
-						color:@gray;font-size: 13px;margin: 0;
+						color:@gray;font-size: 13px;margin: 0 15px;
 						strong{text-transform: uppercase;}
 					}
 					li{padding: 6px 0;}
