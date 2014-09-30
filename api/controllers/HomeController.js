@@ -38,9 +38,9 @@ module.exports = {
         var hotelVisitado = [];
 
         asyncTasks.push(function(cb){
-            var query = "select viaje.funcionario,funcionario.nombre_completo,funcionario.cargo_nombre,funcionario.unidad_administrativa,sum(viaje.gasto_viatico) as gasto_viatico,sum(viaje.gasto_pasaje) as gasto_pasaje,sum(viaje.gasto_total) as gasto_total " +
+            var query = "select viaje.funcionario,funcionario.nombre_completo,funcionario.nombre_puesto,funcionario.cargo_nombre_superior,sum(viaje.gasto_viatico) as gasto_viatico,sum(viaje.gasto_pasaje) as gasto_pasaje,sum(viaje.gasto_total) as gasto_total " +
                 "from viaje inner join funcionario on viaje.funcionario = funcionario.id " +
-                "group by viaje.funcionario,funcionario.nombre_completo,funcionario.cargo_nombre,funcionario.unidad_administrativa " +
+                "group by viaje.funcionario,funcionario.nombre_completo,funcionario.nombre_puesto,funcionario.cargo_nombre_superior " +
                 "order by sum(gasto_total) desc";
             Viaje.query(query,
                 function(e,viajes){
