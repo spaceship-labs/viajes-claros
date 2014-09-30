@@ -1,4 +1,4 @@
-app.controller("homeCtrl", function ($scope, $http ,$filter) {
+app.controller("homeCtrl", ['$scope', '$http','$filter',function ($scope, $http ,$filter) {
 	$scope.nombre = 'mapa';
 	$scope.toggleJumbotron = true;
 	$scope.toggleSidebar = false;
@@ -33,8 +33,7 @@ app.controller("homeCtrl", function ($scope, $http ,$filter) {
 	    var place = $scope.markers[args.markerName].message;
 	    place = $.parseHTML(place);
 	    place = place[2].innerHTML;
-	    $scope.mapPlace = place;
-	    $scope.toggleSidebar = true;
+        $scope.loadViajes(place);
 	});
 
     $scope.leafIcon = {
@@ -73,6 +72,16 @@ app.controller("homeCtrl", function ($scope, $http ,$filter) {
 		);
 	};
 
+    $scope.loadViajes = function(ciudad) {
+        $scope.mapPlace = ciudad;
+        $scope.toggleSidebar = true;
+
+        $http({method: 'POST', url: '/home/vajesPorCiudadJson?ciudad=' + ciudad})
+            .success(function(data){
+                $scope.items = data;
+            });
+    };
+
 	angular.extend($scope, {
 	    events: {
 	      markers: {
@@ -85,9 +94,9 @@ app.controller("homeCtrl", function ($scope, $http ,$filter) {
 
     $scope.get_markers();
 
-});
+}]);
 
-app.controller("statisticsCTL", function ($scope, $http) {
+app.controller("statisticsCTL", ['$scope', '$http',function ($scope, $http) {
     $scope.hotelList = [];
     $scope.ciudadesList = [];
     $scope.aerolineasList = [];
@@ -159,4 +168,4 @@ app.controller("statisticsCTL", function ($scope, $http) {
     };
 
     $scope.loadData();
-});
+}]);
