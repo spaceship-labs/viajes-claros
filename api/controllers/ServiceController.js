@@ -3,6 +3,7 @@
  */
 var async = require('async');
 var request = require('request');
+var sendgrid = require('sendgrid')('jafetgonzalez','chachach1');
 
 module.exports = {
     updateFuncionariosViajes : function(req,res) {
@@ -52,6 +53,40 @@ module.exports = {
                 res.json({text : "success!",err : err});
             });
 
+        });
+    },
+
+    subscribe : function(req,res) {
+        var email = req.param('email');
+        var funcionario = req.param('funcionario');
+
+        var mail = new SendGrid.Email({
+            to: 'john@contoso.com',
+            from: 'contact@viajesclaros.com',
+            subject: 'confirmacion de subscripcion',
+            text: 'test.'
+        });
+
+        Subscription.find({ email : email }).populate('funcionario').exec(function(err,subscriptions){
+            var found = false;
+            if (subscriptions) {
+                for(var i=0;i<subscriptions.length;i++) {
+                    if (funcionario == subscriptions[i].funcionario.id) {
+                        found = subscriptions[i];
+                        res.json({ text : "ya esta agregado" });
+                    }
+                }
+            } else {
+                Subscription.create({ funcionario : funcionario,email : email }).exec(function(req,subscription){
+                    res.json({ text : "agregado" });
+                });
+
+            }
+            if (found) {
+                Subscription.create({ funcionario : funcionario,email : email }).exec(function(req,subscription){
+                    res.json({ text : "agregado" });
+                });
+            }
         });
     }
 

@@ -26,7 +26,7 @@
 						<p><strong>Cargo: </strong>{{funcionario.nombre_puesto != 0 ? funcionario.nombre_puesto : "no disponible"}}</p>
 						<p><strong>Area: </strong>{{funcionario.cargo_nombre_superior != 0 ? funcionario.cargo_nombre_superior : "no disponible"}}</p>
                         <p><strong>Dependencia: IFAI</strong></p>
-						<p class="money"><strong>{{getTotal() | currency}}</strong></p>
+						<p class="money"><strong count-to="{{getTotal()}}" value="{{gasto_parcial}}" duration="2" filter="currency"></strong></p>
 						<p><strong><small>Gastos al año en viajes</small></strong></p>
 						<div class="share-links">
 							<div class="row">
@@ -50,22 +50,28 @@
 						<h4><strong>Top 3 viajes mas costosos</strong><br/>realizados por este servidor publico</h4>
 						<ul>
 							<li ng-repeat="viaje in viajes | orderBy:gasto_total | limitTo:3">
-								<a href="#"><img src="/images/hotel_foto.png" alt="" class="picture" /></a>
-								<p class="big-blue">{{viaje.gasto_total | currency}}</p>
+								<a href="/viaje?id={{viaje.id}}"><img src="/images/hotel_icon.png" alt="" class="picture" /></a>
+								<p class="big-blue"><a href="/viaje?id={{viaje.id}}">{{viaje.gasto_total | currency}}</a></p>
 								<p class="location"><a href="#">{{viaje.ciudad_destino}} {{viaje.pais_destino}}</a></p>
 								<p class="activity">{{viaje.evento | limitTo:50 }}</p>
 							</li>
-                            <li ng-if="viajes.length < 3">
-                                <a href="#"><img src="/images/hotel_foto.png" alt="" class="picture" /></a>
-                                <p class="big-blue">$35,000 MXP</p>
-                                <p class="location"><a href="#">Riviera Maya Cancún México</a></p>
-                                <p class="activity">Nombre del evento o actividad</p>
+                            <li ng-if="viajes.length < 3" style="color : darkGray;">
+                                <a><img src="/images/hotel_icon.png" alt="" class="picture" /></a>
+                                <p class="big-blue">■,■■■</p>
+                                <p class="location"><a href="#">■■■ ■■■■ ■■■■</a></p>
+                                <p class="activity">■■■■■ ■■■■■■■ ■■■■■■■■■ ■■■</p>
                             </li>
-                            <li ng-if="viajes.length < 2">
-                                <a href="#"><img src="/images/hotel_foto.png" alt="" class="picture" /></a>
-                                <p class="big-blue">$35,000 MXP</p>
-                                <p class="location"><a href="#">Riviera Maya Cancún México</a></p>
-                                <p class="activity">Nombre del evento o actividad</p>
+                            <li ng-if="viajes.length < 2" style="color : darkGray;">
+                                <a><img src="/images/hotel_icon.png" alt="" class="picture" /></a>
+                                <p class="big-blue">■,■■■</p>
+                                <p class="location"><a href="#">■■■ ■■■■ ■■■■</a></p>
+                                <p class="activity">■■■■■ ■■■■■■■ ■■■■■■■■■ ■■■</p>
+                            </li>
+                            <li ng-if="viajes.length < 1" style="color : darkGray;">
+                                <a><img src="/images/hotel_icon.png" alt="" class="picture" /></a>
+                                <p class="big-blue">■,■■■</p>
+                                <p class="location"><a href="#">■■■ ■■■■ ■■■■</a></p>
+                                <p class="activity">■■■■■ ■■■■■■■ ■■■■■■■■■ ■■■</p>
                             </li>
 						</ul>
 					</div>
@@ -98,7 +104,7 @@
                 <div class="row trip-item ranks " ng-repeat="viaje in viajes | orderBy:fecha_inicio_com">
                     <div class="col-sm-4 top-places">
                         <div class="inner-content">
-                            <a href="#"><img src="/images/hotel_foto.png" alt="" class="picture" /></a>
+                            <a href="#"><img src="/images/pinlugar.png" alt="" class="picture" /></a>
                             <p class="big-blue">{{viaje.gasto_total | currency}}</p>
                             <p class="location"><a href="#"><strong>{{viaje.ciudad_destino}}, {{viaje.pais_destino}}</strong></a></p>
                             <p class="activity">{{viaje.evento | limitTo:50}}</p>
@@ -116,24 +122,24 @@
                     </div>
                 </div>
                 <% for(i=viajes.length;i<5;i++){ %>
-                <div class="row trip-item ranks ">
+                <div class="row trip-item ranks" style="color : darkGray;">
                     <div class="col-sm-4 top-places">
                         <div class="inner-content">
-                            <a href="#"><img src="/images/hotel_foto.png" alt="" class="picture" /></a>
-                            <p class="big-blue">$35,000 MXP</p>
-                            <p class="location"><a href="#"><strong>Riviera Maya Cancún México</strong></a></p>
-                            <p class="activity">Nombre del evento o actividad</p>
+                            <a><img src="/images/pinlugar.png" alt="" class="picture" /></a>
+                            <p style="color : darkGray;">■■ ■■■■</p>
+                            <p style="color : darkGray;">■■■ ■■■ ■■■■■■</p>
+                            <p style="color : darkGray;">■■■■■■ ■■■ ■■■■■■■■ ■■■</p>
                         </div>
                     </div>
                     <div class="col-sm-4 duration">
                         <div class="inner-content">
                             <i class="icon-calendar"></i>
-                            <p><strong>Duracion del viaje:</strong></p>
-                            <p>12 de diciembre del 2013 al 22 de diciembre del 2013</p>
+                            <p>■■ ■■■■ ■■:</p>
+                            <p>■■■■■■ ■■■■■ ■■■■ ■■■■ ■■■■■</p>
                         </div>
                     </div>
                     <div class="col-sm-4">
-                        <div class="inner-content"><a href="#" class="custom-button">Ver detalle del viaje</a></div>
+                        <div class="inner-content"><a disabled="disabled" class="custom-button" style="color : darkGray;background-color: darkgray;">Ver detalle del viaje</a></div>
                     </div>
                 </div>
                 <% } %>

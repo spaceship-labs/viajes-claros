@@ -55,7 +55,7 @@
 				<div class="col-md-6 column">
 					<div class="info-box ">
 						<div class="inner-content">
-							<p><i class="icon-comicion info-icon"></i></p>
+							<p><i class="icon-comicion info-icon">Comision</i></p>
 							<ul>
 								<li><p><strong>Mecanismo que origina la comisión</strong></p><p>{{viaje.mec_origen}}</p></li>
 								<li><p><strong>Quién invita / Quién solicita</strong></p><p>{{viaje.institucion_genera}}</p></li>
@@ -66,7 +66,7 @@
 					</div>
 					<div class="info-box ">
 						<div class="inner-content">
-							<p><i class="icon-tipodeviaje info-icon"></i></p>
+							<p><i class="icon-tipodeviaje info-icon">Tipo de viaje</i></p>
 							<ul>
 								<li><p><strong>Tipo viaje</strong></p><p>{{viaje.tipo_viaje}}</p></li>
 								<li><p><strong>Numero de acuerdo autorización</strong></p><p>{{viaje.acuerdo}}</p></li>
@@ -82,7 +82,7 @@
 					</div>
 					<div class="info-box ">
 						<div class="inner-content">
-							<p><i class="icon-motivo info-icon"></i></p>
+							<p><i class="icon-motivo info-icon">Motivo</i></p>
 							<ul>
 								<li><p><strong>Motivo de la comision</strong></p><p>{{viaje.motivo}}</p></li>
 								<li><p><strong>Antecedentes</strong></p><p>{{viaje.antecedente}}</p></li>
@@ -91,7 +91,7 @@
 					</div>
 					<div class="info-box ">
 						<div class="inner-content">
-							<p><i class="icon-resultados info-icon"></i></p>
+							<p><i class="icon-resultados info-icon">Resultados</i></p>
 							<ul>
 								<li><p><strong>Resultados obtenidos</strong></p><p>{{viaje.resultado}}</p></li>
 								<li><p><strong>Contribucion </strong></p><p>{{viaje.contribucion_ifai}}</p></li>
@@ -101,7 +101,7 @@
 					</div>
 					<div class="info-box ">
 						<div class="inner-content">
-							<p><i class="icon-viaticos info-icon"></i></p>
+							<p><i class="icon-viaticos info-icon">Viaticos</i></p>
 							<ul>
 								<li><p><strong>Gasto por viaticos m.n.</strong></p><p>{{viaje.gasto_viatico | currency}}</p></li>
 								<li><p><strong>Institución que cubre el hospedaje</strong></p><p>{{viaje.inst_hospedaje}}</p></li>
@@ -121,7 +121,7 @@
 				<div class="col-md-6 column">
 					<div class="info-box ">
 						<div class="inner-content">
-							<p><i class="icon-senor info-icon"></i></p>
+							<p><i class="icon-senor info-icon">Puesto</i></p>
 							<ul>
 								<li><p><strong>Numero de comisión</strong></p><p>{{viaje.consecutivo}}</p></li>
 								<li><p><strong>Servidor publico comisionado</strong></p><p>{{funcionario.nombre}}</p></li>
@@ -132,7 +132,7 @@
 					</div>
 					<div class="info-box ">
 						<div class="inner-content">
-							<p><i class="icon-moneda info-icon"></i></p>
+							<p><i class="icon-moneda info-icon">Tarifa</i></p>
 							<ul>
 								<li><p><strong>Tarifa diaria para viaticos</strong></p><p>{{viaje.tarifa_diaria | currency}}</p></li>
 								<li><p><strong>Moneda</strong></p><p>{{viaje.moneda}}</p></li>
@@ -141,7 +141,7 @@
 					</div>
 					<div class="info-box ">
 						<div class="inner-content">
-							<p><i class="icon-tema info-icon"></i></p>
+							<p><i class="icon-tema info-icon">Evento</i></p>
 							<ul>
 								<li><p><strong>Tema</strong></p><p>{{viaje.tema}}</p></li>
 								<li><p><strong>Tipo de comisión</strong></p><p>{{viaje.tipo_com}}</p></li>
@@ -157,9 +157,9 @@
 							</ul>
 						</div>
 					</div>
-					<div class="info-box ">
+					<div class="info-box " ng-if="viaje.pasaje_tipo == 'Aéreo'">
 						<div class="inner-content">
-							<p><i class="icon-vuelos info-icon"></i></p>
+							<p><i class="icon-vuelos info-icon">Informacion de vuelo</i></p>
 							<ul>
 								<li><p><strong>Institución que cubre el pasaje</strong></p><p>{{viaje.pasaje_cubre}}</p></li>
 								<li><p><strong>Tipo de pasaje</strong></p><p>{{viaje.pasaje_tipo}}</p></li>
@@ -182,39 +182,21 @@
 					</div>
 				</div>			
 			</div>
-			<!--<div class="row ranks">
-				<div class="col-md-6 funcionario-info">
-					<div class="inner-content">
-						<i class="icon-senior funcionario-icon"></i> 
-						<h1>{{funcionario.nombre_completo}}</h1>
-						<p><strong>Cargo: {{funcionario.nombre_puesto ? funcionario.nombre_puesto : "no disponible"}}</strong></p>
-						<p><strong>Area: {{funcionario.cargo_nombre_superior ? funcionario.cargo_nombre_superior : "no disponible"}}</strong></p>
-                        <p><strong>Dependencia: ifai</strong></p>
-						<p class="money"><strong>{{viaje.gasto_total | currency}}</strong></p>
-						<p><strong><small>Gastos al año en viajes</small></strong></p>
-						<div class="share-links">
-							<div class="row">
-								<div class="col-sm-4 fb-share-button" data-href="<%- fullUrl %>">Compartir</div>
-								<div class="col-sm-4"><a class="twitter-share-button" href="<%- fullUrl %>" data-via="twitterdev">Tweet</a></div>
-								<div class="col-sm-4"><a href="#" class="share-link sb">Suscribirme</a></div>
-							</div>
-						</div>
-                        <p ng-repeat="(attribute,value) in viaje">{{attribute}} ({{value}})</p>
-					</div>
-				</div>
-			</div>-->
 			<div class="row top-people">
 				<h2>Servidores públicos que fueron a ese evento</h2>
-				<% for(i=0;i<3;i++){ %>
+				<%
+                for(var i=0;i<viajes.length;i++){
+                    var viajeAux = viajes[i];
+                %>
 					<div class="col-sm-4 person">
 							<div class="person-content">
 								<img src="/images/funcionario-default.png" alt="" class="picture">
-								<p class="name">{{funcionario.nombre_completo}}</p>
-								<p class="charge">{{funcionario.nombre_puesto != 0 ? funcionario.nombre_puesto : "no disponible"}}</p>
-								<p class="dependency">{{funcionario.cargo_nombre_superior != 0 ? funcionario.cargo_nombre_superior : "no disponible"}}</p>
-								<p class="money">{{funcionario.gasto_total | currency}}</p>
+								<p class="name"><%- viajeAux.funcionario.nombre_completo %></p>
+								<p class="charge"><%- viajeAux.funcionario.nombre_puesto != 0 ? viajeAux.funcionario.nombre_puesto : "no disponible" %></p>
+								<p class="dependency"><%- viajeAux.funcionario.cargo_nombre_superior != 0 ? viajeAux.funcionario.cargo_nombre_superior : "no disponible" %></p>
+								<p class="money">$ <%- viajeAux.gasto_total.toFixed(2) %></p>
 								<p class="gray">Gastos al mes</p>
-								<a href="/funcionario?id={{funcionario.funcionario}}" class="custom-button">Ver perfil</a>
+								<a href="/funcionario?id=<%- viajeAux.funcionario.id %>" class="custom-button">Ver perfil</a>
 							</div>
 					</div>
 				<% } %>
