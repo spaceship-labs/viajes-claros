@@ -109,8 +109,6 @@ app.controller("statisticsCTL", ['$scope', '$http',function ($scope, $http) {
 
     $scope.calculateWidth = function(aerolinea) {
         var percentage = ((aerolinea.total / ($scope.totalAerolineasVuelos)) * 100);
-        console.log(aerolinea);
-        console.log(percentage);
         return percentage + '%';
     };
 
