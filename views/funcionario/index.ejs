@@ -51,7 +51,7 @@
 						<ul>
 							<li ng-repeat="viaje in viajes | orderBy:gasto_total | limitTo:3">
 								<a href="/viaje?id={{viaje.id}}"><img src="/images/hotel_icon.png" alt="" class="picture" /></a>
-								<p class="big-blue">{{viaje.gasto_total | currency}}</p>
+								<p class="big-blue"><a href="/viaje?id={{viaje.id}}">{{viaje.gasto_total | currency}}</a></p>
 								<p class="location"><a href="#">{{viaje.ciudad_destino}} {{viaje.pais_destino}}</a></p>
 								<p class="activity">{{viaje.evento | limitTo:50 }}</p>
 							</li>

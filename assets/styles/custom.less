@@ -120,6 +120,7 @@ a:hover{text-decoration: none!important;}
 }
 
 #content{
+	.centered-content{padding-bottom: 25px}
 	.share-links{
 		max-width: 75%;margin: 10px auto 0;
 		.col-sm-4{padding-right: 5px;padding-left: 5px;}
@@ -130,6 +131,14 @@ a:hover{text-decoration: none!important;}
 		.share-link.tw{color: mix(@blue, @turquoise, 50%)}
 		.share-link.sb{color: @turquoise}
 	}
+	.carousel-indicators{
+		bottom: 0;
+		li{background: @gray;border:0}
+		li + li{margin-left: 4px}
+		.active{background: @blue;border: 0}
+	}	
+	.carousel-control{display: none;}
+	.progress-bar-success{background: @blue}
 	.map-container{
 		position: relative;
 		.jumbotron{
@@ -144,11 +153,14 @@ a:hover{text-decoration: none!important;}
 					p{max-width: 590px;margin: 0 auto}
 					.custom-button{margin-top: 15px}
 				}
-				.close-arrow{
-					height: 30px;position: absolute;bottom: 0;margin: 0 auto;left: 0;right: 0;width: 30px;text-align: center;
-					img{margin-top: 5px;width: 80%;}
-				}
 			}
+		}
+		.close-arrow{
+			height: 30px;position: absolute;bottom: 0;margin: 0 auto;left: 0;right: 0;width: 30px;text-align: center;
+			img{margin-top: 5px;width: 80%;}
+		}
+		.close-arrow-header{
+			top: -30px;z-index: 9999999;
 		}
 		.jumbotron.ng-hide-add,
 		.jumbotron.ng-hide-remove {
@@ -199,8 +211,8 @@ a:hover{text-decoration: none!important;}
 	.total-money{
 		.gradient-blue;
 		padding: 40px 20px;text-align: center;
-		h1{color: #fff;font-size: 42px;font-weight: 700;margin: 0}
-		p{color: #fff;font-size: 22px;font-weight: 300;max-width: 360px;margin: 0 auto}
+		h1{color: #fff;font-size: 55px;font-weight: 700;margin: 0}
+		p{color: #fff;font-size: 22px;font-weight: 300;max-width: 760px;margin: 0 auto}
 	}
 	.top-people{
 		background: #fff;border: 1px solid @gray-light;border-radius: 4px;margin-top: 20px;padding: 25px;
@@ -214,8 +226,8 @@ a:hover{text-decoration: none!important;}
 				background: #F7F7F7;color: @gray;padding: 20px;
 				p{margin: 0}
 				.picture{display: block;border-radius: 50%;height: 55px;width: 55px;margin:0 auto 20px;}
-				.name{font-size: 18px;text-transform: capitalize;}
-				.charge , .dependency{font-size: 13px;text-transform: uppercase;}
+				.name{font-size: 18px;line-height: 20px;text-transform: capitalize;}
+				.charge , .dependency{font-size: 13px;margin-top: 10px;text-transform: uppercase;}
 				.dependency{font-weight: 700;min-height: 58px}
 				.money{color: @blue;font-size: 30px;font-weight: 300;margin: 8px 0;}
 				.gray{color: @gray;font-size: 14px;font-weight: 700;margin-bottom: 8px}
@@ -259,18 +271,12 @@ a:hover{text-decoration: none!important;}
 				.activity{font-size: 12px}
 
 			}
-			.carousel-indicators{
-				bottom: 0;
-				li{background: @gray;border:0}
-				li + li{margin-left: 4px}
-				.active{background: @blue;border: 0}
-			}	
-			.carousel-control{display: none;}
+
 		}
 		.percentage-rank{
 			.total{border-radius: 4px;border: 1px solid @gray-light;color: @gray;max-width: 75%;margin: 10px auto 0;padding: 4px;text-align: center;}
 			#radial-one .arc{fill: @blue;}
-			#radial-two .arc{fill: @turquoise;}
+			#radial-two .arc , #radial-four .arc{fill: @turquoise;}
 			.charts-container{
 				max-width: 70%;margin: 0 auto;
 				.radial-chart .labels .label{font-family: 'Open Sans', sans-serif!important;font-size: 34px!important;font-weight: 300;}
@@ -287,7 +293,7 @@ a:hover{text-decoration: none!important;}
 		.funcionario-info{
 			.inner-content{
 				.gradient-blue;color: #fff;text-align: center;
-				.funcionario-icon{display: block;margin: 0 auto;height: 105px;font-size: 60px}
+				.funcionario-icon{display: block;margin: 0 auto;height: 100px;font-size: 88px}
 				h1{font-weight: 300;margin: 10px 0 5px;text-transform: capitalize;}
 				p{
 					margin: 0;font-size: 13px;
@@ -308,7 +314,7 @@ a:hover{text-decoration: none!important;}
 			.row{
 				.col-sm-4{padding-bottom: 20px;padding-top:20px;}
 				.duration{
-					i{float: left;font-size: 32px}
+					i{color: @gray;float: left;font-size: 32px}
 					p{
 						color: @gray;font-size: 13px;margin: 0;
 						strong{text-transform: uppercase;}
@@ -353,7 +359,7 @@ a:hover{text-decoration: none!important;}
 				}
 			}
 			.date{
-				.calendar{border: 2px solid #fff;border-radius: 50%;font-size: 20px;margin: 0 8px 20px 0;float: left;padding: 4px}
+				.calendar{border: 2px solid #fff;border-radius: 50%;color: #fff;font-size: 20px;margin: 0 8px 20px 0;float: left;padding: 4px}
 				p{color: #fff;margin: 0;font-weight: 300;font-size: 13px;}
 				.share-links{max-width: 100%;margin: 0}
 			}
@@ -420,6 +426,7 @@ a:hover{text-decoration: none!important;}
 	#header .menu{padding: 8px 0px}
 	#header .menu .logo img{max-width: 125px}
 	#header .menu .search-form input[type="text"]{font-size: 11px}
+	.close-arrow-header{display: none;}
 	#home .map-container .jumbotron .content-jumbotron .text-jumbotron h1{font-size: 32px;padding: 0 10px}
 	#home .map-container .jumbotron .content-jumbotron .text-jumbotron p{font-size: 16px;padding: 0 10px}
 	#home .total-money h1{font-size: 32px}
