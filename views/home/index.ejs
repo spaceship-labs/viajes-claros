@@ -1,6 +1,7 @@
 <div id="home">
 	<div class="home-content-top" ng-controller="homeCtrl">
 		<div class="map-container">
+			<a href="#" class="close-arrow close-arrow-header" ng-show="!toggleJumbotron" ng-click="toggleJumbotron = !toggleJumbotron"><img src="/images/flecha-down.png" alt=""></a>
 			<%- partial('../global/jumbotron') -%>
 			<leaflet center='mapCenter' ng-class='mapClass' class='map' layers="layers" markers='markers' defaults='options' event-broadcast="events" ></leaflet>
 			<div class="aside" ng-show="toggleSidebar">
@@ -86,6 +87,7 @@
 			<div class="row ranks">
                 <div class="col-md-6 percentage-rank">
                     <div class="inner-content">
+                    	<h4><strong>Las principales aerolineas</strong><br/>usadas por los servidores públicos</h4>
                         <div class="progress" ng-repeat="aerolinea in aerolineasList">
                             <div class="progress-bar progress-bar-success" role="progressbar"
                                  aria-valuenow="{{(aerolinea.total / totalAerolineasVuelos) * 100}}" aria-valuemin="0" aria-valuemax="100"
