@@ -73,7 +73,7 @@ app.controller("funcionarioCTL", ['$scope', '$http','$filter',function ($scope, 
             sincomprobar += el.viatico_sin_comprobar;
             devuelto += el.viatico_devuelto;
         }
-        console.log($scope.totalViaticos);
+
         var values = [
             {label : 'comprobados',value : comprobados},
             {label : 'sin comprobar',value : sincomprobar},

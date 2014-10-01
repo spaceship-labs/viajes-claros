@@ -131,6 +131,14 @@ a:hover{text-decoration: none!important;}
 		.share-link.tw{color: mix(@blue, @turquoise, 50%)}
 		.share-link.sb{color: @turquoise}
 	}
+	.carousel-indicators{
+		bottom: 0;
+		li{background: @gray;border:0}
+		li + li{margin-left: 4px}
+		.active{background: @blue;border: 0}
+	}	
+	.carousel-control{display: none;}
+	.progress-bar-success{background: @blue}
 	.map-container{
 		position: relative;
 		.jumbotron{
@@ -145,11 +153,14 @@ a:hover{text-decoration: none!important;}
 					p{max-width: 590px;margin: 0 auto}
 					.custom-button{margin-top: 15px}
 				}
-				.close-arrow{
-					height: 30px;position: absolute;bottom: 0;margin: 0 auto;left: 0;right: 0;width: 30px;text-align: center;
-					img{margin-top: 5px;width: 80%;}
-				}
 			}
+		}
+		.close-arrow{
+			height: 30px;position: absolute;bottom: 0;margin: 0 auto;left: 0;right: 0;width: 30px;text-align: center;
+			img{margin-top: 5px;width: 80%;}
+		}
+		.close-arrow-header{
+			top: -30px;z-index: 9999999;
 		}
 		.jumbotron.ng-hide-add,
 		.jumbotron.ng-hide-remove {
@@ -260,18 +271,12 @@ a:hover{text-decoration: none!important;}
 				.activity{font-size: 12px}
 
 			}
-			.carousel-indicators{
-				bottom: 0;
-				li{background: @gray;border:0}
-				li + li{margin-left: 4px}
-				.active{background: @blue;border: 0}
-			}	
-			.carousel-control{display: none;}
+
 		}
 		.percentage-rank{
 			.total{border-radius: 4px;border: 1px solid @gray-light;color: @gray;max-width: 75%;margin: 10px auto 0;padding: 4px;text-align: center;}
 			#radial-one .arc{fill: @blue;}
-			#radial-two .arc{fill: @turquoise;}
+			#radial-two .arc , #radial-four .arc{fill: @turquoise;}
 			.charts-container{
 				max-width: 70%;margin: 0 auto;
 				.radial-chart .labels .label{font-family: 'Open Sans', sans-serif!important;font-size: 34px!important;font-weight: 300;}
@@ -354,7 +359,7 @@ a:hover{text-decoration: none!important;}
 				}
 			}
 			.date{
-				.calendar{border: 2px solid #fff;border-radius: 50%;color: @gray-light;font-size: 20px;margin: 0 8px 20px 0;float: left;padding: 4px}
+				.calendar{border: 2px solid #fff;border-radius: 50%;color: #fff;font-size: 20px;margin: 0 8px 20px 0;float: left;padding: 4px}
 				p{color: #fff;margin: 0;font-weight: 300;font-size: 13px;}
 				.share-links{max-width: 100%;margin: 0}
 			}
@@ -421,6 +426,7 @@ a:hover{text-decoration: none!important;}
 	#header .menu{padding: 8px 0px}
 	#header .menu .logo img{max-width: 125px}
 	#header .menu .search-form input[type="text"]{font-size: 11px}
+	.close-arrow-header{display: none;}
 	#home .map-container .jumbotron .content-jumbotron .text-jumbotron h1{font-size: 32px;padding: 0 10px}
 	#home .map-container .jumbotron .content-jumbotron .text-jumbotron p{font-size: 16px;padding: 0 10px}
 	#home .total-money h1{font-size: 32px}

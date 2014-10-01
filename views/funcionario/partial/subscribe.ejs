@@ -1,0 +1,12 @@
+/**
+ * Created by Owner on 10/1/2014.
+ */
+<script>
+    window.funcionario = <%- JSON.stringify(funcionario) %>;
+</script>
+<div ng-controller="subscribeCTL">
+    <form>
+        <input type="email" ng-model="email" name="email" class="required" />
+        <input type="submit" class="button" value="enviar" />
+    </form>
+</div>
