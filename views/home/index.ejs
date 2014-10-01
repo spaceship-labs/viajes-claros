@@ -54,31 +54,18 @@
 						</ul>
 					</div>
 				</div>
-				<div class="col-md-6 percentage-rank">
-					<div class="inner-content">
-						<h4><strong>Viajes nacionales e internacionales</strong><br/>de los servidores públicos</h4>
-						<div class="charts-container">
-							<div id="radial-one" class="radial-chart"></div>
-							<div id="radial-two" class="radial-chart"></div>
-							<div class="clear"></div>
-						</div>
-						<div class="clear"></div>
-						<p class="total">Total de viajes al año: {{totalViajes}}</p>
-					</div>
-				</div>
-			</div>
-			<div class="row ranks">
-				<div class="col-md-6 percentage-rank">
-                    <carousel interval="5000">
+                <div class="col-md-6 percentage-rank">
+                    <carousel interval="6000">
                         <slide  active="slide.active" >
                             <div class="inner-content">
-                                <div class="progress" ng-repeat="aerolinea in aerolineasList">
-                                    <div class="progress-bar progress-bar-success" role="progressbar"
-                                         aria-valuenow="{{(aerolinea.total / totalAerolineasVuelos) * 100}}" aria-valuemin="0" aria-valuemax="100"
-                                         ng-style="{ 'width': calculateWidth(aerolinea) }">
-                                        <span>{{aerolinea.linea_origen}}</span>
-                                    </div>
+                                <h4><strong>Viajes nacionales e internacionales</strong><br/>de los servidores públicos</h4>
+                                <div class="charts-container">
+                                    <div id="radial-one" class="radial-chart"></div>
+                                    <div id="radial-two" class="radial-chart"></div>
+                                    <div class="clear"></div>
                                 </div>
+                                <div class="clear"></div>
+                                <p class="total">Total de viajes al año: {{totalViajes}}</p>
                             </div>
                         </slide>
                         <slide active="" >
@@ -94,6 +81,19 @@
                             </div>
                         </slide>
                     </carousel>
+                </div>
+			</div>
+			<div class="row ranks">
+                <div class="col-md-6 percentage-rank">
+                    <div class="inner-content">
+                        <div class="progress" ng-repeat="aerolinea in aerolineasList">
+                            <div class="progress-bar progress-bar-success" role="progressbar"
+                                 aria-valuenow="{{(aerolinea.total / totalAerolineasVuelos) * 100}}" aria-valuemin="0" aria-valuemax="100"
+                                 ng-style="{ 'width': calculateWidth(aerolinea) }">
+                                <span>{{aerolinea.linea_origen}}</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 				<div class="col-md-6 top-places">
 					<carousel interval="5000">
