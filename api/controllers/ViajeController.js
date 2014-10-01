@@ -8,10 +8,16 @@ module.exports = {
             Viaje.findOne({id : id}).populate('funcionario').exec(function(err,viaje){
                 if (err) {
                     console.log(err);
-                    throw err;
+                    res.forbidden();
                 } else {
-                    var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
-                    res.view({ funcionario : viaje.funcionario,viaje : viaje,fullUrl : fullUrl });
+                    Viaje.find({ evento : viaje.evento,funcionario : { '!' : viaje.funcionario.id } }).populate('funcionario').exec(function(err,viajesExtras) {
+                        if (err) {
+                            console.log(err);
+                            res.forbidden();
+                        }
+                        var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+                        res.view({ funcionario : viaje.funcionario,viaje : viaje,fullUrl : fullUrl,viajes : viajesExtras });
+                    });
                 }
             });
         } else {
