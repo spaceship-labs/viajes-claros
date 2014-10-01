@@ -5,6 +5,7 @@ app.controller("homeCtrl", ['$scope', '$http','$filter',function ($scope, $http 
 	$scope.toggleAdvancedSearch = false;
     $scope.totalGastado = 0;
 	$scope.mapPlace = '';
+    $scope.gasto_parcial = 0;
 	$scope.layers =  {
         baselayers: {
             xyz: {
@@ -91,7 +92,6 @@ app.controller("homeCtrl", ['$scope', '$http','$filter',function ($scope, $http 
 	    }
 	});
 
-
     $scope.get_markers();
 
 }]);
@@ -102,12 +102,35 @@ app.controller("statisticsCTL", ['$scope', '$http',function ($scope, $http) {
     $scope.aerolineasList = [];
     $scope.funcionariosList = [];
     $scope.internacionalesList = [];
+    $scope.pasajesList = [];
     $scope.totalViajes = 0;
+    $scope.totalVuelos = 0;
+    $scope.totalAerolineasVuelos = 0;
+
+    $scope.calculateWidth = function(aerolinea) {
+        var percentage = ((aerolinea.total / ($scope.totalAerolineasVuelos)) * 100);
+        console.log(aerolinea);
+        console.log(percentage);
+        return percentage + '%';
+    };
 
     $scope.startRadialD3 = function(){
         $scope.totalViajes = $scope.internacionalesList.length ? ($scope.internacionalesList[0].total + $scope.internacionalesList[1].total) : 0;
         var internationalPercentage = $scope.internacionalesList[0].total/$scope.totalViajes * 100;
         var nationalPercentage = $scope.internacionalesList[1].total/$scope.totalViajes * 100;
+
+        $scope.pasajesList.map(function(el) {
+            if (el.pasaje_tipo == "Aéreo") {
+                $scope.totalVuelos = el.total;
+            }
+            if (el.pasaje_tipo == "Terrestre") {
+                $scope.totalCamiones = el.total;
+            }
+        });
+
+        var vuelosPercentage = ($scope.totalVuelos / ($scope.totalVuelos + $scope.totalCamiones)) * 100;
+        var camionesPercentage = ($scope.totalCamiones / ($scope.totalVuelos + $scope.totalCamiones)) * 100;
+
         var rp1 = radialProgress(document.getElementById('radial-one'))
             .diameter(150)
             .value(internationalPercentage)
@@ -120,37 +143,18 @@ app.controller("statisticsCTL", ['$scope', '$http',function ($scope, $http) {
             .label('Nacionales')
             .render();
 
-        //$scope.addTextRadial('radial-international-trips','Internacionales');
-        //$scope.addTextRadial('radial-rnational-trips','Nacionales');
+        var rp3 = radialProgress(document.getElementById('radial-three'))
+            .diameter(150)
+            .value(camionesPercentage)
+            .label('Terrestres')
+            .render();
 
-    }
+        var rp4 = radialProgress(document.getElementById('radial-four'))
+            .diameter(150)
+            .value(vuelosPercentage)
+            .label('Aereos')
+            .render();
 
-    $scope.drawChartAerolineas = function(){
-        nv.addGraph(function() {
-            var chart = nv.models.discreteBarChart()
-                    .x(function(d) { return d.label })    //Specify the data accessors.
-                    .y(function(d) { return d.value })
-                    .staggerLabels(true)    //Too many bars and not enough room? Try staggering labels.
-                    .tooltips(false)        //Don't show tooltips
-                    .showValues(true)       //...instead, show the bar value right on top of each bar.
-                    .transitionDuration(3000)
-                ;
-
-            d3.select('#chart-bar svg')
-                .datum($scope.setData())
-                .call(chart);
-
-            nv.utils.windowResize(chart.update);
-
-            return chart;
-        });
-    };
-
-    $scope.setData = function() {
-        var values = $scope.aerolineasList.map(function(el){
-            return { label : el.linea_origen,value : el.total };
-        });
-        return [{ key: "Cumulative Return",values : values }];
     };
 
     $scope.loadData = function(){
@@ -161,9 +165,13 @@ app.controller("statisticsCTL", ['$scope', '$http',function ($scope, $http) {
                 $scope.aerolineasList = data.aerolineasList;
                 $scope.funcionariosList = data.funcionariosList;
                 $scope.internacionalesList = data.internacionalesList;
+                $scope.pasajesList = data.pasajesList;
 
                 $scope.startRadialD3();
-                $scope.drawChartAerolineas();
+
+                $scope.aerolineasList.forEach(function(el) {
+                      $scope.totalAerolineasVuelos += el.total;
+                });
         });
     };
 

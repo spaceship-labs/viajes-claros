@@ -20,7 +20,7 @@
 			</div>	
 		</div>	
 		<div class="total-money">
-			<h1><strong>{{totalGastado | currency}}</strong></h1>
+			<h1><span count-to="{{totalGastado}}" value="{{gasto_parcial}}" duration="2" filter="currency"></span></h1>
 			<p>Presupuesto gastado hasta el 2014 en viajes de servidores públicos</p>
 		</div>
 	</div>
@@ -34,7 +34,7 @@
 						<p class="name">{{funcionario.nombre_completo}}</p>
 						<p class="charge">{{funcionario.nombre_puesto != 0 ? funcionario.nombre_puesto : "No disponible"}}</p>
                         <p class="dependency"><strong>ifai</strong></p>
-						<p class="money">{{funcionario.gasto_total | currency}}</p>
+						<p class="money" count-to="{{funcionario.gasto_total}}" value="{{gasto_parcial}}" duration="2" filter="currency"></p>
 						<p class="gray">Gastos al mes</p>
 						<a href="/funcionario?id={{funcionario.funcionario}}" class="custom-button">Ver perfil</a>
 					</div>
@@ -47,7 +47,7 @@
 						<h4><strong>Hoteles más visitados</strong><br/>por los servidores públicos</h4>
 						<ul>
 							<li ng-repeat="hotel in hotelList">
-								<a href="#"><img src="/images/hotel_foto.png" alt="" class="picture" /></a>
+								<a><img src="/images/hotel_icon.png" alt="" class="picture" /></a>
 								<p class="place"><a href="#">{{hotel.hotel}}</a></p>
 								<p class="location"><a href="#">{{hotel.ciudad_destino}}, {{hotel.pais_destino}}</a></p>
 							</li>
@@ -69,12 +69,32 @@
 			</div>
 			<div class="row ranks">
 				<div class="col-md-6 percentage-rank">
-					<div class="inner-content">
-						<h4><strong>Las principales aerolineas</strong><br/>usadas por los servidores públicos</h4>
-						<div id="chart-bar"><svg></svg></div>
-						<p class="total">Total de aerolineas usadas: {{aerolineasList.length}}</p>
-					</div>
-				</div>
+                    <carousel interval="5000">
+                        <slide  active="slide.active" >
+                            <div class="inner-content">
+                                <div class="progress" ng-repeat="aerolinea in aerolineasList">
+                                    <div class="progress-bar progress-bar-success" role="progressbar"
+                                         aria-valuenow="{{(aerolinea.total / totalAerolineasVuelos) * 100}}" aria-valuemin="0" aria-valuemax="100"
+                                         ng-style="{ 'width': calculateWidth(aerolinea) }">
+                                        <span>{{aerolinea.linea_origen}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </slide>
+                        <slide active="" >
+                            <div class="inner-content">
+                                <h4><strong>Viajes por tipo</strong><br/>de los servidores públicos</h4>
+                                <div class="charts-container">
+                                    <div id="radial-three" class="radial-chart"></div>
+                                    <div id="radial-four" class="radial-chart"></div>
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="clear"></div>
+                                <p class="total">Total de viajes al año: {{totalViajes}}</p>
+                            </div>
+                        </slide>
+                    </carousel>
+                </div>
 				<div class="col-md-6 top-places">
 					<carousel interval="5000">
 						<slide  active="slide.active" >
