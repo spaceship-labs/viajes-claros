@@ -121,7 +121,7 @@
 				<div class="col-md-6 column">
 					<div class="info-box ">
 						<div class="inner-content">
-							<p><i class="icon-senor info-icon">Puesto</i></p>
+							<p><i class="icon-comicion info-icon">Puesto</i></p>
 							<ul>
 								<li><p><strong>Numero de comisión</strong></p><p>{{viaje.consecutivo}}</p></li>
 								<li><p><strong>Servidor publico comisionado</strong></p><p>{{funcionario.nombre}}</p></li>
@@ -169,7 +169,19 @@
 								<li><p><strong>Número de vuelo de regreso</strong></p><p>{{viaje.vuelo_regreso}}</p></li>
 								<li><p><strong>Fecha inicio comisión</strong></p><p>{{viaje.fecha_inicio_com}}</p></li>
 								<li><p><strong>Fecha termino comisión</strong></p><p>{{viaje.fecha_fin_com}}</p></li>
-								<li><p><strong>Gasto por pasajes en m.n.</strong></p><p>{{viaje.gasto_pasaje}}</p></li>
+								<li><p><strong>Gasto por pasajes en m.n.</strong></p><p>{{viaje.gasto_pasaje | currency}}</p></li>
+							</ul>
+						</div>
+					</div>	
+					<div class="info-box " ng-if="viaje.pasaje_tipo == 'Terrestre'">
+						<div class="inner-content">
+							<p><i class="icon-vuelos info-icon">Informacion de viaje</i></p>
+							<ul>
+								<li><p><strong>Institución que cubre el pasaje</strong></p><p>{{viaje.pasaje_cubre}}</p></li>
+								<li><p><strong>Tipo de pasaje</strong></p><p>{{viaje.pasaje_tipo}}</p></li>
+								<li><p><strong>Fecha inicio comisión</strong></p><p>{{viaje.fecha_inicio_com}}</p></li>
+								<li><p><strong>Fecha termino comisión</strong></p><p>{{viaje.fecha_fin_com}}</p></li>
+								<li><p><strong>Gasto por pasajes en m.n.</strong></p><p>{{viaje.gasto_pasaje | currency}}</p></li>
 							</ul>
 						</div>
 					</div>	
