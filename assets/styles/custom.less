@@ -139,6 +139,26 @@ a:hover{text-decoration: none!important;}
 	}	
 	.carousel-control{display: none;}
 	.progress-bar-success{background: @blue}
+	.trips{
+		margin-top: 20px;
+		h2{color: @gray;font-size: 28px;text-align: center;}
+		.row{
+			.col-sm-4{padding-bottom: 20px;padding-top:20px;}
+			.top-places{
+				.picture{top: 20px!important;left: 14px!important}
+				p{padding-left: 50px;}
+			}
+			.duration{
+				i{color: @gray;float: left;font-size: 32px}
+				p{
+					color: @gray;font-size: 13px;margin: 0;
+					strong{text-transform: uppercase;}
+				}
+			}
+			.custom-button{max-width: none;margin-top: 10px}
+		}
+		.row + .row{border-top: 1px solid @gray-light;margin-top: 0}
+	}
 	.map-container{
 		position: relative;
 		.jumbotron{
@@ -259,13 +279,13 @@ a:hover{text-decoration: none!important;}
 
 				ul{margin: 0 auto;max-width: 90%;}
 				ul li{
-					font-weight: 300;padding: 5px 0;text-align: left;
+					font-weight: 300;padding: 8px 0 8px 50px;min-height: 50px;position: relative;text-align: left;
 				}
 				ul li:after{content: '';display: block;clear: both;}
 				li + li{border-top: 1px solid @gray-light}	
 
 				p{line-height: 18px;margin: 0}
-				.picture{border-radius: 50%;float: left;height: 42px;margin-right: 8px;width: 42px;}
+				.picture{border-radius: 50%;height: 42px;left: 0;position: absolute;top: 5px;width: 42px;}
 				.big-blue , .big-blue a{color: @blue;font-size: 16px}
 				.location a{color: @gray;font-size: 13px;font-weight: 400;text-transform: uppercase;}
 				.activity{font-size: 12px}
@@ -307,22 +327,6 @@ a:hover{text-decoration: none!important;}
 		}
 		.top-places{
 			.big-blue , .big-blue a{color: @turquoise;}
-		}
-		.trips{
-			margin-top: 20px;
-			h2{color: @gray;font-size: 28px;text-align: center;}
-			.row{
-				.col-sm-4{padding-bottom: 20px;padding-top:20px;}
-				.duration{
-					i{color: @gray;float: left;font-size: 32px}
-					p{
-						color: @gray;font-size: 13px;margin: 0;
-						strong{text-transform: uppercase;}
-					}
-				}
-				.custom-button{max-width: none;margin-top: 10px}
-			}
-			.row + .row{border-top: 1px solid @gray-light;margin-top: 0}
 		}
 	}
 	#list{

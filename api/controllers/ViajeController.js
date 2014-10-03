@@ -23,5 +23,62 @@ module.exports = {
         } else {
             res.forbidden();
         }
-    }
+    },
+    searchtipo : function(req,res){
+        var term = req.param('filtro');
+        if (term) {
+            Viaje.find({ 'tipo_viaje' : { 'like' : "%" + term + "%" }}).exec(function(err,viajes) {
+                if (err) console.log(err);
+                res.view(
+                    'viaje/search',
+                    { viajes : viajes || [],term : term}
+                );
+            });
+        } else {
+            res.forbidden();
+        }
+    },
+    searchmedio : function(req,res){
+        var term = req.param('filtro');
+        var type = req.param('tipo');
+        if (term) {
+            Viaje.find({ 'pasaje_tipo' : { 'like' : "%" + term + "%" }}).exec(function(err,viajes) {
+                if (err) console.log(err);
+                res.view(
+                    'viaje/search',
+                    { viajes : viajes || [],term : term}
+                );
+            });
+        } else {
+            res.forbidden();
+        }
+    },
+    search_hotel : function(req,res){
+        var term = req.param('filtro');
+        if (term) {
+            Viaje.find({ 'hotel' : { 'like' : "%" + term + "%" }}).exec(function(err,viajes) {
+                if (err) console.log(err);
+                res.view(
+                    'viaje/search',
+                    { viajes : viajes || [],term : term}
+                );
+            });
+        } else {
+            res.forbidden();
+        }
+    },
+    search_ciudad : function(req,res){
+        var term = req.param('filtro');
+        if (term) {
+            Viaje.find({ 'ciudad_destino' : { 'like' : "%" + term + "%" }}).exec(function(err,viajes) {
+                if (err) console.log(err);
+                res.view(
+                    'viaje/search',
+                    { viajes : viajes || [],term : term}
+                );
+            });
+        } else {
+            res.forbidden();
+        }
+    },
 };
