@@ -155,6 +155,10 @@ app.controller("statisticsCTL", ['$scope', '$http',function ($scope, $http) {
 
     };
 
+    $scope.redirectTo = function(url){
+        window.location = url;
+    };
+
     $scope.loadData = function(){
         $http({method: 'POST', url: '/home/statisticsJson'}).success(function(data){
                 console.log(data);
