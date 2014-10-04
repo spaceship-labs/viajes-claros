@@ -6,7 +6,7 @@ app.controller("viajeCTL", ['$scope', '$http','$filter' , function ($scope, $htt
     $scope.funcionario = window.funcionario;
 }]);
 
-app.controller("viajeSearchCTL", ['$scope', '$http', function ($scope, $http) {
+app.controller("viajeSearchCTL", ['$scope', '$http','$filter' , function ($scope, $http, $filter) {
     $scope.viajes = window.viajes;
 
     $scope.getDateString = function(viaje){
