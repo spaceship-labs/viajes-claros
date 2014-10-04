@@ -1,4 +1,7 @@
 body{font-family: 'Open Sans',sans-serif!important;}
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+	display: none !important;
+}
 a{text-decoration:none;}
 a,p,h1,h2,h3,h4,a[href],input,textarea,span{font-family: 'Open Sans', sans-serif!important;}
 @blue : #2f96e9;
@@ -395,7 +398,11 @@ a:hover{text-decoration: none!important;}
 				margin-bottom: 20px;
 				.inner-content{
 					border: 1px solid @gray-light;border-radius: 4px;padding: 20px 25px;
-					.info-icon{display: block;font-size: 20px;margin: 0 auto;}
+					.info-icon{
+						text-align: center;
+						i{border: 2px solid mix(@gray, @gray-light, 50%);border-radius: 50%;color: mix(@gray, @gray-light, 50%);font-size: 22px;padding: 5px}
+					}
+					h4{color: @gray;text-align: center;}
 					p{
 						color:@gray;font-size: 13px;margin: 0 15px;
 						strong{text-transform: uppercase;}
