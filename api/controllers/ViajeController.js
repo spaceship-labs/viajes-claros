@@ -26,7 +26,6 @@ module.exports = {
     },
     searchtipo : function(req,res){
         var term = req.param('filtro');
-        term = capitalizeString(term);
         if (term) {
             Viaje.find({ 'tipo_viaje' : { 'like' : "%" + term + "%" }}).exec(function(err,viajes) {
                 if (err) console.log(err);
@@ -41,7 +40,6 @@ module.exports = {
     },
     searchmedio : function(req,res){
         var term = req.param('filtro');
-        term = capitalizeString(term);
         if (term) {
             Viaje.find({ 'pasaje_tipo' : { 'like' : "%" + term + "%" }}).exec(function(err,viajes) {
                 if (err) console.log(err);
@@ -56,7 +54,6 @@ module.exports = {
     },
     search_hotel : function(req,res){
         var term = req.param('filtro');
-        term = capitalizeString(term);
         if (term) {
             Viaje.find({ 'hotel' : { 'like' : "%" + term + "%" }}).exec(function(err,viajes) {
                 if (err) console.log(err);
@@ -71,7 +68,6 @@ module.exports = {
     },
     search_ciudad : function(req,res){
         var term = req.param('filtro');
-        term = capitalizeString(term);
         if (term) {
             Viaje.find({ 'ciudad_destino' : { 'like' : "%" + term + "%" }}).exec(function(err,viajes) {
                 if (err) console.log(err);
