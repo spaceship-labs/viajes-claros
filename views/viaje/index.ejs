@@ -55,7 +55,8 @@
 				<div class="col-md-6 column">
 					<div class="info-box ">
 						<div class="inner-content">
-							<p><i class="icon-comicion info-icon">Comision</i></p>
+							<p class="info-icon"><i class="icon-comicion"></i></p>
+							<h4>Comision</h4>
 							<ul>
 								<li><p><strong>Mecanismo que origina la comisión</strong></p><p>{{viaje.mec_origen}}</p></li>
 								<li><p><strong>Quién invita / Quién solicita</strong></p><p>{{viaje.institucion_genera}}</p></li>
@@ -66,7 +67,8 @@
 					</div>
 					<div class="info-box ">
 						<div class="inner-content">
-							<p><i class="icon-tipodeviaje info-icon">Tipo de viaje</i></p>
+							<p class="info-icon"><i class="icon-tipodeviaje"></i></p>
+							<h4>Tipo de viaje</h4>
 							<ul>
 								<li><p><strong>Tipo viaje</strong></p><p>{{viaje.tipo_viaje}}</p></li>
 								<li><p><strong>Numero de acuerdo autorización</strong></p><p>{{viaje.acuerdo}}</p></li>
@@ -82,7 +84,8 @@
 					</div>
 					<div class="info-box ">
 						<div class="inner-content">
-							<p><i class="icon-motivo info-icon">Motivo</i></p>
+							<p class="info-icon"><i class="icon-motivo"></i></p>
+							<h4>Motivo</h4>
 							<ul>
 								<li><p><strong>Motivo de la comision</strong></p><p>{{viaje.motivo}}</p></li>
 								<li><p><strong>Antecedentes</strong></p><p>{{viaje.antecedente}}</p></li>
@@ -91,7 +94,8 @@
 					</div>
 					<div class="info-box ">
 						<div class="inner-content">
-							<p><i class="icon-resultados info-icon">Resultados</i></p>
+							<p class="info-icon"><i class="icon-resultados"></i></p>
+							<h4>Resultados</h4>
 							<ul>
 								<li><p><strong>Resultados obtenidos</strong></p><p>{{viaje.resultado}}</p></li>
 								<li><p><strong>Contribucion </strong></p><p>{{viaje.contribucion_ifai}}</p></li>
@@ -101,7 +105,8 @@
 					</div>
 					<div class="info-box ">
 						<div class="inner-content">
-							<p><i class="icon-viaticos info-icon">Viaticos</i></p>
+							<p class="info-icon"><i class="icon-viaticos"></i></p>
+							<h4>Viaticos</h4>
 							<ul>
 								<li><p><strong>Gasto por viaticos m.n.</strong></p><p>{{viaje.gasto_viatico | currency}}</p></li>
 								<li><p><strong>Institución que cubre el hospedaje</strong></p><p>{{viaje.inst_hospedaje}}</p></li>
@@ -121,7 +126,8 @@
 				<div class="col-md-6 column">
 					<div class="info-box ">
 						<div class="inner-content">
-							<p><i class="icon-senor info-icon">Puesto</i></p>
+							<p class="info-icon"><i class="icon-comicion"></i></p>
+							<h4>Puesto</h4>
 							<ul>
 								<li><p><strong>Numero de comisión</strong></p><p>{{viaje.consecutivo}}</p></li>
 								<li><p><strong>Servidor publico comisionado</strong></p><p>{{funcionario.nombre}}</p></li>
@@ -132,7 +138,8 @@
 					</div>
 					<div class="info-box ">
 						<div class="inner-content">
-							<p><i class="icon-moneda info-icon">Tarifa</i></p>
+							<p class="info-icon"><i class="icon-moneda"></i></p>
+							<h4>Tarifa</h4>
 							<ul>
 								<li><p><strong>Tarifa diaria para viaticos</strong></p><p>{{viaje.tarifa_diaria | currency}}</p></li>
 								<li><p><strong>Moneda</strong></p><p>{{viaje.moneda}}</p></li>
@@ -141,7 +148,8 @@
 					</div>
 					<div class="info-box ">
 						<div class="inner-content">
-							<p><i class="icon-tema info-icon">Evento</i></p>
+							<p class="info-icon"><i class="icon-tema"></i></p>
+							<h4>Evento</h4>
 							<ul>
 								<li><p><strong>Tema</strong></p><p>{{viaje.tema}}</p></li>
 								<li><p><strong>Tipo de comisión</strong></p><p>{{viaje.tipo_com}}</p></li>
@@ -159,7 +167,8 @@
 					</div>
 					<div class="info-box " ng-if="viaje.pasaje_tipo == 'Aéreo'">
 						<div class="inner-content">
-							<p><i class="icon-vuelos info-icon">Informacion de vuelo</i></p>
+							<p class="info-icon"><i class="icon-vuelos"></i></p>
+							<h4>Informacion de vuelo</h4>
 							<ul>
 								<li><p><strong>Institución que cubre el pasaje</strong></p><p>{{viaje.pasaje_cubre}}</p></li>
 								<li><p><strong>Tipo de pasaje</strong></p><p>{{viaje.pasaje_tipo}}</p></li>
@@ -169,7 +178,20 @@
 								<li><p><strong>Número de vuelo de regreso</strong></p><p>{{viaje.vuelo_regreso}}</p></li>
 								<li><p><strong>Fecha inicio comisión</strong></p><p>{{viaje.fecha_inicio_com}}</p></li>
 								<li><p><strong>Fecha termino comisión</strong></p><p>{{viaje.fecha_fin_com}}</p></li>
-								<li><p><strong>Gasto por pasajes en m.n.</strong></p><p>{{viaje.gasto_pasaje}}</p></li>
+								<li><p><strong>Gasto por pasajes en m.n.</strong></p><p>{{viaje.gasto_pasaje | currency}}</p></li>
+							</ul>
+						</div>
+					</div>	
+					<div class="info-box " ng-if="viaje.pasaje_tipo == 'Terrestre'">
+						<div class="inner-content">
+							<p class="info-icon"><i class="icon-vuelos"></i></p>
+							<h4>Informacion de viaje</h4>
+							<ul>
+								<li><p><strong>Institución que cubre el pasaje</strong></p><p>{{viaje.pasaje_cubre}}</p></li>
+								<li><p><strong>Tipo de pasaje</strong></p><p>{{viaje.pasaje_tipo}}</p></li>
+								<li><p><strong>Fecha inicio comisión</strong></p><p>{{viaje.fecha_inicio_com}}</p></li>
+								<li><p><strong>Fecha termino comisión</strong></p><p>{{viaje.fecha_fin_com}}</p></li>
+								<li><p><strong>Gasto por pasajes en m.n.</strong></p><p>{{viaje.gasto_pasaje | currency}}</p></li>
 							</ul>
 						</div>
 					</div>	
