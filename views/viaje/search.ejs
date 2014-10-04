@@ -3,50 +3,54 @@
 		window.viajes = <%- JSON.stringify(viajes) %>;
 	</script>
 	<div class="centered-content">
-		<div class="trips">
-			<h2><strong>Resultados de la busqueda: '<%- term %>'</strong></h2>
-	        <div class="row trip-item ranks " ng-repeat="viaje in viajes | orderBy:fecha_inicio_com">
-	            <div class="col-sm-4 top-places">
-	                <div class="inner-content">
-	                    <a href="#"><img src="/images/pinlugar.png" alt="" class="picture" /></a>
-	                    <p class="big-blue">{{viaje.gasto_total | currency}}</p>
-	                    <p class="location"><a href="#"><strong>{{viaje.ciudad_destino}}, {{viaje.pais_destino}}</strong></a></p>
-	                    <p class="activity">{{viaje.evento | limitTo:50}}</p>
-	                </div>
-	            </div>
-	            <div class="col-sm-4 duration">
-	                <div class="inner-content">
-	                    <i class="icon-calendar"></i>
-	                    <p><strong>Duracion del viaje:</strong></p>
-	                    <p>{{getDateString(viaje)}}</p>
-	                </div>
-	            </div>
-	            <div class="col-sm-4">
-	                <div class="inner-content"><a href="{{'/viaje?id='+viaje.id}}" class="custom-button">Ver detalle del viaje</a></div>
-	            </div>
-	        </div>
-	        <% for(i=viajes.length;i<2;i++){ %>
-	        <div class="row trip-item ranks" style="color : darkGray;">
-	            <div class="col-sm-4 top-places">
-	                <div class="inner-content">
-	                    <a><img src="/images/pinlugar.png" alt="" class="picture" /></a>
-	                    <p style="color : darkGray;">■■ ■■■■</p>
-	                    <p style="color : darkGray;">■■■ ■■■ ■■■■■■</p>
-	                    <p style="color : darkGray;">■■■■■■ ■■■ ■■■■■■■■ ■■■</p>
-	                </div>
-	            </div>
-	            <div class="col-sm-4 duration">
-	                <div class="inner-content">
-	                    <i class="icon-calendar"></i>
-	                    <p>■■ ■■■■ ■■:</p>
-	                    <p>■■■■■■ ■■■■■ ■■■■ ■■■■ ■■■■■</p>
-	                </div>
-	            </div>
-	            <div class="col-sm-4">
-	                <div class="inner-content"><a disabled="disabled" class="custom-button" style="color : darkGray;background-color: darkgray;">Ver detalle del viaje</a></div>
-	            </div>
-	        </div>
-	        <% } %>
-		</div>	
+		<div class="container-fluid">
+			<div class="row trips">
+				<div class="inner-content-list">
+					<h2><strong>Resultados de la busqueda: '<%- term %>'</strong></h2>
+			        <div class="row trip-item ranks " ng-repeat="viaje in viajes | orderBy:fecha_inicio_com">
+			            <div class="col-sm-4 top-places">
+			                <div class="inner-content">
+			                    <a href="{{'/viaje?id='+viaje.id}}"><img src="/images/pinlugar.png" alt="" class="picture" /></a>
+			                    <p class="big-blue">{{viaje.gasto_total | currency}}</p>
+			                    <p class="location"><a href="#"><strong>{{viaje.ciudad_destino}}, {{viaje.pais_destino}}</strong></a></p>
+			                    <p class="activity">{{viaje.evento | limitTo:50}}</p>
+			                </div>
+			            </div>
+			            <div class="col-sm-4 duration">
+			                <div class="inner-content">
+			                    <i class="icon-calendar"></i>
+			                    <p><strong>Duracion del viaje:</strong></p>
+			                    <p>{{getDateString(viaje)}}</p>
+			                </div>
+			            </div>
+			            <div class="col-sm-4">
+			                <div class="inner-content"><a href="{{'/viaje?id='+viaje.id}}" class="custom-button">Ver detalle del viaje</a></div>
+			            </div>
+			        </div>
+			        <% for(i=viajes.length;i<2;i++){ %>
+			        <div class="row trip-item ranks" style="color : darkGray;">
+			            <div class="col-sm-4 top-places">
+			                <div class="inner-content">
+			                    <a><img src="/images/pinlugar.png" alt="" class="picture" /></a>
+			                    <p style="color : darkGray;">■■ ■■■■</p>
+			                    <p style="color : darkGray;">■■■ ■■■ ■■■■■■</p>
+			                    <p style="color : darkGray;">■■■■■■ ■■■ ■■■■■■■■ ■■■</p>
+			                </div>
+			            </div>
+			            <div class="col-sm-4 duration">
+			                <div class="inner-content">
+			                    <i class="icon-calendar"></i>
+			                    <p>■■ ■■■■ ■■:</p>
+			                    <p>■■■■■■ ■■■■■ ■■■■ ■■■■ ■■■■■</p>
+			                </div>
+			            </div>
+			            <div class="col-sm-4">
+			                <div class="inner-content"><a disabled="disabled" class="custom-button" style="color : darkGray;background-color: darkgray;">Ver detalle del viaje</a></div>
+			            </div>
+			        </div>
+			        <% } %>
+			    </div>
+			</div>	
+		</div>
 	</div>
 </div>
