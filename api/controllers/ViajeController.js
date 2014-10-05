@@ -26,12 +26,14 @@ module.exports = {
     },
     searchtipo : function(req,res){
         var term = req.param('filtro');
+        var title = '';
         if (term) {
             Viaje.find({ 'tipo_viaje' : { 'like' : "%" + term + "%" }}).exec(function(err,viajes) {
                 if (err) console.log(err);
+                title = 'Todos los viajes ' + term + 'es';
                 res.view(
                     'viaje/search',
-                    { viajes : viajes || [],term : term}
+                    { viajes : viajes || [],term : term, title : title}
                 );
             });
         } else {
@@ -40,12 +42,14 @@ module.exports = {
     },
     searchmedio : function(req,res){
         var term = req.param('filtro');
+        var title = '';
         if (term) {
             Viaje.find({ 'pasaje_tipo' : { 'like' : "%" + term + "%" }}).exec(function(err,viajes) {
                 if (err) console.log(err);
+                title = 'Todos los viajes ' + term + 's';
                 res.view(
                     'viaje/search',
-                    { viajes : viajes || [],term : term}
+                    { viajes : viajes || [],term : term, title : title}
                 );
             });
         } else {
@@ -54,12 +58,15 @@ module.exports = {
     },
     search_hotel : function(req,res){
         var term = req.param('filtro');
+        var title = '';
+        var prefix = (term.indexOf('hotel') > -1) ? '' : 'hotel ';
         if (term) {
             Viaje.find({ 'hotel' : { 'like' : "%" + term + "%" }}).exec(function(err,viajes) {
                 if (err) console.log(err);
+                title = 'Viajes en los que se ha usado el ' + prefix + term;
                 res.view(
                     'viaje/search',
-                    { viajes : viajes || [],term : term}
+                    { viajes : viajes || [],term : term, title : title}
                 );
             });
         } else {
@@ -68,12 +75,14 @@ module.exports = {
     },
     search_ciudad : function(req,res){
         var term = req.param('filtro');
+        var title = '';
         if (term) {
             Viaje.find({ 'ciudad_destino' : { 'like' : "%" + term + "%" }}).exec(function(err,viajes) {
                 if (err) console.log(err);
+                title = 'Todos los viajes a ' + term;
                 res.view(
                     'viaje/search',
-                    { viajes : viajes || [],term : term}
+                    { viajes : viajes || [],term : term , title : title}
                 );
             });
         } else {
