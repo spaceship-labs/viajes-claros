@@ -22,7 +22,7 @@ app.controller("funcionarioCTL", ['$scope', '$http','$filter' ,function ($scope,
     $scope.twShare = function(url) {
         window.open(
         'https://twitter.com/home?status='+url, 
-        'facebook-share-dialog', 
+        'twitter-share-dialog', 
         'width=520,height=350'); 
         return false;
     };
