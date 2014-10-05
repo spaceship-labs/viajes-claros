@@ -23,7 +23,12 @@
 					<div class="inner-content">
 						<h1>{{viaje.evento}}</h1>
 						<h2>Gasto toal del viaje: <strong>{{viaje.gasto_total | currency}}</strong></h2>
-						<p><a href="{{viaje.evento_url}}">{{viaje.evento_url}}</a></p>
+						<p ng-show="viaje.evento_url != 'No disponible'">
+							<a href="{{viaje.evento_url}}">{{viaje.evento_url}}</a>
+						</p>
+						<p ng-show="viaje.evento_url == 'No disponible'">
+							<a>URL del evento no disponible</a>
+						</p>
 					</div>
 				</div>
 				<div class="col-md-6 date">
@@ -131,7 +136,7 @@
 							<h4>Puesto</h4>
 							<ul>
 								<li><p><strong>Numero de comisión</strong></p><p>{{viaje.consecutivo}}</p></li>
-								<li><p><strong>Servidor publico comisionado</strong></p><p><a href="/funcionario?id={{funcionario.id}}">{{funcionario.nombre}}</a></p></li>
+								<li><p><strong>Servidor publico comisionado</strong></p><p><a href="/funcionario?id={{funcionario.id}}">{{funcionario.nombre_completo}}</a></p></li>
 								<li><p><strong>Cargo</strong></p><p>{{funcionario.nombre_puesto}}</p></li>
 								<li><p><strong>Grupo jerarquico</strong></p><p>{{funcionario.cargo_nombre_superior}}</p></li>
 							</ul>
