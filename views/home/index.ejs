@@ -36,7 +36,7 @@
 						<p class="charge">{{funcionario.nombre_puesto != 0 ? funcionario.nombre_puesto : "Puesto no disponible"}}</p>
                         <p class="dependency"><strong>ifai</strong></p>
 						<p class="money" count-to="{{funcionario.gasto_total}}" value="{{gasto_parcial}}" duration="2" filter="currency"></p>
-						<p class="gray">Gastos al mes</p>
+						<p class="gray">Gastos hasta hoy</p>
 						<a href="/funcionario?id={{funcionario.funcionario}}" class="custom-button">Ver perfil</a>
 					</div>
 				</div>
@@ -115,7 +115,7 @@
 							<div class="inner-content">
 								<h4><strong>Ciudades Nacionales</strong><br/>mas visitadas por los servidores públicos</h4>
 								<ul>
-                                    <li ng-repeat="ciudad in ciudadesList |filter:{pais_destino:'Mexico'} | limitTo:3">
+                                    <li ng-repeat="ciudad in ciudadesList | filter:{tipo_viale:'!Internacional'} | limitTo:3">
 										<a href="#"><img src="/images/pinlugar.png" alt="" class="picture" /></a>
                                         <p class="place"><a href="/viaje/search_ciudad?filtro={{ciudad.ciudad_destino}}">{{ciudad.ciudad_destino}}</a></p>
                                         <p class="location"><a href="#">{{ciudad.pais_destino}}</a></p>
