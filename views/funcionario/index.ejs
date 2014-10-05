@@ -55,7 +55,7 @@
 								<p class="location"><a href="#">{{viaje.ciudad_destino}} {{viaje.pais_destino}}</a></p>
 								<p class="activity">{{viaje.evento | limitTo:50 }}</p>
 							</li>
-                            <li ng-if="viajes.length < 3" style="color : darkGray;">
+                            <!--<li ng-if="viajes.length < 3" style="color : darkGray;">
                                 <a><img src="/images/hotel_icon.png" alt="" class="picture" /></a>
                                 <p class="big-blue">■,■■■</p>
                                 <p class="location"><a href="#">■■■ ■■■■ ■■■■</a></p>
@@ -72,7 +72,7 @@
                                 <p class="big-blue">■,■■■</p>
                                 <p class="location"><a href="#">■■■ ■■■■ ■■■■</a></p>
                                 <p class="activity">■■■■■ ■■■■■■■ ■■■■■■■■■ ■■■</p>
-                            </li>
+                            </li>-->
 						</ul>
 					</div>
 				</div>
@@ -123,7 +123,7 @@
                         </div>
                     </div>
                     <% for(i=viajes.length;i<5;i++){ %>
-                    <div class="row trip-item ranks" style="color : darkGray;">
+                    <!--<div class="row trip-item ranks" style="color : darkGray;">
                         <div class="col-sm-4 top-places">
                             <div class="inner-content">
                                 <a><img src="/images/pinlugar.png" alt="" class="picture" /></a>
@@ -142,7 +142,7 @@
                         <div class="col-sm-4">
                             <div class="inner-content"><a disabled="disabled" class="custom-button" style="color : darkGray;background-color: darkgray;">Ver detalle del viaje</a></div>
                         </div>
-                    </div>
+                    </div>-->
                     <% } %>
                 </div>
 			</div>			
