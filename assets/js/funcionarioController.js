@@ -90,11 +90,11 @@ app.controller("funcionarioCTL", ['$scope', '$http','$filter' ,function ($scope,
         }
 
         var values = [
-            {label : 'comprobados',value : comprobados},
-            {label : 'sin comprobar',value : sincomprobar},
-            {label : 'devueltos',value : devuelto}
+            {label : 'Comprobados',value : comprobados},
+            {label : 'Sin comprobar',value : sincomprobar},
+            {label : 'Devueltos',value : devuelto}
         ];
-        return [{ key: "Cumulative Return",values : values }];
+        return [{ key: "Monto",values : values }];
     };
 
     $scope.drawChartHorizontal = function(){
@@ -106,7 +106,7 @@ app.controller("funcionarioCTL", ['$scope', '$http','$filter' ,function ($scope,
                 .showValues(true)           //Show bar value next to each bar.
                 .tooltips(true)             //Show tooltips on hover.
                 .transitionDuration(350)
-                .showControls(true);        //Allow user to switch between "Grouped" and "Stacked" mode.
+                .showControls(false);        //Allow user to switch between "Grouped" and "Stacked" mode.
 
             chart.yAxis
                 .tickFormat(d3.format(',.2f'));
