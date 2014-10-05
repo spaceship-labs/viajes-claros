@@ -22,13 +22,13 @@
 		</div>	
 		<div class="total-money">
 			<h1><span count-to="{{totalGastado}}" value="{{gasto_parcial}}" duration="2" filter="currency"></span></h1>
-			<p>Presupuesto gastado hasta el 2014 en viajes de servidores públicos</p>
+			<p>Presupuesto gastado en viajes desde el 2013 hasta el día de hoy en viajes de servidores públicos</p>
 		</div>
 	</div>
 	<div class="centered-content">
 		<div class="container-fluid" ng-controller="statisticsCTL">
 			<div class="row top-people">
-				<h2>Los 3 servidores públicos <br/> <span class="big">con mas gastos de viajes</span></h2>
+				<h2>Los 3 servidores públicos <br/> <span class="big">con más gastos de viajes</span></h2>
 				<div class="col-sm-4 person" ng-repeat="funcionario in funcionariosList | limitTo:3">
 					<div class="person-content">
 						<img src="/images/funcionario-default.png" alt="" class="picture">
@@ -101,7 +101,7 @@
 					<carousel interval="5000">
 						<slide  active="slide.active" >
 							<div class="inner-content">
-								<h4><strong>Ciudades Internacionales</strong><br/>mas visitadas por los servidores públicos</h4>
+								<h4><strong>Ciudades Internacionales</strong><br/>más visitadas por los servidores públicos</h4>
 								<ul>
 									<li ng-repeat="ciudad in ciudadesList | filter:{tipo_viaje:'Internacional'} | limitTo:3">
 										<a href="#"><img src="/images/pinlugar.png" alt="" class="picture" /></a>

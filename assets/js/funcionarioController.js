@@ -1,7 +1,7 @@
 /**
  * Created by Owner on 9/29/2014.
  */
-app.controller("funcionarioCTL", ['$scope', '$http','$filter',function ($scope, $http, $filter) {
+app.controller("funcionarioCTL", ['$scope', '$http','$filter' ,function ($scope, $http, $filter) {
 
     $scope.viajes = window.viajes;
     $scope.funcionario = window.funcionario;
@@ -11,6 +11,21 @@ app.controller("funcionarioCTL", ['$scope', '$http','$filter',function ($scope, 
         $scope.totalViaticos += el.gasto_viatico;
     }
 
+    $scope.fbShare = function(url) {
+        window.open(
+        'https://www.facebook.com/sharer/sharer.php?u='+url, 
+        'facebook-share-dialog', 
+        'width=520,height=350'); 
+        return false;
+    };
+
+    $scope.twShare = function(url) {
+        window.open(
+        'https://twitter.com/home?status='+url, 
+        'facebook-share-dialog', 
+        'width=520,height=350'); 
+        return false;
+    };
 
     $scope.startRadialD3 = function(){
         var now = new Date();

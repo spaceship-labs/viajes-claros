@@ -24,19 +24,19 @@
 						<i class="icon-senor funcionario-icon"></i> 
 						<h1>{{funcionario.nombre_completo}}</h1>
 						<p><strong>Cargo: </strong>{{funcionario.nombre_puesto != 0 ? funcionario.nombre_puesto : "no disponible"}}</p>
-						<p><strong>Area: </strong>{{funcionario.cargo_nombre_superior != 0 ? funcionario.cargo_nombre_superior : "no disponible"}}</p>
+						<p><strong>Área: </strong>{{funcionario.cargo_nombre_superior != 0 ? funcionario.cargo_nombre_superior : "no disponible"}}</p>
                         <p><strong>Dependencia: IFAI</strong></p>
 						<p class="money"><strong count-to="{{getTotal()}}" value="{{gasto_parcial}}" duration="2" filter="currency"></strong></p>
-						<p><strong><small>Gastos al año en viajes</small></strong></p>
+						<p><strong><small>Gastos hasta el momento en viajes</small></strong></p>
 						<div class="share-links">
 							<div class="row">
 								<div class="col-sm-4">
-                                    <a href="#" class="share-link fb"><i class="icon-face"></i> Compartir</a>
-                                    <a class="fb-share-button" data-href="<%- fullUrl %>">Compartir</a>
+                                    <a href="#" ng-click="fbShare('<%- fullUrl %>')" class="share-link fb"><i class="icon-face"></i> Compartir</a>
+                                    <!--<a class="fb-share-button" data-href="<%- fullUrl %>">Compartir</a>-->
                                 </div>
 								<div class="col-sm-4">
-                                    <a href="#" class="share-link tw"><i class="icon-twit"></i> Compartir</a>
-                                    <a class="twitter-share-button" href="<%- fullUrl %>" data-via="twitterdev">Tweet</a>
+                                    <a href="#" ng-click="twShare('<%- fullUrl %>')" class="share-link tw"><i class="icon-twit"></i> Compartir</a>
+                                    <!--<a class="twitter-share-button" href="<%- fullUrl %>" data-via="twitterdev">Tweet</a>-->
                                 </div>
 								<div class="col-sm-4">
                                     <a href="#" class="share-link sb">Suscribirme</a>

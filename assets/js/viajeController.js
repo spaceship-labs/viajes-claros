@@ -4,6 +4,23 @@
 app.controller("viajeCTL", ['$scope', '$http','$filter' , function ($scope, $http, $filter) {
     $scope.viaje = window.viaje;
     $scope.funcionario = window.funcionario;
+
+    $scope.fbShare = function(url) {
+        window.open(
+        'https://www.facebook.com/sharer/sharer.php?u='+url, 
+        'facebook-share-dialog', 
+        'width=520,height=350'); 
+        return false;
+    };
+
+    $scope.twShare = function(url) {
+        window.open(
+        'https://twitter.com/home?status='+url, 
+        'twitter-share-dialog', 
+        'width=520,height=350'); 
+        return false;
+    };
+
 }]);
 
 app.controller("viajeSearchCTL", ['$scope', '$http','$filter' , function ($scope, $http, $filter) {
