@@ -50,7 +50,7 @@ module.exports = {
                 });
         });
         asyncTasks.push(function(cb){
-            Viaje.query("select ciudad_destino,pais_destino,tipo_viaje,sum(gasto_total) as gasto_total,count(*) as total from viaje group by ciudad_destino,pais_destino,tipo_viaje order by count(*) desc,sum(gasto_total) desc",
+            Viaje.query("select ciudad_destino,pais_destino,tipo_viaje,sum(gasto_total) as gasto_total,count(*) as total from viaje group by ciudad_destino,pais_destino,tipo_viaje order by count(*) desc",
                 function(e,viajes){
                     if (e) res.json({ text : "error ciudades",error : e });
                     ciudadesVisitadas = viajes;
