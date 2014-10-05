@@ -33,7 +33,7 @@
 					<div class="person-content">
 						<img src="/images/funcionario-default.png" alt="" class="picture">
 						<p class="name">{{funcionario.nombre_completo}}</p>
-						<p class="charge">{{funcionario.nombre_puesto != 0 ? funcionario.nombre_puesto : "No disponible"}}</p>
+						<p class="charge">{{funcionario.nombre_puesto != 0 ? funcionario.nombre_puesto : "Puesto no disponible"}}</p>
                         <p class="dependency"><strong>ifai</strong></p>
 						<p class="money" count-to="{{funcionario.gasto_total}}" value="{{gasto_parcial}}" duration="2" filter="currency"></p>
 						<p class="gray">Gastos al mes</p>
@@ -87,7 +87,7 @@
 			<div class="row ranks">
                 <div class="col-md-6 percentage-rank">
                     <div class="inner-content">
-                    	<h4><strong>Las principales aerolineas</strong><br/>usadas por los servidores públicos</h4>
+                    	<h4><strong>Las aerolineas más usadas</strong><br/>por los servidores públicos</h4>
                         <div class="progress" ng-repeat="aerolinea in aerolineasList">
                             <div class="progress-bar progress-bar-success" role="progressbar"
                                  aria-valuenow="{{(aerolinea.total / totalAerolineasVuelos) * 100}}" aria-valuemin="0" aria-valuemax="100"

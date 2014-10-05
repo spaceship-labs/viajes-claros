@@ -6,7 +6,7 @@
 		<div class="container-fluid">
 			<div class="row trips">
 				<div class="inner-content-list">
-					<h2><strong>Resultados de la busqueda: '<%- term %>'</strong></h2>
+					<h2><strong><%- title %></strong></h2>
 			        <div class="row trip-item ranks " ng-repeat="viaje in viajes | orderBy:fecha_inicio_com">
 			            <div class="col-sm-4 top-places">
 			                <div class="inner-content">
@@ -27,28 +27,6 @@
 			                <div class="inner-content"><a href="{{'/viaje?id='+viaje.id}}" class="custom-button">Ver detalle del viaje</a></div>
 			            </div>
 			        </div>
-			        <% for(i=viajes.length;i<2;i++){ %>
-			        <div class="row trip-item ranks" style="color : darkGray;">
-			            <div class="col-sm-4 top-places">
-			                <div class="inner-content">
-			                    <a><img src="/images/pinlugar.png" alt="" class="picture" /></a>
-			                    <p style="color : darkGray;">■■ ■■■■</p>
-			                    <p style="color : darkGray;">■■■ ■■■ ■■■■■■</p>
-			                    <p style="color : darkGray;">■■■■■■ ■■■ ■■■■■■■■ ■■■</p>
-			                </div>
-			            </div>
-			            <div class="col-sm-4 duration">
-			                <div class="inner-content">
-			                    <i class="icon-calendar"></i>
-			                    <p>■■ ■■■■ ■■:</p>
-			                    <p>■■■■■■ ■■■■■ ■■■■ ■■■■ ■■■■■</p>
-			                </div>
-			            </div>
-			            <div class="col-sm-4">
-			                <div class="inner-content"><a disabled="disabled" class="custom-button" style="color : darkGray;background-color: darkgray;">Ver detalle del viaje</a></div>
-			            </div>
-			        </div>
-			        <% } %>
 			    </div>
 			</div>	
 		</div>
