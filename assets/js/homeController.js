@@ -96,7 +96,7 @@ app.controller("homeCtrl", ['$scope', '$http','$filter',function ($scope, $http 
 
 }]);
 
-app.controller("statisticsCTL", ['$scope', '$http',function ($scope, $http) {
+app.controller("statisticsCTL", ['$scope', '$http','$filter',function ($scope, $http,$filter) {
     $scope.hotelList = [];
     $scope.ciudadesList = [];
     $scope.aerolineasList = [];
@@ -109,7 +109,7 @@ app.controller("statisticsCTL", ['$scope', '$http',function ($scope, $http) {
 
     $scope.calculateWidth = function(aerolinea) {
         var percentage = ((aerolinea.total / ($scope.totalAerolineasVuelos)) * 100);
-        return percentage + '%';
+        return $filter('number')(percentage, '1') + '%';
     };
 
     $scope.startRadialD3 = function(){
