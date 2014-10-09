@@ -12,7 +12,7 @@ module.exports = {
                    console.log(err);
                } else {
                    var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
-                   res.view({ funcionario : funcionario,viajes : funcionario.viajes,fullUrl : fullUrl });
+                   res.view({ funcionario : funcionario,viajes : funcionario.viajes || [],fullUrl : fullUrl });
                }
         });
 
