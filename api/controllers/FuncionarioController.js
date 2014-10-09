@@ -7,13 +7,16 @@
 module.exports = {
 	index : function(req,res){
         var id = req.param('id');
-        Funcionario.findOne({ id : id}).populate('viajes').exec(function(err,funcionario){
-               if (err) {
-                   console.log(err);
-               } else {
-                   var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
-                   res.view({ funcionario : funcionario,viajes : funcionario.viajes || [],fullUrl : fullUrl });
-               }
+        Funcionario.findOne({ id : id}).exec(function(err,funcionario){
+            if (err) console.log(err);
+            Viaje.find({ funcionario : id }).exec(function(err,viajes) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+                    res.view({ funcionario : funcionario,viajes : viajes || [],fullUrl : fullUrl });
+                }
+            });
         });
 
 	},
