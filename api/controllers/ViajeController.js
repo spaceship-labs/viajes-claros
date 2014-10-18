@@ -10,7 +10,7 @@ module.exports = {
                     console.log(err);
                     res.forbidden();
                 } else {
-                    Viaje.find({ evento : viaje.evento,funcionario : { '!' : viaje.funcionario.id } }).populate('funcionario').exec(function(err,viajesExtras) {
+                    Viaje.find({ evento : viaje.evento }).populate('funcionario').exec(function(err,viajesExtras) {
                         if (err) {
                             console.log(err);
                             res.forbidden();

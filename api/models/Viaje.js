@@ -69,5 +69,9 @@ module.exports = {
         origen_latitud : 'string',
         destino_longitud : 'string',
         origen_longitud : 'string'
+    },
+
+    afterCreate : function(viaje,cb){
+        Common.sendViajeUpdate(viaje,cb);
     }
 };
