@@ -9,6 +9,13 @@ module.exports = {
         funcionario : {
             model : "funcionario"
         },
-        email : "string"
+        email : "string",
+        id : 'int'
+    },
+    afterCreate : function(subscription,cb){
+        Funcionario.findOne({ id : subscription.funcionario }).exec(function(err,funcionario) {
+            if (err) { return console.log(err);}
+            Common.sendNewEmail(funcionario,subscription,cb);
+        });
     }
 };

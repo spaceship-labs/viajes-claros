@@ -39,7 +39,7 @@
                                     <!--<a class="twitter-share-button" href="<%- fullUrl %>" data-via="twitterdev">Tweet</a>-->
                                 </div>
 								<div class="col-sm-4">
-                                    <a href="#" class="share-link sb">Suscribirme</a>
+                                    <a class="btn btn-default button-orange share-link sb" data-toggle="modal" data-target="#myModal" >Suscribirme</a>
                                 </div>
 							</div>
 						</div>
@@ -65,7 +65,7 @@
 					<div class="inner-content">
 						<h4><strong>Monto de viaticos</strong><br/>usados hasta ahora por este servidor</h4>
 						<div id="chart-horizontal"><svg></svg></div>
-						<p class="total">Total de viaticos al año: {{totalViaticos | currency}}</p>
+						<p class="total">Total de viaticos hasta el dia de hoy: {{totalViaticos | currency}}</p>
 					</div>
 				</div>
 				<div class="col-md-6 percentage-rank">
@@ -104,30 +104,9 @@
                             <div class="inner-content"><a href="{{'/viaje?id='+viaje.id}}" class="custom-button">Ver detalle del viaje</a></div>
                         </div>
                     </div>
-                    <% for(i=viajes.length;i<5;i++){ %>
-                    <!--<div class="row trip-item ranks" style="color : darkGray;">
-                        <div class="col-sm-4 top-places">
-                            <div class="inner-content">
-                                <a><img src="/images/pinlugar.png" alt="" class="picture" /></a>
-                                <p style="color : darkGray;">■■ ■■■■</p>
-                                <p style="color : darkGray;">■■■ ■■■ ■■■■■■</p>
-                                <p style="color : darkGray;">■■■■■■ ■■■ ■■■■■■■■ ■■■</p>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 duration">
-                            <div class="inner-content">
-                                <i class="icon-calendar"></i>
-                                <p>■■ ■■■■ ■■:</p>
-                                <p>■■■■■■ ■■■■■ ■■■■ ■■■■ ■■■■■</p>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="inner-content"><a disabled="disabled" class="custom-button" style="color : darkGray;background-color: darkgray;">Ver detalle del viaje</a></div>
-                        </div>
-                    </div>-->
-                    <% } %>
                 </div>
-			</div>			
+			</div>
+            <%- partial('partial/subscribe')%>
 		</div>
 	</div>
 </div>

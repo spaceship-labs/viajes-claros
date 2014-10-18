@@ -22,7 +22,7 @@
 				<div class="col-md-6 travel-name">
 					<div class="inner-content">
 						<h1>{{viaje.evento}}</h1>
-						<h2>Gasto toal del viaje: <strong>{{viaje.gasto_total | currency}}</strong></h2>
+						<h2>Gasto total del viaje: <strong>{{viaje.gasto_total | currency}}</strong></h2>
 						<p ng-show="viaje.evento_url != 'No disponible'">
 							<a href="{{viaje.evento_url}}">{{viaje.evento_url}}</a>
 						</p>
@@ -209,7 +209,7 @@
 				</div>			
 			</div>
 			<div class="row top-people">
-				<h2>Servidores públicos que fueron a ese evento</h2>
+				<h2>Todos los servidores públicos que fueron a ese evento</h2>
 				<%
                 for(var i=0;i<viajes.length;i++){
                     var viajeAux = viajes[i];

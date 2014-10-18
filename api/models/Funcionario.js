@@ -27,5 +27,8 @@ module.exports = {
             collection : 'Viaje',
             via : 'funcionario'
         }
+    },
+    afterUpdate : function(funcionario,cb) {
+        Common.sendFuncionarioUpdate(funcionario,cb);
     }
 };

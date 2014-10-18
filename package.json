@@ -25,7 +25,9 @@
     "sails": "~0.10.0-rc5",
     "sails-disk": "^0.10.4",
     "sails-mysql": "^0.10.6",
-    "sendgrid": "^1.2.0"
+    "sendgrid": "^1.2.0",
+    "moment": "^2.8.3",
+    "json2csv": "^2.2.1"
   },
   "scripts": {
     "start": "node app.js",
