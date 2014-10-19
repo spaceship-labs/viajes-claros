@@ -63,6 +63,21 @@ app.directive('countTo', ['$timeout','$filter', function ($timeout,$filter) {
 
 }]);
 
+app.controller("searhcFormCTL", ['$scope', '$http',function ($scope, $http) {
+    $scope.loadFuncionarios = function() {
+        $http({method: 'POST', url: '/funcionario/find?limit=1000'}).success(function(data){
+                $scope.funcionariosSearch = data;
+                console.log(data);
+            });
+    };
+     $scope.onSelectPart = function ($item, $model, $label) {
+        $scope.$item = $item;
+        $scope.$model = $model;
+        $scope.$label = $label;
+    };
+    $scope.loadFuncionarios();
+}]);
+
 app.controller("subscribeCTL", ['$scope', '$http',function ($scope, $http) {
     $scope.funcionario = window.funcionario;
     $scope.email = "";

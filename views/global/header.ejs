@@ -2,8 +2,21 @@
 	<div class="container">
 		<div class="menu">
 			<a href="/" class="logo"><img src="/images/viajeslogo.png" alt="logo"></a>
-			<form action="/funcionario/search" method="POST" class="search-form">
-				<input type="text" name="filtro" id="filtro" placeholder="Buscar servidor público"  onfocus="this.placeholder=''" onblur="this.placeholder='Buscar servidor público'"/>
+			<form action="/funcionario/search" method="POST" class="search-form" ng-controller="searhcFormCTL">
+				<input 
+					autocomplete="off"
+					type="text"
+					name="filtro"
+					id="filtro"
+					placeholder="Buscar servidor público"
+					onfocus="this.placeholder=''"
+					onblur="this.placeholder='Buscar servidor público'"
+					ng-model="selectedCountries"
+					typeahead="funcionario as funcionario.nombre_completo for funcionario in funcionariosSearch | filter:$viewValue "
+					typeahead-min-length='1'
+					typeahead-on-select='onSelectPart($item, $model, $label)'
+				
+				/>
 				<!--<a href="#" class="advanced-search" ng-click="toggleAdvancedSearch = !toggleAdvancedSearch" ng-class="{on : toggleAdvancedSearch}"><span>Busqueda avanzada</span></a>
 				<div class="select-inputs" ng-show="toggleAdvancedSearch">
 					<select name="#" id="#">
