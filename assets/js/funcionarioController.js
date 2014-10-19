@@ -12,17 +12,10 @@ app.controller("funcionarioCTL", ['$scope', '$http','$filter' ,function ($scope,
     }
 
     $scope.fbShare = function(url) {
+        console.log(url);
         window.open(
         'https://www.facebook.com/sharer/sharer.php?u='+url, 
         'facebook-share-dialog', 
-        'width=520,height=350'); 
-        return false;
-    };
-
-    $scope.twShare = function(url) {
-        window.open(
-        'https://twitter.com/home?status='+url, 
-        'twitter-share-dialog', 
         'width=520,height=350'); 
         return false;
     };

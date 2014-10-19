@@ -13,14 +13,6 @@ app.controller("viajeCTL", ['$scope', '$http','$filter' , function ($scope, $htt
         return false;
     };
 
-    $scope.twShare = function(url) {
-        window.open(
-        'https://twitter.com/home?status='+url, 
-        'twitter-share-dialog', 
-        'width=520,height=350'); 
-        return false;
-    };
-
 }]);
 
 app.controller("viajeSearchCTL", ['$scope', '$http','$filter' , function ($scope, $http, $filter) {

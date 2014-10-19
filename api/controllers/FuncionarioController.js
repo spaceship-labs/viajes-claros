@@ -14,7 +14,12 @@ module.exports = {
                     console.log(err);
                 } else {
                     var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
-                    res.view({ funcionario : funcionario,viajes : viajes || [],fullUrl : fullUrl });
+                    res.view({ 
+                      funcionario : funcionario,
+                      viajes : viajes || [],
+                      fullUrl : fullUrl,
+                      title : funcionario.nombre_completo,
+                    });
                 }
             });
         });
