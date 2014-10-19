@@ -4,6 +4,7 @@ body{font-family: 'Open Sans',sans-serif!important;}
 }
 a{text-decoration:none;}
 a,p,h1,h2,h3,h4,a[href],input,textarea,span{font-family: 'Open Sans', sans-serif!important;}
+input:focus::-webkit-input-placeholder{color: transparent;}
 @blue : #2f96e9;
 @turquoise : #30c2ce;
 @gray: #5f5f5f;
@@ -243,8 +244,11 @@ a:hover{text-decoration: none!important;}
 	.total-money{
 		.gradient-blue;
 		padding: 40px 20px;text-align: center;
-		h1{color: #fff;font-size: 55px;font-weight: 700;margin: 0}
-		p{color: #fff;font-size: 22px;font-weight: 300;max-width: 760px;margin: 0 auto}
+		h1{color: #fff;font-size: 64px;font-weight: 700;margin: 0}
+		p{
+			color: #fff;font-size: 18px;font-weight: 300;max-width: 480px;margin: 0 auto;
+		}
+
 	}
 	.top-people{
 		background: #fff;border: 1px solid @gray-light;border-radius: 4px;margin-top: 20px;padding: 25px;
@@ -261,7 +265,7 @@ a:hover{text-decoration: none!important;}
 				.name{font-size: 18px;line-height: 20px;text-transform: capitalize;}
 				.charge , .dependency{font-size: 13px;margin-top: 10px;text-transform: uppercase;}
 				.dependency{font-weight: 700;min-height: 58px}
-				.money{color: @blue;font-size: 30px;font-weight: 300;margin: 8px 0;}
+				.money{color: @turquoise;font-size: 28px;font-weight: 700;margin: 8px 0;}
 				.gray{color: @gray;font-size: 14px;font-weight: 700;margin-bottom: 8px}
 				.custom-button{background: @blue;font-size: 12px;max-width: none;}
 				.custom-button:hover{background: @turquoise}

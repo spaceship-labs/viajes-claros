@@ -46,7 +46,14 @@
 										<a href="#" ng-click="fbShare('<%- fullUrl %>')" class="share-link fb"><i class="icon-face"></i> Compartir</a>
 		                            </div>
 									<div class="col-sm-6">
-										<a href="#" ng-click="twShare('<%- fullUrl %>')" class="share-link tw"><i class="icon-twit"></i> Compartir</a>
+										<a 
+	                                    ng-href='https://twitter.com/intent/tweet/?text=Ve los detalles del viaje de {{funcionario.nombre_completo}} en &hashtags=ViajesClaros&url=<%- fullUrl %>' 
+					                  	target="_blank"
+					                  	class="share-link tw"
+					                  	>
+										<i class="icon-twit"></i>
+										 Compartir
+										</a>
 		                            </div>
 		                            <div class="clear"></div>
 								</div>

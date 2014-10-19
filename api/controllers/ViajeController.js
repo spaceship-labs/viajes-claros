@@ -16,7 +16,13 @@ module.exports = {
                             res.forbidden();
                         }
                         var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
-                        res.view({ funcionario : viaje.funcionario,viaje : viaje,fullUrl : fullUrl,viajes : viajesExtras });
+                        res.view({ 
+                            funcionario : viaje.funcionario,viaje : viaje,
+                            fullUrl : fullUrl,
+                            viajes : viajesExtras,
+                            title : 'Detalles del viaje de ' + viaje.funcionario.nombre_completo,
+                            description : viaje.evento,
+                        });
                     });
                 }
             });
