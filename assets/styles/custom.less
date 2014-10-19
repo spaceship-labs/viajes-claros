@@ -101,7 +101,7 @@ a:hover{text-decoration: none!important;}
 			img{/*width: 20%;*/max-width: 250px}
 		}
 		.search-form{
-			float: right;padding: 6px 10px 0 0;
+			float: right;padding: 6px 10px 0 0;position: relative;
 			input[type="text"]{background: transparent url(../images/lupita.png) 98% center no-repeat;background-size: 16px;border: 1px solid #fff;color: #fff;font-size: 13px;margin-right: 5px;padding: 6px;width: 270px}
 			input[type="text"]::-webkit-input-placeholder { color:#fff; }
 			input[type="text"]::-moz-placeholder { color:#fff; } /* firefox 19+ */
@@ -438,9 +438,14 @@ a:hover{text-decoration: none!important;}
 	.social-link + .social-link{margin-left: 4px}
 }
 
+@media (max-width: 1170px){
+	#header .dropdown-menu{left: auto!important;right: 0;}
+}
+
 @media (max-width: 960px){
 	.top-people,
 	#viaje .travel-title{margin: 20px 0!important}
+
 }
 @media (max-width: 768px){
 	#header .menu{padding: 12px 0px}
@@ -471,6 +476,17 @@ a:hover{text-decoration: none!important;}
 	#home .top-people .person{margin-bottom: 10px}
 }
 
+@media (max-width: 500px){
+}
+
 @media (max-width: 360px){
 	#header .menu .logo img{max-width: 100px}
+}
+
+@media print { 
+   /* put your fixes here */
+   #header .menu .search-form,
+   #header .menu .logo{display: none;}
+   #header:after{content:url(../images/screen.jpg);}
+   #content .share-links{display: none;}
 }

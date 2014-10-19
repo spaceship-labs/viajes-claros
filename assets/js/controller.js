@@ -72,6 +72,8 @@ app.controller("searhcFormCTL", ['$scope', '$http',function ($scope, $http) {
     };
      $scope.onSelectPart = function ($item, $model, $label) {
         $scope.$item = $item;
+        console.log($item);
+        window.location = '/funcionario?id=' + $item.id;
         $scope.$model = $model;
         $scope.$label = $label;
     };
