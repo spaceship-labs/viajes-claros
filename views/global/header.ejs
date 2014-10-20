@@ -1,5 +1,5 @@
 <div id="header">
-	<div class="container">
+	<div class="container container-fixed">
 		<div class="menu">
 			<a href="/" class="logo"><img src="/images/viajeslogo.png" alt="logo"></a>
 			<form action="/funcionario/search" method="POST" class="search-form" ng-controller="searhcFormCTL">
@@ -61,6 +61,28 @@
 						<option value="">Dependencia</option>
 					</select>
 				</div>-->
+			</form>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div class="container container-fake">
+		<div class="menu">
+			<a href="/" class="logo"><img src="/images/viajeslogo.png" alt="logo"></a>
+			<form action="/funcionario/search" method="POST" class="search-form" ng-controller="searhcFormCTL">
+				<input 
+					autocomplete="off"
+					type="text"
+					name="filtro"
+					id="filtro"
+					placeholder="Buscar servidor público"
+					onfocus="this.placeholder=''"
+					onblur="this.placeholder='Buscar servidor público'"
+					ng-model="selectedCountries"
+					typeahead="funcionario as funcionario.nombre_completo for funcionario in funcionariosSearch | filter:$viewValue | limitTo:30 "
+					typeahead-min-length='1'
+					typeahead-on-select='onSelectPart($item, $model, $label)'
+				
+				/>
 			</form>
 			<div class="clear"></div>
 		</div>
