@@ -43,6 +43,7 @@ app.controller("homeCtrl", ['$scope', '$http','$filter',function ($scope, $http 
         iconAnchor:   [16, 36] // point of the icon which will correspond to marker's location
     };
 
+
 	$scope.get_markers = function(){
 	    $http({method: 'POST', url: '/home/vajesJson'})
 	    .success(
@@ -174,8 +175,39 @@ app.controller("statisticsCTL", ['$scope', '$http','$filter',function ($scope, $
                 $scope.aerolineasList.forEach(function(el) {
                       $scope.totalAerolineasVuelos += el.total;
                 });
+                $scope.aerolineasChart();
+
         });
     };
 
+    $scope.aerolineasChart = function(){
+        var data = {
+          "type":"bar",
+          "xScale": "ordinal",
+          "yScale": "linear",
+          "main": [
+            {
+              "className": ".pizza",
+              "data": [
+              ]
+            }
+          ]
+        };
+        console.log($scope.aerolineasList);
+        $scope.aerolineasList.forEach(function(aerolinea,index){
+            console.log(aerolinea);
+            data.main[0].data.push({
+                //"x": aerolinea.linea_origen,
+                "x": aerolinea.linea_origen,
+                "y": aerolinea.total,
+            });
+        });
+        console.log(data.main);
+        var myChart = new xChart('bar', data, '#aerolineas-chart');
+    };
+
     $scope.loadData();
+
+
+
 }]);

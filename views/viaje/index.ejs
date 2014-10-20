@@ -18,6 +18,51 @@
             window.viaje = <%- JSON.stringify(viaje) %>;
         </script>
 		<div class="container-fluid" ng-controller="viajeCTL">
+			<div class="menu-viaje-container">	
+				<ul class="menu-viaje">
+					<li>
+						<a href="#seccion1"><i class="icon-comicion"></i></a>
+						<p>Comisión</p>
+					</li>
+					<li>
+						<a href="#seccion2"><i class="icon-tipodeviaje"></i></a>
+						<p>Tipo de viaje</p>
+					</li>
+					<li>
+						<a href="#seccion3"><i class="icon-motivo"></i></a>
+						<p>Motivo</p>
+					</li>
+					<li>
+						<a href="#seccion4"><i class="icon-resultados"></i></a>
+						<p>Resultados</p>
+					</li>
+					<li>
+						<a href="#seccion5"><i class="icon-viaticos"></i></a>
+						<p>Viaticos</p>
+					</li>
+					<li>
+						<a href="#seccion6"><i class="icon-comicion"></i></a>
+						<p>Puesto</p>
+					</li>
+					<li>
+						<a href="#seccion7"><i class="icon-moneda"></i></a>
+						<p>Tarifa</p>
+					</li>
+					<li>
+						<a href="#seccion8"><i class="icon-tema"></i></a>
+						<p>Evento</p>
+					</li>
+					<li>
+						<a href="#seccion10"><i class="icon-vuelos"></i></a>
+						<p>Información de vuelo</p>
+					</li>
+				</ul>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<p class="breadcrumb-custom"><a href="/">Inicio</a> | <a href="/funcionario?id={{funcionario.id}}" class="capitalize">{{funcionario.nombre_completo}}</a> | <a href="#" class="active">{{viaje.evento | limitTo:60}}{{viaje.evento.length > 60 ? '...' : ''}}</a></p>
+				</div>
+			</div>
 			<div class="row travel-title">
 				<div class="col-md-6 travel-name">
 					<div class="inner-content">
@@ -64,7 +109,7 @@
 			</div>
 			<div class="row travel-info" id="travel-info">
 				<div class="col-md-6 column">
-					<div class="info-box ">
+					<div class="info-box " id="seccion1">
 						<div class="inner-content">
 							<p class="info-icon"><i class="icon-comicion"></i></p>
 							<h4>Comision</h4>
@@ -76,7 +121,7 @@
 							</ul>							
 						</div>
 					</div>
-					<div class="info-box ">
+					<div class="info-box " id="seccion2">
 						<div class="inner-content">
 							<p class="info-icon"><i class="icon-tipodeviaje"></i></p>
 							<h4>Tipo de viaje</h4>
@@ -93,7 +138,7 @@
 							</ul>
 						</div>
 					</div>
-					<div class="info-box ">
+					<div class="info-box " id="seccion3">
 						<div class="inner-content">
 							<p class="info-icon"><i class="icon-motivo"></i></p>
 							<h4>Motivo</h4>
@@ -103,7 +148,7 @@
 							</ul>
 						</div>
 					</div>
-					<div class="info-box ">
+					<div class="info-box " id="seccion4">
 						<div class="inner-content">
 							<p class="info-icon"><i class="icon-resultados"></i></p>
 							<h4>Resultados</h4>
@@ -114,7 +159,7 @@
 							</ul>
 						</div>
 					</div>
-					<div class="info-box ">
+					<div class="info-box " id="seccion5">
 						<div class="inner-content">
 							<p class="info-icon"><i class="icon-viaticos"></i></p>
 							<h4>Viaticos</h4>
@@ -135,7 +180,7 @@
 					<div class="clear"></div>
 				</div>
 				<div class="col-md-6 column">
-					<div class="info-box ">
+					<div class="info-box " id="seccion6">
 						<div class="inner-content">
 							<p class="info-icon"><i class="icon-comicion"></i></p>
 							<h4>Puesto</h4>
@@ -147,7 +192,7 @@
 							</ul>
 						</div>
 					</div>
-					<div class="info-box ">
+					<div class="info-box " id="seccion7">
 						<div class="inner-content">
 							<p class="info-icon"><i class="icon-moneda"></i></p>
 							<h4>Tarifa</h4>
@@ -157,7 +202,7 @@
 							</ul>
 						</div>
 					</div>
-					<div class="info-box ">
+					<div class="info-box " id="seccion8">
 						<div class="inner-content">
 							<p class="info-icon"><i class="icon-tema"></i></p>
 							<h4>Evento</h4>
@@ -169,17 +214,17 @@
 							</ul>
 						</div>
 					</div>
-					<div class="info-box">
+					<div class="info-box" id="seccion9">
 						<div class="inner-content">
 							<ul>
 								<li><p><strong>Actividades realizadas</strong></p><p>{{viaje.actividad}}</p></li>
 							</ul>
 						</div>
 					</div>
-					<div class="info-box " ng-if="viaje.pasaje_tipo == 'Aéreo'">
+					<div class="info-box " ng-if="viaje.pasaje_tipo == 'Aéreo'" id="seccion10">
 						<div class="inner-content">
 							<p class="info-icon"><i class="icon-vuelos"></i></p>
-							<h4>Informacion de vuelo</h4>
+							<h4>Información de vuelo</h4>
 							<ul>
 								<li><p><strong>Institución que cubre el pasaje</strong></p><p>{{viaje.pasaje_cubre}}</p></li>
 								<li><p><strong>Tipo de pasaje</strong></p><p>{{viaje.pasaje_tipo}}</p></li>
@@ -193,7 +238,7 @@
 							</ul>
 						</div>
 					</div>	
-					<div class="info-box " ng-if="viaje.pasaje_tipo == 'Terrestre'">
+					<div class="info-box " ng-if="viaje.pasaje_tipo == 'Terrestre'" id="seccion11">
 						<div class="inner-content">
 							<p class="info-icon"><i class="icon-vuelos"></i></p>
 							<h4>Informacion de viaje</h4>
@@ -206,7 +251,7 @@
 							</ul>
 						</div>
 					</div>	
-					<div class="info-box ">
+					<div class="info-box " id="seccion12">
 						<div class="inner-content">
 							<ul>
 								<li><p><strong>Observaciones</strong></p><p>{{viaje.observaciones}}</p></li>

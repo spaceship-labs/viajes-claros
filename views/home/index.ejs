@@ -86,15 +86,16 @@
 			</div>
 			<div class="row ranks">
                 <div class="col-md-6 percentage-rank">
-                    <div class="inner-content">
+                	<div class="inner-content">
                     	<h4><strong>Las aerolineas más usadas</strong><br/>por los servidores públicos</h4>
-                        <div class="progress" ng-repeat="aerolinea in aerolineasList">
+                        <!--<div class="progress" ng-repeat="aerolinea in aerolineasList">
                             <div class="progress-bar progress-bar-success" role="progressbar"
                                  aria-valuenow="{{(aerolinea.total / totalAerolineasVuelos) * 100}}" aria-valuemin="0" aria-valuemax="100"
                                  ng-style="{ 'width': calculateWidth(aerolinea) }">
                                 <span>{{aerolinea.linea_origen}}</span>
                             </div>
-                        </div>
+                        </div>-->
+                        <figure id="aerolineas-chart"></figure>
                     </div>
                 </div>
 				<div class="col-md-6 top-places">

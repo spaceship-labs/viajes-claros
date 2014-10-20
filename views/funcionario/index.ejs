@@ -18,6 +18,11 @@
             window.viajes = <%- JSON.stringify(viajes) %>;
         </script>
 		<div class="container-fluid" ng-controller="funcionarioCTL">
+			<div class="row">
+				<div class="col-lg-12">
+					<p class="breadcrumb-custom"><a href="/">Inicio</a> | <a href="/funcionario?id={{funcionario.id}}" class="capitalize active">{{funcionario.nombre_completo}}</a></p>
+				</div>
+			</div>
 			<div class="row ranks">
 				<div class="col-md-6 funcionario-info">
 					<div class="inner-content">
@@ -89,29 +94,31 @@
 				</div>
 			</div>
 			<div class="row trips">
-                <div class="inner-content-list">
-    				<h2><strong>Viajes realizados</strong></h2>
-                    <div class="row trip-item ranks " ng-repeat="viaje in viajes | orderBy:fecha_inicio_com">
-                        <div class="col-sm-4 top-places">
-                            <div class="inner-content">
-                                <a href="#"><img src="/images/pinlugar.png" alt="" class="picture" /></a>
-                                <p class="big-blue">{{viaje.gasto_total | currency}}</p>
-                                <p class="location"><a href="#"><strong>{{viaje.ciudad_destino}}, {{viaje.pais_destino}}</strong></a></p>
-                                <p class="activity">{{viaje.evento | limitTo:50}}...</p>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 duration">
-                            <div class="inner-content">
-                                <i class="icon-calendar"></i>
-                                <p><strong>Duracion del viaje:</strong></p>
-                                <p>{{getDateString(viaje)}}</p>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="inner-content"><a href="{{'/viaje?id='+viaje.id}}" class="custom-button">Ver detalle del viaje</a></div>
-                        </div>
-                    </div>
-                </div>
+				<div class="col-lg-12">
+	                <div class="inner-content-list">
+	    				<h2><strong>Viajes realizados</strong></h2>
+	                    <div class="row trip-item ranks " ng-repeat="viaje in viajes | orderBy:fecha_inicio_com">
+	                        <div class="col-sm-4 top-places">
+	                            <div class="inner-content">
+	                                <a href="#"><img src="/images/pinlugar.png" alt="" class="picture" /></a>
+	                                <p class="big-blue">{{viaje.gasto_total | currency}}</p>
+	                                <p class="location"><a href="#"><strong>{{viaje.ciudad_destino}}, {{viaje.pais_destino}}</strong></a></p>
+	                                <p class="activity">{{viaje.evento | limitTo:50}}...</p>
+	                            </div>
+	                        </div>
+	                        <div class="col-sm-4 duration">
+	                            <div class="inner-content">
+	                                <i class="icon-calendar"></i>
+	                                <p><strong>Duracion del viaje:</strong></p>
+	                                <p>{{getDateString(viaje)}}</p>
+	                            </div>
+	                        </div>
+	                        <div class="col-sm-4">
+	                            <div class="inner-content"><a href="{{'/viaje?id='+viaje.id}}" class="custom-button">Ver detalle del viaje</a></div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
 			</div>
             <%- partial('partial/subscribe')%>
 		</div>
