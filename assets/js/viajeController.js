@@ -18,17 +18,20 @@ app.controller("viajeCTL", ['$scope', '$http','$filter' , function ($scope, $htt
         if(windowSize < 1170){
             console.log('esconder');
             $('#viaje .info-box.panel .panel-collapse').each(function(){
-                //$(this).collapse('hide');
-                $(this).removeClass('in');
+                $(this).collapse('hide');
+                //$(this).removeClass('in');
             });
         }
         else{
             console.log('abrir');
 
             $('#viaje .info-box.panel .panel-collapse').each(function(){
-                //$(this).collapse('show');
-                $(this).addClass('in');
-                $(this).css('height','auto')
+                /*if(!$(this).hasClass('in')){
+                    $(this).collapse('toggle');
+                }*/
+                $(this).collapse('show');
+                //$(this).addClass('in');
+                //$(this).css('height','auto')
             });
         }
     };
@@ -43,9 +46,13 @@ app.controller("viajeCTL", ['$scope', '$http','$filter' , function ($scope, $htt
             return false;
         });
         /*Media queries*/
+
         $(window).resize(function(){
-            windowSize = $(window).width();
-            $scope.infoPanels(windowSize);
+            clearTimeout( timerResize );
+            var timerResize = setTimeout( function(){
+                windowSize = $(window).width();
+                $scope.infoPanels(windowSize);
+            } , 200 );
         });
     });
 
