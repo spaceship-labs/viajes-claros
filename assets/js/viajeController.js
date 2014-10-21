@@ -13,11 +13,40 @@ app.controller("viajeCTL", ['$scope', '$http','$filter' , function ($scope, $htt
         return false;
     };
 
-    $('.menu-viaje li a').click(function(){
-        $('html, body').animate({
-            scrollTop: $( $.attr(this, 'href') ).offset().top - 20
-        }, 500);
-        return false;
+    $scope.infoPanels = function(windowSize){
+        console.log(windowSize);
+        if(windowSize < 1170){
+            console.log('esconder');
+            $('#viaje .info-box.panel .panel-collapse').each(function(){
+                //$(this).collapse('hide');
+                $(this).removeClass('in');
+            });
+        }
+        else{
+            console.log('abrir');
+
+            $('#viaje .info-box.panel .panel-collapse').each(function(){
+                //$(this).collapse('show');
+                $(this).addClass('in');
+                $(this).css('height','auto')
+            });
+        }
+    };
+
+    $(document).ready(function(){
+        var windowSize = $(window).width();
+        $scope.infoPanels(windowSize);
+        $('.menu-viaje li a').click(function(){
+            $('html, body').animate({
+                scrollTop: $( $.attr(this, 'href') ).offset().top - 20
+            }, 500);
+            return false;
+        });
+        /*Media queries*/
+        $(window).resize(function(){
+            windowSize = $(window).width();
+            $scope.infoPanels(windowSize);
+        });
     });
 
 }]);

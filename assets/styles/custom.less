@@ -92,7 +92,7 @@ input:focus::-webkit-input-placeholder{color: transparent;}
 .table-container{display: table;width: 100%}
 .row-container{display: table-row;}
 .cell-container{display: table-cell;}
-.centered-content{margin: 0 auto;max-width: 960px;}
+.centered-content{margin: 0 auto;max-width: 960px;position: relative;}
 a:hover{text-decoration: none!important;}
 #main{padding-bottom: 85px!important}
 #content{
@@ -439,7 +439,7 @@ a:hover{text-decoration: none!important;}
 		padding-top: 20px;
 		.container-fluid{position: relative;}
 		.menu-viaje-container{
-			position: absolute;left: -80px;top: 40px;z-index: 999;
+			position: absolute;left: -80px;top: 30px;z-index: 999;
 			.menu-viaje{
 				position: fixed;
 				li{
@@ -493,6 +493,15 @@ a:hover{text-decoration: none!important;}
 			}
 			.info-box{
 				margin-bottom: 20px;
+				.panel-heading{
+					display: none;
+					h4{
+						a{
+							color:@blue;display: block;
+							.glyphicon{font-size: 12px}
+						}
+					}
+				}
 				.inner-content{
 					border: 1px solid @gray-light;border-radius: 4px;padding: 20px 25px;
 					.info-icon{
@@ -524,18 +533,22 @@ a:hover{text-decoration: none!important;}
 	.social-link + .social-link{margin-left: 4px}
 }
 
-@media (max-width: 1170px){
+@media all and (max-width: 1170px){
 	#header .dropdown-menu{left: auto!important;right: 0;}
 	#funcionario .trips .col-lg-12{padding-left: 15px!important;padding-right: 15px!important}
+	#viaje {padding-top: 60px}
+	#viaje .menu-viaje-container{display: none;}
+	#viaje .info-box .panel-heading{display: block!important;}
+
 
 }
 
-@media (max-width: 960px){
+@media screen and (max-width: 960px){
 	.top-people,
 	#viaje .travel-title{margin: 20px 0!important}
 
 }
-@media (max-width: 768px){
+@media screen and (max-width: 768px){
 	#header .menu{padding: 12px 0px!important}
 	#header .menu .logo img{max-width: 180px!important}
 	#header .menu .search-form{padding:6px 0 0!important;}
@@ -551,7 +564,7 @@ a:hover{text-decoration: none!important;}
 	#footer .logo-footer{display: none;}
 	#footer{min-height: 110px;text-align: center;}
 }
-@media (max-width: 480px){
+@media screen and (max-width: 480px){
 	#header .container-fixed{
 		.gradient-blue;
 		position: fixed;top: 0;width: 100%;z-index: 99999;
@@ -573,10 +586,10 @@ a:hover{text-decoration: none!important;}
 	#home .top-people .person{margin-bottom: 10px}
 }
 
-@media (max-width: 500px){
+@media screen and (max-width: 500px){
 }
 
-@media (max-width: 360px){
+@media screen and (max-width: 360px){
 	#header .menu .logo img{max-width: 100px!important}
 }
 

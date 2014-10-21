@@ -199,7 +199,7 @@ app.controller("statisticsCTL", ['$scope', '$http','$filter',function ($scope, $
             data.main[0].data.push({
                 //"x": aerolinea.linea_origen,
                 "x": aerolinea.linea_origen,
-                "y": aerolinea.total,
+                "y": aerolinea.total
             });
         });
         console.log(data.main);
