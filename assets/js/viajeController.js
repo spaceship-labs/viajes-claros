@@ -15,7 +15,7 @@ app.controller("viajeCTL", ['$scope', '$http','$filter' , function ($scope, $htt
     };
 
     $scope.infoPanels = function(windowSize){
-        if( (windowSize < 1170) ){
+        if(($scope.flagResize !== false) && (windowSize < 1170) ){
             $('#viaje .info-box.panel .panel-collapse').each(function(){
                 $(this).collapse('hide');
                 //$(this).removeClass('in');
@@ -33,6 +33,8 @@ app.controller("viajeCTL", ['$scope', '$http','$filter' , function ($scope, $htt
 
     $(document).ready(function(){
         var windowSize = $(window).width();
+        $scope.flagResize = (windowSize<1170) ? true : false;
+        console.log($scope.flagResize);
         $('#viaje .info-box.panel .panel-collapse').each(function(){
             $(this).collapse({'toggle':false});
         });
