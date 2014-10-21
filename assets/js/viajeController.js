@@ -4,6 +4,7 @@
 app.controller("viajeCTL", ['$scope', '$http','$filter' , function ($scope, $http, $filter) {
     $scope.viaje = window.viaje;
     $scope.funcionario = window.funcionario;
+    $scope.flagResize = '';
 
     $scope.fbShare = function(url) {
         window.open(
@@ -14,25 +15,19 @@ app.controller("viajeCTL", ['$scope', '$http','$filter' , function ($scope, $htt
     };
 
     $scope.infoPanels = function(windowSize){
-        console.log(windowSize);
-        if(windowSize < 1170){
-            console.log('esconder');
+        if(($scope.flagResize !== false) && (windowSize < 1170) ){
             $('#viaje .info-box.panel .panel-collapse').each(function(){
                 $(this).collapse('hide');
                 //$(this).removeClass('in');
             });
+            $scope.flagResize = false;
+            console.log('menor');
         }
-        else{
-            console.log('abrir');
-
+        else if(($scope.flagResize !== true) && (windowSize > 1170)){
             $('#viaje .info-box.panel .panel-collapse').each(function(){
-                /*if(!$(this).hasClass('in')){
-                    $(this).collapse('toggle');
-                }*/
                 $(this).collapse('show');
-                //$(this).addClass('in');
-                //$(this).css('height','auto')
             });
+            $scope.flagResize = true;
         }
     };
 
