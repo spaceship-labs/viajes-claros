@@ -135,7 +135,7 @@ a:hover{text-decoration: none!important;}
 			}
 			.search-form{
 				float: right;padding: 6px 10px 0 0;position: relative;
-				input[type="text"]{background: transparent url(../images/lupita.png) 98% center no-repeat;background-size: 16px;border: 1px solid #fff;color: #fff;font-size: 13px;margin-right: 5px;padding: 6px;width: 270px}
+				input[type="text"]{background: transparent url(../images/lupita.png) 98% center no-repeat;background-size: 16px;border: 1px solid #fff;color: #fff;font-size: 13px;margin-right: 5px;padding: 6px;width: 325px}
 				input[type="text"]::-webkit-input-placeholder { color:#fff; }
 				input[type="text"]::-moz-placeholder { color:#fff; } /* firefox 19+ */
 				input[type="text"]:-ms-input-placeholder { color:#fff; } /* ie */
@@ -535,6 +535,7 @@ a:hover{text-decoration: none!important;}
 
 @media all and (max-width: 1170px){
 	#header .dropdown-menu{left: auto!important;right: 0;}
+	#header .container .menu .search-form .dropdown-menu:before{left: auto!important;right: 0}
 	#funcionario .trips .col-lg-12{padding-left: 15px!important;padding-right: 15px!important}
 	#viaje {padding-top: 60px}
 	#viaje .menu-viaje-container{display: none;}
@@ -570,6 +571,9 @@ a:hover{text-decoration: none!important;}
 		position: fixed;top: 0;width: 100%;z-index: 99999;
 	}
 	#header .container-fake{display: block;}
+	#header .container .menu .search-form{position: static!important;}
+	#header .container .menu .search-form .dropdown-menu:before{}
+	#header .container .menu .search-form .dropdown-menu{width: 100%;}
 	#main{padding-bottom: 135px !important;}
 	#footer{min-height: 135px!important;margin-top: -135px!important;}
 	#header .menu{padding: 8px 0px!important}
