@@ -126,7 +126,7 @@ a:hover{text-decoration: none!important;}
 	.gradient-blue;
 	a:hover{text-decoration:none;}
 	.container{
-		max-width: 980px;
+		max-width: 995px;
 		.menu{
 			padding-bottom: 12px;padding-top: 12px;position: relative;
 			.logo{
@@ -398,6 +398,12 @@ a:hover{text-decoration: none!important;}
 				.money{font-size: 30px;margin-top: 20px;}
 			}
 		}
+		.ranks{
+			.col-md-6{ 
+				.inner-content{min-height: 429px}
+				.cell-container{vertical-align: middle;}
+			}
+		}
 		.top-places{
 			.big-blue , .big-blue a{color: @turquoise;}
 		}
@@ -541,6 +547,10 @@ a:hover{text-decoration: none!important;}
 	#viaje .menu-viaje-container{display: none;}
 	#viaje .info-box .panel-heading{display: block!important;}
 
+
+}
+@media screen and (max-width: 970px){
+	#funcionario .ranks .col-md-6 .inner-content{min-height: 0!important}
 
 }
 

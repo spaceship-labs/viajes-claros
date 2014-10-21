@@ -12,7 +12,7 @@
 					onfocus="this.placeholder=''"
 					onblur="this.placeholder='Buscar servidor público'"
 					ng-model="selectedCountries"
-					typeahead="funcionario as funcionario.nombre_completo for funcionario in funcionariosSearch | filter:$viewValue | limitTo:30 "
+					typeahead="funcionario as funcionario.nombre_completo for funcionario in funcionariosSearch | filter:$viewValue | limitTo:10 "
 					typeahead-min-length='1'
 					typeahead-on-select='onSelectPart($item, $model, $label)'
 				
@@ -35,7 +35,7 @@
 					onfocus="this.placeholder=''"
 					onblur="this.placeholder='Buscar servidor público'"
 					ng-model="selectedCountries"
-					typeahead="funcionario as funcionario.nombre_completo for funcionario in funcionariosSearch | filter:$viewValue | limitTo:30 "
+					typeahead="funcionario as funcionario.nombre_completo for funcionario in funcionariosSearch | filter:$viewValue | limitTo:10 "
 					typeahead-min-length='1'
 					typeahead-on-select='onSelectPart($item, $model, $label)'
 				

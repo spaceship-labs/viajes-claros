@@ -58,16 +58,18 @@
 					</div>
 				</div>
 				<div class="col-md-6 top-places">
-					<div class="inner-content">
-						<h4><strong>Top 3 viajes mas costosos</strong><br/>realizados por este servidor publico</h4>
-						<ul>
-							<li ng-repeat="viaje in viajes | orderBy:gasto_total | limitTo:3">
-								<a href="/viaje?id={{viaje.id}}"><img src="/images/hotel_icon.png" alt="" class="picture" /></a>
-								<p class="big-blue"><a href="/viaje?id={{viaje.id}}">{{viaje.gasto_total | currency}}</a></p>
-								<p class="location"><a href="#">{{viaje.ciudad_destino}} {{viaje.pais_destino}}</a></p>
-								<p class="activity">{{viaje.evento | limitTo:50 }}...</p>
-							</li>
-						</ul>
+					<div class="inner-content table-container">
+						<div class="cell-container">
+							<h4><strong>Top 3 viajes mas costosos</strong><br/>realizados por este servidor publico</h4>
+							<ul>
+								<li ng-repeat="viaje in viajes | orderBy:gasto_total | limitTo:3">
+									<a href="/viaje?id={{viaje.id}}"><img src="/images/hotel_icon.png" alt="" class="picture" /></a>
+									<p class="big-blue"><a href="/viaje?id={{viaje.id}}">{{viaje.gasto_total | currency}}</a></p>
+									<p class="location"><a href="#">{{viaje.ciudad_destino}} {{viaje.pais_destino}}</a></p>
+									<p class="activity">{{viaje.evento | limitTo:50 }}...</p>
+								</li>
+							</ul>
+						</div>
 					</div>
 				</div>
 
