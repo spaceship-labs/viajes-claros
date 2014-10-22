@@ -40,9 +40,14 @@ app.controller("viajeCTL", ['$scope', '$http','$filter' , function ($scope, $htt
         });
         $scope.infoPanels(windowSize);
         $('.menu-viaje li a').click(function(){
+            var link = $(this);
+            $( '#viaje .info-box' ).removeClass('selected');
             $('html, body').animate({
                 scrollTop: $( $.attr(this, 'href') ).offset().top - 20
-            }, 500);
+            }, 500 , function(){
+                var hash = link.attr('href');
+                $('#viaje ' + hash).addClass('selected');
+            });
             return false;
         });
         /*Media queries*/
