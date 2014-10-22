@@ -39,13 +39,31 @@ module.exports = {
 
 
   },
-  
-
   statisticsJson : function(req,res) {
       Viaje.find().exec(function(e,viajes){
           if (e) res.json({ text : "error viajes por nombre",error : e });
           res.json(viajes);
           cb();
       });
+  },
+
+  list : function(req,res){
+    var page = req.param('page');
+    page = (!isNaN(page)) ? page : 1;
+    if(page){
+        Funcionario.find()
+        .populate('viajes')
+        .paginate({page: page, limit: 10})
+        .sort('nombre_completo asc')
+        .exec(function(err,funcionarios) {
+            if (err) console.log(err);
+            Funcionario.count().exec(function(error,count){
+              var siteUrl = req.protocol + '://' + req.get('host'); 
+              res.view({ funcionarios : funcionarios || [] , count : count , page : page, siteUrl : siteUrl});
+            });
+        });
+    } else{
+      res.forbidden();
+    }
   }
 };

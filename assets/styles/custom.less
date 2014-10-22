@@ -327,6 +327,8 @@ a:hover{text-decoration: none!important;}
 				.custom-button:hover{background: @turquoise}
 			}
 		}
+		.custom-button.see-all{background: transparent;border: 3px solid @blue;color: @blue;font-size: 14px;margin-top: 18px;max-width: none}
+		.custom-button.see-all:hover{background: @blue;color: #fff}
 
 	}
 	.ranks{
@@ -521,6 +523,12 @@ a:hover{text-decoration: none!important;}
 					}
 					li{padding: 6px 0;}
 					li + li{border-top: 1px solid @gray-light;}
+				}
+			}
+			.info-box.selected{
+				i{
+					.animate-bg;
+					border: 0!important;background: @turquoise;color: #fff!important;
 				}
 			}
 		}

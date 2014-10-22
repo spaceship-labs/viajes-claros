@@ -117,3 +117,12 @@ app.controller("funcionarioCTL", ['$scope', '$http','$filter' ,function ($scope,
     $scope.startRadialD3();
     $scope.drawChartHorizontal();
 }]);
+
+app.controller("listadoCTL", ['$scope', '$http','$filter' ,function ($scope, $http, $filter) {
+    $scope.totalItems = window.count;
+    $scope.currentPage = window.page;
+    $scope.siteUrl = window.siteUrl;
+    $scope.pageChanged = function(){
+        window.location.href = $scope.siteUrl + "/funcionario/list?page=" + $scope.currentPage;
+    }
+}]);
