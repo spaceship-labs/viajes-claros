@@ -82,36 +82,32 @@ app.controller("funcionarioCTL", ['$scope', '$http','$filter' ,function ($scope,
             devuelto += el.viatico_devuelto;
         }
 
-        var values = [
-            {label : 'Comprobados',value : comprobados},
-            {label : 'Sin comprobar',value : sincomprobar},
-            {label : 'Devueltos',value : devuelto}
-        ];
-        return [{ key: "Monto",values : values }];
+        $scope.dataViaticos = [comprobados,sincomprobar,devuelto];
+        $scope.labelsViaticos = ['Comprobados', 'Sin comprobar' , 'Devueltos'];
     };
 
     $scope.drawChartHorizontal = function(){
-        nv.addGraph(function() {
-            var chart = nv.models.multiBarHorizontalChart()
-                .x(function(d) { return d.label })
-                .y(function(d) { return d.value })
-                //.margin({top: 30, right: 20, bottom: 50, left: 175})
-                .showValues(true)           //Show bar value next to each bar.
-                .tooltips(true)             //Show tooltips on hover.
-                .transitionDuration(350)
-                .showControls(false);        //Allow user to switch between "Grouped" and "Stacked" mode.
-
-            chart.yAxis
-                .tickFormat(d3.format(',.2f'));
-
-            d3.select('#chart-horizontal svg')
-                .datum($scope.setData())
-                .call(chart);
-
-            nv.utils.windowResize(chart.update);
-
-            return chart;
-        });
+        var options = {
+            scaleIntegersOnly: true,
+            responsive: true,
+            scaleGridLineColor : "rgb(255,255,255)",
+            showTooltips:true,
+            scaleLabel : "$<%=value%>",
+            legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].lineColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+        };
+        $scope.setData();
+        var barChartData = {
+            labels : $scope.labelsViaticos,
+            datasets : [
+                {
+                    fillColor : "#2f96e9",
+                    strokeColor : "#2f96e9",
+                    data : $scope.dataViaticos,
+                },
+            ]
+        }
+        var element = document.getElementById("chart-horizontal").getContext("2d");
+        $scope.myLine = new Chart(element).Bar(barChartData,options);
     };
 
     $scope.startRadialD3();
