@@ -162,7 +162,6 @@ app.controller("statisticsCTL", ['$scope', '$http','$filter',function ($scope, $
 
     $scope.loadData = function(){
         $http({method: 'POST', url: '/home/statisticsJson'}).success(function(data){
-                console.log(data);
                 $scope.hotelList = data.hotelList;
                 $scope.ciudadesList = data.ciudadesList;
                 $scope.aerolineasList = data.aerolineasList;
@@ -175,39 +174,39 @@ app.controller("statisticsCTL", ['$scope', '$http','$filter',function ($scope, $
                 $scope.aerolineasList.forEach(function(el) {
                       $scope.totalAerolineasVuelos += el.total;
                 });
-                $scope.aerolineasChart();
+                $scope.redrawAerolineas();
 
         });
     };
 
-    $scope.aerolineasChart = function(){
-        var data = {
-          "type":"bar",
-          "xScale": "ordinal",
-          "yScale": "linear",
-          "main": [
-            {
-              "className": ".pizza",
-              "data": [
-              ]
-            }
-          ]
+    $scope.redrawAerolineas = function(){
+        var options = {
+            scaleIntegersOnly: true,
+            responsive: true,
+            scaleGridLineColor : "rgb(255,255,255)",
+            showTooltips:true,
+            legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].lineColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
         };
-        console.log($scope.aerolineasList);
+
+        var barChartData = {
+            labels : [],
+            datasets : [
+                {
+                    fillColor : "#2f96e9",
+                    strokeColor : "#2f96e9",
+                    data : [],
+                },
+            ]
+        }
         $scope.aerolineasList.forEach(function(aerolinea,index){
-            console.log(aerolinea);
-            data.main[0].data.push({
-                //"x": aerolinea.linea_origen,
-                "x": aerolinea.linea_origen,
-                "y": aerolinea.total
-            });
+            barChartData.labels.push(aerolinea.linea_origen);
+            barChartData.datasets[0].data.push(aerolinea.total);
         });
-        console.log(data.main);
-        var myChart = new xChart('bar', data, '#aerolineas-chart');
+
+        var element = document.getElementById("aerolineas-chart").getContext("2d");
+        $scope.myLine = new Chart(element).Bar(barChartData,options);
+        //$scope.myLine.redraw();
     };
 
     $scope.loadData();
-
-
-
 }]);

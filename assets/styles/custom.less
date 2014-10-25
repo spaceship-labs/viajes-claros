@@ -194,9 +194,8 @@ a:hover{text-decoration: none!important;}
 		li + li{margin-left: 4px}
 		.active{background: @blue;border: 0}
 	}	
-	#aerolineas-chart {
-		height: 300px;/*width: 1000px;*/
-		svg{height: 300px;/*width: 1000px*/}
+	.bar-chart svg {
+		height: auto!important;width: 100%!important;
 	}
 	.carousel-control{display: none;}
 	.progress-bar-success{background: @blue}
@@ -231,7 +230,7 @@ a:hover{text-decoration: none!important;}
 	.map-container{
 		position: relative;
 		.jumbotron{
-			background: url(../images/fotofondo.jpg) center center no-repeat;background-size: cover;height: 100%;left: 0;text-align: center;padding: 0;position: absolute;top: 0;width: 100%;z-index: 9999;
+			background: url(../images/avion_home.jpg) center center no-repeat;background-size: cover;height: 100%;left: 0;text-align: center;padding: 0;position: absolute;top: 0;width: 100%;z-index: 9999;
 			.content-jumbotron{
 				position: relative;height: 100%;
 				.text-jumbotron{
@@ -606,6 +605,7 @@ a:hover{text-decoration: none!important;}
 	#content .map-container .aside{width: 85%}
 	.modal-dialog{padding-top: 100px}
 	#home .top-people .person{margin-bottom: 10px}
+	.bar-chart svg{height: 300px!important}
 }
 
 @media screen and (max-width: 500px){
