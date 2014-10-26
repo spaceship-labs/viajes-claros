@@ -559,6 +559,44 @@ a:hover{text-decoration: none!important;}
 			}
 		}
 	}
+	#comparar{
+		h1{background: @turquoise;color: #fff;font-weight: 700;font-size: 26px;margin: 0;padding: 20px 0;text-align: center;}
+		.centered-content{padding: 12px 0}
+		.col-md-6{
+			.inner-content{
+				border: 1px solid @gray-light;border-radius: 4px;color: @gray;text-align: center;padding-top: 25px;padding-bottom: 25px;
+				.icon-comicion{color: mix(@gray,@gray-light);font-size: 28px;border: 2px solid mix(@gray,@gray-light);border-radius: 50%;}
+				p ,h3{margin: 0}
+				.main-info , .price , .trip , .chart{margin: 0 0 30px}
+				.main-info{
+					border: 2px solid mix(@gray,@gray-light);border-radius: 8px;max-width: 350px;min-height: 74px;margin: 15px auto 25px;padding: 8px;
+					p a{text-transform: capitalize;}
+					p + p{font-size: 12px;text-transform: uppercase;}
+				}
+				.price{
+					.quantity{color: @blue;font-size: 28px;}
+				}
+				.trip{
+					.quantity{color: @blue;font-size: 24px;}
+					p{color: @blue}
+				}
+				.chart{
+					.icon-calendar{font-size: 24px}
+					.radial-chart.blue .arc{fill: @blue;}
+					.radial-chart.tur .arc{fill: @turquoise;}
+					.charts-container{
+						max-width: 70%;margin: 15px auto 0;
+						.radial-chart .labels .label{font-family: 'Open Sans', sans-serif!important;font-size: 34px!important;font-weight: 300;}
+						.radial-chart .component .label{fill:@gray;color: @gray;font-weight: 300;font-size: 12px;text-align: center;text-transform: uppercase;}
+						.radial-chart{float: left;}
+						.radial-chart + .radial-chart{float: right;}
+						.radial-chart .radial-svg{height: 160px;max-width: 125px}
+					}
+				}
+			}
+		}
+
+	}
 
 }
 

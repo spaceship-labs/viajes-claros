@@ -31,6 +31,7 @@
     "nvd3": "~1.1.15-beta",
     "perfect-scrollbar": "~0.5.2",
     "angular-perfect-scrollbar": "*",
-    "bootstrap-touch-carousel": "~0.8.0"
+    "bootstrap-touch-carousel": "~0.8.0",
+    "morris": "~0.5.2"
   }
 }

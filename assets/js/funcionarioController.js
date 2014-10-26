@@ -122,3 +122,70 @@ app.controller("listadoCTL", ['$scope', '$http','$filter' ,function ($scope, $ht
         window.location.href = $scope.siteUrl + "/funcionario/list?page=" + $scope.currentPage;
     }
 }]);
+
+app.controller("compararCTL", ['$scope', '$http','$filter' ,function ($scope, $http, $filter) {
+    $scope.funcionarios = window.funcionarios;
+    $scope.quantity = 1;
+    $scope.getTotal = function(viajes){
+        var total = 0;
+        for(var i = 0; i < viajes.length; i++){
+            var viaje = viajes[i];
+            total += viaje.gasto_total;
+        }
+        return total;
+    };
+    $scope.setDataViajes = function(viajes){
+        var now = new Date();
+        var start = new Date(now.getFullYear(), 0, 0);
+        var diff = now - start;
+        var oneDay = 1000 * 60 * 60 * 24;
+        $scope.day = Math.floor(diff / oneDay);
+
+        var days = 0;
+
+        viajes.map(function(viaje){
+           var dateInicio = new Date(viaje.fecha_inicio_com);
+           var dateFin = new Date(viaje.fecha_fin_com);
+           var dateDiff = dateFin - dateInicio;
+           var vacas = Math.floor(dateDiff / oneDay);
+           days += days + vacas;
+        });
+        return days;
+    }
+    $scope.drawDonuts = function(){
+        setTimeout(
+            function(){
+                var days1 = $scope.setDataViajes($scope.funcionarios[0].viajes);
+                var days2 = $scope.setDataViajes($scope.funcionarios[1].viajes);
+
+                var rp1 = radialProgress(document.getElementById('radial-one0'))
+                    .diameter(150)
+                    .value((days1/$scope.day) * 100)
+                    .label('De viaje')
+                    .render();
+
+                var rp2 = radialProgress(document.getElementById('radial-two0'))
+                    .diameter(150)
+                    .value((($scope.day-days1)/$scope.day) * 100)
+                    .label('En casa')
+                    .render();
+
+                var rp3 = radialProgress(document.getElementById('radial-one1'))
+                    .diameter(150)
+                    .value((days2/$scope.day) * 100)
+                    .label('De viaje')
+                    .render();
+
+                var rp4 = radialProgress(document.getElementById('radial-two1'))
+                    .diameter(150)
+                    .value((($scope.day-days2)/$scope.day) * 100)
+                    .label('En casa')
+                    .render();
+
+            },400
+        );
+
+    }
+    
+    $scope.drawDonuts();
+}]);
