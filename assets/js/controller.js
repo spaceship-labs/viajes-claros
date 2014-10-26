@@ -63,20 +63,37 @@ app.directive('countTo', ['$timeout','$filter', function ($timeout,$filter) {
 
 }]);
 
-app.controller("searhcFormCTL", ['$scope', '$http',function ($scope, $http) {
+app.controller("searhcFormCTL", ['$scope', '$http', '$rootScope',function ($scope, $http, $rootScope) {
     $scope.loadFuncionarios = function() {
         $http({method: 'POST', url: '/funcionario/find?limit=1000'}).success(function(data){
                 $scope.funcionariosSearch = data;
-                //console.log(data);
+                $rootScope.$broadcast('sendFuncionariosInfo', data);
+
             });
     };
-     $scope.onSelectPart = function ($item, $model, $label) {
+    $scope.onSelectPart = function ($item, $model, $label) {
         $scope.$item = $item;
         //console.log($item);
         window.location = '/funcionario?id=' + $item.id;
         $scope.$model = $model;
         $scope.$label = $label;
     };
+
+    $scope.scrollTo = function(){
+        setTimeout(
+            function(){
+                $('html, body').animate({
+                    scrollTop: $('#comparador-popup').offset().top - 20
+                }, 500);
+            },
+            300           
+        );
+    }
+    $scope.toggleComp = function(func){
+        $rootScope.$broadcast('toggleComp', true);
+        func();
+    }
+
     $scope.loadFuncionarios();
 }]);
 
@@ -92,4 +109,62 @@ app.controller("subscribeCTL", ['$scope', '$http',function ($scope, $http) {
             location.reload();//TODO mensaje mas amigable , no supe como cerrar modal con angular.
         });
     }
+}]);
+
+app.controller("lateralCTL", ['$scope', '$http','$rootScope',function ($scope, $http, $rootScope) {
+
+    $scope.scrollTo = function(){
+        setTimeout(
+            function(){
+                $('html, body').animate({
+                    scrollTop: $('#comparador-popup').offset().top - 20
+                }, 500);
+            },
+            300           
+        );
+    }
+    $scope.toggleComp = function(func){
+        $rootScope.$broadcast('toggleComp', true);
+        func();
+    }
+
+}]);
+
+app.controller("comparadorCTL", ['$scope', '$http',function ($scope, $http) {
+
+    $scope.toggleComparador = false;
+    $scope.funcOne = '';
+    $scope.funcTwo = '';
+
+    $scope.$on('toggleComp', function(event,args) {
+        $scope.toggleComparador = args;
+    });
+
+    $scope.$on('sendFuncionariosInfo', function(event,args) {
+        $scope.funcionariosSearch = args;
+    });
+
+    $scope.onSelectPart = function ($item, $model, $label) {
+        if($scope.validateForm()){
+            $('#comparadorForm .circle').removeClass('rotateIn');
+            setTimeout(function(){
+                $('#comparadorForm .circle').addClass('rotateIn');                
+            },300);
+        }
+    }
+    $scope.validateForm = function(){
+        if(!isNaN($scope.funcOne.id) && !isNaN($scope.funcTwo.id)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    $scope.submitForm = function(){
+        if ($scope.validateForm()){
+            $('#comparadorForm').submit();
+        }
+    }
+
+
+
 }]);

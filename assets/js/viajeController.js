@@ -18,10 +18,8 @@ app.controller("viajeCTL", ['$scope', '$http','$filter' , function ($scope, $htt
         if(($scope.flagResize !== false) && (windowSize < 1170) ){
             $('#viaje .info-box.panel .panel-collapse').each(function(){
                 $(this).collapse('hide');
-                //$(this).removeClass('in');
             });
             $scope.flagResize = false;
-            console.log('menor');
         }
         else if(($scope.flagResize !== true) && (windowSize > 1170)){
             $('#viaje .info-box.panel .panel-collapse').each(function(){
@@ -34,7 +32,6 @@ app.controller("viajeCTL", ['$scope', '$http','$filter' , function ($scope, $htt
     $(document).ready(function(){
         var windowSize = $(window).width();
         $scope.flagResize = (windowSize<1170) ? true : false;
-        console.log($scope.flagResize);
         $('#viaje .info-box.panel .panel-collapse').each(function(){
             $(this).collapse({'toggle':false});
         });

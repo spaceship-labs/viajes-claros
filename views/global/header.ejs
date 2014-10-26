@@ -3,6 +3,7 @@
 		<div class="menu">
 			<a href="/" class="logo"><img src="/images/viajeslogo.png" alt="logo"></a>
 			<form action="/funcionario/search" method="POST" class="search-form" ng-controller="searhcFormCTL">
+				<a href="#" ng-click="toggleComp(scrollTo)" id="comparar-header"><strong><i class="icon icon-comparar"></i> COMPARAR</strong></a>
 				<input 
 					autocomplete="off"
 					type="text"
@@ -11,7 +12,7 @@
 					placeholder="Buscar servidor público"
 					onfocus="this.placeholder=''"
 					onblur="this.placeholder='Buscar servidor público'"
-					ng-model="selectedCountries"
+					ng-model="func"
 					typeahead="funcionario as funcionario.nombre_completo for funcionario in funcionariosSearch | filter:$viewValue | limitTo:10 "
 					typeahead-min-length='1'
 					typeahead-on-select='onSelectPart($item, $model, $label)'
