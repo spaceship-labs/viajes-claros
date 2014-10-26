@@ -8,20 +8,27 @@ module.exports = {
 	index : function(req,res){
         var id = req.param('id');
         Funcionario.findOne({ id : id}).exec(function(err,funcionario){
-            if (err) console.log(err);
-            Viaje.find({ funcionario : id }).exec(function(err,viajes) {
-                if (err) {
-                    console.log(err);
-                } else {
-                    var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
-                    res.view({ 
-                      funcionario : funcionario,
-                      viajes : viajes || [],
-                      fullUrl : fullUrl,
-                      title : funcionario.nombre_completo,
-                    });
-                }
-            });
+            if (err){ 
+                console.log(err);
+            }
+            if(funcionario){
+                Viaje.find({ funcionario : id }).exec(function(err,viajes) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+                        res.view({ 
+                          funcionario : funcionario,
+                          viajes : viajes || [],
+                          fullUrl : fullUrl,
+                          title : funcionario.nombre_completo,
+                        });
+                    }
+                });
+            }else{
+                res.redirect('/');
+            }
+
         });
 
 	},
@@ -31,10 +38,14 @@ module.exports = {
           if (term) {
               Funcionario.find({ nombre_completo : { 'like' : "%" + term + "%" }}).populate('viajes').exec(function(err,funcionarios) {
                   if (err) console.log(err);
-                  res.view({ funcionarios : funcionarios || [],term : term});
+                  if(funcionarios){
+                      res.view({ funcionarios : funcionarios || [],term : term});                    
+                  }else{
+                    res.redirect('/');
+                  }
               });
           } else {
-            res.forbidden();
+            res.redirect('/');
           }
     },
 
@@ -62,7 +73,7 @@ module.exports = {
                 });
             });
         } else{
-            res.forbidden();
+            res.redirect('/');
         }
     },
     comparar : function(req,res){
@@ -76,15 +87,19 @@ module.exports = {
                 var x = 0;
                 Funcionario.findOne({ id : elem}).populate('viajes').exec(function(err,funcionario){
                     if (err) console.log(err);
-                    funcionarios_arr.push(funcionario);
-                    if(index == ids.length-1){
-                        res.view({funcionarios : funcionarios_arr});
+                    if(funcionario){
+                        funcionarios_arr.push(funcionario);
+                        if(index == ids.length-1){
+                            res.view({funcionarios : funcionarios_arr});
+                        }
+                    }else{
+                        res.redirect('/');
                     }
                 });
             });  
 
         }else{
-            res.forbidden();
+            res.redirect('/');
         }
     },
 };
