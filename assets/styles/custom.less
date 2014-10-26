@@ -341,8 +341,9 @@ a:hover{text-decoration: none!important;}
 		.person{
 			text-align: center;
 			.person-content{
-				background: #F7F7F7;color: @gray;padding: 20px;
+				background: #F7F7F7;color: @gray;padding: 20px;position: relative;
 				p{margin: 0}
+				.comparar-button{background: mix(@gray,@gray-light);border-radius: 50%;color: #fff;padding: 3px;position: absolute;right: 6px;top: 6px}
 				.picture{display: block;border-radius: 50%;height: 55px;width: 55px;margin:0 auto 20px;}
 				.name{font-size: 18px;line-height: 20px;text-transform: capitalize;}
 				.charge , .dependency{font-size: 13px;margin-top: 10px;text-transform: uppercase;}
@@ -469,6 +470,14 @@ a:hover{text-decoration: none!important;}
 			.row + .row{border-top: 1px solid @gray-light;margin-top: 0}
 		}
 	}
+	/*Datos abietos*/
+	#list.descargas{
+		.inner-content-list{margin-bottom: 10px}
+		.inner-content{
+			padding: 16px;margin-bottom: 10px;
+			.location{padding-left: 0!important}
+		}
+	}
 	#viaje{
 		padding-top: 20px;
 		.container-fluid{position: relative;}
@@ -526,9 +535,9 @@ a:hover{text-decoration: none!important;}
 				}	
 			}
 			.info-box{
-				margin-bottom: 20px;
+				margin-bottom: 20px;border-color: #ddd;
 				.panel-heading{
-					display: none;
+					background: #f5f5f5;border-color: #ddd;display: none;
 					h4{
 						a{
 							color:@blue;display: block;

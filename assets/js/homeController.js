@@ -56,7 +56,7 @@ app.controller("homeCtrl", ['$scope', '$http','$filter',function ($scope, $http 
                             var parcialGastado = (parseInt(marker.gasto_pasaje,10) ? parseInt(marker.gasto_pasaje,10) : 0) + (parseInt(marker.gasto_viatico,10) ? parseInt(marker.gasto_viatico,10) : 0);
                             totalGastado += parcialGastado;
 							var parcialGastadoStr = $filter('currency')(parcialGastado, '$');
-							msg = '<p><strong>' + parcialGastadoStr +' MXP'+'</strong></p>Gasto anual de viajes en <span class="place">'
+							msg = '<p><strong>' + parcialGastadoStr +' MXP'+'</strong></p>Gasto hasta el dia de hoy de viajes en <span class="place">'
 								  + marker.ciudad_destino + '</span>';
 							markers.push({
 								lat: parseFloat(marker.destino_latitud),
@@ -97,7 +97,7 @@ app.controller("homeCtrl", ['$scope', '$http','$filter',function ($scope, $http 
 
 }]);
 
-app.controller("statisticsCTL", ['$scope', '$http','$filter',function ($scope, $http,$filter) {
+app.controller("statisticsCTL", ['$scope', '$http','$filter','$rootScope',function ($scope, $http,$filter, $rootScope) {
     $scope.hotelList = [];
     $scope.ciudadesList = [];
     $scope.aerolineasList = [];
@@ -207,6 +207,12 @@ app.controller("statisticsCTL", ['$scope', '$http','$filter',function ($scope, $
         $scope.myLine = new Chart(element).Bar(barChartData,options);
         //$scope.myLine.redraw();
     };
+
+
+    $scope.compare = function(funcionarioObj){
+        funcionarioObj.id = funcionarioObj.funcionario;
+        $rootScope.$broadcast('sendFuncionario', funcionarioObj);
+    }
 
     $scope.loadData();
 }]);
