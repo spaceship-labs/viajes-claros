@@ -1,0 +1,58 @@
+<div id="fb-root"></div>
+<script>
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&appId=1629957413897962&version=v2.0";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    window.twttr=(function(d,s,id){var t,js,fjs=d.getElementsByTagName(s)[0];if(d.getElementById(id)){return}js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);return window.twttr||(t={_e:[],ready:function(f){t._e.push(f)}})}(document,"script","twitter-wjs"));
+</script>
+
+<div id="comparar" ng-controller="compararCTL">
+	<h1>COMPARACIÓN ENTRE SERVIDORES PÚBLICOS</h1>
+	<div class="centered-content">
+        <script type="text/javascript">
+            window.funcionarios = <%- JSON.stringify(funcionarios) %>;
+            console.log(window.funcionarios);
+        </script>	
+		<div class="container-fluid">
+			<% for(i=0;i<funcionarios.length;i++){ 
+				var funcionario = funcionarios[i];
+			%>
+				<div class="col-md-6">
+					<div class="inner-content">
+						<p><i class="icon icon-comicion"></i></p>
+						<div class="main-info">
+							<p><a href="/funcionario?id=<%- funcionario.id %>"><strong><%- funcionario.nombre_completo %></strong></a></p>
+							<% if(funcionario.cargo_nombre_superior != 0){ %>
+								<p><%- funcionario.cargo_nombre_superior  %></p>
+							<% } %>
+						</div>
+						<div class="price">
+							<p class="quantity"><strong count-to="{{getTotal(funcionarios[<%- i %>].viajes)}}" value="{{gasto_parcial}}" duration="2" filter="currency"></strong></p>
+							<p><strong>GASTOS HASTA LA FECHA EN VIAJES</strong></p>
+						</div>
+						<div class="trip" ng-repeat="viaje in funcionarios[<%- i %>].viajes | orderBy:gasto_total | limitTo:1">
+							<h3>Viaje más costoso</h3>
+							<p class="quantity"><strong><a href="/viaje?id={{viaje.id}}">{{viaje.gasto_total | currency}}</a></strong></p>
+							<p><strong>GASTO TOTAL</strong></p>
+						</div>
+						<div class="chart">
+							<p><i class="icon-calendar"></i></p>
+							<h3>Tiempo viajando y tiempo que ha estado en México</h3>							
+							<div class="charts-container">
+								<div id="radial-one<%- i %>" class="radial-chart blue"></div>
+								<div id="radial-two<%- i %>" class="radial-chart tur"></div>
+								<div class="clear"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			<% } %>
+		</div>
+	</div>
+</div>
+

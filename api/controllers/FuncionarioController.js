@@ -26,44 +26,65 @@ module.exports = {
 
 	},
 
-  search : function(req,res){
-    var term = req.param('filtro');
-      if (term) {
-          Funcionario.find({ nombre_completo : { 'like' : "%" + term + "%" }}).populate('viajes').exec(function(err,funcionarios) {
-              if (err) console.log(err);
-              res.view({ funcionarios : funcionarios || [],term : term});
-          });
-      } else {
-        res.forbidden();
-      }
+    search : function(req,res){
+        var term = req.param('filtro');
+          if (term) {
+              Funcionario.find({ nombre_completo : { 'like' : "%" + term + "%" }}).populate('viajes').exec(function(err,funcionarios) {
+                  if (err) console.log(err);
+                  res.view({ funcionarios : funcionarios || [],term : term});
+              });
+          } else {
+            res.forbidden();
+          }
+    },
 
-
-  },
-  statisticsJson : function(req,res) {
-      Viaje.find().exec(function(e,viajes){
-          if (e) res.json({ text : "error viajes por nombre",error : e });
-          res.json(viajes);
-          cb();
-      });
-  },
-
-  list : function(req,res){
-    var page = req.param('page');
-    page = (!isNaN(page)) ? page : 1;
-    if(page){
-        Funcionario.find()
-        .populate('viajes')
-        .paginate({page: page, limit: 10})
-        .sort('nombre_completo asc')
-        .exec(function(err,funcionarios) {
-            if (err) console.log(err);
-            Funcionario.count().exec(function(error,count){
-              var siteUrl = req.protocol + '://' + req.get('host'); 
-              res.view({ funcionarios : funcionarios || [] , count : count , page : page, siteUrl : siteUrl});
-            });
+    statisticsJson : function(req,res) {
+        Viaje.find().exec(function(e,viajes){
+            if (e) res.json({ text : "error viajes por nombre",error : e });
+            res.json(viajes);
+            cb();
         });
-    } else{
-      res.forbidden();
-    }
-  }
+    },
+
+    list : function(req,res){
+        var page = req.param('page');
+        page = (!isNaN(page)) ? page : 1;
+        if(page){
+            Funcionario.find()
+            .populate('viajes')
+            .paginate({page: page, limit: 10})
+            .sort('nombre_completo asc')
+            .exec(function(err,funcionarios) {
+                if (err) console.log(err);
+                Funcionario.count().exec(function(error,count){
+                    var siteUrl = req.protocol + '://' + req.get('host'); 
+                    res.view({ funcionarios : funcionarios || [] , count : count , page : page, siteUrl : siteUrl});
+                });
+            });
+        } else{
+            res.forbidden();
+        }
+    },
+    comparar : function(req,res){
+        var func_uno_id = req.param('first_id');
+        var func_dos_id = req.param('second_id');
+        if(!isNaN(func_uno_id) && !isNaN(func_dos_id)){
+            var ids = [func_uno_id,func_dos_id];
+            var funcionarios_arr = [];
+            ids.forEach(function(elem,index){
+                var funcionario_tmp = {};
+                var x = 0;
+                Funcionario.findOne({ id : elem}).populate('viajes').exec(function(err,funcionario){
+                    if (err) console.log(err);
+                    funcionarios_arr.push(funcionario);
+                    if(index == ids.length-1){
+                        res.view({funcionarios : funcionarios_arr});
+                    }
+                });
+            });  
+
+        }else{
+            res.forbidden();
+        }
+    },
 };

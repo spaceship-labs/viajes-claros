@@ -6,7 +6,7 @@
 		<div class="centered-content">
 			<h2>COMPARA SERVIDORES PÚBLICOS</h2>
 			<div class="container-fluid">
-				<form action="/" method="POST" ng-submit="validateForm()" id="comparadorForm">
+				<form action="/funcionario/comparar" method="POST" ng-submit="validateForm()" id="comparadorForm">
 					<div class="col-md-5">
 						<p><i class="icon icon-comicion"></i></p>
 						<p>
@@ -20,9 +20,9 @@
 							typeahead-min-length='1'
 							typeahead-on-select='onSelectPart($item, $model, $label)'
 							>
-							<input type="hidden" name="func_one_id" value="{{funcOne.id}}">
+							<input type="hidden" name="first_id" value="{{funcOne.id}}">
 						</p>
-						<p ng-if="funcOne.id">{{funcOne.cargo_nombre_superior}}</p>
+						<p ng-if="funcOne.id">{{funcionario.cargo_nombre_superior != 0 ? funcionario.cargo_nombre_superior : "no disponible"}}</p>
 					</div>
 					<div class="col-md-2">
 						<div class="circle animated rotateIn"><p><i ng-click="submitForm()" class="icon icon-comparar"></i></p></div>
@@ -48,7 +48,7 @@
 							typeahead-min-length='1'
 							typeahead-on-select='onSelectPart($item, $model, $label)'
 							>
-							<input type="hidden" name="func_two_id" value="{{id.funcTwo}}">
+							<input type="hidden" name="second_id" value="{{funcTwo.id}}">
 
 						</p>
 						<p ng-if="funcTwo.id">{{funcTwo.cargo_nombre_superior}}</p>
