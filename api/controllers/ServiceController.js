@@ -106,6 +106,10 @@ module.exports = {
 
     },
 
+    graficas : function(req,res){
+        res.view({});
+    },
+
     funcionarios_json : function(req,res) {
 
     },

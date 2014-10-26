@@ -1,0 +1,104 @@
+<div id="home">
+	<div class="centered-content">
+		<div class="container-fluid" ng-controller="statisticsCTL">
+			<div class="row top-people">
+				<h2>Los 3 servidores públicos <br/> <strong class="big">con más gastos de viajes</strong></h2>
+				<div class="col-sm-4 person" ng-repeat="funcionario in funcionariosList | limitTo:3">
+					<div class="person-content">
+						<a href="#" ng-click="compare(funcionario)" class="comparar-button"><i class="icon icon-comparar"></i></a>
+						<img src="/images/funcionario-default.png" alt="" class="picture">
+						<p class="name">{{funcionario.nombre_completo}}</p>
+						<p class="charge">{{funcionario.nombre_puesto != 0 ? funcionario.nombre_puesto : "Puesto no disponible"}}</p>
+                        <p class="dependency"><strong>ifai</strong></p>
+						<p class="money" count-to="{{funcionario.gasto_total}}" value="{{gasto_parcial}}" duration="2" filter="currency"></p>
+						<p class="gray">Gastos hasta hoy</p>
+						<a href="/funcionario?id={{funcionario.funcionario}}" class="custom-button">Ver perfil</a>
+					</div>
+				</div>
+				<div class="clear"></div>
+				<div class="col-md-4 col-md-offset-4"><a href="/funcionario/list" class="custom-button see-all">Ver todos los funcionarios</a></div>
+			</div>
+			<div class="row ranks">
+				<div class="col-md-6 top-places top-hotels">
+					<div class="inner-content">
+						<h4><strong>Hoteles más visitados</strong><br/>por los servidores públicos</h4>
+						<ul>
+							<li ng-repeat="hotel in hotelList">
+								<a><img src="/images/hotel_icon.png" alt="" class="picture" /></a>
+								<p class="place"><a href="/viaje/search_hotel?filtro={{hotel.hotel}}">{{hotel.hotel}}</a></p>
+								<p class="location"><a href="#">{{hotel.ciudad_destino}}, {{hotel.pais_destino}}</a></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+                <div class="col-md-6 percentage-rank">
+                    <carousel interval="6000">
+                        <slide  active="slide.active" >
+                            <div class="inner-content">
+                                <h4><strong>Viajes nacionales e internacionales</strong><br/>de los servidores públicos</h4>
+                                <div class="charts-container">
+                                    <div id="radial-one" class="radial-chart" ng-click="redirectTo('/viaje/searchtipo?filtro=internacional')"></div>
+                                    <div id="radial-two" class="radial-chart" ng-click="redirectTo('/viaje/searchtipo?filtro=nacional')"></div>
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="clear"></div>
+                                <p class="total">Total de viajes hasta la fecha: {{totalViajes}}</p>
+                            </div>
+                        </slide>
+                        <slide active="" >
+                            <div class="inner-content">
+                                <h4><strong>Viajes por tipo</strong><br/>de los servidores públicos</h4>
+                                <div class="charts-container">
+                                    <div id="radial-three" class="radial-chart" ng-click="redirectTo('/viaje/searchmedio?filtro=terrestre')"></div>
+                                    <div id="radial-four" class="radial-chart" ng-click="redirectTo('/viaje/searchmedio?filtro=aéreo')"></div>
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="clear"></div>
+                                <p class="total">Total de viajes hasta la fecha: {{totalViajes}}</p>
+                            </div>
+                        </slide>
+                    </carousel>
+                </div>
+			</div>
+			<div class="row ranks">
+                <div class="col-md-6 percentage-rank">
+                	<div class="inner-content">
+                    	<h4><strong>Las aerolineas más usadas</strong><br/>por los servidores públicos</h4>
+                    	<div class="bar-chart">
+							<canvas id="aerolineas-chart" height="300" width="400"></canvas>                		
+                    	</div>
+                    </div>
+                </div>
+				<div class="col-md-6 top-places">
+					<carousel interval="5000">
+						<slide  active="slide.active" >
+							<div class="inner-content">
+								<h4><strong>Ciudades Internacionales</strong><br/>más visitadas por los servidores públicos</h4>
+								<ul>
+									<li ng-repeat="ciudad in ciudadesList | filter:{tipo_viaje:'Internacional'} | limitTo:3">
+										<a href="#"><img src="/images/pinlugar.png" alt="" class="picture" /></a>
+										<p class="place"><a href="/viaje/search_ciudad?filtro={{ciudad.ciudad_destino}}">{{ciudad.ciudad_destino}}</a></p>
+										<p class="location"><a href="#">{{ciudad.pais_destino}}</a></p>
+									</li>
+								</ul>
+							</div>
+						</slide>
+						<slide active="" >
+							<div class="inner-content">
+								<h4><strong>Ciudades Nacionales</strong><br/>mas visitadas por los servidores públicos</h4>
+								<ul>
+                                    <li ng-repeat="ciudad in ciudadesList | filter:{tipo_viale:'!Internacional'} | limitTo:3">
+										<a href="#"><img src="/images/pinlugar.png" alt="" class="picture" /></a>
+                                        <p class="place"><a href="/viaje/search_ciudad?filtro={{ciudad.ciudad_destino}}">{{ciudad.ciudad_destino}}</a></p>
+                                        <p class="location"><a href="#">{{ciudad.pais_destino}}</a></p>
+									</li>
+								</ul>
+							</div>
+						</slide>
+					</carousel>
+				</div>
+			</div>			
+		</div>
+	</div>
+</div>
+

@@ -175,6 +175,7 @@ app.controller("statisticsCTL", ['$scope', '$http','$filter','$rootScope',functi
                       $scope.totalAerolineasVuelos += el.total;
                 });
                 $scope.redrawAerolineas();
+                $scope.redrawTop3();
 
         });
     };

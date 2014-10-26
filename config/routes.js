@@ -34,6 +34,10 @@ module.exports.routes = {
   '/datos': {
       controller : 'service',
       action : 'datos'
+  },
+  '/graficas': {
+      controller : 'service',
+      action : 'graficas'
   }
 
   // Custom routes here...
