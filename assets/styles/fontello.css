@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'fontello';
-  src: url('../font/fontello.eot?16359613');
-  src: url('../font/fontello.eot?16359613#iefix') format('embedded-opentype'),
-       url('../font/fontello.woff?16359613') format('woff'),
-       url('../font/fontello.ttf?16359613') format('truetype'),
-       url('../font/fontello.svg?16359613#fontello') format('svg');
+  src: url('../font/fontello.eot?33543681');
+  src: url('../font/fontello.eot?33543681#iefix') format('embedded-opentype'),
+       url('../font/fontello.woff?33543681') format('woff'),
+       url('../font/fontello.ttf?33543681') format('truetype'),
+       url('../font/fontello.svg?33543681#fontello') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -14,7 +14,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'fontello';
-    src: url('../font/fontello.svg?16359613#fontello') format('svg');
+    src: url('../font/fontello.svg?33543681#fontello') format('svg');
   }
 }
 */
@@ -50,26 +50,33 @@
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
  
-.icon-moneda:before { content: '\e800'; } /* '' */
-.icon-emo-happy:before { content: '\e801'; } /* '' */
-.icon-comicion:before { content: '\e802'; } /* '' */
-.icon-hotel:before { content: '\e803'; } /* '' */
-.icon-logo:before { content: '\e804'; } /* '' */
-.icon-motivo:before { content: '\e805'; } /* '' */
-.icon-origen:before { content: '\e806'; } /* '' */
-.icon-resultados:before { content: '\e807'; } /* '' */
-.icon-tema:before { content: '\e808'; } /* '' */
-.icon-tipodeviaje:before { content: '\e809'; } /* '' */
-.icon-viaticos:before { content: '\e80a'; } /* '' */
-.icon-vuelos:before { content: '\e80b'; } /* '' */
-.icon-arrow:before { content: '\e80c'; } /* '' */
-.icon-calendar:before { content: '\e80d'; } /* '' */
-.icon-estrella:before { content: '\e80e'; } /* '' */
-.icon-face:before { content: '\e80f'; } /* '' */
-.icon-hotel-1:before { content: '\e810'; } /* '' */
-.icon-lugar:before { content: '\e811'; } /* '' */
-.icon-lupita:before { content: '\e812'; } /* '' */
-.icon-pinmap:before { content: '\e813'; } /* '' */
-.icon-senor:before { content: '\e814'; } /* '' */
-.icon-suscribirme:before { content: '\e816'; } /* '' */
-.icon-twit:before { content: '\e817'; } /* '' */
+.icon-actividades:before { content: '\e800'; } /* '' */
+.icon-arrow:before { content: '\e801'; } /* '' */
+.icon-calendar:before { content: '\e802'; } /* '' */
+.icon-cerrar:before { content: '\e803'; } /* '' */
+.icon-comparar:before { content: '\e804'; } /* '' */
+.icon-datos:before { content: '\e805'; } /* '' */
+.icon-estrella:before { content: '\e806'; } /* '' */
+.icon-face:before { content: '\e807'; } /* '' */
+.icon-flechita:before { content: '\e808'; } /* '' */
+.icon-gracias:before { content: '\e809'; } /* '' */
+.icon-graficas:before { content: '\e80a'; } /* '' */
+.icon-lupita:before { content: '\e80b'; } /* '' */
+.icon-motivo:before { content: '\e80c'; } /* '' */
+.icon-moneda:before { content: '\e80d'; } /* '' */
+.icon-logo:before { content: '\e80e'; } /* '' */
+.icon-documento:before { content: '\e80f'; } /* '' */
+.icon-hotel:before { content: '\e810'; } /* '' */
+.icon-descargar:before { content: '\e811'; } /* '' */
+.icon-comicion:before { content: '\e812'; } /* '' */
+.icon-twit:before { content: '\e813'; } /* '' */
+.icon-suscribirme:before { content: '\e814'; } /* '' */
+.icon-pinmap:before { content: '\e815'; } /* '' */
+.icon-observaciones:before { content: '\e816'; } /* '' */
+.icon-pdf:before { content: '\e817'; } /* '' */
+.icon-origen:before { content: '\e818'; } /* '' */
+.icon-resultados:before { content: '\e819'; } /* '' */
+.icon-tema:before { content: '\e81a'; } /* '' */
+.icon-tipodeviaje:before { content: '\e81b'; } /* '' */
+.icon-viaticos:before { content: '\e81c'; } /* '' */
+.icon-vuelos:before { content: '\e81d'; } /* '' */
