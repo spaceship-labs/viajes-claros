@@ -359,7 +359,7 @@ a:hover{text-decoration: none!important;}
 
 	}
 	.ranks{
-		.col-md-6{
+		.col-md-6 , .col-md-12{
 			.inner-content{
 				color:  @gray;background: #fff;border: 1px solid @gray-light;border-radius: 4px;padding: 20px 20px 40px 20px;
 				h4{font-size: 20px;font-weight: 300;text-align: center;}
@@ -484,7 +484,7 @@ a:hover{text-decoration: none!important;}
 		.menu-viaje-container{
 			position: absolute;left: -80px;top: 30px;z-index: 999;
 			.menu-viaje{
-				position: fixed;
+				position: fixed;left: 0;
 				li{
 					position: relative;
 					a{
@@ -605,6 +605,14 @@ a:hover{text-decoration: none!important;}
 			}
 		}
 
+	}
+
+	.graficas{
+		.col-md-12{
+			.bar-chart{
+				canvas{height: 300px;width: 100%;}
+			}
+		}
 	}
 
 }
