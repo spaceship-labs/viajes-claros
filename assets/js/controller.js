@@ -133,6 +133,16 @@ app.controller("comparadorCTL", ['$scope', '$http',function ($scope, $http) {
         $scope.funcionariosSearch = args;
     });
 
+    $scope.$on('sendFuncionario', function(event,args) {
+        console.log(args);
+        if(!isNaN($scope.funcOne.id)){
+            $scope.funcTwo = args;
+        }else{
+            $scope.funcOne = args;
+        }
+        $scope.toggleComparador = true;
+    });
+
     $scope.onSelectPart = function ($item, $model, $label) {
         if($scope.validateForm()){
             $('#comparadorForm .circle').removeClass('rotateIn');
@@ -177,7 +187,7 @@ app.controller("comparadorCTL", ['$scope', '$http',function ($scope, $http) {
     });
 
     $(window).scroll(function() {
-    $scope.setfooter();
+        $scope.setfooter();
     });
 
 
