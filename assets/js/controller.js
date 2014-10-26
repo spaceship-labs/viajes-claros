@@ -113,19 +113,8 @@ app.controller("subscribeCTL", ['$scope', '$http',function ($scope, $http) {
 
 app.controller("lateralCTL", ['$scope', '$http','$rootScope',function ($scope, $http, $rootScope) {
 
-    $scope.scrollTo = function(){
-        setTimeout(
-            function(){
-                $('html, body').animate({
-                    scrollTop: $('#comparador-popup').offset().top - 20
-                }, 500);
-            },
-            300           
-        );
-    }
-    $scope.toggleComp = function(func){
+    $scope.toggleComp = function(){
         $rootScope.$broadcast('toggleComp', true);
-        func();
     }
 
 }]);
@@ -164,6 +153,33 @@ app.controller("comparadorCTL", ['$scope', '$http',function ($scope, $http) {
             $('#comparadorForm').submit();
         }
     }
+
+    $scope.setfooter = function(){
+        var min = 57;
+        min += $('#footer #comparador-popup').hasClass('fixed')?0:$('#footer #comparador-popup').height();
+        if( $(window).scrollTop() + $(window).height() > $(document).height() - min ){
+            setTimeout( function(){
+                $('#footer #comparador-popup').removeClass('fixed');
+                $('#footer #comparador-popup').removeClass('fixed');
+            } , 0 );
+        }else{
+            setTimeout( function(){
+                $('#footer #comparador-popup').addClass('fixed');
+                $('#footer #comparador-popup').addClass('fixed');
+            } , 0 );
+        }
+    }
+
+    $(document).ready(function(){
+        setTimeout( function(){
+            $scope.setfooter();
+        } , 40 );
+    });
+
+    $(window).scroll(function() {
+    $scope.setfooter();
+    });
+
 
 
 

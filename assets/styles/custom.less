@@ -414,7 +414,7 @@ a:hover{text-decoration: none!important;}
 		.funcionario-info{
 			.inner-content{
 				.gradient-blue;color: #fff;text-align: center;
-				.funcionario-icon{display: block;margin: 0 auto;height: 100px;font-size: 88px}
+				.funcionario-icon{border: 2px solid #fff;border-radius: 50%;margin: 0 auto;height: 100px;font-size: 58px}
 				h1{font-weight: 300;margin: 10px 0 5px;text-transform: capitalize;}
 				p{
 					margin: 0;font-size: 13px;
@@ -614,7 +614,7 @@ a:hover{text-decoration: none!important;}
 		background: @blue;position: absolute;bottom: 100%;padding: 0px 0 60px;left: 0;width: 100%;z-index: 99999;
 		#close-comparador-cont{
 			position: relative;
-			a{color: #fff;font-size: 20px;position: absolute;right: 15px;top: 15px;}
+			a{color: #fff;font-size: 20px;position: absolute;right: 15px;top: 15px;z-index: 9}
 		}
 		.centered-content{
 			h2{color: #fff;text-align: center;font-size: 20px;font-weight: 700;}
@@ -643,6 +643,7 @@ a:hover{text-decoration: none!important;}
 			}			
 		}
 	}
+	#comparador-popup.fixed{bottom: 0;position: fixed;z-index: 99999;}
 }
 
 @media all and (max-width: 1170px){
@@ -682,6 +683,13 @@ a:hover{text-decoration: none!important;}
 	#footer .logo-footer{display: none;}
 	#footer{min-height: 110px;text-align: center;}
 }
+@media screen and (max-width: 540px){
+	#header .menu .logo img{max-width: 100px!important}
+	#header .container .menu .search-form #comparar-header span{display: none;}
+	#header .menu .search-form input[type="text"]{width: 152px!important}
+	#header .menu .search-form input[type="text"]{font-size: 11px!important}
+
+}
 @media screen and (max-width: 480px){
 	#header .container-fixed{
 		.gradient-blue;
@@ -694,8 +702,6 @@ a:hover{text-decoration: none!important;}
 	#main{padding-bottom: 135px !important;}
 	#footer{min-height: 135px!important;margin-top: -135px!important;}
 	#header .menu{padding: 8px 0px!important}
-	#header .menu .logo img{max-width: 125px!important}
-	#header .menu .search-form input[type="text"]{font-size: 11px!important}
 	.close-arrow-header{display: none;}
 	#home .map-container .jumbotron .content-jumbotron .text-jumbotron h1{font-size: 32px;padding: 0 10px}
 	#home .map-container .jumbotron .content-jumbotron .text-jumbotron p{font-size: 16px;padding: 0 10px}
@@ -711,8 +717,8 @@ a:hover{text-decoration: none!important;}
 @media screen and (max-width: 500px){
 }
 
-@media screen and (max-width: 360px){
-	#header .menu .logo img{max-width: 100px!important}
+@media screen and (max-width: 350px){
+	#header .menu .search-form input[type="text"]{background: none!important;width: 136px!important}
 }
 
 @media print { 
