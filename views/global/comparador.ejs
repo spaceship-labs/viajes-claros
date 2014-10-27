@@ -22,7 +22,7 @@
 							>
 							<input type="hidden" name="first_id" value="{{funcOne.id}}">
 						</p>
-						<p ng-if="funcOne.id">{{funcOne.cargo_nombre_superior != 0 ? funcOne.cargo_nombre_superior : "no disponible"}}</p>
+						<p ng-if="funcOne.id">{{funcOne.nombre_puesto != 0 ? funcOne.nombre_puesto : "no disponible"}}</p>
 					</div>
 					<div class="col-md-2">
 						<div class="circle animated rotateIn"><p><i ng-click="submitForm()" class="icon icon-comparar"></i></p></div>
@@ -51,7 +51,7 @@
 							<input type="hidden" name="second_id" value="{{funcTwo.id}}">
 
 						</p>
-						<p ng-if="funcTwo.id">{{funcTwo.cargo_nombre_superior != 0 ? funcTwo.cargo_nombre_superior : "no disponible"}}</p>
+						<p ng-if="funcTwo.id">{{funcTwo.nombre_puesto != 0 ? funcTwo.nombre_puesto : "no disponible"}}</p>
 					</div>
 				</form>
 			</div>
