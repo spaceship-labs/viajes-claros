@@ -206,6 +206,7 @@ a:hover{text-decoration: none!important;}
 
 #content{
 	.centered-content{padding-bottom: 25px}
+	.get-iframe{color: @gray;position: absolute; right: 6px; top: 6px;font-size: 22px} 
 	.share-links{
 		max-width: 75%;margin: 10px auto 0;
 		.col-sm-4{padding-right: 5px;padding-left: 5px;}
@@ -362,7 +363,7 @@ a:hover{text-decoration: none!important;}
 	.ranks{
 		.col-md-6 , .col-md-12{
 			.inner-content{
-				color:  @gray;background: #fff;border: 1px solid @gray-light;border-radius: 4px;padding: 20px 20px 40px 20px;
+				color:  @gray;background: #fff;border: 1px solid @gray-light;border-radius: 4px;padding: 20px 20px 40px 20px;position: relative;
 				h4{font-size: 20px;font-weight: 300;text-align: center;}
 			}
 			@media (min-width: 992px){
@@ -542,7 +543,7 @@ a:hover{text-decoration: none!important;}
 					h4{
 						a{
 							color:@blue;display: block;
-							.glyphicon{font-size: 12px}
+							.icon-flecha{font-size: 8px;vertical-align: middle;}
 						}
 					}
 				}
@@ -629,7 +630,7 @@ a:hover{text-decoration: none!important;}
 	.social-link + .social-link{margin-left: 4px}
 
 	#comparador-popup{
-		background: @blue;position: absolute;bottom: 100%;padding: 0px 0 60px;left: 0;width: 100%;z-index: 99999;
+		background: @blue;position: absolute;bottom: 100%;padding: 0px 0 60px;left: 0;width: 100%;z-index: 999999999;
 		#close-comparador-cont{
 			position: relative;
 			a{color: #fff;font-size: 20px;position: absolute;right: 15px;top: 15px;z-index: 9}
@@ -661,7 +662,7 @@ a:hover{text-decoration: none!important;}
 			}			
 		}
 	}
-	#comparador-popup.fixed{bottom: 0;position: fixed;z-index: 99999;}
+	#comparador-popup.fixed{bottom: 0;position: fixed;z-index: 999999999;}
 }
 
 @media all and (max-width: 1170px){
