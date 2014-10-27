@@ -24,7 +24,7 @@
 						</p>
 						<p ng-if="funcOne.id">{{funcOne.nombre_puesto != 0 ? funcOne.nombre_puesto : "no disponible"}}</p>
 					</div>
-					<div class="col-md-2">
+					<div class="col-md-2 hidden-xs">
 						<div class="circle animated rotateIn"><p><i ng-click="submitForm()" class="icon icon-comparar"></i></p></div>
 						<p>
 							<input
@@ -52,6 +52,17 @@
 
 						</p>
 						<p ng-if="funcTwo.id">{{funcTwo.nombre_puesto != 0 ? funcTwo.nombre_puesto : "no disponible"}}</p>
+					</div>
+					<div class="col-md-2 visible-xs-block">
+						<div class="circle animated rotateIn"><p><i ng-click="submitForm()" class="icon icon-comparar"></i></p></div>
+						<p>
+							<input
+							type="submit"
+					 		ng-disabled="!validateForm()"
+					 		value="COMPARAR"
+					 		class="custom-button bordered"
+					 		>
+					 	</p>
 					</div>
 				</form>
 			</div>

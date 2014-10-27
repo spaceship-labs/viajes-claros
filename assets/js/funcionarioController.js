@@ -182,7 +182,7 @@ app.controller("compararCTL", ['$scope', '$http','$filter' ,function ($scope, $h
                     .label('En casa')
                     .render();
 
-            },400
+            },1000
         );
 
     }
