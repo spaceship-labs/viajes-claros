@@ -3,36 +3,31 @@
 ##Requerimientos
 
 Tener instalado sin algún orden especifico 
-	-mysql server 5.5
-	-node server 0.10.26
-	-bower
-	-npm
+* mysql server 5.5
+* node server 0.10.26
+* bower
+* npm
 
 ##Guia de instalacion
 
-Descargar el proyecto
+1. Descargar el proyecto
 
-wget -O- https://github.com/el-sonny/viajes-claros
+    wget -O- https://github.com/el-sonny/viajes-claros
 
-una vez descargado 
+2. Una vez descargado ejecutar: 
 
-ejecutar: 
+    npm install
 
-npm install
+3. Una vez concluido este proceso ejecutar: 
 
-una vez acabado este proceso
+    bower install
 
-ejecutar: 
+4. Entrar a la carpeta dump/ dentro del proyecto descargardo ejecutar: 
+    mysql u usuario p < viajestransparentes.sql
 
-bower install
+5. Una vez creada la base de datos hay que configurar la conexión a mysql en el archivo /config/local.js 
 
-por ultimo entrar a la carpeta dump/ dentro del proyecto descargardo
-
-ejecutar: 
-mysql u usuario p < viajestransparentes.sql
-
-una vez creada la base de datos hay que configurar la coneccion a mysql en el archivo /config/local.js y generar el archivo de coniguracion
-
+```JavaScript
 module.exports = {
 	connections:{
 		'mysql-connection' : {
@@ -44,10 +39,13 @@ module.exports = {
 		},
 	}
 };
+```
 
-Por ultimo para levantar el servidor ejecutar 
+6. Por ultimo para levantar el servidor ejecutar:
 
-Sais lift ó node app.js
+    Sais lift 
+ó 
+    node app.js
 
 ##API
 
@@ -58,7 +56,7 @@ Puedes usar opciones como where, skip, limit, skip sort y callback (JSONP) o cua
 
 para ver un registro individual
 
-/:modelo/:id
+    /:modelo/:id
 
 Ejemplos:
 
