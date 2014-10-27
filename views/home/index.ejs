@@ -47,7 +47,7 @@
 			<div class="row ranks">
 				<div class="col-md-6 top-places top-hotels">
 					<div class="inner-content">
-						<a href="#" class="get-iframe" data-toggle="modal" data-target="#modal-code" title="Compartir gráfica"><i class="icon icon-codigo"></i></a>
+						<a href="#" class="get-iframe" data-toggle="modal" data-target="#modal-code" title="Compartir gráfica" ng-click="openWidgetModal('/widget/hoteles')"><i class="icon icon-codigo"></i></a>
 						<h4><strong>Hoteles más visitados</strong><br/>por los servidores públicos</h4>
 						<ul>
 							<li ng-repeat="hotel in hotelList">
@@ -62,7 +62,7 @@
                     <carousel interval="6000">
                         <slide  active="slide.active" >
                             <div class="inner-content">
-                            	<a href="#" class="get-iframe" data-toggle="modal" data-target="#modal-code" title="Compartir gráfica"><i class="icon icon-codigo"></i></a>
+                            	<a href="#" class="get-iframe" data-toggle="modal" data-target="#modal-code" title="Compartir gráfica" ng-click="openWidgetModal('/widget/tipos_de_viajes')"><i class="icon icon-codigo"></i></a>
                                 <h4><strong>Viajes nacionales e internacionales</strong><br/>de los servidores públicos</h4>
                                 <div class="charts-container">
                                     <div id="radial-one" class="radial-chart" ng-click="redirectTo('/viaje/searchtipo?filtro=internacional')"></div>
@@ -75,7 +75,7 @@
                         </slide>
                         <slide active="" >
                             <div class="inner-content">
-                            	<a href="#" class="get-iframe" data-toggle="modal" data-target="#modal-code" title="Compartir gráfica"><i class="icon icon-codigo"></i></a>
+                            	<a href="#" class="get-iframe" data-toggle="modal" data-target="#modal-code" ng-click="openWidgetModal('/widget/tipos_de_viajes')" title="Compartir gráfica"><i class="icon icon-codigo"></i></a>
                                 <h4><strong>Viajes por tipo</strong><br/>de los servidores públicos</h4>
                                 <div class="charts-container">
                                     <div id="radial-three" class="radial-chart" ng-click="redirectTo('/viaje/searchmedio?filtro=terrestre')"></div>
@@ -92,7 +92,7 @@
 			<div class="row ranks">
                 <div class="col-md-6 percentage-rank">
                 	<div class="inner-content">
-                		<a href="#" class="get-iframe" data-toggle="modal" data-target="#modal-code" title="Compartir gráfica"><i class="icon icon-codigo"></i></a>
+                		<a href="#" class="get-iframe" data-toggle="modal" data-target="#modal-code" title="Compartir gráfica" ng-click="openWidgetModal('/widget/aerolineas')"><i class="icon icon-codigo"></i></a>
                     	<h4><strong>Las aerolineas más usadas</strong><br/>por los servidores públicos</h4>
                     	<div class="bar-chart">
 							<canvas id="aerolineas-chart" height="300" width="400"></canvas>                		
@@ -103,7 +103,7 @@
 					<carousel interval="5000">
 						<slide  active="slide.active" >
 							<div class="inner-content">
-								<a href="#" class="get-iframe" data-toggle="modal" data-target="#modal-code" title="Compartir gráfica"><i class="icon icon-codigo"></i></a>
+								<a href="#" class="get-iframe" data-toggle="modal" data-target="#modal-code" ng-click="openWidgetModal('/widget/ciudades')" title="Compartir gráfica"><i class="icon icon-codigo"></i></a>
 								<h4><strong>Ciudades Internacionales</strong><br/>más visitadas por los servidores públicos</h4>
 								<ul>
 									<li ng-repeat="ciudad in ciudadesList | filter:{tipo_viaje:'Internacional'} | limitTo:3">
@@ -116,7 +116,7 @@
 						</slide>
 						<slide active="" >
 							<div class="inner-content">
-								<a href="#" class="get-iframe" data-toggle="modal" data-target="#modal-code" title="Compartir gráfica"><i class="icon icon-codigo"></i></a>
+								<a href="#" class="get-iframe" data-toggle="modal" data-target="#modal-code" ng-click="openWidgetModal('/widget/ciudades')" title="Compartir gráfica"><i class="icon icon-codigo"></i></a>
 								<h4><strong>Ciudades Nacionales</strong><br/>mas visitadas por los servidores públicos</h4>
 								<ul>
                                     <li ng-repeat="ciudad in ciudadesList | filter:{tipo_viale:'!Internacional'} | limitTo:3">
