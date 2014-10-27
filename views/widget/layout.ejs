@@ -1,22 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <% if(typeof title != 'undefined'){ %>
-        <title>ViajesClaros | <%- title %></title>
-        <meta property="og:title"content="ViajesClaros | <%- title %>" />
-    <%}else{ %>
-        <title>ViajesClaros</title>
-        <meta property="og:title"content="ViajesClaros" />
-    <% } %>
-    <meta property="og:url" content="<%- req.protocol + '://' + req.get('host') + req.originalUrl %>" />
-    <% if(typeof description != 'undefined'){ %>
-        <meta property="og:description" content="<%- description %>" />
-    <% }%>
-    <meta property="og:image" content="<%- req.protocol + '://' + req.get('host') %>/images/screen.jpg" />
-    <meta name="description" content="Conoce a dónde van y cuanto gastan los servidores públicos en sus viajes con el dinero de México.">
-
-    
-
     <!-- Viewport mobile tag for sensible mobile support -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -42,16 +26,13 @@
   <body ng-app="viajesTransparentes">
     <div ng-cloak class="ng-cloak" id="wrap" >
         <div id="main" class="clearfix"><div id="topBackRepeat">
-        <%- partial('global/header') -%>
             <div id='content'>
-                <%- partial('global/lateral') -%>
                 <%- body %>
                 <div class='clear'></div>
             </div>
         </div>   
         <div class='clear'></div>   
     </div><div class='clear'></div></div> 
-    <%- partial('global/footer') -%>       
 
     <!--SCRIPTS-->
     <script src="/js/dependencies/sails.io.js"></script>

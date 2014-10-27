@@ -63,7 +63,7 @@ app.directive('countTo', ['$timeout','$filter', function ($timeout,$filter) {
 
 }]);
 
-app.controller("searhcFormCTL", ['$scope', '$http','limitToFilter',function ($scope, $http,limitToFilter) {
+app.controller("searhcFormCTL", ['$scope', '$http', '$rootScope','limitToFilter',function ($scope, $http,$rootScope,limitToFilter) {
      $scope.funcionariosAJAX = function(name) {
         return $http({method:'POST',url:"/funcionario/search_autocomplete?nombre="+name}).then(function(response){
           return limitToFilter(response.data, 8);
