@@ -175,7 +175,6 @@ app.controller("statisticsCTL", ['$scope', '$http','$filter','$rootScope',functi
                       $scope.totalAerolineasVuelos += el.total;
                 });
                 $scope.redrawAerolineas();
-                $scope.redrawTop3();
 
         });
     };
@@ -209,11 +208,11 @@ app.controller("statisticsCTL", ['$scope', '$http','$filter','$rootScope',functi
         //$scope.myLine.redraw();
     };
 
-
     $scope.compare = function(funcionarioObj){
         funcionarioObj.id = funcionarioObj.funcionario;
         $rootScope.$broadcast('sendFuncionario', funcionarioObj);
     }
 
     $scope.loadData();
+
 }]);
