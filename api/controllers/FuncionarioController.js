@@ -49,6 +49,16 @@ module.exports = {
           }
     },
 
+    search_autocomplete : function(req,res){
+        var term = req.param('nombre');
+        Funcionario.find({ nombre_completo : { 'like' : "%" + term + "%" }}).exec(function(err,funcionarios) {
+            if (err) console.log(err);
+            if(funcionarios){
+                res.json(funcionarios);
+            }
+        });
+    },
+
     statisticsJson : function(req,res) {
         Viaje.find().exec(function(e,viajes){
             if (e) res.json({ text : "error viajes por nombre",error : e });

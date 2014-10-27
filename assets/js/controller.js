@@ -63,13 +63,11 @@ app.directive('countTo', ['$timeout','$filter', function ($timeout,$filter) {
 
 }]);
 
-app.controller("searhcFormCTL", ['$scope', '$http', '$rootScope',function ($scope, $http, $rootScope) {
-    $scope.loadFuncionarios = function() {
-        $http({method: 'POST', url: '/funcionario/find?limit=1000'}).success(function(data){
-                $scope.funcionariosSearch = data;
-                $rootScope.$broadcast('sendFuncionariosInfo', data);
-
-            });
+app.controller("searhcFormCTL", ['$scope', '$http','limitToFilter',function ($scope, $http,limitToFilter) {
+     $scope.funcionariosAJAX = function(name) {
+        return $http({method:'POST',url:"/funcionario/search_autocomplete?nombre="+name}).then(function(response){
+          return limitToFilter(response.data, 15);
+        });
     };
     $scope.onSelectPart = function ($item, $model, $label) {
         $scope.$item = $item;
@@ -94,7 +92,7 @@ app.controller("searhcFormCTL", ['$scope', '$http', '$rootScope',function ($scop
         func();
     }
 
-    $scope.loadFuncionarios();
+    //$scope.loadFuncionarios();
 }]);
 
 app.controller("subscribeCTL", ['$scope', '$http',function ($scope, $http) {
@@ -119,7 +117,7 @@ app.controller("lateralCTL", ['$scope', '$http','$rootScope',function ($scope, $
 
 }]);
 
-app.controller("comparadorCTL", ['$scope', '$http',function ($scope, $http) {
+app.controller("comparadorCTL", ['$scope', '$http', 'limitToFilter',function ($scope, $http,limitToFilter) {
 
     $scope.toggleComparador = false;
     $scope.funcOne = '';
@@ -129,9 +127,11 @@ app.controller("comparadorCTL", ['$scope', '$http',function ($scope, $http) {
         $scope.toggleComparador = args;
     });
 
-    $scope.$on('sendFuncionariosInfo', function(event,args) {
-        $scope.funcionariosSearch = args;
-    });
+    $scope.funcionariosAJAX = function(name) {
+        return $http({method:'POST',url:"/funcionario/search_autocomplete?nombre="+name}).then(function(response){
+          return limitToFilter(response.data, 15);
+        });
+    };
 
     $scope.$on('sendFuncionario', function(event,args) {
         console.log(args);
