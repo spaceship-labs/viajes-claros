@@ -83,9 +83,13 @@ app.controller("searhcFormCTL", ['$scope', '$http', '$rootScope','limitToFilter'
     $scope.scrollTo = function(){
         setTimeout(
             function(){
-                $('html, body').animate({
-                    scrollTop: $('#comparador-popup').offset().top - 20
-                }, 500);
+                if($(window).width() < 1024){
+                    $('html, body').animate({
+                        scrollTop: $('#comparador-popup').offset().top - 20
+                    }, 500);
+                }else{
+                    console.log('no scroll')
+                }
             },
             300           
         );
@@ -113,9 +117,22 @@ app.controller("subscribeCTL", ['$scope', '$http',function ($scope, $http) {
 }]);
 
 app.controller("lateralCTL", ['$scope', '$http','$rootScope',function ($scope, $http, $rootScope) {
-
-    $scope.toggleComp = function(){
+    
+    $scope.scrollTo = function(){
+        setTimeout(
+            function(){
+                if($(window).width() < 1024){
+                    $('html, body').animate({
+                        scrollTop: $('#comparador-popup').offset().top - 20
+                    }, 500);
+                }
+            },
+            300           
+        );
+    }
+    $scope.toggleComp = function(func){
         $rootScope.$broadcast('toggleComp', true);
+        func()
     }
 
 }]);
