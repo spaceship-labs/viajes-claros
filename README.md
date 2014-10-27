@@ -65,5 +65,3 @@ Ejemplos:
 http://viajestransparentes.node.spaceshiplabs.com/viaje/find?tipo_viaje=Internacional&limit=1000
 http://viajestransparentes.node.spaceshiplabs.com/viaje/14
 http://viajestransparentes.node.spaceshiplabs.com/funcionario/find?nombre_puesto=%20JEFE%20DE%20DEPARTAMENTO
-
-
