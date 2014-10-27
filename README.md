@@ -23,7 +23,7 @@ Tener instalado sin algún orden especifico
     bower install
 
 4. Entrar a la carpeta dump/ dentro del proyecto descargardo ejecutar: 
-    mysql u usuario p < viajestransparentes.sql
+    mysql -u usuario -p < viajestransparentes.sql
 
 5. Una vez creada la base de datos hay que configurar la conexión a mysql en el archivo /config/local.js 
 
@@ -32,9 +32,9 @@ module.exports = {
 	connections:{
 		'mysql-connection' : {
 		    adapter: 'sails-mysql',
-		    host: my_db_host',
+		    host: 'my_db_host',
 		    user: 'my_db_user',
-		    password: my_db_password',
+		    password: 'my_db_password',
 		    database: 'viajestransparentes'
 		},
 	}
@@ -43,8 +43,6 @@ module.exports = {
 
 6. Por ultimo para levantar el servidor ejecutar:
 
-    Sais lift 
-ó 
     node app.js
 
 ##API
