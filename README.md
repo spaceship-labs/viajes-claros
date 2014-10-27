@@ -12,18 +12,21 @@ Tener instalado sin algún orden especifico
 
 1. Descargar el proyecto
 
-    wget -O- https://github.com/el-sonny/viajes-claros
+    `wget -O- https://github.com/el-sonny/viajes-claros`
+ó
+
+    `git clone git@github.com:el-sonny/viajes-claros.git` (requiere git)
 
 2. Una vez descargado ejecutar: 
 
-    npm install
+    `npm install`
 
 3. Una vez concluido este proceso ejecutar: 
 
-    bower install
+    `bower install`
 
 4. Entrar a la carpeta dump/ dentro del proyecto descargardo ejecutar: 
-    mysql -u usuario -p < viajestransparentes.sql
+    `mysql -u usuario -p < viajestransparentes.sql`
 
 5. Una vez creada la base de datos hay que configurar la conexión a mysql en el archivo /config/local.js 
 
@@ -43,7 +46,7 @@ module.exports = {
 
 6. Por ultimo para levantar el servidor ejecutar:
 
-    node app.js
+    `node app.js`
 
 ##API
 
@@ -61,3 +64,12 @@ Ejemplos:
 http://viajestransparentes.node.spaceshiplabs.com/viaje/find?tipo_viaje=Internacional&limit=1000
 http://viajestransparentes.node.spaceshiplabs.com/viaje/14
 http://viajestransparentes.node.spaceshiplabs.com/funcionario/find?nombre_puesto=%20JEFE%20DE%20DEPARTAMENTO
+
+##Backend
+
+Se puede instalar el backend siguiendo los mismos pasos de este documento reemplazando el repositorio en el punto 1 con:
+
+- https://github.com/el-sonny/viajes-claros-admin.git
+
+Ver el readme de ese repositorio para mas información
+
