@@ -22,9 +22,9 @@
 module.exports.connections = {
   'mysql-connection': {
     adapter: 'sails-mysql',
-    host: 'phpmyadmin.projects.spaceshiplabs.com',
+    host: 'localhost',
     user: 'root',
-    password: 'RtG/()rERtfkfGKLF',
+    password: '',
     database: 'viajestransparentes'
   },
 };
