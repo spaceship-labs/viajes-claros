@@ -1,42 +1,75 @@
-ViajesClaros
+#ViajesClaros
 
-Requerimientos
+##Requerimientos
 
 Tener instalado sin algún orden especifico 
-	-mysql server 5.5
-	-node server 0.10.26	
+* mysql server 5.5
+* node server 0.10.26
+* bower
+* npm
 
-Guia de instalacion
+##Guia de instalacion
 
-Descargar el proyecto
+1. Descargar el proyecto
 
-wget -O- https://github.com/el-sonny/viajes-claros
+    `wget -O- https://github.com/el-sonny/viajes-claros`
+ó
 
-una vez descargado 
+    `git clone git@github.com:el-sonny/viajes-claros.git` (requiere git)
 
-ejecutar  : npm install
+2. Una vez descargado ejecutar: 
 
-una vez acabado este proceso
+    `npm install`
 
-ejecutar : bower install
+3. Una vez concluido este proceso ejecutar: 
 
-por ultimo entrar a la carpeta dump/ dentro del proyecto descargardo
+    `bower install`
 
-ejecutar : mysql u usuario p < viajestransparentes.sql
+4. Entrar a la carpeta dump/ dentro del proyecto descargardo ejecutar: 
+    `mysql -u usuario -p < viajestransparentes.sql`
 
-una vez creada la base de datos hay que configurar la coneccion a mysql en el archivo /config/connections.js  y cambiar la línea de conneccion o agregarla como esta aquí indicada
+5. Una vez creada la base de datos hay que configurar la conexión a mysql en el archivo /config/local.js 
 
-'mysql-connection': {
-    adapter: 'sails-mysql',
-    host: my_db_host',
-    user: 'my_db_user',
-    password: my_db_password',
-    database: 'viajestransparentes'
-  },
+```JavaScript
+module.exports = {
+    connections:{
+        'mysql-connection' : {
+            adapter: 'sails-mysql',
+            host: 'my_db_host',
+            user: 'my_db_user',
+            password: 'my_db_password',
+            database: 'viajestransparentes'
+        },
+    }
+};
+```
 
+6. Por ultimo para levantar el servidor ejecutar:
 
-Por ultimo para levantar el servidor ejecutar 
+    `node app.js`
 
-Sais lift 
+##API
 
+http://viajestransparentes.node.spaceshiplabs.com/viaje/find
+http://viajestransparentes.node.spaceshiplabs.com/funcionario/find
+
+Puedes usar opciones como where, skip, limit, skip sort y callback (JSONP) o cualquiera de los atributos.
+
+para ver un registro individual
+
+    /:modelo/:id
+
+Ejemplos:
+
+http://viajestransparentes.node.spaceshiplabs.com/viaje/find?tipo_viaje=Internacional&limit=1000
+http://viajestransparentes.node.spaceshiplabs.com/viaje/14
+http://viajestransparentes.node.spaceshiplabs.com/funcionario/find?nombre_puesto=%20JEFE%20DE%20DEPARTAMENTO
+
+##Backend
+
+Se puede instalar el backend siguiendo los mismos pasos de este documento reemplazando el repositorio en el punto 1 con:
+
+- https://github.com/el-sonny/viajes-claros-admin.git
+
+Ver el readme de ese repositorio para mas información
 
