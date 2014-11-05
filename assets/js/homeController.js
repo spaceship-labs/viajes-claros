@@ -84,6 +84,13 @@ app.controller("homeCtrl", ['$scope', '$http','$filter',function ($scope, $http 
             });
     };
 
+    $scope.message_modal = function(){
+        $('#modal-advice').modal({ show: true});
+        setTimeout(function(){
+            $('#modal-advice').modal('hide');
+        },10000);
+    }
+
 	angular.extend($scope, {
 	    events: {
 	      markers: {
@@ -93,6 +100,7 @@ app.controller("homeCtrl", ['$scope', '$http','$filter',function ($scope, $http 
 	    }
 	});
 
+    $scope.message_modal();
     $scope.get_markers();
 
 }]);

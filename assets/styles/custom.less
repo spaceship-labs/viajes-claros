@@ -112,6 +112,7 @@ a:hover{text-decoration: none!important;}
 		a{color: mix(@gray,@gray-light)}
 		.active{color: @blue}
 	}
+	#modal-advice{z-index: 99999999}
 	.modal.in .modal-dialog{max-width: 430px!important}
 	.modal-content{
 		border-radius: 0;border: 3px solid @blue;text-align: center;
@@ -259,7 +260,7 @@ a:hover{text-decoration: none!important;}
 	.map-container{
 		position: relative;
 		.jumbotron{
-			background: url(../images/avion_home.jpg) center center no-repeat;background-size: cover;height: 100%;left: 0;text-align: center;padding: 0;position: absolute;top: 0;width: 100%;z-index: 9999;
+			background: url(../images/avion_home.jpg) center center no-repeat;background-size: cover;height: 100%;left: 0;text-align: center;padding: 0;position: absolute;top: 0;width: 100%;z-index: 999;
 			.content-jumbotron{
 				position: relative;height: 100%;
 				.text-jumbotron{
@@ -323,6 +324,7 @@ a:hover{text-decoration: none!important;}
 				strong{color: @blue;font-size: 18px}
 			}
 		}
+		.leaflet-top, .leaflet-bottom{z-index: 998}
 
 	}
 	.total-money{
