@@ -22,6 +22,7 @@ module.exports = {
                           viajes : viajes || [],
                           fullUrl : fullUrl,
                           title : funcionario.nombre_completo,
+                          description: 'Conoce los viajes de trabajo de '+funcionario.nombre_completo+' - @ifaimexico URL vía @viajesclaros #ViajesClaros'
                         });
                     }
                 });

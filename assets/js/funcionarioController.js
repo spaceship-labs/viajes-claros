@@ -110,8 +110,84 @@ app.controller("funcionarioCTL", ['$scope', '$http','$filter' ,function ($scope,
         $scope.myLine = new Chart(element).Bar(barChartData,options);
     };
 
+    $scope.layers =  {
+        baselayers: {
+            xyz: {
+                name: 'OpenStreetMap (XYZ)',
+                url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                type: 'xyz'
+                //layerOptions: {
+                  //  attribution: '<a href="http://spaceshiplabs.com" target="_blank">Spaceshiplabs.com</a> | <a  target="_blank" href="http://gasolinapp.com">Gasolinapp.com</a>'
+                //}
+            }
+        }
+    };
+    $scope.options = {
+        attributionControl : true, 
+        zoomControlPosition: 'bottomright',
+        imagePath : '/bower_components/leaflet/dist/images/'
+    };
+
+    $scope.mapCenter = {
+        lng : -99.133208,
+        lat : 19.4326077,
+        zoom : 4,
+    };
+
+    $scope.$on('leafletDirectiveMarker.click', function(event, args){
+        var place = $scope.markers[args.markerName].message;
+        place = $.parseHTML(place);
+        place = place[2].innerHTML;
+        $scope.loadViajes(place);
+    });
+
+    $scope.leafIcon = {
+        iconUrl: '../images/pin_mapa.png',
+        iconSize:     [33, 46], // size of the icon
+        iconAnchor:   [16, 36] // point of the icon which will correspond to marker's location
+    };
+
+
+    $scope.get_markers = function(){
+        var markers = [];
+        $scope.markers = [];
+        var msg;
+        $scope.viajes.forEach(function(marker){
+                var parcialGastado = (parseInt(marker.gasto_pasaje,10) ? parseInt(marker.gasto_pasaje,10) : 0) + (parseInt(marker.gasto_viatico,10) ? parseInt(marker.gasto_viatico,10) : 0);
+                var parcialGastadoStr = $filter('currency')(parcialGastado, '$');
+                msg = '<p><strong>' + parcialGastadoStr +' MXP'+'</strong></p>Gasto hasta el dia de hoy de viajes en <span class="place">'
+                      + marker.ciudad_destino + '</span>';
+                markers.push({
+                    lat: parseFloat(marker.destino_latitud),
+                    lng: parseFloat(marker.destino_longitud),
+                    message: msg,
+                    icon : $scope.leafIcon
+                });
+        });
+        $scope.markers = markers;
+        if(markers.length == 1){
+            var mark = markers[0];
+            $scope.mapCenter = {
+                lng : mark.lat,
+                lat : mark.lng,
+                zoom : 2
+            }
+        }
+    };
+
+    $scope.loadViajes = function(ciudad) {
+        $scope.mapPlace = ciudad;
+        $scope.toggleSidebar = true;
+
+        $http({method: 'POST', url: '/home/vajesPorCiudadJson?ciudad=' + ciudad})
+            .success(function(data){
+                $scope.items = data;
+            });
+    };
+
     $scope.startRadialD3();
     $scope.drawChartHorizontal();
+    $scope.get_markers();
 }]);
 
 app.controller("listadoCTL", ['$scope', '$http','$filter' ,function ($scope, $http, $filter) {

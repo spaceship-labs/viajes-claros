@@ -101,6 +101,24 @@
 				<div class="col-lg-12">
 	                <div class="inner-content-list">
 	    				<h2><strong>Viajes realizados</strong></h2>
+						<div class="map-container map-small">
+							<leaflet center='mapCenter' ng-class='mapClass' class='map' layers="layers" markers='markers' defaults='options' event-broadcast="events" ></leaflet>
+							<div class="aside" ng-show="toggleSidebar">
+								<a href="#" ng-click="toggleSidebar = !toggleSidebar" class="arrow-button"></a>
+								<perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="50" refresh-on-change="someArray">
+									<div class="aside-inner-content">
+										<h3>Estos son los viajes en: {{mapPlace}}</h3>
+										<ul>
+				                            <li ng-repeat="item in items">
+				                                <p>Fecha del viaje: <a href="{{'/viaje?id=' + item.id}}">{{item.fecha_inicio_com | date}}</a></p>
+				                                <p>Funcionario: <a href="{{'/funcionario?id=' + item.funcionario.id}}">{{item.funcionario.nombre_completo}}</a></p>
+				                            </li>
+
+										</ul>
+				                    </div>
+							    </perfect-scrollbar>
+							</div>	
+						</div>	
 	                    <div class="row trip-item ranks " ng-repeat="viaje in viajes | orderBy:fecha_inicio_com">
 	                        <div class="col-sm-4 top-places">
 	                            <div class="inner-content">

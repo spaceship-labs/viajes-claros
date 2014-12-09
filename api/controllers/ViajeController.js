@@ -22,7 +22,7 @@ module.exports = {
                                 fullUrl : fullUrl,
                                 viajes : viajesExtras,
                                 title : 'Detalles del viaje de ' + viaje.funcionario.nombre_completo,
-                                description : viaje.evento,
+                                description : 'Consulta el viaje a '+viaje.ciudad_destino+' de '+viaje.funcionario.nombre_completo+' - @ifaimexico vía @viajesclaros #ViajesClaros'
                             });
                         });
                     }

@@ -11,6 +11,10 @@ module.exports = {
         res.view();
 	},
 
+    aviso : function(req,res){
+        res.view();
+    },
+
     vajesJson : function(req,res) {
         var estado = req.param('estado');
         var dependencia = req.param('dependencia');
