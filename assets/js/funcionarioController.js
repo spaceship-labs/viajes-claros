@@ -135,10 +135,17 @@ app.controller("funcionarioCTL", ['$scope', '$http','$filter' ,function ($scope,
     };
 
     $scope.$on('leafletDirectiveMarker.click', function(event, args){
+        var lat = args.leafletEvent.latlng.lat;
+        var lng = args.leafletEvent.latlng.lng;
         var place = $scope.markers[args.markerName].message;
         place = $.parseHTML(place);
         place = place[2].innerHTML;
         $scope.loadViajes(place);
+        $scope.mapCenter = {
+            lng : lng,
+            lat : lat,
+            zoom : 4,
+        };
     });
 
     $scope.leafIcon = {
@@ -165,14 +172,14 @@ app.controller("funcionarioCTL", ['$scope', '$http','$filter' ,function ($scope,
                 });
         });
         $scope.markers = markers;
-        if(markers.length == 1){
+        /*if(markers.length == 1){
             var mark = markers[0];
             $scope.mapCenter = {
                 lng : mark.lat,
                 lat : mark.lng,
-                zoom : 2
+                zoom : 4
             }
-        }
+        }*/
     };
 
     $scope.loadViajes = function(ciudad) {
