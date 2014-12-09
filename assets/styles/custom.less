@@ -144,6 +144,7 @@ a:hover{text-decoration: none!important;}
 			a:after{display: block;}	
 		}
 	}
+	.code-links a{margin-top: 10px}
 	.code-links a:hover{color: #fff!important}
 	.map-container.map-small{margin: 0 auto;max-width: 97%;}
 	
@@ -279,6 +280,7 @@ a:hover{text-decoration: none!important;}
 					h1,p{color: #fff}
 					h1{margin-top:0;font-weight: 300}
 					p{font-weight: 700;max-width: 590px;margin: 0 auto}
+					.total-viajes{font-size: 28px}
 					.custom-button{margin-top: 15px}
 				}
 			}
@@ -344,6 +346,7 @@ a:hover{text-decoration: none!important;}
 		p{
 			color: #fff;font-size: 18px;font-weight: 300;max-width: 480px;margin: 0 auto;
 		}
+		.custom-button{margin-top: 10px;max-width: 200px;}
 
 	}
 	.top-people{
@@ -368,7 +371,13 @@ a:hover{text-decoration: none!important;}
 				.custom-button:hover{background: @turquoise}
 			}
 		}
-		.custom-button.see-all{background: transparent;border: 3px solid @blue;color: @blue;font-size: 14px;margin-top: 18px;max-width: none}
+		.carousel-control{display: block;background: none!important;}
+		.carousel-control .icon-prev, .carousel-control .glyphicon-chevron-left{left: 0}
+		.carousel-control .icon-prev, .carousel-control .glyphicon-chevron-left:before{content: '<';color: @blue;font-weight: 700}
+		.carousel-control .icon-prev, .carousel-control .glyphicon-chevron-right{right: 0}
+		.carousel-control .icon-prev, .carousel-control .glyphicon-chevron-right:before{content: '>';color: @blue;font-weight: 700}
+		.carousel-indicators{bottom: -40px}
+		.custom-button.see-all{background: transparent;border: 3px solid @blue;color: @blue;font-size: 14px;margin-top: 40px;max-width: none}
 		.custom-button.see-all:hover{background: @blue;color: #fff}
 
 	}
@@ -415,9 +424,11 @@ a:hover{text-decoration: none!important;}
 			#radial-two .arc , #radial-four .arc{fill: @turquoise;}
 			.charts-container{
 				max-width: 70%;margin: 0 auto;
-				.radial-chart .labels .label{font-family: 'Open Sans', sans-serif!important;font-size: 34px!important;font-weight: 300;}
-				.radial-chart .component .label{fill:@gray;color: @gray;font-weight: 300;font-size: 12px;text-align: center;text-transform: uppercase;}
-				.radial-chart{float: left;}
+				.radial-chart{
+					float: left;
+					.component .label{background: #2f96e9;fill:#2f96e9;color: #fff;font-weight: 300;font-size: 12px;padding: 4px 6px;text-align: center;text-transform: uppercase;}
+					.labels .label{font-family: 'Open Sans', sans-serif!important;font-size: 34px!important;font-weight: 300;}
+				}
 				.radial-chart + .radial-chart{float: right;}
 				.radial-chart .radial-svg{height: 160px;max-width: 125px}
 			}
@@ -758,6 +769,7 @@ a:hover{text-decoration: none!important;}
 }
 
 @media screen and (max-width: 350px){
+	#header .menu .logo.ifai-logo{display: none;}
 	#header .menu .logo.ifai-logo img{max-width: 35px!important}
 	#header .menu .logo.ifai-logo{margin-top: 0!important}
 	#header .menu .logo.ifai-logo img{max-width: 85px!important}

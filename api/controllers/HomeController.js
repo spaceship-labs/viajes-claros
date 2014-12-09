@@ -19,9 +19,14 @@ module.exports = {
         var estado = req.param('estado');
         var dependencia = req.param('dependencia');
         var nombre = req.param('nombre');
+        var totalViajes = 0;
+        Viaje.count().exec(function(e,total) {
+            totalViajes = total;
+        });
         Viaje.find({groupBy : ['ciudad_destino','destino_latitud','destino_longitud'],sum : ['gasto_viatico','gasto_pasaje']}).exec(function(e,viajes) {
             if (e) res.json({ text : "error",error : e });
-            res.json(viajes);
+            var resJson = {viajes:viajes,totalViajes:totalViajes};
+            res.json(resJson);
         });
     },
 

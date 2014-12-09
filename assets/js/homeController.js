@@ -4,6 +4,7 @@ app.controller("homeCtrl", ['$scope', '$http','$filter',function ($scope, $http 
 	$scope.toggleSidebar = false;
 	$scope.toggleAdvancedSearch = false;
     $scope.totalGastado = 0;
+    $scope.totalViajes = 0;
 	$scope.mapPlace = '';
     $scope.gasto_parcial = 0;
 	$scope.layers =  {
@@ -50,23 +51,25 @@ app.controller("homeCtrl", ['$scope', '$http','$filter',function ($scope, $http 
 		        function(data) {
 		        	var markers = [];
                     var totalGastado = 0;
+                    var totalViajes = 0;
 					$scope.markers = [];
 					var msg;
-					data.forEach(function(marker){
-                            var parcialGastado = (parseInt(marker.gasto_pasaje,10) ? parseInt(marker.gasto_pasaje,10) : 0) + (parseInt(marker.gasto_viatico,10) ? parseInt(marker.gasto_viatico,10) : 0);
-                            totalGastado += parcialGastado;
-							var parcialGastadoStr = $filter('currency')(parcialGastado, '$');
-							msg = '<p><strong>' + parcialGastadoStr +' MXP'+'</strong></p>Gasto hasta el dia de hoy de viajes en <span class="place">'
-								  + marker.ciudad_destino + '</span>';
-							markers.push({
-								lat: parseFloat(marker.destino_latitud),
-								lng: parseFloat(marker.destino_longitud),
-								message: msg,
-								icon : $scope.leafIcon
-							});
+					data.viajes.forEach(function(marker){
+                        var parcialGastado = (parseInt(marker.gasto_pasaje,10) ? parseInt(marker.gasto_pasaje,10) : 0) + (parseInt(marker.gasto_viatico,10) ? parseInt(marker.gasto_viatico,10) : 0);
+                        totalGastado += parcialGastado;
+						var parcialGastadoStr = $filter('currency')(parcialGastado, '$');
+						msg = '<p><strong>' + parcialGastadoStr +' MXP'+'</strong></p>Gasto hasta el dia de hoy de viajes en <span class="place">'
+							  + marker.ciudad_destino + '</span>';
+						markers.push({
+							lat: parseFloat(marker.destino_latitud),
+							lng: parseFloat(marker.destino_longitud),
+							message: msg,
+							icon : $scope.leafIcon
+						});
 					});
 					$scope.markers = markers;
                     $scope.totalGastado = totalGastado;
+                    $scope.totalViajes = data.totalViajes;
 		        }, 
 		        function(e) {
 		        	console.log('error');
