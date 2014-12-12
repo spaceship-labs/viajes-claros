@@ -110,6 +110,12 @@ app.controller("funcionarioCTL", ['$scope', '$http','$filter' ,function ($scope,
         $scope.myLine = new Chart(element).Bar(barChartData,options);
     };
 
+    $scope.drawDonutChart = function() {
+        var options = {
+
+        }
+    }
+
     $scope.layers =  {
         baselayers: {
             xyz: {
