@@ -63,13 +63,15 @@ app.directive('countTo', ['$timeout','$filter', function ($timeout,$filter) {
 
 }]);
 
-app.controller("searhcFormCTL", ['$scope', '$http', '$rootScope','limitToFilter',function ($scope, $http,$rootScope,limitToFilter) {
+app.controller("searchFormCTL", ['$scope', '$http', '$rootScope','limitToFilter',function ($scope, $http,$rootScope,limitToFilter) {
      $scope.funcionariosAJAX = function(name) {
+        if (!name) return [];
         return $http({method:'POST',url:"/funcionario/search_autocomplete?nombre="+name}).then(function(response){
-          return limitToFilter(response.data, 8);
+            return limitToFilter(response.data, 8);
         });
     };
     $scope.labelAC = function(item) {
+        if (!item) return "";
         return item.nombre_completo + '<small>' + item.nombre_puesto + '</small>';
     };
     $scope.onSelectPart = function ($item, $model, $label) {
@@ -148,8 +150,9 @@ app.controller("comparadorCTL", ['$scope', '$http', 'limitToFilter',function ($s
     });
 
     $scope.funcionariosAJAX = function(name) {
+        if (!name) return [];
         return $http({method:'POST',url:"/funcionario/search_autocomplete?nombre="+name}).then(function(response){
-          return limitToFilter(response.data, 8);
+            return limitToFilter(response.data, 8);
         });
     };
 

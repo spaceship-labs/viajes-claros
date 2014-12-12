@@ -120,6 +120,8 @@ app.controller("statisticsCTL", ['$scope', '$http','$filter','$rootScope','$loca
     $scope.ciudadesList = [];
     $scope.aerolineasList = [];
     $scope.funcionariosList = [];
+    $scope.ultimosViajesList = [];
+    $scope.funcionariosViajesList = [];
     $scope.internacionalesList = [];
     $scope.pasajesList = [];
     $scope.totalViajes = 0;
