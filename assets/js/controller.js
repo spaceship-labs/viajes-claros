@@ -75,7 +75,7 @@ app.controller("globalCTL", ['$scope', '$http', '$rootScope','$mdSidenav','limit
     $scope.onSelectPart = function ($item, $model, $label) {
         $scope.$item = $item;
         //console.log($item);
-        window.location = '/funcionario?id=' + $item.id;
+        window.location = '/funcionario/' + $item.id;
         $scope.$model = $model;
         $scope.$label = $label;
     };
