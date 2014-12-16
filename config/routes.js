@@ -51,21 +51,25 @@ module.exports.routes = {
       controller: 'home',
       action : 'viajesJson'
   },
+  '/home/viajesPorCiudadJson' : {
+      controller: 'home',
+      action : 'viajesPorCiudadJson'
+  },
   '/home/statisticsJson' : {
       controller: 'home',
       action : 'statisticsJson'
   },
-    '/funcionario' : {
-        controller: 'funcionario'
-    },
-    '/funcionario/search' : {
-        controller: 'funcionario',
-        action : 'search'
-    },
-    '/funcionario/statisticsJson' : {
-        controller : 'funcionario',
-        action : 'statisticsJson'
-    }
+  '/funcionario/:id' : {
+      controller: 'funcionario'
+  },
+  '/funcionario/search' : {
+      controller: 'funcionario',
+      action : 'search'
+  },
+  '/funcionario/statisticsJson' : {
+      controller : 'funcionario',
+      action : 'statisticsJson'
+  }
 
   // Custom routes here...
 

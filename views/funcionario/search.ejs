@@ -18,8 +18,8 @@
                     <div class="row trip-item ranks ">
                         <div class="col-sm-4 top-places">
                             <div class="inner-content">
-                                <a href="/funcionario?id=<%- funcionario.id %>"><img src="/images/funcionario-default.png" alt="" class="picture" /></a>
-                                <p class="big-blue"><a href="/funcionario?id=<%- funcionario.id %>"><%- funcionario.nombre_completo %></a></p>
+                                <a href="/funcionario/<%- funcionario.id %>"><img src="/images/funcionario-default.png" alt="" class="picture" /></a>
+                                <p class="big-blue"><a href="/funcionario/<%- funcionario.id %>"><%- funcionario.nombre_completo %></a></p>
                                 <p class="location"><strong>Cargo: </strong> <%- funcionario.cargo_nombre %></p>
                                 <p class="location"><strong>Institucion: </strong> <%- funcionario.institucion %></p>
                                 <p class="location"><strong>Dependencia: </strong> IFAI</p>
@@ -32,7 +32,7 @@
                             </div>
                         </div>
                         <div class="col-sm-4">
-                             <div class="inner-content"><a href="/funcionario?id=<%- funcionario.id %>" class="custom-button">Ver perfil</a></div>
+                             <div class="inner-content"><a href="/funcionario/<%- funcionario.id %>" class="custom-button">Ver perfil</a></div>
                         </div>
                     </div>
                     <% } %>

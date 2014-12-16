@@ -20,7 +20,7 @@
 		<div class="container-fluid" ng-controller="funcionarioCTL">
 			<div class="row">
 				<div class="col-lg-12">
-					<p class="breadcrumb-custom"><a href="/">Inicio</a> | <a href="/funcionario?id={{funcionario.id}}" class="capitalize active">{{funcionario.nombre_completo}}</a></p>
+					<p class="breadcrumb-custom"><a href="/">Inicio</a> | <a href="/funcionario/{{funcionario.id}}" class="capitalize active">{{funcionario.nombre_completo}}</a></p>
 				</div>
 			</div>
 			<div class="row ranks">
@@ -62,8 +62,8 @@
 							<h4><strong>Últimos tres viajes de trabajo</strong></h4>
 							<ul>
 								<li ng-repeat="viaje in viajes | orderBy:gasto_total | limitTo:3">
-									<a href="/viaje?id={{viaje.id}}"><img src="/images/hotel_icon.png" alt="" class="picture" /></a>
-									<p class="big-blue"><a href="/viaje?id={{viaje.id}}">{{viaje.gasto_total | currency}}</a></p>
+									<a href="/viaje/{{viaje.id}}"><img src="/images/hotel_icon.png" alt="" class="picture" /></a>
+									<p class="big-blue"><a href="/viaje/{{viaje.id}}">{{viaje.gasto_total | currency}}</a></p>
 									<p class="location"><a href="#">{{viaje.ciudad_destino}} {{viaje.pais_destino}}</a></p>
 									<p class="activity">{{viaje.evento | limitTo:50 }}...</p>
 								</li>
@@ -124,8 +124,8 @@
 										<h3>Estos son los viajes en: {{mapPlace}}</h3>
 										<ul>
 				                            <li ng-repeat="item in items">
-				                                <p>Fecha del viaje: <a href="{{'/viaje?id=' + item.id}}">{{item.fecha_inicio_com | date}}</a></p>
-				                                <p>Funcionario: <a href="{{'/funcionario?id=' + item.funcionario.id}}">{{item.funcionario.nombre_completo}}</a></p>
+				                                <p>Fecha del viaje: <a href="{{'/viaje/' + item.id}}">{{item.fecha_inicio_com | date}}</a></p>
+				                                <p>Funcionario: <a href="{{'/funcionario/' + item.funcionario.id}}">{{item.funcionario.nombre_completo}}</a></p>
 				                            </li>
 
 										</ul>
@@ -198,7 +198,7 @@
 	                            </div>
 	                        </div>
 	                        <div class="col-sm-4">
-	                            <div class="inner-content"><a href="{{'/viaje?id='+viaje.id}}" class="custom-button">Ver detalle del viaje</a></div>
+	                            <div class="inner-content"><a href="{{'/viaje/'+viaje.id}}" class="custom-button">Ver detalle del viaje</a></div>
 	                        </div>
 	                    </div>
 	                </div>
