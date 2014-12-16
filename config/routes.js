@@ -21,12 +21,8 @@
  */
 
 module.exports.routes = {
-
-
-  // Make the view located at `views/homepage.ejs` (or `views/homepage.jade`, etc. depending on your
-  // default view engine) your home page.
-  //
-  // (Alternatively, remove this and add an `index.html` file in your `assets` directory)
+  
+  // Custom routes here...
   '/': {
     controller: 'home'
   },
@@ -59,7 +55,7 @@ module.exports.routes = {
       controller: 'home',
       action : 'statisticsJson'
   },
-  '/funcionario/:id' : {
+  '/funcionario/:' : {
       controller: 'funcionario'
   },
   '/funcionario/search' : {
@@ -71,7 +67,7 @@ module.exports.routes = {
       action : 'statisticsJson'
   }
 
-  // Custom routes here...
+  
 
 
   // If a request to a URL doesn't match any of the custom routes above,
