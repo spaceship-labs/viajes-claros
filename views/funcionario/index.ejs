@@ -116,7 +116,7 @@
 				<div class="col-lg-12">
 	                <div class="inner-content-list">
 	    				<h2><strong>Viajes realizados</strong></h2>
-						<div class="map-container map-small">
+						<div ng-if="viajes" class="map-container map-small">
 							<leaflet center='mapCenter' ng-class='mapClass' class='map' layers="layers" markers='markers' defaults='options' event-broadcast="events" ></leaflet>
 							<div class="aside" ng-show="toggleSidebar">
 								<a href="#" ng-click="toggleSidebar = !toggleSidebar" class="arrow-button"></a>
@@ -133,14 +133,61 @@
 				                    </div>
 							    </perfect-scrollbar>
 							</div>	
-						</div>	
-	                    <div class="row trip-item ranks " ng-repeat="viaje in viajes | orderBy:fecha_inicio_com">
+						</div>
+						<form>	
+							<div ng-show="viajes" class="row filter-custom">
+								<div class="col-md-4">
+									<div class="inner-content">
+										<label class="checkbox-inline">
+										  <input type="checkbox" ng-model="filterNacionales" value="nacionales"> Nacionales
+										</label>
+										<label class="checkbox-inline">
+										  <input type="checkbox" ng-model="filterInternacionales" value="internacionales"> Internacionales
+										</label>
+									</div>
+								</div>
+								<div class="col-md-1">
+									<div class="inner-content">
+										<label for="">Ordenar por:</label>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="inner-content">
+										<select ng-model="orderField" class="form-control">
+											<option value="fecha_inicio_com">Fecha del viaje</option>
+											<option value="ciudad_destino">Destino del viaje</option>
+											<option value="evento">Nombre del evento</option>
+											<option value="gasto_total">Costo total del viaje</option>
+											<option value="duracion">Duracion del viaje</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="inner-content">
+										<div class="radio">
+										  <label>
+										    <input type="radio" ng-model="isReversed" ng-value="false">
+										    Ascendente
+										  </label>
+										</div>
+										<div class="radio">
+										  <label>
+										    <input type="radio" ng-model="isReversed"  ng-value="true">
+										    Descendente
+										  </label>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+	                    <div class="row trip-item ranks " ng-repeat="viaje in viajes | filter: filterTipo | orderBy:orderField:isReversed">
 	                        <div class="col-sm-4 top-places">
 	                            <div class="inner-content">
 	                                <a href="#"><img src="/images/pinlugar.png" alt="" class="picture" /></a>
 	                                <p class="big-blue">{{viaje.gasto_total | currency}}</p>
 	                                <p class="location"><a href="#"><strong>{{viaje.ciudad_destino}}, {{viaje.pais_destino}}</strong></a></p>
 	                                <p class="activity">{{viaje.evento | limitTo:50}}...</p>
+	                                <p class="activity">Tipo de viaje: {{viaje.tipo_viaje}}</p>
 	                            </div>
 	                        </div>
 	                        <div class="col-sm-4 duration">
@@ -148,6 +195,7 @@
 	                                <i class="icon-calendar"></i>
 	                                <p><strong>Duracion del viaje:</strong></p>
 	                                <p>{{getDateString(viaje)}}</p>
+	                                <p>Dias: {{getTravelDays(viaje)}}</p>
 	                            </div>
 	                        </div>
 	                        <div class="col-sm-4">

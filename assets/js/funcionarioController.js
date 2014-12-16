@@ -6,10 +6,29 @@ app.controller("funcionarioCTL", ['$scope', '$http','$filter' ,function ($scope,
     $scope.viajes = window.viajes;
     $scope.funcionario = window.funcionario;
     $scope.totalViaticos = 0.0;
+    $scope.orderField = 'fecha_inicio_com';
+    $scope.isReversed = false;
+    $scope.filterNacionales = true;
+    $scope.filterInternacionales = true;
+
     for (var i=0;i<$scope.viajes.length;i++) {
         var el = $scope.viajes[i];
         $scope.totalViaticos += el.gasto_viatico;
+        $scope.viajes[i].fecha_inicio_com = new Date($scope.viajes[i].fecha_inicio_com);
+        $scope.viajes[i].fecha_fin_com = new Date($scope.viajes[i].fecha_fin_com);
+
     }
+
+    $scope.filterTipo = function (item){
+        if($scope.filterNacionales && $scope.filterInternacionales){
+            return true;
+        }else if($scope.filterNacionales && item.tipo_viaje == 'Nacional'){
+            return true;
+        }else if($scope.filterInternacionales && item.tipo_viaje == 'Internacional'){
+            return true;
+        }
+        return false;
+    };
 
     $scope.fbShare = function(url) {
         console.log(url);
@@ -64,11 +83,19 @@ app.controller("funcionarioCTL", ['$scope', '$http','$filter' ,function ($scope,
     };
 
     $scope.getDateString = function(viaje){
-        var inicio = new Date(viaje.fecha_inicio_com);
-        var fin = new Date(viaje.fecha_fin_com);
+        var inicio = viaje.fecha_inicio_com;
+        var fin = viaje.fecha_fin_com;
         var inicioAux = $filter('date')(inicio, 'longDate');
         var finAux = $filter('date')(fin, 'longDate');
         return inicioAux + " al " + finAux;
+    };
+
+    $scope.getTravelDays = function(viaje){
+        var dia = 24*60*60*1000;
+        var inicio = new Date(viaje.fecha_inicio_com);
+        var fin = new Date(viaje.fecha_fin_com);
+        var diff = Math.round(Math.abs((inicio.getTime() - fin.getTime())/(dia)));
+        return diff;
     };
 
     $scope.setData = function() {

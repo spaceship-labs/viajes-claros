@@ -18,6 +18,8 @@
 					typeahead-min-length='1'
 					typeahead-on-select='onSelectPart($item, $model, $label)'
                     typeahead-template-url="typeahead-template.html"
+					typeahead-focus-first="false"				
+				/>
 
 				/>
                 <script type="text/ng-template" id="typeahead-template.html">
@@ -43,11 +45,11 @@
 					placeholder="Buscar servidor público"
 					onfocus="this.placeholder=''"
 					onblur="this.placeholder='Buscar servidor público'"
-					ng-model="selectedCountries"
-					typeahead="funcionario as funcionario.nombre_completo for funcionario in funcionariosSearch | filter:$viewValue | limitTo:6 "
+					ng-model="func"
+					typeahead="funcionario as labelAC(funcionario) for funcionario in funcionariosAJAX($viewValue) | filter:$viewValue | limitTo: 6"
 					typeahead-min-length='1'
 					typeahead-on-select='onSelectPart($item, $model, $label)'
-				
+					typeahead-focus-first="false"				
 				/>
 			</form>
 			<div class="clear"></div>

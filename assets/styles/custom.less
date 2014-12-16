@@ -186,7 +186,7 @@ a:hover{text-decoration: none!important;}
 						a{color: @gray;font-weight: 700;padding: 5px 20px 5px 15px}
 						a:before{
 							.dropdown-item-icon;
-							content: '\e812';font-size: 16px;color: @gray;
+							content: '\e80b';font-size: 16px;color: @gray;margin-left: -4px;
 						}
 						small{display: block;margin-left: 2.1em;font-size: 10px;font-weight: 300}
 					}
@@ -469,6 +469,9 @@ a:hover{text-decoration: none!important;}
 			.col-lg-12{padding-left: 0;padding-right: 0;}
 		}
 		.ranks{margin-top: 0}
+		.filter-custom{
+			.inner-content{padding: 20px}
+		}
 
 	}
 	#list{
@@ -654,7 +657,7 @@ a:hover{text-decoration: none!important;}
 	.col-sm-2{padding-top: 10px;text-align: center;}
 	.social-link{border-radius: 50%;border: 2px solid;font-size: 18px;padding: 2px}
 	.social-link + .social-link{margin-left: 4px}
-
+	.ifai-logo img{max-width: 80px;display: block;margin: 8px auto 0;display: none;}
 	#comparador-popup{
 		background: @blue;position: absolute;bottom: 100%;padding: 0px 0 60px;left: 0;width: 100%;z-index: 999999999;
 		#close-comparador-cont{
@@ -715,8 +718,7 @@ a:hover{text-decoration: none!important;}
 	.top-people,
 	#viaje .travel-title{margin: 20px 0!important}
 	#header .menu .search-form input[type="text"]{margin: 0;width: 220px!important}
-
-
+	#content #funcionario .filter-custom .inner-content{padding: 4px 20px}
 }
 @media screen and (max-width: 768px){
 	#header .menu{padding: 12px 0px!important}
@@ -746,10 +748,10 @@ a:hover{text-decoration: none!important;}
 @media screen and (max-width: 480px){
 	#header .container-fixed{
 		.gradient-blue;
-		position: fixed;top: 0;width: 100%;z-index: 99999;
+		position: fixed;top: 0;width: 100%!important;z-index: 99999;
 	}
 	#header .container-fake{display: block;}
-	#header .menu .logo.ifai-logo img{max-width: 45px!important}
+	#header .menu .logo.ifai-logo{display: none;}
 	#header .container .menu .search-form{position: static!important;}
 	#header .container .menu .search-form .dropdown-menu:before{}
 	#header .container .menu .search-form .dropdown-menu{width: 100%;}
@@ -766,14 +768,13 @@ a:hover{text-decoration: none!important;}
 	.modal-dialog{padding-top: 100px}
 	#home .top-people .person{margin-bottom: 10px}
 	.bar-chart svg{height: 300px!important}
+	.ifai-logo img{display: block!important}
 }
 
 @media screen and (max-width: 500px){
 }
 
 @media screen and (max-width: 350px){
-	#header .menu .logo.ifai-logo{display: none;}
-	#header .menu .logo.ifai-logo img{max-width: 35px!important}
 	#header .menu .logo.ifai-logo{margin-top: 0!important}
 	#header .menu .logo.ifai-logo img{max-width: 85px!important}
 	#header .menu .search-form input[type="text"]{background: none!important;width: 136px!important}
