@@ -33,47 +33,13 @@
 			<div class="row top-people">
                 <carousel interval="6000">
                     <slide  active="slide.active" >
-                    	<h2>Los tres servidores públicos con <strong class="big"> mayor gasto</strong> en viajes de trabajo </h2>
-						<!-- <h2>Los 3 servidores públicos <br/> con más gastos</strong></h2> -->
-						<div class="col-sm-4 person" ng-repeat="funcionario in funcionariosList | limitTo:3">
-							<div class="person-content">
-								<a href="#" ng-click="compare(funcionario)" class="comparar-button"><i class="icon icon-comparar"></i></a>
-								<img src="/images/funcionario-default.png" alt="" class="picture">
-								<p class="name">{{funcionario.nombre_completo}}</p>
-								<p class="charge">{{funcionario.cargo_nombre != 0 ? funcionario.cargo_nombre : "Puesto no disponible"}}</p>
-		                        <p class="dependency"><strong>{{funcionario.institucion != 0 ? funcionario.institucion : "No disponible"}}</strong></p>
-								<p class="money" count-to="{{funcionario.gasto_total}}" value="{{gasto_parcial}}" duration="2" filter="currency"></p>
-								<p class="gray">Gastos hasta hoy</p>
-								<a href="/funcionario/{{funcionario.funcionario}}" class="custom-button">Ver perfil</a>
-							</div>
-						</div>
+						<p>1</p>
 					</slide>
                     <slide  active="" >
-						<h2>Los 3 Viajes <br/> <strong class="big">mas caros</strong></h2>
-						<div class="col-sm-4 person" ng-repeat="viaje in viajesCarosList | limitTo:3">
-							<div class="person-content">
-								<img src="/images/funcionario-default.png" alt="" class="picture">
-								<p class="name">{{viaje.funcionario.nombre_completo}}</p>
-								<p class="charge">{{viaje.ciudad_destino}},{{viaje.estado_destino}}</p>
-		                        <p class="dependency"><strong>{{viaje.pais_destino}}</strong></p>
-								<p class="money">{{viaje.gasto_total | currency}}</p>
-								<a href="/viaje/{{viaje.id}}" class="custom-button">Ver viaje</a>
-							</div>
-						</div>
+						<p>2</p>
 					</slide>
                     <slide  active="" >
-                    	<h2>Los tres últimos viajes de trabajo <strong class="big">en el IFAI</strong></h2>
-						<!-- <h2>Los 3 ultimos <br/> <strong class="big">Viajes</strong></h2> -->
-						<div class="col-sm-4 person" ng-repeat="viaje in ultimosViajesList | limitTo:3">
-							<div class="person-content">
-                                <img src="/images/funcionario-default.png" alt="" class="picture">
-                                <p class="name">{{viaje.funcionario.nombre_completo}}</p>
-                                <p class="charge">{{viaje.ciudad_destino}}, {{viaje.estado_destino}}</p>
-                                <p class="dependency"><strong>{{viaje.pais_destino}}</strong></p>
-                                <p class="money">{{viaje.gasto_total | currency}}</p>
-                                <a href="/viaje/{{viaje.id}}" class="custom-button">Ver viaje</a>
-							</div>
-						</div>
+						<p>3</p>
 					</slide>
 				</carousel>
 				<div class="clear"></div>

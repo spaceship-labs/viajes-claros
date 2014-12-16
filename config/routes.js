@@ -65,6 +65,14 @@ module.exports.routes = {
   '/funcionario/statisticsJson' : {
       controller : 'funcionario',
       action : 'statisticsJson'
+  },
+ '/funcionario/search_autocomplete' : {
+      controller : 'funcionario',
+      action : 'search_autocomplete'
+  },
+ '/funcionario/comparar' : {
+      controller : 'funcionario',
+      action : 'comparar'
   }
 
   
