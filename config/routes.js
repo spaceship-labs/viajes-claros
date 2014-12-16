@@ -72,8 +72,16 @@ module.exports.routes = {
       action : 'statisticsJson'
   },
   '/service/updateLongitudViajes' : {
-      controller : 'service',
-      action : 'updateLongitudViajes'
+      controller: 'service',
+      action: 'updateLongitudViajes'
+  },
+ '/funcionario/search_autocomplete' : {
+      controller : 'funcionario',
+      action : 'search_autocomplete'
+  },
+ '/funcionario/comparar' : {
+      controller : 'funcionario',
+      action : 'comparar'
   }
 
   

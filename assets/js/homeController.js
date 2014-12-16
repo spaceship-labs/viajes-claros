@@ -231,7 +231,7 @@ app.controller("statisticsCTL", ['$scope', '$http','$filter','$rootScope','$loca
                       $scope.totalAerolineasVuelos += el.total;
                 });
                 $scope.redrawAerolineas();
-                $scope.drawHotels();
+                //$scope.drawHotels();
 
         });
     };
