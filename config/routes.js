@@ -86,9 +86,13 @@ module.exports.routes = {
   '/service/updateLongitudViajes' : {
       controller: 'service',
       action: 'updateLongitudViajes'
+  },
+  '/service/subscribe' : {
+      controller: 'service',
+      action: 'subscribe'
   }
-*/
   
+*/
 
 
   // If a request to a URL doesn't match any of the custom routes above,
