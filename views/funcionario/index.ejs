@@ -29,8 +29,7 @@
 						<i class="icon-comicion funcionario-icon"></i> 
 						<h1>{{funcionario.nombre_completo}}</h1>
 						<p><strong>Cargo: </strong>{{funcionario.cargo_nombre != 0 ? funcionario.cargo_nombre : "no disponible"}}</p>
-						<p><strong>Área: </strong>{{funcionario.institucion != 0 ? funcionario.institucion : "no disponible"}}</p>
-                        <p><strong>Dependencia: IFAI</strong></p>
+						<p><strong>Institucion: </strong>{{funcionario.institucion != 0 ? funcionario.institucion : "no disponible"}}</p>
 						<p class="money"><strong count-to="{{getTotal()}}" value="{{gasto_parcial}}" duration="2" filter="currency"></strong></p>
 						<p><strong><small>Gastos hasta el momento en viajes</small></strong></p>
 						<div class="share-links">
@@ -77,11 +76,11 @@
 			<div class="row ranks">
 				<div class="col-md-6 percentage-rank">
 					<div class="inner-content">
-						<h4><strong>Monto de viaticos</strong><br/>usados hasta ahora por este servidor</h4>
+						<h4>Monto de viáticos usados a la fecha</h4>
                     	<div class="bar-chart">
 							<canvas id="chart-horizontal" height="200" width="400"></canvas>                		
                     	</div>
-						<p class="total">Total de viaticos hasta el dia de hoy: {{totalViaticos | currency}}</p>
+						<p class="total">Total de viáticos hasta el dia de hoy: {{totalViaticos | currency}}</p>
 					</div>
 				</div>
 				<div class="col-md-6 percentage-rank">
