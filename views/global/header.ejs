@@ -20,8 +20,6 @@
                     typeahead-template-url="typeahead-template.html"
 					typeahead-focus-first="false"				
 				/>
-
-				/>
                 <script type="text/ng-template" id="typeahead-template.html">
                     <a tabindex="-1">
                         <span bind-html-unsafe="match.model.nombre_completo | typeaheadHighlight:query"></span>
