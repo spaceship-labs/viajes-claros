@@ -23,7 +23,7 @@
 		<div class="total-money">
 			<h1><span count-to="{{totalGastado}}" value="{{gasto_parcial}}" duration="2" filter="currency"></span></h1>
 			<p>Presupuesto gastado en viajes desde el <strong>2013</strong> hasta el día de hoy en viajes de <strong>SERVIDORES PÚBLICOS</strong></p>
-			<a href="#" class="custom-button bordered">Ver todos los viajes</a>
+			<!--<a href="#" class="custom-button bordered">Ver todos los viajes</a>-->
 		</div>
 		<%- partial('../global/modal_home')%>
 	</div>
@@ -41,7 +41,7 @@
 								<p class="charge">{{funcionario.nombre_puesto != 0 ? funcionario.nombre_puesto : "Puesto no disponible"}}</p>
 		                        <p class="dependency"><strong>ifai</strong></p>
 								<p class="money" count-to="{{funcionario.gasto_total}}" value="{{gasto_parcial}}" duration="2" filter="currency"></p>
-								<p class="gray">Gastos hasta hoy</p>
+								<p class="gray">acharGstos hasta hoy</p>
 								<a href="/funcionario?id={{funcionario.funcionario}}" class="custom-button">Ver perfil</a>
 							</div>
 						</div>
@@ -85,13 +85,16 @@
 					<div class="inner-content">
 						<a href="#" class="get-iframe" data-toggle="modal" data-target="#modal-code" title="Compartir gráfica" ng-click="openWidgetModal('/widget/hoteles')"><i class="icon icon-codigo"></i></a>
 						<h4><strong>Hoteles más visitados</strong><br/>por los servidores públicos</h4>
-						<ul>
+						<div class="bar-chart">
+							<canvas id="hotels" height="300" width="400"></canvas>
+						</div>
+						<!--<ul>
 							<li ng-repeat="hotel in hotelList">
 								<a><img src="/images/hotel_icon.png" alt="" class="picture" /></a>
 								<p class="place"><a href="/viaje/search_hotel?filtro={{hotel.hotel}}">{{hotel.hotel}}</a></p>
 								<p class="location"><a href="#">{{hotel.ciudad_destino}}, {{hotel.pais_destino}}</a></p>
 							</li>
-						</ul>
+						</ul>-->
 					</div>
 				</div>
                 <div class="col-md-6 percentage-rank">

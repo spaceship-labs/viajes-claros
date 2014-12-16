@@ -110,7 +110,7 @@ app.controller("homeCtrl", ['$scope', '$http','$filter',function ($scope, $http 
 	    }
 	});
 
-    $scope.message_modal();
+    //$scope.message_modal();
     $scope.get_markers();
 
 }]);
@@ -191,6 +191,24 @@ app.controller("statisticsCTL", ['$scope', '$http','$filter','$rootScope','$loca
         window.location = url;
     };
 
+    $scope.drawHotels = function(){
+        var hotelsData = {
+            labels : ["Enero","Febrero","Marzo","Abril","Mayo","Junio"],
+            datasets : [
+                {
+                    fillColor : "rgba(48,194,206,0.2)",
+                    strokeColor : "#4e8fff",
+                    pointColor : "#fff",
+                    pointStrokeColor : "#9DB86D",
+                    data : [203,156,99,251,305,247]
+                }
+            ]
+        }
+        var hotels = document.getElementById('hotels').getContext('2d');
+        new Chart(hotels).Line(hotelsData);
+    }
+
+
     $scope.loadData = function(){
         $http({method: 'POST', url: '/home/statisticsJson'}).success(function(data){
                 $scope.hotelList = data.hotelList;
@@ -209,6 +227,7 @@ app.controller("statisticsCTL", ['$scope', '$http','$filter','$rootScope','$loca
                       $scope.totalAerolineasVuelos += el.total;
                 });
                 $scope.redrawAerolineas();
+                $scope.drawHotels();
 
         });
     };
@@ -246,6 +265,7 @@ app.controller("statisticsCTL", ['$scope', '$http','$filter','$rootScope','$loca
         funcionarioObj.id = funcionarioObj.funcionario;
         $rootScope.$broadcast('sendFuncionario', funcionarioObj);
     }
+
 
     $scope.loadData();
 
