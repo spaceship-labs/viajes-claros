@@ -87,7 +87,10 @@ module.exports.routes = {
       controller: 'service',
       action: 'updateLongitudViajes'
   },
-
+    '/service/subscribe' : {
+        controller: 'service',
+        action: 'subscribe'
+    }
   
 
 
