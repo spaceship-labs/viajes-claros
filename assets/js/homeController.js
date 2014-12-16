@@ -110,7 +110,7 @@ app.controller("homeCtrl", ['$scope', '$http','$filter',function ($scope, $http 
 	    }
 	});
 
-    //$scope.message_modal();
+    $scope.message_modal();
     $scope.get_markers();
 
 }]);
