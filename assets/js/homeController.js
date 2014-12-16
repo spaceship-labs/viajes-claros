@@ -53,7 +53,7 @@ app.controller("homeCtrl", ['$scope', '$http','$filter',function ($scope, $http 
 
 
 	$scope.get_markers = function(){
-	    $http({method: 'POST', url: '/home/vajesJson'})
+	    $http({method: 'POST', url: '/home/viajesJson'})
 	    .success(
 		        function(data) {
 		        	var markers = [];
@@ -88,7 +88,7 @@ app.controller("homeCtrl", ['$scope', '$http','$filter',function ($scope, $http 
         $scope.mapPlace = ciudad;
         $scope.toggleSidebar = true;
 
-        $http({method: 'POST', url: '/home/vajesPorCiudadJson?ciudad=' + ciudad})
+        $http({method: 'POST', url: '/home/viajesPorCiudadJson?ciudad=' + ciudad})
             .success(function(data){
                 $scope.items = data;
             });
@@ -202,6 +202,10 @@ app.controller("statisticsCTL", ['$scope', '$http','$filter','$rootScope','$loca
                 $scope.viajesCarosList = data.viajesCarosList;
                 $scope.ultimosViajesList = data.ultimosViajesList;
                 $scope.viajesPorMes = data.viajesPorMes;
+
+                console.log($scope.ultimosViajesList[0]);
+                console.log($scope.viajesCarosList);
+
 
                 $scope.startRadialD3();
 

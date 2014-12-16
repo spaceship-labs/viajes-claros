@@ -219,7 +219,7 @@ app.controller("funcionarioCTL", ['$scope', '$http','$filter' ,function ($scope,
         $scope.mapPlace = ciudad;
         $scope.toggleSidebar = true;
 
-        $http({method: 'POST', url: '/home/vajesPorCiudadJson?ciudad=' + ciudad})
+        $http({method: 'POST', url: '/home/viajesPorCiudadJson?ciudad=' + ciudad})
             .success(function(data){
                 $scope.items = data;
             });

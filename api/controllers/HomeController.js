@@ -15,7 +15,7 @@ module.exports = {
         res.view();
     },
 
-    vajesJson : function(req,res) {
+    viajesJson : function(req,res) {
         var estado = req.param('estado');
         var dependencia = req.param('dependencia');
         var nombre = req.param('nombre');
@@ -32,7 +32,7 @@ module.exports = {
         });
     },
 
-    vajesPorCiudadJson : function(req,res) {
+    viajesPorCiudadJson : function(req,res) {
         var ciudad = req.param('ciudad');
         Viaje.find({ ciudad_destino : ciudad }).populate('funcionario').exec(function(err,viajes) {
             if (err) res.json({ text : "error",error : err });
@@ -100,7 +100,7 @@ module.exports = {
         });
 
         asyncTasks.push(function(cb){
-            Viaje.find({ sort : 'gasto_total desc',limit : 3}).exec(
+            Viaje.find({ sort : 'gasto_total desc',limit : 3}).populate('funcionario').exec(
                 function(e,viajes){
                     if (e) res.json({ text : "error viajes caros",error : e });
                     top3viajesCaros = viajes;
@@ -109,7 +109,7 @@ module.exports = {
         });
 
         asyncTasks.push(function(cb){
-            Viaje.find({ fecha_inicio_com : { '!' : 'No aplica' } ,sort: 'fecha_inicio_com DESC',limit : 3}).exec(
+            Viaje.find({ fecha_inicio_com : { '!' : 'No aplica' } ,sort: 'fecha_inicio_com DESC',limit : 3}).populate('funcionario').exec(
                 function(e,viajes){
                     if (e) res.json({ text : "error ultimos viajes",error : e });
                     ultimosViajes = viajes;
