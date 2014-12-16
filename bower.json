@@ -32,6 +32,7 @@
     "perfect-scrollbar": "~0.5.2",
     "angular-perfect-scrollbar": "*",
     "bootstrap-touch-carousel": "~0.8.0",
-    "morris": "~0.5.2"
+    "morris": "~0.5.2",
+    "angular-material": "~0.6.1"
   }
 }

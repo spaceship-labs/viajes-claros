@@ -1,4 +1,4 @@
-var app = angular.module("viajesTransparentes", ['leaflet-directive','ui.bootstrap','perfect_scrollbar' ]);
+var app = angular.module("viajesTransparentes", ['leaflet-directive','ui.bootstrap','perfect_scrollbar','ngMaterial' ]);
 
 app.directive('countTo', ['$timeout','$filter', function ($timeout,$filter) {
     return {
@@ -63,8 +63,10 @@ app.directive('countTo', ['$timeout','$filter', function ($timeout,$filter) {
 
 }]);
 
-app.controller("searchFormCTL", ['$scope', '$http', '$rootScope','limitToFilter',function ($scope, $http,$rootScope,limitToFilter) {
-     $scope.funcionariosAJAX = function(name) {
+app.controller("globalCTL", ['$scope', '$http', '$rootScope','$mdSidenav','limitToFilter',function ($scope, $http,$rootScope,$mdSidenav,limitToFilter) {
+    $scope.funcionariosComparador = [];
+
+    $scope.funcionariosAJAX = function(name) {
         if (!name) return [];
         return $http({method:'POST',url:"/funcionario/search_autocomplete?nombre="+name}).then(function(response){
             return limitToFilter(response.data, 8);
@@ -77,6 +79,28 @@ app.controller("searchFormCTL", ['$scope', '$http', '$rootScope','limitToFilter'
         $scope.$model = $model;
         $scope.$label = $label;
     };
+
+    $scope.onSelectComparador = function ($item, $model, $label) {
+        $scope.fun = '';
+        if($scope.funcionariosComparador.length < 9){
+            $scope.funcionariosComparador.push($item);
+
+            if($scope.validateForm()){
+                $('#compare-icon').removeClass('rotateIn');
+                setTimeout(function(){
+                    $('#compare-icon').addClass('rotateIn');                
+                },300);
+            }
+        }
+    }
+
+    $scope.removeFromComp = function(item){
+        var index = $scope.funcionariosComparador.indexOf(item);
+        if(index > -1){
+            $scope.funcionariosComparador.splice(index,1);
+        }
+
+    }
 
     $scope.scrollTo = function(){
         setTimeout(
@@ -97,6 +121,9 @@ app.controller("searchFormCTL", ['$scope', '$http', '$rootScope','limitToFilter'
         func();
     }
 
+    $scope.toggleLeft = function() {
+        $mdSidenav('left').toggle();
+    };
     //$scope.loadFuncionarios();
 }]);
 
@@ -213,3 +240,4 @@ app.controller("comparadorCTL", ['$scope', '$http', 'limitToFilter',function ($s
 
 
 }]);
+

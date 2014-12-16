@@ -3,6 +3,7 @@ body{font-family: 'Open Sans',sans-serif!important;}
 	display: none !important;
 }
 a{text-decoration:none;}
+html p, body p{line-height: initial!important}
 a,p,h1,h2,h3,h4,a[href],input,textarea,span{font-family: 'Open Sans', sans-serif!important;}
 input:focus::-webkit-input-placeholder{color: transparent;}
 @blue : #2f96e9;
@@ -694,6 +695,48 @@ a:hover{text-decoration: none!important;}
 	#comparador-popup.fixed{bottom: 0;position: fixed;z-index: 999999999;}
 }
 
+.md-sidenav-backdrop{z-index: 9999!important}
+#sidebar-comparador{
+	background: #238BDD;overflow: visible;z-index: 9999;
+	md-toolbar{
+		background: #167FD1;padding: 12px 6px;text-align: center;
+		h2{font-weight: 700}
+		.icon-container{
+			margin: 0 auto;
+			.icon-comparar{background: #fff;border-radius: 50%; color: #30c2ce; cursor: pointer; font-size: 44px;} 			
+		}
+	}
+	md-content{
+		background: #238BDD;color: #fff;overflow: visible;
+		label,input[type="text"]{color: #fff;}
+		label{font-size: 10px;margin-bottom: 22px;-webkit-transform: none;transform: none;}
+		input[type="text"]{width: 80%;}
+		.to-compare{
+			li{
+				.del{color: #fff;font-size: 16px;font-weight: 700;margin-left:6px;}
+			}
+		}
+	}
+	.dropdown-menu{
+		background: transparent;border: 0;box-shadow: none!important;border-radius: 0;padding-top: 9px;z-index: 99999;
+		li{
+			cursor: pointer;background: @gray-light;
+			a{color: @gray;font-weight: 700;padding: 5px 20px 5px 15px}
+			a:before{
+				.dropdown-item-icon;
+				content: '\e80b';font-size: 16px;color: @gray;margin-left: -4px;
+			}
+			small{display: block;margin-left: 2.1em;font-size: 10px;font-weight: 300}
+		}
+		li:hover , li.active{
+			background: @blue;
+			a{color: #fff}
+			a:before{color: #fff;}
+		}
+	}
+	.dropdown-menu:before{content: '';display: block;position: absolute;left: 0;top: 0;width: 0; height: 0; border-style: solid; border-width: 0 10px 9px 10px; border-color: transparent transparent @gray-light transparent;} 
+
+}
 
 @media all and (max-width: 1170px){
 	#header .dropdown-menu{left: auto!important;right: 0;}
