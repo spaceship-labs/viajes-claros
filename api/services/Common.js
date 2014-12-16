@@ -46,3 +46,10 @@ module.exports.sendNewEmail = function(funcionario,subscription,cb) {
     });
     this.sendEmail(mail,cb);
 };
+
+module.exports.viajesRequestToString = function(request) {
+    if (!_.isUndefined(request)){
+        return "test definido";
+    }
+    return "test no definido";
+};

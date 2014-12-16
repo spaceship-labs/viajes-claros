@@ -14,7 +14,8 @@ module.exports = {
     },
     afterCreate : function(subscription,cb){
         Funcionario.findOne({ id : subscription.funcionario }).exec(function(err,funcionario) {
-            if (err) { return console.log(err);}
+            if (err) { cb(err);}
+            //console.log(subscription);
             Common.sendNewEmail(funcionario,subscription,cb);
         });
     }

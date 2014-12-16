@@ -14,12 +14,18 @@
 					onfocus="this.placeholder=''"
 					onblur="this.placeholder='Buscar servidor público'"
 					ng-model="func"
-					typeahead="funcionario as labelAC(funcionario) for funcionario in funcionariosAJAX($viewValue) | filter:$viewValue | limitTo: 6"
+					typeahead="funcionario for funcionario in funcionariosAJAX($viewValue) | filter:$viewValue | limitTo: 6"
 					typeahead-min-length='1'
 					typeahead-on-select='onSelectPart($item, $model, $label)'
-				
-				/>
+                    typeahead-template-url="typeahead-template.html"
 
+				/>
+                <script type="text/ng-template" id="typeahead-template.html">
+                    <a tabindex="-1">
+                        <span bind-html-unsafe="match.model.nombre_completo | typeaheadHighlight:query"></span>
+                        <small bind-html-unsafe="match.model.nombre_puesto"></small>
+                    </a>
+                </script>
 			</form>
 			<div class="clear"></div>
 		</div>

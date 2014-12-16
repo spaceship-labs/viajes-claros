@@ -38,6 +38,14 @@ module.exports.routes = {
   '/graficas': {
       controller : 'service',
       action : 'graficas'
+  },
+  '/viaje/:id' : {
+      controller : 'Viaje',
+      action : 'index'
+  },
+  '/viajes' : {
+      controller : 'Viaje',
+      action : 'list'
   }
 
   // Custom routes here...

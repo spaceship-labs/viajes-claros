@@ -1,4 +1,4 @@
-	<ul class="menu-lateral" ng-controller="lateralCTL">
+<ul class="menu-lateral" ng-controller="lateralCTL">
 		<li>
 			<a ng-click="toggleComp(scrollTo)" href="#comparador-popup"><i class="icon-comparar"></i></a>
 			<p>Comparar</p>
@@ -11,13 +11,19 @@
 			<a href="/datos"><i class="icon-descargar"></i></a>
 			<p>Descargar datos abiertos</p>
 		</li>
-		<li>
-			<a href="#seccion1"><i class="icon-face"></i></a>
-			<p>Facebook</p>
-		</li>
-		<li>
-			<a href="#seccion1"><i class="icon-twit"></i></a>
-			<p>Twitter</p>
-		</li>
+
+    <li>
+        <a href="https://www.facebook.com/share.php?u='<%- (typeof fullUrl != 'undefined') ? fullUrl : 'http://viajestransparentes.node.spaceshiplabs.com' %>'&title='<%- (typeof description != 'undefined') ? description : 'viajes transparentes' %>'" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+           target="_blank"><i class="icon-face"></i></a>
+        <p>Facebook</p>
+    </li>
+    <li>
+        <a href="https://twitter.com/share?via='<%- !_.isUndefined(title) ? title : 'Viajes transparentes' %>'&text='<%- (typeof description != 'undefined') ? description : 'viajes transparentes' %>'url=<%- (typeof fullUrl != 'undefined') ? fullUrl : 'http://viajestransparentes.node.spaceshiplabs.com' %>" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+           target="_blank"><i class="icon-twit"></i></a>
+        <p>Twitter</p>
+    </li>
+
+
+
 
 	</ul>
