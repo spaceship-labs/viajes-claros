@@ -82,7 +82,7 @@
 						</div>
 						<div class="inner-content panel-collapse collapse in" id="collapse1">
 							<p class="info-icon"><i class="icon-comicion"></i></p>
-							<h4>Comision</h4>
+							<h4>Comisión</h4>
 							<ul>
 								<li><p><strong>Mecanismo que origina la comisión</strong></p><p>{{viaje.mec_origen}}</p></li>
 								<li><p><strong>Quién invita / Quién solicita</strong></p><p>{{viaje.institucion_genera}}</p></li>
@@ -107,8 +107,8 @@
 							<h4>Tipo de viaje</h4>
 							<ul>
 								<li><p><strong>Tipo viaje</strong></p><p>{{viaje.tipo_viaje}}</p></li>
-								<li><p><strong>Numero de acuerdo autorización</strong></p><p>{{viaje.acuerdo}}</p></li>
-								<li><p><strong>Numero de oficio</strong></p><p>{{viaje.oficio}}</p></li>
+								<li><p><strong>Número de acuerdo autorización</strong></p><p>{{viaje.acuerdo}}</p></li>
+								<li><p><strong>Número de oficio</strong></p><p>{{viaje.oficio}}</p></li>
 								<li><p><strong>País de origen</strong></p><p>{{viaje.pais_origen}}</p></li>
 								<li><p><strong>Estados de origen</strong></p><p>{{viaje.estado_origen}}</p></li>
 								<li><p><strong>Ciudad de origen</strong></p><p>{{viaje.ciudad_origen}}</p></li>
@@ -134,7 +134,7 @@
 							<p class="info-icon"><i class="icon-motivo"></i></p>
 							<h4>Motivo</h4>
 							<ul>
-								<li><p><strong>Motivo de la comision</strong></p><p>{{viaje.motivo}}</p></li>
+								<li><p><strong>Motivo de la comisión</strong></p><p>{{viaje.motivo}}</p></li>
 								<li><p><strong>Antecedentes</strong></p><p>{{viaje.antecedente}}</p></li>
 							</ul>
 						</div>
@@ -167,7 +167,7 @@
 								<h4>
 									<a href="#collapse5" data-toggle="collapse" parent="#travel-info">
 										<i class="icon-viaticos"></i>
-										Viaticos 
+										Viáticos 
 										<i class="icon icon-flecha"></i>
 									</a>
 								</h4>
@@ -175,7 +175,7 @@
 						</div>
 						<div class="inner-content panel-collapse collapse in" id="collapse5">
 							<p class="info-icon"><i class="icon-viaticos"></i></p>
-							<h4>Viaticos</h4>
+							<h4>Viáticos</h4>
 							<ul>
 								<li><p><strong>Gasto por viaticos m.n.</strong></p><p>{{viaje.gasto_viatico | currency}}</p></li>
 								<li><p><strong>Institución que cubre el hospedaje</strong></p><p>{{viaje.inst_hospedaje}}</p></li>
@@ -184,8 +184,8 @@
 								<li><p><strong>Fecha de salida</strong></p><p>{{viaje.fecha_fin_hotel}}</p></li>
 								<li><p><strong>Costo total del hospedaje</strong></p><p>{{viaje.costo_hotel | currency}}</p></li>
 								<li><p><strong>Monto comprobado de viaticos</strong></p><p>{{viaje.viatico_comprobado | currency}}</p></li>
-								<li><p><strong>Monto de viaticos sin comprobación</strong></p><p>{{viaje.viatico_sin_comprobar | currency}}</p></li>
-								<li><p><strong>Monto de viaticos devueltos</strong></p><p>{{viaje.viatico_devuelto | currency}}</p></li>
+								<li><p><strong>Monto de viáticos sin comprobación</strong></p><p>{{viaje.viatico_sin_comprobar | currency}}</p></li>
+								<li><p><strong>Monto de viáticos devueltos</strong></p><p>{{viaje.viatico_devuelto | currency}}</p></li>
 
 							</ul>
 						</div>
@@ -209,10 +209,10 @@
 							<p class="info-icon"><i class="icon-comicion"></i></p>
 							<h4>Puesto</h4>
 							<ul>
-								<li><p><strong>Numero de comisión</strong></p><p>{{viaje.consecutivo}}</p></li>
-								<li><p><strong>Servidor publico comisionado</strong></p><p><a class="capitalize" href="/funcionario?id={{funcionario.id}}">{{funcionario.nombre_completo}}</a></p></li>
+								<li><p><strong>Número de comisión</strong></p><p>{{viaje.consecutivo}}</p></li>
+								<li><p><strong>Servidor público comisionado</strong></p><p><a class="capitalize" href="/funcionario?id={{funcionario.id}}">{{funcionario.nombre_completo}}</a></p></li>
 								<li><p><strong>Cargo</strong></p><p>{{funcionario.nombre_puesto}}</p></li>
-								<li><p><strong>Grupo jerarquico</strong></p><p>{{funcionario.cargo_nombre_superior}}</p></li>
+								<li><p><strong>Grupo jerárquico</strong></p><p>{{funcionario.cargo_nombre_superior}}</p></li>
 							</ul>
 						</div>
 					</div>
@@ -232,7 +232,7 @@
 							<p class="info-icon"><i class="icon-moneda"></i></p>
 							<h4>Tarifa</h4>
 							<ul>
-								<li><p><strong>Tarifa diaria para viaticos</strong></p><p>{{viaje.tarifa_diaria | currency}}</p></li>
+								<li><p><strong>Tarifa diaria para viáticos</strong></p><p>{{viaje.tarifa_diaria | currency}}</p></li>
 								<li><p><strong>Moneda</strong></p><p>{{viaje.moneda}}</p></li>
 							</ul>
 						</div>
@@ -355,7 +355,7 @@
 				</div>			
 			</div>
 			<div class="row top-people">
-				<h2>Todos los servidores públicos que fueron a ese evento</h2>
+				<h2>Otros servidores públicos que asistieron a ese evento</h2>
 				<%
                 for(var i=0;i<viajes.length;i++){
                     var viajeAux = viajes[i];
