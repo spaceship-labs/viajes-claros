@@ -1,12 +1,74 @@
 <div id="viajes-filtros" ng-controller="viajeSearchCTL">
 	<script type="text/javascript">
 		window.viajes = <%- JSON.stringify(viajes) %>;
+        window.request = <%- JSON.stringify(request) %>;
 	</script>
 	<div class="centered-content">
 		<div class="container-fluid">
+            <div class="row filter">
+                <div aria-label="Filtros" role="group" class="btn-group btn-group-justified">
+                    <div role="group" class="btn-group">
+                        <a aria-expanded="true" role="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle" href="#" ng-class="request.tipo_viaje ? 'strong' : ''">
+                            Transportacion <span class="caret"></span>
+                        </a>
+                        <ul role="menu" class="dropdown-menu">
+                            <li><a href="#" class="icon-world">Terrestre</a></li>
+                            <li><a href="#" class="icon-vuelos">Aereo</a></li>
+                        </ul>
+                    </div>
+                    <div role="group" class="btn-group">
+                        <a aria-expanded="true" role="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle" href="#" ng-class="request.destino ? 'strong' : ''">
+                           Destino <span class="caret"></span>
+                        </a>
+                        <select chosen class="dropdown-menu">
+                            <option value="1">test 1</option>
+                            <option value="2">test 2</option>
+                        </select>
+                    </div>
+                    <div role="group" class="btn-group">
+                        <a aria-expanded="true" role="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle" href="#" ng-class="request.tema ? 'strong' : ''">
+                            Tema <span class="caret"></span>
+                        </a>
+                        <select chosen role="menu" class="dropdown-menu">
+                            <option value="1">test 1</option>
+                            <option value="2">test 2</option>
+                        </select>
+                    </div>
+                    <div role="group" class="btn-group">
+                        <a aria-expanded="true" role="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle" href="#" ng-class="request.comision ? 'strong' : ''">
+                            Comision <span class="caret"></span>
+                        </a>
+                        <ul role="menu" class="dropdown-menu">
+                            <li>
+                                <select chosen>
+                                    <option value="1">test 1</option>
+                                    <option value="2">test 2</option>
+                                </select>
+                            </li>
+                        </ul>
+                    </div>
+                    <div role="group" class="btn-group">
+                        <a aria-expanded="true" role="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle" href="#" ng-class="request.unidad ? 'strong' : ''">
+                            Unidad Responsable <span class="caret"></span>
+                        </a>
+                        <ul role="menu" class="dropdown-menu">
+                            <li>
+                                <select chosen>
+                                    <option value="1">test 1</option>
+                                    <option value="2">test 2</option>
+                                </select>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <a role="button" class="btn btn-default icon-descargar" href="#">Borrar</a>
+                </div>
+            </div>
+            <div class="row">
+                <h2 class="text-center"><strong><%- title %></strong></h2>
+            </div>
 			<div class="row trips">
 				<div class="inner-content-list">
-					<h2><strong><%- title %></strong></h2>
 			        <div class="row trip-item ranks " ng-repeat="viaje in viajes | orderBy:fecha_inicio_com">
 			            <div class="col-sm-4 top-places">
 			                <div class="inner-content">

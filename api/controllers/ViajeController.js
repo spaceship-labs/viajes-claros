@@ -4,6 +4,7 @@
 module.exports = {
     index : function(req,res){
         var id = req.param('id');
+        var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
         if (id) {
             Viaje.findOne({id : id}).populate('funcionario').exec(function(err,viaje){
                 if (err) {
@@ -16,7 +17,6 @@ module.exports = {
                                 console.log(err);
                                 res.forbidden();
                             }
-                            var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
                             res.view({ 
                                 funcionario : viaje.funcionario,viaje : viaje,
                                 fullUrl : fullUrl,
@@ -32,8 +32,61 @@ module.exports = {
                 }
             });
         } else {
-            res.redirect('/');
+            res.forbidden();
         }
+    },
+    list : function(req,res) {
+        var request = req.param('request');
+        var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+
+        var asyncTasks = [];
+        asyncTasks.push(function(cb){
+            Viaje.query("select distinct pais_destino,estado_destino,ciudad_destino  from viaje",
+                function(e,d){
+                    if (e) res.json({ text : "error destinos",error : e });
+                    destinos = d;
+                    cb();
+                });
+        });
+        asyncTasks.push(function(cb){
+            Viaje.query("select distinct tema from viaje",
+                function(e,t){
+                    if (e) res.json({ text : "error temas",error : e });
+                    temas = t;
+                    cb();
+                });
+        });
+        asyncTasks.push(function(cb){
+            Viaje.query("select distinct tipo_com from viaje",
+                function(e,c){
+                    if (e) res.json({ text : "error tipo comisiones",error : e });
+                    comiciones = c;
+                    cb();
+                });
+        });
+
+        Viaje.find().exec(function(err,viajes){
+            if (err) {
+                console.log(err);
+                return;
+            }
+            async.parallel(asyncTasks,function(){
+                var catalog = {
+                    destinosCatalogo : destinos,
+                    temasCatalogo : temas,
+                    comisionCatalogo : comiciones
+                };
+
+                res.view('viaje/search',{
+                    viajes : viajes,
+                    fullUrl : fullUrl,
+                    title : 'Viajes Claros',
+                    description : Common.viajesRequestToString(request),
+                    request : request || {},
+                    catalog : catalog
+                });
+            });
+        });
     },
     searchtipo : function(req,res){
         var term = req.param('filtro');
@@ -115,5 +168,5 @@ module.exports = {
         } else {
             res.redirect('/');
         }
-    },
+    }
 };

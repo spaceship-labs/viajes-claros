@@ -67,7 +67,7 @@ app.controller("homeCtrl", ['$scope', '$http','$filter',function ($scope, $http 
 						var parcialGastadoStr = $filter('currency')(parcialGastado, '$');
 						msg = '<p><strong>' + parcialGastadoStr +' MXP'+'</strong></p>Gasto hasta el dia de hoy de viajes en <span class="place">'
 							  + marker.ciudad_destino + '</span>';
-						markers.push({
+                        markers.push({
 							lat: parseFloat(marker.destino_latitud),
 							lng: parseFloat(marker.destino_longitud),
 							message: msg,
@@ -124,6 +124,8 @@ app.controller("statisticsCTL", ['$scope', '$http','$filter','$rootScope','$loca
     $scope.funcionariosViajesList = [];
     $scope.internacionalesList = [];
     $scope.pasajesList = [];
+    $scope.viajesCarosList = [];
+    $scope.ultimosViajesList = [];
     $scope.totalViajes = 0;
     $scope.totalVuelos = 0;
     $scope.totalAerolineasVuelos = 0;
@@ -197,6 +199,9 @@ app.controller("statisticsCTL", ['$scope', '$http','$filter','$rootScope','$loca
                 $scope.funcionariosList = data.funcionariosList;
                 $scope.internacionalesList = data.internacionalesList;
                 $scope.pasajesList = data.pasajesList;
+                $scope.viajesCarosList = data.viajesCarosList;
+                $scope.ultimosViajesList = data.ultimosViajesList;
+                $scope.viajesPorMes = data.viajesPorMes;
 
                 $scope.startRadialD3();
 

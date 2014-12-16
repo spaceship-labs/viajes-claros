@@ -100,7 +100,7 @@ module.exports = {
         });
 
         asyncTasks.push(function(cb){
-            Viaje.find().exec(
+            Viaje.find({ sort : 'gasto_total desc',limit : 3}).exec(
                 function(e,viajes){
                     if (e) res.json({ text : "error viajes caros",error : e });
                     top3viajesCaros = viajes;
@@ -109,13 +109,23 @@ module.exports = {
         });
 
         asyncTasks.push(function(cb){
-            Viaje.find().exec(
+            Viaje.find({ fecha_inicio_com : { '!' : 'No aplica' } ,sort: 'fecha_inicio_com DESC',limit : 3}).exec(
                 function(e,viajes){
                     if (e) res.json({ text : "error ultimos viajes",error : e });
                     ultimosViajes = viajes;
                     cb();
                 });
         });
+
+        asyncTasks.push(function(cb){
+            Viaje.find({ fecha_inicio_com : { '!' : 'No aplica' } ,sort: 'fecha_inicio_com DESC',limit : 3}).exec(
+                function(e,viajes){
+                    if (e) res.json({ text : "error viajes por mes",error : e });
+                    viajesPorMes = viajes;
+                    cb();
+                });
+        });
+
 
         async.parallel(asyncTasks,function(){
             var response = {

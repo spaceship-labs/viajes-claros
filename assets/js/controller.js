@@ -72,10 +72,6 @@ app.controller("globalCTL", ['$scope', '$http', '$rootScope','$mdSidenav','limit
             return limitToFilter(response.data, 8);
         });
     };
-    $scope.labelAC = function(item) {
-        if (!item) return "";
-        return item.nombre_completo + '<small>' + item.nombre_puesto + '</small>';
-    };
     $scope.onSelectPart = function ($item, $model, $label) {
         $scope.$item = $item;
         //console.log($item);
@@ -85,13 +81,25 @@ app.controller("globalCTL", ['$scope', '$http', '$rootScope','$mdSidenav','limit
     };
 
     $scope.onSelectComparador = function ($item, $model, $label) {
-        $scope.funcionariosComparador.push($item);
-        if($scope.validateForm()){
-            $('#compare-icon').removeClass('rotateIn');
-            setTimeout(function(){
-                $('#compare-icon').addClass('rotateIn');                
-            },300);
+        $scope.fun = '';
+        if($scope.funcionariosComparador.length < 9){
+            $scope.funcionariosComparador.push($item);
+
+            if($scope.validateForm()){
+                $('#compare-icon').removeClass('rotateIn');
+                setTimeout(function(){
+                    $('#compare-icon').addClass('rotateIn');                
+                },300);
+            }
         }
+    }
+
+    $scope.removeFromComp = function(item){
+        var index = $scope.funcionariosComparador.indexOf(item);
+        if(index > -1){
+            $scope.funcionariosComparador.splice(index,1);
+        }
+
     }
 
     $scope.scrollTo = function(){
@@ -128,7 +136,8 @@ app.controller("subscribeCTL", ['$scope', '$http',function ($scope, $http) {
             funcionario : $scope.funcionario.id
         };
         $http({method: 'POST', url: '/service/subscribe',data : data}).success(function(data){
-            location.reload();//TODO mensaje mas amigable , no supe como cerrar modal con angular.
+            console.log(data);
+            //location.reload();//TODO mensaje mas amigable , no supe como cerrar modal con angular.
         });
     }
 }]);
@@ -151,7 +160,6 @@ app.controller("lateralCTL", ['$scope', '$http','$rootScope',function ($scope, $
         $rootScope.$broadcast('toggleComp', true);
         func()
     }
-
 }]);
 
 app.controller("comparadorCTL", ['$scope', '$http', 'limitToFilter',function ($scope, $http,limitToFilter) {

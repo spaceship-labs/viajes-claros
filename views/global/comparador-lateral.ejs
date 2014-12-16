@@ -8,19 +8,25 @@
 	<md-input-group tabindex="-1" label="FUNCIONARIO"  class="ng-isolate-scope md-default-theme ng-valid md-input-has-value" aria-invalid="false">
 	<label for="001" class="ng-binding">FUNCIONARIO</label>
 	<input 
-		id="001" 
-		ng-model="fun1"
+		id="001"
+		autofocus="" 
+		ng-model="fun"
 		type="text" tabindex="false"
 		aria-invalid="false"
 		aria-disabled="false"
 		class="ng-valid ng-dirty ng-valid-parse ng-touched"
-		typeahead="funcionario as labelAC(funcionario) for funcionario in funcionariosAJAX($viewValue) | filter:$viewValue | limitTo: 6"
+		typeahead="funcionario for funcionario in funcionariosAJAX($viewValue) | filter:$viewValue | limitTo: 6"
 		typeahead-min-length='1'
 		typeahead-on-select='onSelectComparador($item, $model, $label)'
-		typeahead-focus-first="false"
+        typeahead-template-url="typeahead-template.html"
+		typeahead-focus-first="false"				
 	/>
    </md-input-group>
-   
+   	  <ul class="to-compare">
+   	  	<li ng-repeat="fun in funcionariosComparador">
+   	  		<p><i class="icon icon-comicion"></i> {{fun.nombre_completo}} <a href="#" ng-click="removeFromComp(fun)" class="del"><strong>x</strong></a></p>
+   	  	</li>
+   	  </ul>
 	  <md-button class="md-raised md-primary">COMPARAR</md-button>
   </md-content>
 </md-sidenav>
