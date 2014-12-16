@@ -55,7 +55,7 @@ module.exports.routes = {
       controller: 'home',
       action : 'statisticsJson'
   },
-  '/funcionario/:' : {
+  '/funcionario/:id' : {
       controller: 'funcionario'
   },
   '/funcionario/search' : {
