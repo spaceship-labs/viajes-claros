@@ -72,7 +72,7 @@
 			        <div class="row trip-item ranks " ng-repeat="viaje in viajes | orderBy:fecha_inicio_com">
 			            <div class="col-sm-4 top-places">
 			                <div class="inner-content">
-			                    <a href="{{'/viaje?id='+viaje.id}}"><img src="/images/pinlugar.png" alt="" class="picture" /></a>
+			                    <a href="{{'/viaje/'+viaje.id}}"><img src="/images/pinlugar.png" alt="" class="picture" /></a>
 			                    <p class="big-blue">{{viaje.gasto_total | currency}}</p>
 			                    <p class="location"><a href="#"><strong>{{viaje.ciudad_destino}}, {{viaje.pais_destino}}</strong></a></p>
 			                    <p class="activity">{{viaje.evento | limitTo:50}}</p>
@@ -86,7 +86,7 @@
 			                </div>
 			            </div>
 			            <div class="col-sm-4">
-			                <div class="inner-content"><a href="{{'/viaje?id='+viaje.id}}" class="custom-button">Ver detalle del viaje</a></div>
+			                <div class="inner-content"><a href="{{'/viaje/'+viaje.id}}" class="custom-button">Ver detalle del viaje</a></div>
 			            </div>
 			        </div>
 			    </div>
