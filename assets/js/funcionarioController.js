@@ -6,10 +6,29 @@ app.controller("funcionarioCTL", ['$scope', '$http','$filter' ,function ($scope,
     $scope.viajes = window.viajes;
     $scope.funcionario = window.funcionario;
     $scope.totalViaticos = 0.0;
+    $scope.orderField = 'fecha_inicio_com';
+    $scope.isReversed = false;
+    $scope.filterNacionales = true;
+    $scope.filterInternacionales = true;
+
     for (var i=0;i<$scope.viajes.length;i++) {
         var el = $scope.viajes[i];
         $scope.totalViaticos += el.gasto_viatico;
+        $scope.viajes[i].fecha_inicio_com = new Date($scope.viajes[i].fecha_inicio_com);
+        $scope.viajes[i].fecha_fin_com = new Date($scope.viajes[i].fecha_fin_com);
+
     }
+
+    $scope.filterTipo = function (item){
+        if($scope.filterNacionales && $scope.filterInternacionales){
+            return true;
+        }else if($scope.filterNacionales && item.tipo_viaje == 'Nacional'){
+            return true;
+        }else if($scope.filterInternacionales && item.tipo_viaje == 'Internacional'){
+            return true;
+        }
+        return false;
+    };
 
     $scope.fbShare = function(url) {
         console.log(url);
@@ -64,11 +83,19 @@ app.controller("funcionarioCTL", ['$scope', '$http','$filter' ,function ($scope,
     };
 
     $scope.getDateString = function(viaje){
-        var inicio = new Date(viaje.fecha_inicio_com);
-        var fin = new Date(viaje.fecha_fin_com);
+        var inicio = viaje.fecha_inicio_com;
+        var fin = viaje.fecha_fin_com;
         var inicioAux = $filter('date')(inicio, 'longDate');
         var finAux = $filter('date')(fin, 'longDate');
         return inicioAux + " al " + finAux;
+    };
+
+    $scope.getTravelDays = function(viaje){
+        var dia = 24*60*60*1000;
+        var inicio = new Date(viaje.fecha_inicio_com);
+        var fin = new Date(viaje.fecha_fin_com);
+        var diff = Math.round(Math.abs((inicio.getTime() - fin.getTime())/(dia)));
+        return diff;
     };
 
     $scope.setData = function() {
@@ -110,8 +137,97 @@ app.controller("funcionarioCTL", ['$scope', '$http','$filter' ,function ($scope,
         $scope.myLine = new Chart(element).Bar(barChartData,options);
     };
 
+    $scope.drawDonutChart = function() {
+        var options = {
+
+        }
+    }
+
+    $scope.layers =  {
+        baselayers: {
+            xyz: {
+                name: 'OpenStreetMap (XYZ)',
+                url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                type: 'xyz'
+                //layerOptions: {
+                  //  attribution: '<a href="http://spaceshiplabs.com" target="_blank">Spaceshiplabs.com</a> | <a  target="_blank" href="http://gasolinapp.com">Gasolinapp.com</a>'
+                //}
+            }
+        }
+    };
+    $scope.options = {
+        attributionControl : true, 
+        zoomControlPosition: 'bottomright',
+        imagePath : '/bower_components/leaflet/dist/images/'
+    };
+
+    $scope.mapCenter = {
+        lng : -99.133208,
+        lat : 19.4326077,
+        zoom : 4,
+    };
+
+    $scope.$on('leafletDirectiveMarker.click', function(event, args){
+        var lat = args.leafletEvent.latlng.lat;
+        var lng = args.leafletEvent.latlng.lng;
+        var place = $scope.markers[args.markerName].message;
+        place = $.parseHTML(place);
+        place = place[2].innerHTML;
+        $scope.loadViajes(place);
+        $scope.mapCenter = {
+            lng : lng,
+            lat : lat,
+            zoom : 4,
+        };
+    });
+
+    $scope.leafIcon = {
+        iconUrl: '../images/pin_mapa.png',
+        iconSize:     [33, 46], // size of the icon
+        iconAnchor:   [16, 36] // point of the icon which will correspond to marker's location
+    };
+
+
+    $scope.get_markers = function(){
+        var markers = [];
+        $scope.markers = [];
+        var msg;
+        $scope.viajes.forEach(function(marker){
+                var parcialGastado = (parseInt(marker.gasto_pasaje,10) ? parseInt(marker.gasto_pasaje,10) : 0) + (parseInt(marker.gasto_viatico,10) ? parseInt(marker.gasto_viatico,10) : 0);
+                var parcialGastadoStr = $filter('currency')(parcialGastado, '$');
+                msg = '<p><strong>' + parcialGastadoStr +' MXP'+'</strong></p>Gasto hasta el dia de hoy de viajes en <span class="place">'
+                      + marker.ciudad_destino + '</span>';
+                markers.push({
+                    lat: parseFloat(marker.destino_latitud),
+                    lng: parseFloat(marker.destino_longitud),
+                    message: msg,
+                    icon : $scope.leafIcon
+                });
+        });
+        $scope.markers = markers;
+        /*if(markers.length == 1){
+            var mark = markers[0];
+            $scope.mapCenter = {
+                lng : mark.lat,
+                lat : mark.lng,
+                zoom : 4
+            }
+        }*/
+    };
+
+    $scope.loadViajes = function(ciudad) {
+        $scope.mapPlace = ciudad;
+        $scope.toggleSidebar = true;
+
+        $http({method: 'POST', url: '/home/vajesPorCiudadJson?ciudad=' + ciudad})
+            .success(function(data){
+                $scope.items = data;
+            });
+    };
+
     $scope.startRadialD3();
     $scope.drawChartHorizontal();
+    $scope.get_markers();
 }]);
 
 app.controller("listadoCTL", ['$scope', '$http','$filter' ,function ($scope, $http, $filter) {

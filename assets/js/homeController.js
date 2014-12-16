@@ -4,6 +4,7 @@ app.controller("homeCtrl", ['$scope', '$http','$filter',function ($scope, $http 
 	$scope.toggleSidebar = false;
 	$scope.toggleAdvancedSearch = false;
     $scope.totalGastado = 0;
+    $scope.totalViajes = 0;
 	$scope.mapPlace = '';
     $scope.gasto_parcial = 0;
 	$scope.layers =  {
@@ -31,10 +32,17 @@ app.controller("homeCtrl", ['$scope', '$http','$filter',function ($scope, $http 
 	};
 
 	$scope.$on('leafletDirectiveMarker.click', function(event, args){
+        var lat = args.leafletEvent.latlng.lat;
+        var lng = args.leafletEvent.latlng.lng;
 	    var place = $scope.markers[args.markerName].message;
 	    place = $.parseHTML(place);
 	    place = place[2].innerHTML;
         $scope.loadViajes(place);
+        $scope.mapCenter = {
+            lng : lng,
+            lat : lat,
+            zoom : 4,
+        };
 	});
 
     $scope.leafIcon = {
@@ -50,23 +58,25 @@ app.controller("homeCtrl", ['$scope', '$http','$filter',function ($scope, $http 
 		        function(data) {
 		        	var markers = [];
                     var totalGastado = 0;
+                    var totalViajes = 0;
 					$scope.markers = [];
 					var msg;
-					data.forEach(function(marker){
-                            var parcialGastado = (parseInt(marker.gasto_pasaje,10) ? parseInt(marker.gasto_pasaje,10) : 0) + (parseInt(marker.gasto_viatico,10) ? parseInt(marker.gasto_viatico,10) : 0);
-                            totalGastado += parcialGastado;
-							var parcialGastadoStr = $filter('currency')(parcialGastado, '$');
-							msg = '<p><strong>' + parcialGastadoStr +' MXP'+'</strong></p>Gasto hasta el dia de hoy de viajes en <span class="place">'
-								  + marker.ciudad_destino + '</span>';
-							markers.push({
-								lat: parseFloat(marker.destino_latitud),
-								lng: parseFloat(marker.destino_longitud),
-								message: msg,
-								icon : $scope.leafIcon
-							});
+					data.viajes.forEach(function(marker){
+                        var parcialGastado = (parseInt(marker.gasto_pasaje,10) ? parseInt(marker.gasto_pasaje,10) : 0) + (parseInt(marker.gasto_viatico,10) ? parseInt(marker.gasto_viatico,10) : 0);
+                        totalGastado += parcialGastado;
+						var parcialGastadoStr = $filter('currency')(parcialGastado, '$');
+						msg = '<p><strong>' + parcialGastadoStr +' MXP'+'</strong></p>Gasto hasta el dia de hoy de viajes en <span class="place">'
+							  + marker.ciudad_destino + '</span>';
+                        markers.push({
+							lat: parseFloat(marker.destino_latitud),
+							lng: parseFloat(marker.destino_longitud),
+							message: msg,
+							icon : $scope.leafIcon
+						});
 					});
 					$scope.markers = markers;
                     $scope.totalGastado = totalGastado;
+                    $scope.totalViajes = data.totalViajes;
 		        }, 
 		        function(e) {
 		        	console.log('error');
@@ -84,6 +94,13 @@ app.controller("homeCtrl", ['$scope', '$http','$filter',function ($scope, $http 
             });
     };
 
+    $scope.message_modal = function(){
+        $('#modal-advice').modal({ show: true});
+        setTimeout(function(){
+            $('#modal-advice').modal('hide');
+        },10000);
+    }
+
 	angular.extend($scope, {
 	    events: {
 	      markers: {
@@ -93,6 +110,7 @@ app.controller("homeCtrl", ['$scope', '$http','$filter',function ($scope, $http 
 	    }
 	});
 
+    $scope.message_modal();
     $scope.get_markers();
 
 }]);
@@ -102,8 +120,12 @@ app.controller("statisticsCTL", ['$scope', '$http','$filter','$rootScope','$loca
     $scope.ciudadesList = [];
     $scope.aerolineasList = [];
     $scope.funcionariosList = [];
+    $scope.ultimosViajesList = [];
+    $scope.funcionariosViajesList = [];
     $scope.internacionalesList = [];
     $scope.pasajesList = [];
+    $scope.viajesCarosList = [];
+    $scope.ultimosViajesList = [];
     $scope.totalViajes = 0;
     $scope.totalVuelos = 0;
     $scope.totalAerolineasVuelos = 0;
@@ -177,6 +199,9 @@ app.controller("statisticsCTL", ['$scope', '$http','$filter','$rootScope','$loca
                 $scope.funcionariosList = data.funcionariosList;
                 $scope.internacionalesList = data.internacionalesList;
                 $scope.pasajesList = data.pasajesList;
+                $scope.viajesCarosList = data.viajesCarosList;
+                $scope.ultimosViajesList = data.ultimosViajesList;
+                $scope.viajesPorMes = data.viajesPorMes;
 
                 $scope.startRadialD3();
 

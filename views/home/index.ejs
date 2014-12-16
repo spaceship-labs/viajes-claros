@@ -23,26 +23,62 @@
 		<div class="total-money">
 			<h1><span count-to="{{totalGastado}}" value="{{gasto_parcial}}" duration="2" filter="currency"></span></h1>
 			<p>Presupuesto gastado en viajes desde el <strong>2013</strong> hasta el día de hoy en viajes de <strong>SERVIDORES PÚBLICOS</strong></p>
+			<a href="#" class="custom-button bordered">Ver todos los viajes</a>
 		</div>
+		<%- partial('../global/modal_home')%>
 	</div>
 	<div class="centered-content">
 		<div class="container-fluid" ng-controller="statisticsCTL">
 			<div class="row top-people">
-				<h2>Los 3 servidores públicos <br/> <strong class="big">con más gastos de viajes</strong></h2>
-				<div class="col-sm-4 person" ng-repeat="funcionario in funcionariosList | limitTo:3">
-					<div class="person-content">
-						<a href="#" ng-click="compare(funcionario)" class="comparar-button"><i class="icon icon-comparar"></i></a>
-						<img src="/images/funcionario-default.png" alt="" class="picture">
-						<p class="name">{{funcionario.nombre_completo}}</p>
-						<p class="charge">{{funcionario.nombre_puesto != 0 ? funcionario.nombre_puesto : "Puesto no disponible"}}</p>
-                        <p class="dependency"><strong>ifai</strong></p>
-						<p class="money" count-to="{{funcionario.gasto_total}}" value="{{gasto_parcial}}" duration="2" filter="currency"></p>
-						<p class="gray">Gastos hasta hoy</p>
-						<a href="/funcionario?id={{funcionario.funcionario}}" class="custom-button">Ver perfil</a>
-					</div>
-				</div>
+                <carousel interval="6000">
+                    <slide  active="slide.active" >
+						<h2>Los 3 servidores públicos <br/> <strong class="big">con más gastos de viajes</strong></h2>
+						<div class="col-sm-4 person" ng-repeat="funcionario in funcionariosList | limitTo:3">
+							<div class="person-content">
+								<a href="#" ng-click="compare(funcionario)" class="comparar-button"><i class="icon icon-comparar"></i></a>
+								<img src="/images/funcionario-default.png" alt="" class="picture">
+								<p class="name">{{funcionario.nombre_completo}}</p>
+								<p class="charge">{{funcionario.nombre_puesto != 0 ? funcionario.nombre_puesto : "Puesto no disponible"}}</p>
+		                        <p class="dependency"><strong>ifai</strong></p>
+								<p class="money" count-to="{{funcionario.gasto_total}}" value="{{gasto_parcial}}" duration="2" filter="currency"></p>
+								<p class="gray">Gastos hasta hoy</p>
+								<a href="/funcionario?id={{funcionario.funcionario}}" class="custom-button">Ver perfil</a>
+							</div>
+						</div>
+					</slide>
+                    <slide  active="" >
+						<h2>Los 3 servidores públicos <br/> <strong class="big">con más viajes</strong></h2>
+						<div class="col-sm-4 person" ng-repeat="funcionario in funcionariosList | limitTo:3">
+							<div class="person-content">
+								<a href="#" ng-click="compare(funcionario)" class="comparar-button"><i class="icon icon-comparar"></i></a>
+								<img src="/images/funcionario-default.png" alt="" class="picture">
+								<p class="name">{{funcionario.nombre_completo}}</p>
+								<p class="charge">{{funcionario.nombre_puesto != 0 ? funcionario.nombre_puesto : "Puesto no disponible"}}</p>
+		                        <p class="dependency"><strong>ifai</strong></p>
+								<p class="money" count-to="{{funcionario.gasto_total}}" value="{{gasto_parcial}}" duration="2" filter="currency"></p>
+								<p class="gray">Gastos hasta hoy</p>
+								<a href="/funcionario?id={{funcionario.funcionario}}" class="custom-button">Ver perfil</a>
+							</div>
+						</div>
+					</slide>
+                    <slide  active="" >
+						<h2>Los 3 <br/> <strong class="big">ultimos viajes</strong></h2>
+						<div class="col-sm-4 person" ng-repeat="funcionario in funcionariosList | limitTo:3">
+							<div class="person-content">
+								<a href="#" ng-click="compare(funcionario)" class="comparar-button"><i class="icon icon-comparar"></i></a>
+								<img src="/images/funcionario-default.png" alt="" class="picture">
+								<p class="name">{{funcionario.nombre_completo}}</p>
+								<p class="charge">{{funcionario.nombre_puesto != 0 ? funcionario.nombre_puesto : "Puesto no disponible"}}</p>
+		                        <p class="dependency"><strong>ifai</strong></p>
+								<p class="money" count-to="{{funcionario.gasto_total}}" value="{{gasto_parcial}}" duration="2" filter="currency"></p>
+								<p class="gray">Gastos hasta hoy</p>
+								<a href="/funcionario?id={{funcionario.funcionario}}" class="custom-button">Ver perfil</a>
+							</div>
+						</div>
+					</slide>
+				</carousel>
 				<div class="clear"></div>
-				<div class="col-md-4 col-md-offset-4"><a href="/funcionario/list" class="custom-button see-all">Ver todos los funcionarios</a></div>
+				<div class="col-md-4 col-md-offset-4 view-more"><a href="/funcionario/list" class="custom-button see-all">Ver todos los funcionarios</a></div>
 			</div>
 			<div class="row ranks">
 				<div class="col-md-6 top-places top-hotels">
@@ -128,6 +164,14 @@
 							</div>
 						</slide>
 					</carousel>
+				</div>
+			</div>
+			<div class="row code-links">
+				<div class="col-md-2 col-md-offset-4">
+					<a href="https://github.com/IFAI/viajes-claros" target="_blank" class="custom-button"><i class="icon icon-github"></i> Github</a>
+				</div>
+				<div class="col-md-2">
+					<a href="https://github.com/IFAI/viajes-claros#api" class="custom-button" target="_blank"><i class="icon icon-codigo"></i> API</a>
 				</div>
 			</div>
 			<%- partial('../global/modal')%>			

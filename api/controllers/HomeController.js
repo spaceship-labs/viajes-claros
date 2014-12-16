@@ -11,13 +11,24 @@ module.exports = {
         res.view();
 	},
 
+    aviso : function(req,res){
+        res.view();
+    },
+
     vajesJson : function(req,res) {
         var estado = req.param('estado');
         var dependencia = req.param('dependencia');
         var nombre = req.param('nombre');
+        var totalViajes = 0;
         Viaje.find({groupBy : ['ciudad_destino','destino_latitud','destino_longitud'],sum : ['gasto_viatico','gasto_pasaje']}).exec(function(e,viajes) {
-            if (e) res.json({ text : "error",error : e });
-            res.json(viajes);
+            if (e) {
+                console.log(e);
+                res.json({ text : "error",error : e });
+            }
+            Viaje.count().exec(function(e,total) {
+                var resJson = {viajes:viajes,totalViajes:total};
+                res.json(resJson);
+            });
         });
     },
 
@@ -45,7 +56,7 @@ module.exports = {
             Viaje.query(query,
                 function(e,viajes){
                     if (e) res.json({ text : "error viajes por nombre",error : e });
-                    viajesPorNombre = viajes;
+                    topViajesCaros = viajes;
                     cb();
                 });
         });
@@ -68,7 +79,7 @@ module.exports = {
         asyncTasks.push(function(cb){
             Viaje.query("select tipo_viaje,count(*) total from viaje where tipo_viaje != '' group by tipo_viaje",function(e,vo){
                 if (e) res.json({ text : "error internacionales-nacionales",error : e });
-                viajesInternacionalesNacionales = vo;
+                viajesPorTipo = vo;
                 cb();
             });
         });
@@ -82,8 +93,35 @@ module.exports = {
         asyncTasks.push(function(cb){
             Viaje.query("select hotel,ciudad_destino,pais_destino,sum(gasto_viatico) as gasto_viatico from viaje where hotel != 'No aplica' and hotel != 'No disponible' group by hotel,ciudad_destino,pais_destino order by sum(gasto_viatico) desc limit 0,3",
                 function(e,viajes){
-                    if (e) res.json({ text : "error hoteles",error : e });
+                    if (e) res.json({ text : "error hoteles visitados",error : e });
                     hotelVisitado = viajes;
+                    cb();
+                });
+        });
+
+        asyncTasks.push(function(cb){
+            Viaje.find({ sort : 'gasto_total desc',limit : 3}).exec(
+                function(e,viajes){
+                    if (e) res.json({ text : "error viajes caros",error : e });
+                    top3viajesCaros = viajes;
+                    cb();
+                });
+        });
+
+        asyncTasks.push(function(cb){
+            Viaje.find({ fecha_inicio_com : { '!' : 'No aplica' } ,sort: 'fecha_inicio_com DESC',limit : 3}).exec(
+                function(e,viajes){
+                    if (e) res.json({ text : "error ultimos viajes",error : e });
+                    ultimosViajes = viajes;
+                    cb();
+                });
+        });
+
+        asyncTasks.push(function(cb){
+            Viaje.find({ fecha_inicio_com : { '!' : 'No aplica' } ,sort: 'fecha_inicio_com DESC',limit : 3}).exec(
+                function(e,viajes){
+                    if (e) res.json({ text : "error viajes por mes",error : e });
+                    viajesPorMes = viajes;
                     cb();
                 });
         });
@@ -91,12 +129,14 @@ module.exports = {
 
         async.parallel(asyncTasks,function(){
             var response = {
-                funcionariosList : viajesPorNombre,
+                funcionariosList : topViajesCaros,
                 ciudadesList : ciudadesVisitadas,
                 aerolineasList : aerolineas,
-                internacionalesList  : viajesInternacionalesNacionales,
+                internacionalesList  : viajesPorTipo,
                 hotelList : hotelVisitado,
-                pasajesList : viajesAereosTerrestres
+                pasajesList : viajesAereosTerrestres,
+                viajesCarosList : top3viajesCaros,
+                ultimosViajesList : ultimosViajes
             };
             res.json(response);
         });

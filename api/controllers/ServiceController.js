@@ -61,33 +61,19 @@ module.exports = {
         var email = req.param('email');
         var funcionario = req.param('funcionario');
 
-        Subscription.find({ email: email }).populate('funcionario').exec(function (err, subscriptions) {
-            if (err) return console.error(err);
-            var found = false;
-            if (subscriptions.length > 0) {
-                for (var i = 0; i < subscriptions.length; i++) {
-                    if (funcionario == subscriptions[i].funcionario.id) {
-                        found = subscriptions[i];
-                        return res.json({ text: "ya esta agregado" });
-                    }
+        Subscription.find({ email: email,funcionario : funcionario }).populate('funcionario').exec(function (err, subscriptions) {
+            if (subscriptions)
+                return res.json({ text: "ya esta agregado" });;
+            if (err) {
+                console.error(err);
+                return res.json({text : "error"});
+            }
+            Subscription.create({ funcionario: funcionario, email: email }).exec(function (err, subscription) {
+                if (err) {
+                    return console.error(err);
                 }
-            } else {
-                Subscription.create({ funcionario: funcionario, email: email }).exec(function (err, subscription) {
-                    if (err) {
-                        return console.error(err);
-                    }
-                    return res.json({ text: "agregado" });
-                });
-
-            }
-            if (found) {
-                Subscription.create({ funcionario: funcionario, email: email }).exec(function (err, subscription) {
-                    if (err) {
-                        return console.error(err);
-                    }
-                    return res.json({ text: "agregado" });
-                });
-            }
+                return res.json({ text: "agregado" });
+            });
         });
     },
 

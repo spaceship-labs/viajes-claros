@@ -32,15 +32,15 @@ Tener instalado sin algún orden especifico
 
 ```JavaScript
 module.exports = {
-	connections:{
-		'mysql-connection' : {
-		    adapter: 'sails-mysql',
-		    host: 'my_db_host',
-		    user: 'my_db_user',
-		    password: 'my_db_password',
-		    database: 'viajestransparentes'
-		},
-	}
+    connections:{
+        'mysql-connection' : {
+            adapter: 'sails-mysql',
+            host: 'my_db_host',
+            user: 'my_db_user',
+            password: 'my_db_password',
+            database: 'viajestransparentes'
+        },
+    }
 };
 ```
 
