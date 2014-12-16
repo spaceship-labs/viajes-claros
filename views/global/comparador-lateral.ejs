@@ -1,0 +1,27 @@
+<div ng-controller="globalCTL">
+<md-sidenav  class="md-sidenav-left md-whiteframe-z2" id="sidebar-comparador" md-component-id="left">
+  <md-toolbar class="md-theme-light">
+  	<p class="icon-container animated rotateIn" id="compare-icon"><i class="icon icon-comparar"></i></p>
+    <h3 class="md-toolbar-tools">COMPARA SERVIDORES PÚBLICOS</h3>
+  </md-toolbar>
+  <md-content class="md-padding">
+	<md-input-group tabindex="-1" label="FUNCIONARIO"  class="ng-isolate-scope md-default-theme ng-valid md-input-has-value" aria-invalid="false">
+	<label for="001" class="ng-binding">FUNCIONARIO</label>
+	<input 
+		id="001" 
+		ng-model="fun1"
+		type="text" tabindex="false"
+		aria-invalid="false"
+		aria-disabled="false"
+		class="ng-valid ng-dirty ng-valid-parse ng-touched"
+		typeahead="funcionario as labelAC(funcionario) for funcionario in funcionariosAJAX($viewValue) | filter:$viewValue | limitTo: 6"
+		typeahead-min-length='1'
+		typeahead-on-select='onSelectComparador($item, $model, $label)'
+		typeahead-focus-first="false"
+	/>
+   </md-input-group>
+   
+	  <md-button class="md-raised md-primary">COMPARAR</md-button>
+  </md-content>
+</md-sidenav>
+</div>

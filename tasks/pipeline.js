@@ -25,6 +25,7 @@ var cssFilesToInject = [
   'bower_components/leaflet.markerclusterer/dist/MarkerCluster.css',
   'bower_components/Leaflet.awesome-markers/dist/leaflet.awesome-markers.css',
   'bower_components/animate.css/animate.min.css',
+  'bower_components/angular-material/angular-material.css',
   'bower_components/less-prefixer/prefixer.less'
 
 ];
@@ -43,6 +44,10 @@ var jsFilesToInject = [
   'bower_components/perfect-scrollbar/min/perfect-scrollbar.min.js',
   'bower_components/angular/angular.min.js',
   'bower_components/angular/angular-animate.min.js',
+  'bower_components/hammerjs/hammer.js',
+  'bower_components/angular-animate/angular-animate.js',
+  'bower_components/angular-aria/angular-aria.js',
+  'bower_components/angular-material/angular-material.js',
   'bower_components/angular-perfect-scrollbar/src/angular-perfect-scrollbar.js',
   'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
   'bower_components/bootstrap-touch-carousel/dist/js/bootstrap-touch-carousel.js',
