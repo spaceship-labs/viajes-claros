@@ -53,13 +53,13 @@ module.exports.routes = {
   },
   '/home/viajesPorCiudadJson' : {
       controller: 'home',
-      action : 'viajesJson'
+      action : 'viajesPorCiudadJson'
   },
   '/home/statisticsJson' : {
       controller: 'home',
       action : 'statisticsJson'
   },
-  '/funcionario' : {
+  '/funcionario/:id' : {
       controller: 'funcionario'
   },
   '/funcionario/search' : {
