@@ -26,7 +26,7 @@ module.exports.routes = {
   '/': {
     controller: 'home'
   },
-
+/*
   '/datos': {
       controller : 'service',
       action : 'datos'
@@ -86,8 +86,8 @@ module.exports.routes = {
   '/service/updateLongitudViajes' : {
       controller: 'service',
       action: 'updateLongitudViajes'
-  },
-
+  }
+*/
   
 
 
