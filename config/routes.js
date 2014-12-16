@@ -35,13 +35,13 @@ module.exports.routes = {
       controller : 'service',
       action : 'graficas'
   },
-  '/viaje/:id' : {
-      controller : 'Viaje',
-      action : 'index'
-  },
   '/viajes' : {
       controller : 'Viaje',
       action : 'list'
+  },
+  '/viaje/:id' : {
+      controller : 'Viaje',
+      action : 'index'
   },
   '/home/viajesJson' : {
       controller: 'home',
@@ -67,22 +67,26 @@ module.exports.routes = {
       controller: 'funcionario',
       action : 'list'
   },
+  '/funcionario/search_autocomplete' : {
+      controller: 'funcionario',
+      action : 'search_autocomplete'
+  },
+  '/funcionario/comparar' : {
+      controller: 'funcionario',
+      action : 'comparar'
+  },
   '/funcionario/statisticsJson' : {
       controller : 'funcionario',
       action : 'statisticsJson'
+  },
+  '/funcionario/:id' : {
+      controller : 'funcionario',
+      action : 'index'
   },
   '/service/updateLongitudViajes' : {
       controller: 'service',
       action: 'updateLongitudViajes'
   },
- '/funcionario/search_autocomplete' : {
-      controller : 'funcionario',
-      action : 'search_autocomplete'
-  },
- '/funcionario/comparar' : {
-      controller : 'funcionario',
-      action : 'comparar'
-  }
 
   
 
