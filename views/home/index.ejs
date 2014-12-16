@@ -11,8 +11,8 @@
 						<h3>Estos son los viajes en: {{mapPlace}}</h3>
 						<ul>
                             <li ng-repeat="item in items">
-                                <p>Fecha del viaje: <a href="{{'/viaje?id=' + item.id}}">{{item.fecha_inicio_com | date}}</a></p>
-                                <p>Funcionario: <a href="{{'/funcionario?id=' + item.funcionario.id}}">{{item.funcionario.nombre_completo}}</a></p>
+                                <p>Fecha del viaje: <a href="{{'/viaje/' + item.id}}">{{item.fecha_inicio_com | date}}</a></p>
+                                <p>Funcionario: <a href="{{'/funcionario/' + item.funcionario.id}}">{{item.funcionario.nombre_completo}}</a></p>
                             </li>
 
 						</ul>
@@ -44,7 +44,7 @@
 		                        <p class="dependency"><strong>{{funcionario.institucion != 0 ? funcionario.institucion : "No disponible"}}</strong></p>
 								<p class="money" count-to="{{funcionario.gasto_total}}" value="{{gasto_parcial}}" duration="2" filter="currency"></p>
 								<p class="gray">Gastos hasta hoy</p>
-								<a href="/funcionario?id={{funcionario.funcionario}}" class="custom-button">Ver perfil</a>
+								<a href="/funcionario/{{funcionario.funcionario}}" class="custom-button">Ver perfil</a>
 							</div>
 						</div>
 					</slide>
@@ -57,7 +57,7 @@
 								<p class="charge">{{viaje.ciudad_destino}},{{viaje.estado_destino}}</p>
 		                        <p class="dependency"><strong>{{viaje.pais_destino}}</strong></p>
 								<p class="money">{{viaje.gasto_total | currency}}</p>
-								<a href="/viaje?id={{viaje.id}}" class="custom-button">Ver viaje</a>
+								<a href="/viaje/{{viaje.id}}" class="custom-button">Ver viaje</a>
 							</div>
 						</div>
 					</slide>
@@ -71,7 +71,7 @@
                                 <p class="charge">{{viaje.ciudad_destino}}, {{viaje.estado_destino}}</p>
                                 <p class="dependency"><strong>{{viaje.pais_destino}}</strong></p>
                                 <p class="money">{{viaje.gasto_total | currency}}</p>
-                                <a href="/viaje?id={{viaje.id}}" class="custom-button">Ver viaje</a>
+                                <a href="/viaje/{{viaje.id}}" class="custom-button">Ver viaje</a>
 							</div>
 						</div>
 					</slide>

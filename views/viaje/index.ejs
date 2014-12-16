@@ -21,7 +21,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<%- partial('partial/menuviaje')%>
-					<p class="breadcrumb-custom"><a href="/">Inicio</a> | <a href="/funcionario?id={{funcionario.id}}" class="capitalize">{{funcionario.nombre_completo}}</a> | <a href="#" class="active">{{viaje.evento | limitTo:60}}{{viaje.evento.length > 60 ? '...' : ''}}</a></p>
+					<p class="breadcrumb-custom"><a href="/">Inicio</a> | <a href="/funcionario/{{funcionario.id}}" class="capitalize">{{funcionario.nombre_completo}}</a> | <a href="#" class="active">{{viaje.evento | limitTo:60}}{{viaje.evento.length > 60 ? '...' : ''}}</a></p>
 				</div>
 			</div>
 			<div class="row travel-title">
@@ -210,7 +210,7 @@
 							<h4>Puesto</h4>
 							<ul>
 								<li><p><strong>Numero de comisión</strong></p><p>{{viaje.consecutivo}}</p></li>
-								<li><p><strong>Servidor publico comisionado</strong></p><p><a class="capitalize" href="/funcionario?id={{funcionario.id}}">{{funcionario.nombre_completo}}</a></p></li>
+								<li><p><strong>Servidor publico comisionado</strong></p><p><a class="capitalize" href="/funcionario/{{funcionario.id}}">{{funcionario.nombre_completo}}</a></p></li>
 								<li><p><strong>Cargo</strong></p><p>{{funcionario.cargo_nombre}}</p></li>
 								<li><p><strong>Institucion</strong></p><p>{{funcionario.institucion}}</p></li>
 							</ul>
@@ -368,7 +368,7 @@
 								<p class="dependency"><%- viajeAux.funcionario.institucion != 0 ? viajeAux.funcionario.institucion : "no disponible" %></p>
 								<p class="money">$ <%- viajeAux.gasto_total.toFixed(2) %></p>
 								<p class="gray">Gastos al mes</p>
-								<a href="/funcionario?id=<%- viajeAux.funcionario.id %>" class="custom-button">Ver perfil</a>
+								<a href="/funcionario/<%- viajeAux.funcionario.id %>" class="custom-button">Ver perfil</a>
 							</div>
 					</div>
 				<% } %>

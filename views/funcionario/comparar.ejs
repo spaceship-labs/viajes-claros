@@ -26,7 +26,7 @@
 					<div class="inner-content">
 						<p><i class="icon icon-comicion"></i></p>
 						<div class="main-info">
-							<p><a href="/funcionario?id=<%- funcionario.id %>"><strong><%- funcionario.nombre_completo %></strong></a></p>
+							<p><a href="/funcionario/<%- funcionario.id %>"><strong><%- funcionario.nombre_completo %></strong></a></p>
 							<% if(funcionario.cargo_nombre != 0){ %>
 								<p><%- funcionario.cargo_nombre  %></p>
 							<% } %>
@@ -37,7 +37,7 @@
 						</div>
 						<div class="trip" ng-repeat="viaje in funcionarios[<%- i %>].viajes | orderBy:gasto_total | limitTo:1">
 							<h3>Viaje más costoso</h3>
-							<p class="quantity"><strong><a href="/viaje?id={{viaje.id}}">{{viaje.gasto_total | currency}}</a></strong></p>
+							<p class="quantity"><strong><a href="/viaje/{{viaje.id}}">{{viaje.gasto_total | currency}}</a></strong></p>
 							<p><strong>GASTO TOTAL</strong></p>
 						</div>
 						<div class="chart">
