@@ -33,10 +33,10 @@ module.exports = {
         });
     },
 
-    updateLongitudViajes: function (req, res) {
-        Viaje.find({limit: 10, skip: 30}).exec(function (err, viajes) {
+    updateLongitudViajes: function (req, res) {//de 10 en 10 por que de 20 crashea
+        Viaje.find({ destino_latitud : null ,limit: 10}).exec(function (err, viajes) {
             async.forEach(viajes, function (viaje, callback) {
-                var url = "http://maps.google.com/maps/api/geocode/json?address=" + viaje.ciudad_destino + "&components=country:" + viaje.pais_destino + "|administrative_area:" + viaje.estado_destino;
+                var url = "http://maps.google.com/maps/api/geocode/json?address=" + (viaje.ciudad_destino != 'No disponible' ? viaje.ciudad_destino : viaje.estado_destino) + "&components=country:" + viaje.pais_destino + (viaje.estado_destino != 'No disponible' ? ("|administrative_area:" + viaje.estado_destino) : "");
                 request({ url: url, json: true }, function (error, response, body) {
                     if (!error && response.statusCode == 200) {
                         if (body.results && body.results.length > 0) {
@@ -106,16 +106,10 @@ module.exports = {
             // Send a CSV response
             var config = {
                 fields : ['institucion',
-                    'nombre',
-                    'apellido_1',
-                    'apellido_2',
                     'nombre_completo',
                     'tipo_personal',
                     'cargo_nombre',
-                    'cargo_nombre_superior',
                     'unidad_administrativa',
-                    'clave_puesto',
-                    'nombre_puesto',
                     'email'],
                 data: list
             };

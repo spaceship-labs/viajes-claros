@@ -49,9 +49,9 @@ module.exports = {
         var hotelVisitado = [];
 
         asyncTasks.push(function(cb){
-            var query = "select viaje.funcionario,funcionario.nombre_completo,funcionario.nombre_puesto,funcionario.cargo_nombre_superior,sum(viaje.gasto_viatico) as gasto_viatico,sum(viaje.gasto_pasaje) as gasto_pasaje,sum(viaje.gasto_total) as gasto_total " +
+            var query = "select viaje.funcionario,funcionario.nombre_completo,funcionario.cargo_nombre,funcionario.institucion,sum(viaje.gasto_viatico) as gasto_viatico,sum(viaje.gasto_pasaje) as gasto_pasaje,sum(viaje.gasto_total) as gasto_total " +
                 "from viaje inner join funcionario on viaje.funcionario = funcionario.id " +
-                "group by viaje.funcionario,funcionario.nombre_completo,funcionario.nombre_puesto,funcionario.cargo_nombre_superior " +
+                "group by viaje.funcionario,funcionario.nombre_completo,funcionario.cargo_nombre,funcionario.institucion " +
                 "order by sum(gasto_total) desc";
             Viaje.query(query,
                 function(e,viajes){
@@ -69,7 +69,7 @@ module.exports = {
                 });
         });
         asyncTasks.push(function(cb){
-            Viaje.query("select linea_origen,count(*) as total from viaje where pasaje_tipo = 'Aéreo' and linea_origen != '' group by linea_origen",
+            Viaje.query("select linea_origen,count(*) as total from viaje where pasaje_tipo = 'Aéreo' and linea_origen != '' and linea_origen != 'No disponible' group by linea_origen",
                 function(e,vo){
                     if (e) res.json({ text : "error aerolineas",error : e });
                     aerolineas = vo;
@@ -91,7 +91,7 @@ module.exports = {
             });
         });
         asyncTasks.push(function(cb){
-            Viaje.query("select hotel,ciudad_destino,pais_destino,sum(gasto_viatico) as gasto_viatico from viaje where hotel != 'No aplica' and hotel != 'No disponible' group by hotel,ciudad_destino,pais_destino order by sum(gasto_viatico) desc limit 0,3",
+            Viaje.query("select hotel,ciudad_destino,pais_destino,sum(gasto_viatico) as gasto_viatico from viaje where hotel != 'No aplica' and hotel != 'No disponible' and hotel != '' group by hotel,ciudad_destino,pais_destino order by sum(gasto_viatico) desc limit 0,3",
                 function(e,viajes){
                     if (e) res.json({ text : "error hoteles visitados",error : e });
                     hotelVisitado = viajes;

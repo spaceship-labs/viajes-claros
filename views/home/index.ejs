@@ -21,8 +21,8 @@
 			</div>	
 		</div>	
 		<div class="total-money">
-			<h1><span count-to="{{totalGastado}}" value="{{gasto_parcial}}" duration="2" filter="currency"></span></h1>
-			<p>Presupuesto gastado en viajes desde el <strong>2013</strong> hasta el día de hoy en viajes de <strong>SERVIDORES PÚBLICOS</strong></p>
+			<h1><span count-to="{{totalGastado}}" value="{{gasto_parcial}}" duration="1" filter="currency"></span></h1>
+			<p>Presupuesto gastado en viajes desde el <strong>2014</strong> hasta el día de hoy en viajes de <strong>SERVIDORES PÚBLICOS</strong></p>
 			<a href="#" class="custom-button bordered">Ver todos los viajes</a>
 		</div>
 		<%- partial('../global/modal_home')%>
@@ -38,8 +38,8 @@
 								<a href="#" ng-click="compare(funcionario)" class="comparar-button"><i class="icon icon-comparar"></i></a>
 								<img src="/images/funcionario-default.png" alt="" class="picture">
 								<p class="name">{{funcionario.nombre_completo}}</p>
-								<p class="charge">{{funcionario.nombre_puesto != 0 ? funcionario.nombre_puesto : "Puesto no disponible"}}</p>
-		                        <p class="dependency"><strong>ifai</strong></p>
+								<p class="charge">{{funcionario.cargo_nombre != 0 ? funcionario.cargo_nombre : "Puesto no disponible"}}</p>
+		                        <p class="dependency"><strong>{{funcionario.institucion != 0 ? funcionario.institucion : "No disponible"}}</strong></p>
 								<p class="money" count-to="{{funcionario.gasto_total}}" value="{{gasto_parcial}}" duration="2" filter="currency"></p>
 								<p class="gray">Gastos hasta hoy</p>
 								<a href="/funcionario?id={{funcionario.funcionario}}" class="custom-button">Ver perfil</a>

@@ -28,8 +28,8 @@
 					<div class="inner-content">
 						<i class="icon-comicion funcionario-icon"></i> 
 						<h1>{{funcionario.nombre_completo}}</h1>
-						<p><strong>Cargo: </strong>{{funcionario.nombre_puesto != 0 ? funcionario.nombre_puesto : "no disponible"}}</p>
-						<p><strong>Área: </strong>{{funcionario.cargo_nombre_superior != 0 ? funcionario.cargo_nombre_superior : "no disponible"}}</p>
+						<p><strong>Cargo: </strong>{{funcionario.cargo_nombre != 0 ? funcionario.cargo_nombre : "no disponible"}}</p>
+						<p><strong>Área: </strong>{{funcionario.institucion != 0 ? funcionario.institucion : "no disponible"}}</p>
                         <p><strong>Dependencia: IFAI</strong></p>
 						<p class="money"><strong count-to="{{getTotal()}}" value="{{gasto_parcial}}" duration="2" filter="currency"></strong></p>
 						<p><strong><small>Gastos hasta el momento en viajes</small></strong></p>
