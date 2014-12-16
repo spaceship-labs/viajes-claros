@@ -67,9 +67,6 @@ module.exports.routes = {
       controller: 'funcionario',
       action : 'list'
   },
-  '/funcionario/:id' : {
-      controller: 'funcionario'
-  },
   '/funcionario/statisticsJson' : {
       controller : 'funcionario',
       action : 'statisticsJson'
