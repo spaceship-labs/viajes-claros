@@ -26,7 +26,6 @@ module.exports.routes = {
   '/': {
     controller: 'home'
   },
-/*
   '/datos': {
       controller : 'service',
       action : 'datos'
@@ -92,7 +91,6 @@ module.exports.routes = {
       action: 'subscribe'
   }
   
-*/
 
 
   // If a request to a URL doesn't match any of the custom routes above,
