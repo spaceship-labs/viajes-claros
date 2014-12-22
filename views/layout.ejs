@@ -37,6 +37,7 @@
     <link rel="stylesheet" href="/bower_components/Leaflet.awesome-markers/dist/leaflet.awesome-markers.css">
     <link rel="stylesheet" href="/bower_components/animate.css/animate.min.css">
     <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css">
+    <link rel="stylesheet" href="/bower_components/less-prefixer/prefixer.less">
     <!--STYLES END-->
   </head>
 
@@ -45,6 +46,7 @@
         <div id="main" class="clearfix"><div id="topBackRepeat">
         <%- partial('global/header') -%>
             <div id='content'>
+                <%- partial('global/comparador-lateral') -%>
                 <%- partial('global/lateral') -%>
                 <%- body %>
                 <div class='clear'></div>

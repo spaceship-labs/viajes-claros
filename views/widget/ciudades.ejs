@@ -5,7 +5,7 @@
                 <carousel interval="5000">
                     <slide  active="slide.active" >
                         <div class="inner-content">
-                            <h4><strong>Ciudades Internacionales</strong><br/>más visitadas por los servidores públicos</h4>
+                            <h4><strong>Ciudades Internacionales</strong><br/>más visitadas en viajes de trabajo del IFAI</h4>
                             <ul>
                                 <li ng-repeat="ciudad in ciudadesList | filter:{tipo_viaje:'Internacional'} | limitTo:3">
                                     <a href="#"><img src="/images/pinlugar.png" alt="" class="picture" /></a>
@@ -17,7 +17,7 @@
                     </slide>
                     <slide active="" >
                         <div class="inner-content">
-                            <h4><strong>Ciudades Nacionales</strong><br/>mas visitadas por los servidores públicos</h4>
+                            <h4><strong>Ciudades Nacionales</strong><br/>más visitadas en viajes de trabajo del IFAI</h4>
                             <ul>
                                 <li ng-repeat="ciudad in ciudadesList | filter:{tipo_viale:'!Internacional'} | limitTo:3">
                                     <a href="#"><img src="/images/pinlugar.png" alt="" class="picture" /></a>
