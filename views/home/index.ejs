@@ -49,7 +49,7 @@
                         </div>
                     </slide>
                     <slide  active="" >
-                        <h2>Los 3 Viajes <br/> <strong class="big">mas caros</strong></h2>
+                        <h2>Los tres servidores públicos <br/> con <strong class="big"> más viajes </strong>de trabajo.</h2>
                         <div class="col-sm-4 person" ng-repeat="viaje in viajesCarosList | limitTo:3">
                             <div class="person-content">
                                 <img src="/images/funcionario-default.png" alt="" class="picture">
@@ -70,7 +70,7 @@
                                 <p class="name">{{viaje.funcionario.nombre_completo}}</p>
                                 <p class="charge">{{viaje.ciudad_destino}}, {{viaje.estado_destino}}</p>
                                 <p class="dependency"><strong>{{viaje.pais_destino}}</strong></p>
-                                <p class="money">{{viaje.gasto_total | currency}}</p>
+                                <p class="money">{{(viaje.gasto_total && viaje.gasto_total > 0 ? (viaje.gasto_total | currency) : "Pendiente" )}}</p>
                                 <a href="/viaje/{{viaje.id}}" class="custom-button">Ver viaje</a>
                             </div>
                         </div>

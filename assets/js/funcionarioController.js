@@ -40,9 +40,7 @@ app.controller("funcionarioCTL", ['$scope', '$http','$filter' ,function ($scope,
     };
 
     $scope.startRadialD3 = function(){
-        var now = new Date();
-        var start = new Date(now.getFullYear(), 0, 0);
-        var diff = now - start;
+        var diff = 218;
         var oneDay = 1000 * 60 * 60 * 24;
         var day = Math.floor(diff / oneDay);
 
@@ -53,8 +51,11 @@ app.controller("funcionarioCTL", ['$scope', '$http','$filter' ,function ($scope,
            var dateFin = new Date(viaje.fecha_fin_com);
            var dateDiff = dateFin - dateInicio;
            var vacas = Math.floor(dateDiff / oneDay);
+           console.log(days);
+           console.log(vacas);
            days += days + vacas;
         });
+
 
         var rp1 = radialProgress(document.getElementById('radial-one'))
             .diameter(150)

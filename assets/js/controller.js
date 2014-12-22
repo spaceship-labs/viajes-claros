@@ -16,11 +16,17 @@ app.directive('countTo', ['$timeout','$filter', function ($timeout,$filter) {
                 scope.timoutId = null;
                 countTo = parseInt(attrs.countTo) || 0;
                 scope.value = parseInt(attrs.value, 10) || 0;
-                duration = (parseFloat(attrs.duration) * 1000) || 0;
+                if (attrs.type == 'int')
+                    duration = (parseInt(attrs.duration) * 1000) || 0;
+                else
+                    duration = (parseFloat(attrs.duration) * 1000) || 0;
 
                 steps = Math.ceil(duration / refreshInterval);
-                increment = ((countTo - scope.value) / steps);
-                num = scope.value;
+                if (attrs.type == 'int')
+                    increment = Math.ceil((countTo - scope.value) / steps);
+                else
+                    increment = ((countTo - scope.value) / steps);
+                num = Math.ceil(scope.value);
             };
 
             var tick = function () {
