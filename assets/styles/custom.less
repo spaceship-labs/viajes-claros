@@ -711,6 +711,10 @@ a:hover{text-decoration: none!important;}
 		label,input[type="text"]{color: #fff;}
 		label{font-size: 10px;margin-bottom: 22px;-webkit-transform: none;transform: none;}
 		input[type="text"]{width: 80%;}
+		input[type="text"]::-webkit-input-placeholder { color:#fff; }
+		input[type="text"]::-moz-placeholder { color:#fff; } /* firefox 19+ */
+		input[type="text"]:-ms-input-placeholder { color:#fff; } /* ie */
+		input[type="text"]input:-moz-placeholder { color:#fff; }
 		.to-compare{
 			li{
 				.del{color: #fff;font-size: 16px;font-weight: 700;margin-left:6px;}
@@ -804,6 +808,8 @@ a:hover{text-decoration: none!important;}
 	.close-arrow-header{display: none;}
 	#home .map-container .jumbotron .content-jumbotron .text-jumbotron h1{font-size: 32px;padding: 0 10px}
 	#home .map-container .jumbotron .content-jumbotron .text-jumbotron p{font-size: 16px;padding: 0 10px}
+	#home .map-container .jumbotron .content-jumbotron .text-jumbotron .total-viajes{font-size: 19px!important}
+	#content .map-container .jumbotron .content-jumbotron .text-jumbotron .custom-button{margin-top: 8px}
 	#home .total-money h1{font-size: 32px}
 	#home .total-money p{font-size: 18px}	
 	.radial-chart{float: none!important;margin-bottom: 5px}

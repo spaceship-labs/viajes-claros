@@ -9,7 +9,6 @@
 	<label for="001" class="ng-binding">FUNCIONARIO</label>
 	<input 
 		id="001"
-		autofocus="" 
 		ng-model="fun"
 		type="text" tabindex="false"
 		aria-invalid="false"
@@ -19,11 +18,14 @@
 		typeahead-min-length='1'
 		typeahead-on-select='onSelectComparador($item, $model, $label)'
         typeahead-template-url="typeahead-template.html"
-		typeahead-focus-first="false"				
+		typeahead-focus-first="false"
+		placeholder="Buscar servidor público"
+		onfocus="this.placeholder=''"
+		onblur="this.placeholder='Buscar servidor público'"
 	/>
    </md-input-group>
    	  <ul class="to-compare">
-   	  	<li ng-repeat="fun in funcionariosComparador">
+   	  	<li ng-repeat="fun in funcionariosComparador" class="animated fadeIn">
    	  		<p><i class="icon icon-comicion"></i> {{fun.nombre_completo}} <a href="#" ng-click="removeFromComp(fun)" class="del"><strong>x</strong></a></p>
    	  	</li>
    	  </ul>

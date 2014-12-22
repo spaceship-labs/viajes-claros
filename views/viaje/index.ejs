@@ -74,20 +74,32 @@
 						<div class="panel-heading">
 							<div class="panel-title">
 								<h4><a href="#collapse1" data-toggle="collapse" parent="#travel-info">
-									<i class="icon-comicion"></i>
+									<i class="icon-vuelos"></i>
 									Comisión 
 									<i class="icon icon-flecha"></i></a>
 								</h4>
 							</div>
 						</div>
 						<div class="inner-content panel-collapse collapse in" id="collapse1">
-							<p class="info-icon"><i class="icon-comicion"></i></p>
+							<p class="info-icon"><i class="icon-vuelos"></i></p>
 							<h4>Comisión</h4>
 							<ul>
 								<li><p><strong>Mecanismo que origina la comisión</strong></p><p>{{viaje.mec_origen}}</p></li>
 								<li><p><strong>Quién invita / Quién solicita</strong></p><p>{{viaje.institucion_genera}}</p></li>
 								<li><p><strong>Unidad responsable</strong></p><p>{{funcionario.unidad_administrativa}}</p></li>
 								<li><p><strong>Tipo de representación</strong></p><p>{{viaje.tipo_rep}}</p></li>
+								<li><p><strong>Motivo de la comisión</strong></p><p>{{viaje.motivo}}</p></li>
+								<li><p><strong>Antecedentes</strong></p><p>{{viaje.antecedente}}</p></li>
+								<li><p><strong>Tipo viaje</strong></p><p>{{viaje.tipo_viaje}}</p></li>
+								<li><p><strong>Número de acuerdo autorización</strong></p><p>{{viaje.acuerdo}}</p></li>
+								<li><p><strong>Número de oficio</strong></p><p>{{viaje.oficio}}</p></li>
+								<li><p><strong>País de origen</strong></p><p>{{viaje.pais_origen}}</p></li>
+								<li><p><strong>Estados de origen</strong></p><p>{{viaje.estado_origen}}</p></li>
+								<li><p><strong>Ciudad de origen</strong></p><p>{{viaje.ciudad_origen}}</p></li>
+								<li><p><strong>País de destino</strong></p><p>{{viaje.pais_destino}}</p></li>
+								<li><p><strong>Estados de destino</strong></p><p>{{viaje.estado_destino}}</p></li>
+								<li><p><strong>Ciudad de destino</strong></p><p>{{viaje.ciudad_destino}}</p></li>
+
 							</ul>							
 						</div>
 					</div>
@@ -118,49 +130,6 @@
 							</ul>
 						</div>
 					</div>
-					<div class="info-box panel panel-default" id="seccion3">
-						<div class="panel-heading">
-							<div class="panel-title">
-								<h4>
-									<a href="#collapse3" data-toggle="collapse" parent="#travel-info">
-									<i class="icon-motivo"></i>
-									Motivo 
-									<i class="icon icon-flecha"></i>						
-									</a>
-								</h4>
-							</div>
-						</div>
-						<div class="inner-content panel-collapse collapse in" id="collapse3">
-							<p class="info-icon"><i class="icon-motivo"></i></p>
-							<h4>Motivo</h4>
-							<ul>
-								<li><p><strong>Motivo de la comisión</strong></p><p>{{viaje.motivo}}</p></li>
-								<li><p><strong>Antecedentes</strong></p><p>{{viaje.antecedente}}</p></li>
-							</ul>
-						</div>
-					</div>
-					<div class="info-box panel panel-default" id="seccion4">
-						<div class="panel-heading">
-							<div class="panel-title">
-								<h4>
-									<a href="#collapse4" data-toggle="collapse" parent="#travel-info">
-										<i class="icon-resultados"></i>
-										Resultados 
-										<i class="icon icon-flecha"></i>											
-									</a>
-								</h4>
-							</div>
-						</div>
-						<div class="inner-content panel-collapse collapse in" id="collapse4">
-							<p class="info-icon"><i class="icon-resultados"></i></p>
-							<h4>Resultados</h4>
-							<ul>
-								<li><p><strong>Resultados obtenidos</strong></p><p>{{viaje.resultado}}</p></li>
-								<li><p><strong>Contribucion </strong></p><p>{{viaje.contribucion_ifai}}</p></li>
-								<li><p><strong>Link al comunicado</strong></p><p><a href="{{viaje.url_comunicado}}">{{viaje.url_comunicado}}</a></p></li>
-							</ul>
-						</div>
-					</div>
 					<div class="info-box panel panel-default" id="seccion5">
 						<div class="panel-heading">
 							<div class="panel-title">
@@ -177,16 +146,17 @@
 							<p class="info-icon"><i class="icon-viaticos"></i></p>
 							<h4>Viáticos</h4>
 							<ul>
-								<li><p><strong>Gasto por viaticos m.n.</strong></p><p>{{viaje.gasto_viatico | currency}}</p></li>
+								<li><p><strong>Gasto por viáticos m.n.</strong></p><p>{{viaje.gasto_viatico | currency}}</p></li>
 								<li><p><strong>Institución que cubre el hospedaje</strong></p><p>{{viaje.inst_hospedaje}}</p></li>
 								<li><p><strong>Nombre del hotel</strong></p><p>{{viaje.hotel}}</p></li>
 								<li><p><strong>Fecha de entrada</strong></p><p>{{viaje.fecha_inicio_hotel}}</p></li>
 								<li><p><strong>Fecha de salida</strong></p><p>{{viaje.fecha_fin_hotel}}</p></li>
 								<li><p><strong>Costo total del hospedaje</strong></p><p>{{viaje.costo_hotel | currency}}</p></li>
-								<li><p><strong>Monto comprobado de viaticos</strong></p><p>{{viaje.viatico_comprobado | currency}}</p></li>
+								<li><p><strong>Monto comprobado de viáticos</strong></p><p>{{viaje.viatico_comprobado | currency}}</p></li>
 								<li><p><strong>Monto de viáticos sin comprobación</strong></p><p>{{viaje.viatico_sin_comprobar | currency}}</p></li>
 								<li><p><strong>Monto de viáticos devueltos</strong></p><p>{{viaje.viatico_devuelto | currency}}</p></li>
-
+								<li><p><strong>Tarifa diaria para viáticos</strong></p><p>{{viaje.tarifa_diaria | currency}}</p></li>
+								<li><p><strong>Moneda</strong></p><p>{{viaje.moneda}}</p></li>
 							</ul>
 						</div>
 					</div>
@@ -209,31 +179,10 @@
 							<p class="info-icon"><i class="icon-comicion"></i></p>
 							<h4>Puesto</h4>
 							<ul>
-								<li><p><strong>Numero de comisión</strong></p><p>{{viaje.consecutivo}}</p></li>
+								<li><p><strong>Número de comisión</strong></p><p>{{viaje.consecutivo}}</p></li>
 								<li><p><strong>Servidor público comisionado</strong></p><p><a class="capitalize" href="/funcionario/{{funcionario.id}}">{{funcionario.nombre_completo}}</a></p></li>
 								<li><p><strong>Cargo</strong></p><p>{{funcionario.cargo_nombre}}</p></li>
 								<li><p><strong>Institucion</strong></p><p>{{funcionario.institucion}}</p></li>
-							</ul>
-						</div>
-					</div>
-					<div class="info-box panel panel-default" id="seccion7">
-						<div class="panel-heading">
-							<div class="panel-title">
-								<h4>
-									<a href="#collapse7" data-toggle="collapse" parent="#travel-info">
-										<i class="icon-moneda"></i>
-										Tarifa 
-										<i class="icon icon-flecha"></i>	
-									</a>
-								</h4>
-							</div>
-						</div>
-						<div class="inner-content panel-collapse collapse in" id="collapse7">
-							<p class="info-icon"><i class="icon-moneda"></i></p>
-							<h4>Tarifa</h4>
-							<ul>
-								<li><p><strong>Tarifa diaria para viáticos</strong></p><p>{{viaje.tarifa_diaria | currency}}</p></li>
-								<li><p><strong>Moneda</strong></p><p>{{viaje.moneda}}</p></li>
 							</ul>
 						</div>
 					</div>
@@ -266,7 +215,7 @@
 								<h4>
 									<a href="#collapse9" data-toggle="collapse" parent="#travel-info">
 										<i class="icon icon-actividades"></i>
-										Actividades realizadas 
+										Informe de comisión
 										<i class="icon icon-flecha"></i>
 									</a>
 								</h4>
@@ -274,9 +223,12 @@
 						</div>
 						<div class="inner-content panel-collapse collapse in" id="collapse9">
 							<p class="info-icon"><i class="icon-actividades"></i></p>
-							<h4>Actividades realizadas</h4>							
+							<h4>Informe de comisión</h4>							
 							<ul>
 								<li><p>{{viaje.actividad}}</p></li>
+								<li><p><strong>Resultados obtenidos</strong></p><p>{{viaje.resultado}}</p></li>
+								<li><p><strong>Contribucion </strong></p><p>{{viaje.contribucion_ifai}}</p></li>
+								<li><p><strong>Link al comunicado</strong></p><p><a href="{{viaje.url_comunicado}}">{{viaje.url_comunicado}}</a></p></li>
 							</ul>
 						</div>
 					</div>
@@ -366,8 +318,8 @@
 								<p class="name"><%- viajeAux.funcionario.nombre_completo %></p>
 								<p class="charge"><%- viajeAux.funcionario.cargo_nombre != 0 ? viajeAux.funcionario.cargo_nombre : "no disponible" %></p>
 								<p class="dependency"><%- viajeAux.funcionario.institucion != 0 ? viajeAux.funcionario.institucion : "no disponible" %></p>
-								<p class="money">$ <%- viajeAux.gasto_total.toFixed(2) %></p>
-								<p class="gray">Gastos al mes</p>
+								<!--<p class="money">$ <%- viajeAux.gasto_total.toFixed(2) %></p>
+								<p class="gray">Gastos al mes</p>-->
 								<a href="/funcionario/<%- viajeAux.funcionario.id %>" class="custom-button">Ver perfil</a>
 							</div>
 					</div>

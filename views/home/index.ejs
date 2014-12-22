@@ -74,6 +74,7 @@
                                 <a href="/viaje/{{viaje.id}}" class="custom-button">Ver viaje</a>
                             </div>
                         </div>
+                    </slide>
 				</carousel>
 				<div class="clear"></div>
 				<div class="col-md-4 col-md-offset-4 view-more"><a href="/funcionario/list" class="custom-button see-all">Ver todos los servidores públicos</a></div>
@@ -90,10 +91,10 @@
 								<p class="location"><a href="#">{{hotel.ciudad_destino}}, {{hotel.pais_destino}}</a></p>
 							</li>
 						</ul>
-						<!--<h4>Viajes de trabajo durante 2014</h4>-->
-						<!--<div class="bar-chart">
+						<h4>Viajes de trabajo durante 2014</h4>
+						<div class="bar-chart">
 							<canvas id="hotels" height="300" width="400"></canvas>
-						</div>-->
+						</div>
 					</div>
 				</div>
                 <div class="col-md-6 percentage-rank">
@@ -142,7 +143,7 @@
 						<slide  active="slide.active" >
 							<div class="inner-content">
 								<a href="#" class="get-iframe" data-toggle="modal" data-target="#modal-code" ng-click="openWidgetModal('/widget/ciudades')" title="Compartir gráfica"><i class="icon icon-codigo"></i></a>
-								<h4><strong>Ciudades Internacionales</strong><br/>más visitadas por los servidores públicos</h4>
+								<h4><strong>Ciudades Internacionales</strong><br/>más visitadas en viajes de trabajo del IFAI</h4>
 								<ul>
 									<li ng-repeat="ciudad in ciudadesList | filter:{tipo_viaje:'Internacional'} | limitTo:3">
 										<a href="#"><img src="/images/pinlugar.png" alt="" class="picture" /></a>
@@ -155,7 +156,7 @@
 						<slide active="" >
 							<div class="inner-content">
 								<a href="#" class="get-iframe" data-toggle="modal" data-target="#modal-code" ng-click="openWidgetModal('/widget/ciudades')" title="Compartir gráfica"><i class="icon icon-codigo"></i></a>
-								<h4><strong>Ciudades Nacionales</strong><br/>mas visitadas por los servidores públicos</h4>
+								<h4><strong>Ciudades Nacionales</strong><br/>más visitadas en viajes de trabajo del IFAI</h4>
 								<ul>
                                     <li ng-repeat="ciudad in ciudadesList | filter:{tipo_viale:'!Internacional'} | limitTo:3">
 										<a href="#"><img src="/images/pinlugar.png" alt="" class="picture" /></a>

@@ -1,10 +1,10 @@
 <div id="header" ng-controller="globalCTL">
 	<div class="container container-fixed">
 		<div class="menu">
-			<a href="http://inicio.ifai.org.mx/" class="logo ifai-logo"><img src="/images/ifai.png" alt="logo"></a>
+			<a href="http://inicio.ifai.org.mx/" class="logo ifai-logo" target="_blank"><img src="/images/ifai.png" alt="logo"></a>
 			<a href="/" class="logo viajes-logo"><img src="/images/viajeslogo.png" alt="logo"></a>
 			<form action="/funcionario/search" method="POST" class="search-form" >
-				<a href="#" ng-click="toggleComp(scrollTo)" title="Comparar" id="comparar-header"><strong><i class="icon icon-comparar"></i> <span>COMPARAR</span></strong></a>
+				<a href="#" ng-click="toggleLeft()" title="Comparar" id="comparar-header"><strong><i class="icon icon-comparar"></i> <span>COMPARAR</span></strong></a>
 				<input 
 					autocomplete="off"
 					type="text"
@@ -14,7 +14,7 @@
 					onfocus="this.placeholder=''"
 					onblur="this.placeholder='Buscar servidor público'"
 					ng-model="func"
-					typeahead="funcionario for funcionario in funcionariosAJAX($viewValue) | filter:$viewValue | limitTo: 6"
+					typeahead="funcionario as funcionario.nombre_completo for funcionario in funcionariosAJAX($viewValue) | filter:$viewValue | limitTo: 6"
 					typeahead-min-length='1'
 					typeahead-on-select='onSelectPart($item, $model, $label)'
                     typeahead-template-url="typeahead-template.html"
