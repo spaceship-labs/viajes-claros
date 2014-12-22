@@ -191,7 +191,7 @@ app.controller("statisticsCTL", ['$scope', '$http','$filter','$rootScope','$loca
         window.location = url;
     };
 
-    $scope.drawHotels = function(){
+    $scope.drawPoints = function(){
         var hotelsData = {
             labels : ["Enero","Febrero","Marzo","Abril","Mayo","Junio"],
             datasets : [
@@ -231,7 +231,7 @@ app.controller("statisticsCTL", ['$scope', '$http','$filter','$rootScope','$loca
                       $scope.totalAerolineasVuelos += el.total;
                 });
                 $scope.redrawAerolineas();
-                //$scope.drawHotels();
+                $scope.drawPoints();
 
         });
     };
