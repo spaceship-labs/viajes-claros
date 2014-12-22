@@ -115,7 +115,7 @@ app.controller("homeCtrl", ['$scope', '$http','$filter',function ($scope, $http 
 
 }]);
 
-app.controller("statisticsCTL", ['$scope', '$http','$filter','$rootScope','$location',function ($scope, $http,$filter, $rootScope,$location) {
+app.controller("statisticsCTL", ['$scope', '$http','$filter','$rootScope','$location','$timeout','$animate',function ($scope, $http,$filter, $rootScope,$location, $timeout, $animate) {
     $scope.hotelList = [];
     $scope.ciudadesList = [];
     $scope.aerolineasList = [];
@@ -272,5 +272,10 @@ app.controller("statisticsCTL", ['$scope', '$http','$filter','$rootScope','$loca
 
 
     $scope.loadData();
+
+    //Fix para flechas de carousel
+    $timeout(function() {
+        $animate.enabled(false, angular.element(".carousel"))
+    });
 
 }]);
