@@ -98,7 +98,7 @@ app.controller("homeCtrl", ['$scope', '$http','$filter',function ($scope, $http 
         $('#modal-advice').modal({ show: true});
         setTimeout(function(){
             $('#modal-advice').modal('hide');
-        },10000);
+        },20000);
     }
 
 	angular.extend($scope, {
