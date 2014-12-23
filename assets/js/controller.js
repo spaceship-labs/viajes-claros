@@ -65,6 +65,8 @@ app.directive('countTo', ['$timeout','$filter', function ($timeout,$filter) {
 
 app.controller("globalCTL", ['$scope', '$http', '$rootScope','$mdSidenav','limitToFilter',function ($scope, $http,$rootScope,$mdSidenav,limitToFilter) {
     $scope.funcionariosComparador = [];
+    $scope.funcOne = '';
+    $scope.funcTwo = '';
 
     $scope.funcionariosAJAX = function(name) {
         if (!name) return [];
@@ -80,10 +82,31 @@ app.controller("globalCTL", ['$scope', '$http', '$rootScope','$mdSidenav','limit
         $scope.$label = $label;
     };
 
+    $scope.validateForm = function(){
+        if(!isNaN($scope.funcOne) && !isNaN($scope.funcTwo)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    $scope.submitComparador = function(){
+        console.log('submit');
+        if ($scope.validateForm()){
+            console.log('validado');
+            $('#comparadorFormLateral').submit();
+        }
+    }
+
     $scope.onSelectComparador = function ($item, $model, $label) {
         $scope.fun = '';
-        if($scope.funcionariosComparador.length < 9){
+        if($scope.funcionariosComparador.length < 3){
             $scope.funcionariosComparador.push($item);
+
+            if($scope.funcionariosComparador.length > 1){
+                $scope.funcTwo = $item.id;
+            }else{
+                $scope.funcOne = $item.id;
+            }
 
             if($scope.validateForm()){
                 $('#compare-icon').removeClass('rotateIn');
