@@ -126,10 +126,12 @@ module.exports = {
         });
 
         asyncTasks.push(function(cb){
-            Viaje.find({ fecha_inicio_part : { '!' : 'No aplica' } ,sort: 'fecha_inicio_part DESC',limit : 3}).exec(
+            Viaje.query("select count(*) as total from viaje group by MONTH(STR_TO_DATE(fecha_inicio_part,'%m/%d/%Y'));",
                 function(e,viajes){
                     if (e) res.json({ text : "error viajes por mes",error : e });
-                    viajesPorMes = viajes;
+                    viajesPorMes = _.map(viajes,function(viaje){
+                                    return viaje.total;
+                                });
                     cb();
                 });
         });
