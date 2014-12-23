@@ -71,6 +71,7 @@ module.exports = {
     list : function(req,res){
         var page = req.param('page');
         page = (!isNaN(page)) ? page : 1;
+        var filter = req.param('filter');
         if(page){
             Funcionario.find()
             .populate('viajes')

@@ -193,20 +193,22 @@ app.controller("statisticsCTL", ['$scope', '$http','$filter','$rootScope','$loca
 
     $scope.drawPoints = function(){
         var hotelsData = {
-            labels : ["Enero","Febrero","Marzo","Abril","Mayo","Junio"],
+            labels : ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"],
             datasets : [
                 {
-                    fillColor : "rgba(48,194,206,0.2)",
-                    strokeColor : "#4e8fff",
-                    pointColor : "#fff",
-                    pointStrokeColor : "#9DB86D",
-                    data : [203,156,99,251,305,247]
+                    fillColor: "rgba(26,188,156,0.2)",
+                    strokeColor: "rgba(26,188,156,1)",
+                    pointColor: "rgba(26,188,156,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(26,188,156,1)",
+                    data : $scope.viajesPorMes
                 }
             ]
-        }
+        };
         var hotels = document.getElementById('hotels').getContext('2d');
         new Chart(hotels).Line(hotelsData);
-    }
+    };
 
 
     $scope.loadData = function(){
@@ -221,8 +223,8 @@ app.controller("statisticsCTL", ['$scope', '$http','$filter','$rootScope','$loca
                 $scope.ultimosViajesList = data.ultimosViajesList;
                 $scope.viajesPorMes = data.viajesPorMes;
 
-                console.log($scope.ultimosViajesList[0]);
-                console.log($scope.viajesCarosList);
+                //console.log($scope.ultimosViajesList[0]);
+                //console.log($scope.viajesCarosList);
 
 
                 $scope.startRadialD3();

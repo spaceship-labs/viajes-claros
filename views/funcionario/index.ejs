@@ -85,7 +85,7 @@
 				</div>
 				<div class="col-md-6 percentage-rank">
 					<div class="inner-content">
-						<h4><strong>Días de comisión vs. días en el IFAI</strong></h4>
+						<h4><strong>Días de comisión vs. días laborales</strong></h4>
 						<div class="charts-container">
 							<div id="radial-one" class="radial-chart"></div>
 							<div id="radial-two" class="radial-chart"></div>
@@ -124,7 +124,7 @@
 										<h3>Estos son los viajes en: {{mapPlace}}</h3>
 										<ul>
 				                            <li ng-repeat="item in items">
-				                                <p>Fecha del viaje: <a href="{{'/viaje/' + item.id}}">{{item.fecha_inicio_com | date}}</a></p>
+				                                <p>Fecha del viaje: <a href="{{'/viaje/' + item.id}}">{{item.fecha_inicio_part | date}}</a></p>
 				                                <p>Funcionario: <a href="{{'/funcionario/' + item.funcionario.id}}">{{item.funcionario.nombre_completo}}</a></p>
 				                            </li>
 
@@ -153,7 +153,7 @@
 								<div class="col-md-4">
 									<div class="inner-content">
 										<select ng-model="orderField" class="form-control">
-											<option value="fecha_inicio_com">Fecha del viaje</option>
+											<option value="fecha_inicio_part">Fecha del viaje</option>
 											<option value="ciudad_destino">Destino del viaje</option>
 											<option value="evento">Nombre del evento</option>
 											<option value="gasto_total">Costo total del viaje</option>

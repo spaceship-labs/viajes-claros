@@ -42,11 +42,15 @@ module.exports = {
 
     statisticsJson : function(req,res) {
         var asyncTasks = [];
-        var viajesPorNombre = [];
+        var topFuncionariosCaros = [];
         var ciudadesVisitadas = [];
         var aerolineas = [];
-        var viajesInternacionalesNacionales = {};
+        var viajesPorTipo = {};
         var hotelVisitado = [];
+        var viajesPorMes = [];
+        var viajesAereosTerrestres = [];
+        var ultimosViajes = [];
+        var top3viajesCaros = [];
 
         asyncTasks.push(function(cb){
             var query = "select viaje.funcionario,funcionario.nombre_completo,funcionario.cargo_nombre,funcionario.institucion,sum(viaje.gasto_viatico) as gasto_viatico,sum(viaje.gasto_pasaje) as gasto_pasaje,sum(viaje.gasto_total) as gasto_total " +
@@ -55,8 +59,8 @@ module.exports = {
                 "order by sum(gasto_total) desc";
             Viaje.query(query,
                 function(e,viajes){
-                    if (e) res.json({ text : "error viajes por nombre",error : e });
-                    topViajesCaros = viajes;
+                    if (e) res.json({ text : "error funcionarios caros",error : e });
+                    topFuncionariosCaros = viajes;
                     cb();
                 });
         });
@@ -64,12 +68,16 @@ module.exports = {
             Viaje.query("select ciudad_destino,pais_destino,tipo_viaje,sum(gasto_total) as gasto_total,count(*) as total from viaje group by ciudad_destino,pais_destino,tipo_viaje order by count(*) desc",
                 function(e,viajes){
                     if (e) res.json({ text : "error ciudades",error : e });
-                    ciudadesVisitadas = viajes;
-                    cb();
+                    //Viaje.find({ groupBy: [ 'ciudad_destino','pais_destino' ], sum: [ 'gasto_total' ] }).exec(function(err,vi) {
+                    //    if (err) res.json({ text : "error ciudades new group by",error : err });
+                    //    console.log(vi);
+                        ciudadesVisitadas = viajes;
+                        cb();
+                    //});
                 });
         });
         asyncTasks.push(function(cb){
-            Viaje.query("select linea_origen,count(*) as total from viaje where pasaje_tipo = 'Aéreo' and linea_origen != '' and linea_origen != 'No disponible' group by linea_origen",
+            Viaje.query("select linea_origen,count(*) as total from viaje where pasaje_tipo = 'Aéreo' and linea_origen != '' and linea_origen != 'No disponible' and linea_origen != 'Pendiente de captura' and linea_origen != 'No aplica' group by linea_origen",
                 function(e,vo){
                     if (e) res.json({ text : "error aerolineas",error : e });
                     aerolineas = vo;
@@ -109,7 +117,7 @@ module.exports = {
         });
 
         asyncTasks.push(function(cb){
-            Viaje.find({ fecha_inicio_com : { '!' : 'No aplica' } ,sort: 'fecha_inicio_com DESC',limit : 3}).populate('funcionario').exec(
+            Viaje.find({ fecha_inicio_part : { '!' : 'No aplica' } ,sort: 'fecha_inicio_part DESC',limit : 3}).populate('funcionario').exec(
                 function(e,viajes){
                     if (e) res.json({ text : "error ultimos viajes",error : e });
                     ultimosViajes = viajes;
@@ -118,10 +126,12 @@ module.exports = {
         });
 
         asyncTasks.push(function(cb){
-            Viaje.find({ fecha_inicio_com : { '!' : 'No aplica' } ,sort: 'fecha_inicio_com DESC',limit : 3}).exec(
+            Viaje.query("select count(*) as total from viaje group by MONTH(STR_TO_DATE(fecha_inicio_part,'%m/%d/%Y'));",
                 function(e,viajes){
                     if (e) res.json({ text : "error viajes por mes",error : e });
-                    viajesPorMes = viajes;
+                    viajesPorMes = _.map(viajes,function(viaje){
+                                    return viaje.total;
+                                });
                     cb();
                 });
         });
@@ -129,14 +139,15 @@ module.exports = {
 
         async.parallel(asyncTasks,function(){
             var response = {
-                funcionariosList : topViajesCaros,
+                funcionariosList : topFuncionariosCaros,
                 ciudadesList : ciudadesVisitadas,
                 aerolineasList : aerolineas,
                 internacionalesList  : viajesPorTipo,
                 hotelList : hotelVisitado,
                 pasajesList : viajesAereosTerrestres,
                 viajesCarosList : top3viajesCaros,
-                ultimosViajesList : ultimosViajes
+                ultimosViajesList : ultimosViajes,
+                viajesPorMes : viajesPorMes
             };
             res.json(response);
         });
