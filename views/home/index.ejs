@@ -11,7 +11,7 @@
 						<h3>Estos son los viajes en: {{mapPlace}}</h3>
 						<ul>
                             <li ng-repeat="item in items">
-                                <p>Fecha del viaje: <a href="{{'/viaje/' + item.id}}">{{item.fecha_inicio_com | date}}</a></p>
+                                <p>Fecha del viaje: <a href="{{'/viaje/' + item.id}}">{{item.fecha_inicio_part | date}}</a></p>
                                 <p>Funcionario: <a href="{{'/funcionario/' + item.funcionario.id}}">{{item.funcionario.nombre_completo}}</a></p>
                             </li>
 
@@ -52,6 +52,7 @@
                         <h2>Los tres servidores públicos <br/> con <strong class="big"> más viajes </strong>de trabajo.</h2>
                         <div class="col-sm-4 person" ng-repeat="viaje in viajesCarosList | limitTo:3">
                             <div class="person-content">
+                                <a class="comparar-button" ng-click="compare(viaje.funcionario)" href="#" tabindex="0"><i class="icon icon-comparar"></i></a>
                                 <img src="/images/funcionario-default.png" alt="" class="picture">
                                 <p class="name">{{viaje.funcionario.nombre_completo}}</p>
                                 <p class="charge">{{viaje.ciudad_destino}},{{viaje.estado_destino}}</p>
@@ -66,6 +67,7 @@
                         <!-- <h2>Los 3 ultimos <br/> <strong class="big">Viajes</strong></h2> -->
                         <div class="col-sm-4 person" ng-repeat="viaje in ultimosViajesList | limitTo:3">
                             <div class="person-content">
+                                <a class="comparar-button" ng-click="compare(viaje.funcionario)" href="#" tabindex="0"><i class="icon icon-comparar"></i></a>
                                 <img src="/images/funcionario-default.png" alt="" class="picture">
                                 <p class="name">{{viaje.funcionario.nombre_completo}}</p>
                                 <p class="charge">{{viaje.ciudad_destino}}, {{viaje.estado_destino}}</p>
@@ -81,21 +83,31 @@
 			</div>
 			<div class="row ranks">
 				<div class="col-md-6 top-places top-hotels">
-					<div class="inner-content">
-						<a href="#" class="get-iframe" data-toggle="modal" data-target="#modal-code" title="Compartir gráfica" ng-click="openWidgetModal('/widget/hoteles')"><i class="icon icon-codigo"></i></a>
-						<h4><strong>Hoteles más visitados</strong><br/>por los servidores públicos</h4>
-						<ul>
-							<li ng-repeat="hotel in hotelList">
-								<a><img src="/images/hotel_icon.png" alt="" class="picture" /></a>
-								<p class="place"><a href="/viaje/search_hotel?filtro={{hotel.hotel}}">{{hotel.hotel}}</a></p>
-								<p class="location"><a href="#">{{hotel.ciudad_destino}}, {{hotel.pais_destino}}</a></p>
-							</li>
-						</ul>
-						<h4>Viajes de trabajo durante 2014</h4>
-						<div class="bar-chart">
-							<canvas id="hotels" height="300" width="400"></canvas>
-						</div>
-					</div>
+					<carousel interval="6000">
+                        <slide active="slide.active">
+                            <div class="inner-content">
+                                <a href="#" class="get-iframe" data-toggle="modal" data-target="#modal-code" title="Compartir gráfica" ng-click="openWidgetModal('/widget/hoteles')"><i class="icon icon-codigo"></i></a>
+                                <h4><strong>Hoteles más visitados</strong><br/>por los servidores públicos</h4>
+                                <ul>
+                                    <li ng-repeat="hotel in hotelList">
+                                        <a><img src="/images/hotel_icon.png" alt="" class="picture" /></a>
+                                        <p class="place"><a href="/viaje/search_hotel?filtro={{hotel.hotel}}">{{hotel.hotel}}</a></p>
+                                        <p class="location"><a href="#">{{hotel.ciudad_destino}}, {{hotel.pais_destino}}</a></p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </slide>
+                        <slide active="">
+                            <div class="inner-content">
+                                <a href="#" class="get-iframe" data-toggle="modal" data-target="#modal-code" title="Compartir gráfica" ng-click="openWidgetModal('/widget/viajesalmes')"><i class="icon icon-codigo"></i></a>
+                                <h4><strong>Viajes de trabajo durante 2014</strong></h4>
+                                <div class="bar-chart">
+                                    <canvas id="hotels" height="317" width="423"></canvas>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                        </slide>
+                    </carousel>
 				</div>
                 <div class="col-md-6 percentage-rank">
                     <carousel interval="6000">

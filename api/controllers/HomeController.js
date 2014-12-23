@@ -117,7 +117,7 @@ module.exports = {
         });
 
         asyncTasks.push(function(cb){
-            Viaje.find({ fecha_inicio_com : { '!' : 'No aplica' } ,sort: 'fecha_inicio_com DESC',limit : 3}).populate('funcionario').exec(
+            Viaje.find({ fecha_inicio_part : { '!' : 'No aplica' } ,sort: 'fecha_inicio_part DESC',limit : 3}).populate('funcionario').exec(
                 function(e,viajes){
                     if (e) res.json({ text : "error ultimos viajes",error : e });
                     ultimosViajes = viajes;
@@ -126,7 +126,7 @@ module.exports = {
         });
 
         asyncTasks.push(function(cb){
-            Viaje.find({ fecha_inicio_com : { '!' : 'No aplica' } ,sort: 'fecha_inicio_com DESC',limit : 3}).exec(
+            Viaje.find({ fecha_inicio_part : { '!' : 'No aplica' } ,sort: 'fecha_inicio_part DESC',limit : 3}).exec(
                 function(e,viajes){
                     if (e) res.json({ text : "error viajes por mes",error : e });
                     viajesPorMes = viajes;

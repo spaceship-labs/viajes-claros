@@ -64,8 +64,8 @@ app.controller("viajeSearchCTL", ['$scope', '$http','$filter' , function ($scope
     $scope.viajes = window.viajes;
 
     $scope.getDateString = function(viaje){
-        var inicio = new Date(viaje.fecha_inicio_com);
-        var fin = new Date(viaje.fecha_fin_com);
+        var inicio = new Date(viaje.fecha_inicio_part);
+        var fin = new Date(viaje.fecha_fin_part);
         var inicioAux = $filter('date')(inicio, 'longDate');
         var finAux = $filter('date')(fin, 'longDate');
         return inicioAux + " al " + finAux;

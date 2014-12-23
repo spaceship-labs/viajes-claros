@@ -6,7 +6,7 @@ app.controller("funcionarioCTL", ['$scope', '$http','$filter' ,function ($scope,
     $scope.viajes = window.viajes;
     $scope.funcionario = window.funcionario;
     $scope.totalViaticos = 0.0;
-    $scope.orderField = 'fecha_inicio_com';
+    $scope.orderField = 'fecha_inicio_part';
     $scope.isReversed = false;
     $scope.filterNacionales = true;
     $scope.filterInternacionales = true;
@@ -14,8 +14,8 @@ app.controller("funcionarioCTL", ['$scope', '$http','$filter' ,function ($scope,
     for (var i=0;i<$scope.viajes.length;i++) {
         var el = $scope.viajes[i];
         $scope.totalViaticos += el.gasto_viatico;
-        $scope.viajes[i].fecha_inicio_com = new Date($scope.viajes[i].fecha_inicio_com);
-        $scope.viajes[i].fecha_fin_com = new Date($scope.viajes[i].fecha_fin_com);
+        $scope.viajes[i].fecha_inicio_part = new Date($scope.viajes[i].fecha_inicio_part);
+        $scope.viajes[i].fecha_fin_part = new Date($scope.viajes[i].fecha_fin_part);
 
     }
 
@@ -40,32 +40,32 @@ app.controller("funcionarioCTL", ['$scope', '$http','$filter' ,function ($scope,
     };
 
     $scope.startRadialD3 = function(){
-        var diff = 218;
         var oneDay = 1000 * 60 * 60 * 24;
+        var diff = 218 * oneDay;
         var day = Math.floor(diff / oneDay);
 
         var days = 0;
 
         $scope.viajes.map(function(viaje){
-           var dateInicio = new Date(viaje.fecha_inicio_com);
-           var dateFin = new Date(viaje.fecha_fin_com);
-           var dateDiff = dateFin - dateInicio;
+           var dateInicio = new Date(viaje.fecha_inicio_part);
+           var dateFin = new Date(viaje.fecha_fin_part);
+           var dateDiff = dateInicio - dateFin == 0 ? oneDay : (dateFin - dateInicio);
            var vacas = Math.floor(dateDiff / oneDay);
-           console.log(days);
-           console.log(vacas);
-           days += days + vacas;
+           days += vacas;
         });
 
+        var value_1 = (days/day) * 100;
+        var value_2 = ((day-days)/day) * 100;
 
         var rp1 = radialProgress(document.getElementById('radial-one'))
             .diameter(150)
-            .value((days/day) * 100)
+            .value(value_1)
             .label('De viaje')
             .render();
 
         var rp2 = radialProgress(document.getElementById('radial-two'))
             .diameter(150)
-            .value(((day-days)/day) * 100)
+            .value(value_2)
             .label('En casa')
             .render();
 
@@ -84,8 +84,8 @@ app.controller("funcionarioCTL", ['$scope', '$http','$filter' ,function ($scope,
     };
 
     $scope.getDateString = function(viaje){
-        var inicio = viaje.fecha_inicio_com;
-        var fin = viaje.fecha_fin_com;
+        var inicio = viaje.fecha_inicio_part;
+        var fin = viaje.fecha_fin_part;
         var inicioAux = $filter('date')(inicio, 'longDate');
         var finAux = $filter('date')(fin, 'longDate');
         return inicioAux + " al " + finAux;
@@ -93,9 +93,9 @@ app.controller("funcionarioCTL", ['$scope', '$http','$filter' ,function ($scope,
 
     $scope.getTravelDays = function(viaje){
         var dia = 24*60*60*1000;
-        var inicio = new Date(viaje.fecha_inicio_com);
-        var fin = new Date(viaje.fecha_fin_com);
-        var diff = Math.round(Math.abs((inicio.getTime() - fin.getTime())/(dia)));
+        var inicio = new Date(viaje.fecha_inicio_part);
+        var fin = new Date(viaje.fecha_fin_part);
+        var diff = inicio - fin == 0 ? 1 : Math.round(Math.abs((inicio.getTime() - fin.getTime())/(dia)));
         return diff;
     };
 
@@ -261,8 +261,8 @@ app.controller("compararCTL", ['$scope', '$http','$filter' ,function ($scope, $h
         var days = 0;
 
         viajes.map(function(viaje){
-           var dateInicio = new Date(viaje.fecha_inicio_com);
-           var dateFin = new Date(viaje.fecha_fin_com);
+           var dateInicio = new Date(viaje.fecha_inicio_part);
+           var dateFin = new Date(viaje.fecha_fin_part);
            var dateDiff = dateFin - dateInicio;
            var vacas = Math.floor(dateDiff / oneDay);
            days += days + vacas;

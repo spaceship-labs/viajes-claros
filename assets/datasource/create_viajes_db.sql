@@ -211,6 +211,20 @@ set
 	v.funcionario = f.Id;
 	
 
+	/*Querys de control*/
+	
+	
+select funcionario,nombre,fecha_inicio_part,ciudad_destino,count(*) as total 
+from viaje 
+group by funcionario,nombre,fecha_inicio_part,ciudad_destino
+having count(*) > 1
+
+select linea_origen,count(*) as total 
+from viaje 
+where pasaje_tipo = 'Aéreo' and linea_origen != '' and linea_origen != 'No disponible' and linea_origen != 'Pendiente de captura' 
+group by linea_origen
+
+select tipo_viaje,count(*) total from viaje group by tipo_viaje
 
 
 
