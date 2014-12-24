@@ -96,16 +96,14 @@ app.controller("globalCTL", ['$scope', '$http', '$rootScope','$mdSidenav','limit
         }
     }
     $scope.submitComparador = function(){
-        console.log('submit');
         if ($scope.validateForm()){
-            console.log('validado');
             $('#comparadorFormLateral').submit();
         }
     }
 
     $scope.onSelectComparador = function ($item, $model, $label) {
         $scope.fun = '';
-        if($scope.funcionariosComparador.length < 3){
+        if($scope.funcionariosComparador.length < 2){
             $scope.funcionariosComparador.push($item);
 
             if($scope.funcionariosComparador.length > 1){
@@ -189,6 +187,9 @@ app.controller("lateralCTL", ['$scope', '$http','$rootScope',function ($scope, $
         $rootScope.$broadcast('toggleComp', true);
         func()
     }
+    $scope.toggleLeft = function() {
+        $mdSidenav('left').toggle();
+    };
 }]);
 
 app.controller("comparadorCTL", ['$scope', '$http', 'limitToFilter',function ($scope, $http,limitToFilter) {

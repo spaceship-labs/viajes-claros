@@ -1,4 +1,4 @@
-<div ng-controller="globalCTL">
+<div ng-controller="globalCTL" class="global-ctl">
 <md-sidenav  class="md-sidenav-left md-whiteframe-z2" id="sidebar-comparador" md-component-id="left">
   <md-toolbar class="md-theme-light">
   	<p class="icon-container animated rotateIn" id="compare-icon"><i class="icon icon-comparar"></i></p>
@@ -7,7 +7,7 @@
   <md-content class="md-padding">
 	<md-input-group tabindex="-1" label="FUNCIONARIO"  class="ng-isolate-scope md-default-theme ng-valid md-input-has-value" aria-invalid="false">
 	<label for="001" class="ng-binding">FUNCIONARIO</label>
-	<form action="/funcionario/comparar" method="GET" ng-submit="validateForm()" id="comparadorForm">
+	<form action="/funcionario/comparar" method="GET" ng-submit="validateForm()" id="comparadorFormLateral">
 		<input 
 			id="001"
 			ng-model="fun"
