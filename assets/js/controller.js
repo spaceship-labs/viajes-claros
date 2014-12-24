@@ -100,6 +100,17 @@ app.controller("globalCTL", ['$scope', '$http', '$rootScope','$mdSidenav','limit
             $('#comparadorFormLateral').submit();
         }
     }
+    $scope.$on('sendFuncionario', function(event,args) {
+        if($scope.funcionariosComparador.length < 2){
+            $scope.funcionariosComparador.push(args);
+
+            if($scope.funcionariosComparador.length > 1){
+                $scope.funcTwo = args.id;
+            }else{
+                $scope.funcOne = args.id;
+            }
+        }
+    });
 
     $scope.onSelectComparador = function ($item, $model, $label) {
         $scope.fun = '';
@@ -112,12 +123,12 @@ app.controller("globalCTL", ['$scope', '$http', '$rootScope','$mdSidenav','limit
                 $scope.funcOne = $item.id;
             }
 
-            if($scope.validateForm()){
+            /*if($scope.validateForm()){
                 $('#compare-icon').removeClass('rotateIn');
                 setTimeout(function(){
                     $('#compare-icon').addClass('rotateIn');                
                 },300);
-            }
+            }*/
         }
     }
 
@@ -169,26 +180,23 @@ app.controller("subscribeCTL", ['$scope', '$http',function ($scope, $http) {
     }
 }]);
 
-app.controller("lateralCTL", ['$scope', '$http','$rootScope',function ($scope, $http, $rootScope) {
-    
-    $scope.scrollTo = function(){
-        setTimeout(
-            function(){
-                if($(window).width() < 1024){
-                    $('html, body').animate({
-                        scrollTop: $('#comparador-popup').offset().top - 20
-                    }, 500);
-                }
-            },
-            300           
-        );
-    }
-    $scope.toggleComp = function(func){
-        $rootScope.$broadcast('toggleComp', true);
-        func()
-    }
-    $scope.toggleLeft = function() {
+app.service("comparator", ['$rootScope','$mdSidenav',function($rootScope, $mdSidenav) {
+    this.openSidebar = function(){
         $mdSidenav('left').toggle();
+    }
+    this.setFuncionario = function(funcionario){
+        var sendData =  function(callback){
+            $rootScope.$broadcast('sendFuncionario', funcionario);
+            callback();
+        }
+        sendData(this.openSidebar);
+    }
+}]);
+
+app.controller("lateralCTL", ['$scope', '$http','comparator',function ($scope, $http, comparator) {
+    
+    $scope.openSidebar = function() {
+        comparator.openSidebar();
     };
 }]);
 
@@ -209,7 +217,7 @@ app.controller("comparadorCTL", ['$scope', '$http', 'limitToFilter',function ($s
         });
     };
 
-    $scope.$on('sendFuncionario', function(event,args) {
+    /*$scope.$on('sendFuncionario', function(event,args) {
         console.log(args);
         if(!isNaN($scope.funcOne.id)){
             $scope.funcTwo = args;
@@ -217,7 +225,7 @@ app.controller("comparadorCTL", ['$scope', '$http', 'limitToFilter',function ($s
             $scope.funcOne = args;
         }
         $scope.toggleComparador = true;
-    });
+    });*/
 
     $scope.onSelectPart = function ($item, $model, $label) {
         if($scope.validateForm()){
