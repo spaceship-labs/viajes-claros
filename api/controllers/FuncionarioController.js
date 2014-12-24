@@ -94,22 +94,14 @@ module.exports = {
         if(!isNaN(func_uno_id) && !isNaN(func_dos_id)){
             var ids = [func_uno_id,func_dos_id];
             var funcionarios_arr = [];
-            ids.forEach(function(elem,index){
-                var funcionario_tmp = {};
-                var x = 0;
-                Funcionario.findOne({ id : elem}).populate('viajes').exec(function(err,funcionario){
-                    if (err) console.log(err);
-                    if(funcionario){
-                        funcionarios_arr.push(funcionario);
-                        if(index == ids.length-1){
-                            res.view({funcionarios : funcionarios_arr});
-                        }
-                    }else{
-                        res.redirect('/');
-                    }
-                });
-            });  
-
+            Funcionario.find().where({id:ids}).populate('viajes').exec(function(err,funcionarios){
+                if (err) console.log(err);
+                if(funcionarios){
+                    res.view({funcionarios : funcionarios});
+                }else{
+                    res.redirect('/');
+                }
+            });
         }else{
             res.redirect('/');
         }
