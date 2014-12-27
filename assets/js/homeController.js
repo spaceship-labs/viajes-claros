@@ -115,7 +115,7 @@ app.controller("homeCtrl", ['$scope', '$http','$filter',function ($scope, $http 
 
 }]);
 
-app.controller("statisticsCTL", ['$scope', '$http','$filter','$rootScope','$location','$timeout','$animate',function ($scope, $http,$filter, $rootScope,$location, $timeout, $animate) {
+app.controller("statisticsCTL", ['$scope', '$http','$filter','$rootScope','$location','$timeout','$animate','comparator',function ($scope, $http,$filter, $rootScope,$location, $timeout, $animate,comparator) {
     $scope.hotelList = [];
     $scope.ciudadesList = [];
     $scope.aerolineasList = [];
@@ -267,9 +267,12 @@ app.controller("statisticsCTL", ['$scope', '$http','$filter','$rootScope','$loca
         //$scope.myLine.redraw();
     };
 
-    $scope.compare = function(funcionarioObj){
-        funcionarioObj.id = funcionarioObj.funcionario;
-        $rootScope.$broadcast('sendFuncionario', funcionarioObj);
+    $scope.compare = function(funcionario){
+        if(typeof funcionario.funcionario != 'undefined'){
+            funcionario.id = funcionario.funcionario;
+        }
+        console.log(funcionario);
+        comparator.setFuncionario(funcionario);
     }
 
 

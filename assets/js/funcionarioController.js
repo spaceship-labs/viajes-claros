@@ -272,6 +272,7 @@ app.controller("compararCTL", ['$scope', '$http','$filter' ,function ($scope, $h
     $scope.drawDonuts = function(){
         setTimeout(
             function(){
+                console.log(funcionarios);
                 var days1 = $scope.setDataViajes($scope.funcionarios[0].viajes);
                 var days2 = $scope.setDataViajes($scope.funcionarios[1].viajes);
 
@@ -299,7 +300,7 @@ app.controller("compararCTL", ['$scope', '$http','$filter' ,function ($scope, $h
                     .label('En casa')
                     .render();
 
-            },1000
+            },2000
         );
 
     }

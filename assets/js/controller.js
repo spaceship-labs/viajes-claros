@@ -71,6 +71,8 @@ app.directive('countTo', ['$timeout','$filter', function ($timeout,$filter) {
 
 app.controller("globalCTL", ['$scope', '$http', '$rootScope','$mdSidenav','limitToFilter',function ($scope, $http,$rootScope,$mdSidenav,limitToFilter) {
     $scope.funcionariosComparador = [];
+    $scope.funcOne = '';
+    $scope.funcTwo = '';
 
     $scope.funcionariosAJAX = function(name) {
         if (!name) return [];
@@ -86,17 +88,47 @@ app.controller("globalCTL", ['$scope', '$http', '$rootScope','$mdSidenav','limit
         $scope.$label = $label;
     };
 
+    $scope.validateForm = function(){
+        if(!isNaN($scope.funcOne) && !isNaN($scope.funcTwo)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    $scope.submitComparador = function(){
+        if ($scope.validateForm()){
+            $('#comparadorFormLateral').submit();
+        }
+    }
+    $scope.$on('sendFuncionario', function(event,args) {
+        if($scope.funcionariosComparador.length < 2){
+            $scope.funcionariosComparador.push(args);
+
+            if($scope.funcionariosComparador.length > 1){
+                $scope.funcTwo = args.id;
+            }else{
+                $scope.funcOne = args.id;
+            }
+        }
+    });
+
     $scope.onSelectComparador = function ($item, $model, $label) {
         $scope.fun = '';
-        if($scope.funcionariosComparador.length < 9){
+        if($scope.funcionariosComparador.length < 2){
             $scope.funcionariosComparador.push($item);
 
-            if($scope.validateForm()){
+            if($scope.funcionariosComparador.length > 1){
+                $scope.funcTwo = $item.id;
+            }else{
+                $scope.funcOne = $item.id;
+            }
+
+            /*if($scope.validateForm()){
                 $('#compare-icon').removeClass('rotateIn');
                 setTimeout(function(){
                     $('#compare-icon').addClass('rotateIn');                
                 },300);
-            }
+            }*/
         }
     }
 
@@ -148,24 +180,24 @@ app.controller("subscribeCTL", ['$scope', '$http',function ($scope, $http) {
     }
 }]);
 
-app.controller("lateralCTL", ['$scope', '$http','$rootScope',function ($scope, $http, $rootScope) {
+app.service("comparator", ['$rootScope','$mdSidenav',function($rootScope, $mdSidenav) {
+    this.openSidebar = function(){
+        $mdSidenav('left').toggle();
+    }
+    this.setFuncionario = function(funcionario){
+        var sendData =  function(callback){
+            $rootScope.$broadcast('sendFuncionario', funcionario);
+            callback();
+        }
+        sendData(this.openSidebar);
+    }
+}]);
+
+app.controller("lateralCTL", ['$scope', '$http','comparator',function ($scope, $http, comparator) {
     
-    $scope.scrollTo = function(){
-        setTimeout(
-            function(){
-                if($(window).width() < 1024){
-                    $('html, body').animate({
-                        scrollTop: $('#comparador-popup').offset().top - 20
-                    }, 500);
-                }
-            },
-            300           
-        );
-    }
-    $scope.toggleComp = function(func){
-        $rootScope.$broadcast('toggleComp', true);
-        func()
-    }
+    $scope.openSidebar = function() {
+        comparator.openSidebar();
+    };
 }]);
 
 app.controller("comparadorCTL", ['$scope', '$http', 'limitToFilter',function ($scope, $http,limitToFilter) {
@@ -185,7 +217,7 @@ app.controller("comparadorCTL", ['$scope', '$http', 'limitToFilter',function ($s
         });
     };
 
-    $scope.$on('sendFuncionario', function(event,args) {
+    /*$scope.$on('sendFuncionario', function(event,args) {
         console.log(args);
         if(!isNaN($scope.funcOne.id)){
             $scope.funcTwo = args;
@@ -193,7 +225,7 @@ app.controller("comparadorCTL", ['$scope', '$http', 'limitToFilter',function ($s
             $scope.funcOne = args;
         }
         $scope.toggleComparador = true;
-    });
+    });*/
 
     $scope.onSelectPart = function ($item, $model, $label) {
         if($scope.validateForm()){

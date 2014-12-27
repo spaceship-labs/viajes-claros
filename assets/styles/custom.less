@@ -105,6 +105,7 @@ a:hover{text-decoration: none!important;}
 
 #main{padding-bottom: 85px!important}
 #content{
+	position: relative;
 	h1{font-size: 32px}
 	strong{font-weight: bold;}
 	.row + .row{margin-top: 20px}
@@ -113,6 +114,7 @@ a:hover{text-decoration: none!important;}
 		a{color: mix(@gray,@gray-light)}
 		.active{color: @blue}
 	}
+	.global-ctl{position: absolute;height: 100%;width: 100%}
 	#modal-advice{z-index: 99999999}
 	.modal.in .modal-dialog{max-width: 430px!important}
 	.modal-content{
@@ -697,7 +699,7 @@ a:hover{text-decoration: none!important;}
 
 .md-sidenav-backdrop{z-index: 9999!important}
 #sidebar-comparador{
-	background: #238BDD;overflow: visible;z-index: 9999;
+	background: #238BDD;overflow: visible;position: fixed;z-index: 99999;
 	md-toolbar{
 		background: #167FD1;padding: 12px 6px;text-align: center;
 		h2{font-weight: 700}
@@ -717,6 +719,7 @@ a:hover{text-decoration: none!important;}
 		input[type="text"]input:-moz-placeholder { color:#fff; }
 		.to-compare{
 			li{
+				text-transform: capitalize;
 				.del{color: #fff;font-size: 16px;font-weight: 700;margin-left:6px;}
 			}
 		}
