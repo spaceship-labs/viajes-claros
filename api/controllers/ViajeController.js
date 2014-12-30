@@ -36,12 +36,20 @@ module.exports = {
         }
     },
     list : function(req,res) {
-        var request = req.param('request');
+        var tipo_viaje = req.param('tipo_viaje');
+        var ciudad_destino = req.param('ciudad_destino');
+        var tema = req.param('tema');
+        var tipo_com = req.param('tipo_com');
+        var hotel = req.param('hotel');
+        var pasaje_tipo = req.param('pasaje_tipo');
+        var orden = req.param('orden') || 'gasto_total desc';
+        var mes = req.param('mes');
+
         var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
 
         var asyncTasks = [];
         asyncTasks.push(function(cb){
-            Viaje.query("select distinct pais_destino,estado_destino,ciudad_destino  from viaje",
+            Viaje.query("select distinct pais_destino,ciudad_destino from viaje order by pais_destino,ciudad_destino",
                 function(e,d){
                     if (e) res.json({ text : "error destinos",error : e });
                     destinos = d;
@@ -49,7 +57,7 @@ module.exports = {
                 });
         });
         asyncTasks.push(function(cb){
-            Viaje.query("select distinct tema from viaje",
+            Viaje.query("select distinct tema from viaje where tema != 'No disponible' order by tema",
                 function(e,t){
                     if (e) res.json({ text : "error temas",error : e });
                     temas = t;
@@ -57,32 +65,62 @@ module.exports = {
                 });
         });
         asyncTasks.push(function(cb){
-            Viaje.query("select distinct tipo_com from viaje",
+            Viaje.query("select distinct tipo_com from viaje where tipo_com != 'No disponible' order by tipo_com",
                 function(e,c){
                     if (e) res.json({ text : "error tipo comisiones",error : e });
-                    comiciones = c;
+                    comisiones = c;
                     cb();
                 });
         });
 
-        Viaje.find().exec(function(err,viajes){
+        asyncTasks.push(function(cb){
+            Viaje.query("select distinct hotel from viaje where hotel != 'No disponible' order by hotel",
+                function(e,h){
+                    if (e) res.json({ text : "error tipo hoteles",error : e });
+                    hoteles = h;
+                    cb();
+                });
+        });
+
+        var request = {};
+        if (pasaje_tipo) {
+            request.pasaje_tipo = pasaje_tipo;
+        }
+        if (ciudad_destino) {
+            request.ciudad_destino = ciudad_destino;
+        }
+        if (tema) {
+            request.tema = tema;
+        }
+        if (tipo_com) {
+            request.tipo_com = tipo_com;
+        }
+        if (hotel) {
+            request.hotel = hotel;
+        }
+        if (tipo_viaje) {
+            request.tipo_viaje = tipo_viaje;
+        }
+
+        Viaje.find(request).sort(orden).exec(function(err,viajes){
             if (err) {
                 console.log(err);
                 return;
             }
             async.parallel(asyncTasks,function(){
                 var catalog = {
-                    destinosCatalogo : destinos,
-                    temasCatalogo : temas,
-                    comisionCatalogo : comiciones
+                    destinos : destinos,
+                    temas : temas,
+                    comisiones : comisiones,
+                    hoteles : hoteles
                 };
 
-                res.view('viaje/search',{
+                res.view({
                     viajes : viajes,
                     fullUrl : fullUrl,
-                    title : 'Viajes Claros',
+                    title : 'Listado de viajes',
                     description : Common.viajesRequestToString(request),
-                    request : request || {},
+                    search_request : request || {},
                     catalog : catalog
                 });
             });

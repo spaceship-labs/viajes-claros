@@ -7,24 +7,24 @@
                         <div class="inner-content">
                             <h4><strong>Viajes nacionales e internacionales</strong><br/>de los servidores públicos</h4>
                             <div class="charts-container">
-                                <div id="radial-one" class="radial-chart" ng-click="redirectTo('/viaje/searchtipo?filtro=internacional')"></div>
-                                <div id="radial-two" class="radial-chart" ng-click="redirectTo('/viaje/searchtipo?filtro=nacional')"></div>
+                                <div id="radial-one" class="radial-chart" ng-click="redirectTo('/viajes?tipo_viaje=internacional')"></div>
+                                <div id="radial-two" class="radial-chart" ng-click="redirectTo('/viajes?tipo_viaje=nacional')"></div>
                                 <div class="clear"></div>
                             </div>
                             <div class="clear"></div>
-                            <p class="total">Total de viajes hasta la fecha: {{totalViajes}}</p>
+                            <p class="total">Total de viajes calculados: {{totalViajes}}</p>
                         </div>
                     </slide>
                     <slide active="" >
                         <div class="inner-content">
                             <h4><strong>Viajes por tipo</strong><br/>de transportación</h4>
                             <div class="charts-container">
-                                <div id="radial-three" class="radial-chart" ng-click="redirectTo('/viaje/searchmedio?filtro=terrestre')"></div>
-                                <div id="radial-four" class="radial-chart" ng-click="redirectTo('/viaje/searchmedio?filtro=aéreo')"></div>
+                                <div id="radial-three" class="radial-chart" ng-click="redirectTo('/viajes?pasaje_tipo=terrestre')"></div>
+                                <div id="radial-four" class="radial-chart" ng-click="redirectTo('/viajes?pasaje_tipo=aéreo')"></div>
                                 <div class="clear"></div>
                             </div>
                             <div class="clear"></div>
-                            <p class="total">Total de viajes hasta la fecha: {{totalViajes}}</p>
+                            <p class="total">Total de viajes calculados: {{totalViajes}}</p>
                         </div>
                     </slide>
                 </carousel>

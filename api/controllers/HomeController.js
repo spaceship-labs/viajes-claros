@@ -51,9 +51,10 @@ module.exports = {
         var viajesAereosTerrestres = [];
         var ultimosViajes = [];
         var top3viajesCaros = [];
+        var topFuncionariosViajeros = [];
 
         asyncTasks.push(function(cb){
-            var query = "select viaje.funcionario,funcionario.nombre_completo,funcionario.cargo_nombre,funcionario.institucion,sum(viaje.gasto_viatico) as gasto_viatico,sum(viaje.gasto_pasaje) as gasto_pasaje,sum(viaje.gasto_total) as gasto_total " +
+            var query = "select viaje.funcionario as id,funcionario.nombre_completo,funcionario.cargo_nombre,funcionario.institucion,sum(viaje.gasto_viatico) as gasto_viatico,sum(viaje.gasto_pasaje) as gasto_pasaje,sum(viaje.gasto_total) as gasto_total " +
                 "from viaje inner join funcionario on viaje.funcionario = funcionario.id " +
                 "group by viaje.funcionario,funcionario.nombre_completo,funcionario.cargo_nombre,funcionario.institucion " +
                 "order by sum(gasto_total) desc";
@@ -61,6 +62,19 @@ module.exports = {
                 function(e,viajes){
                     if (e) res.json({ text : "error funcionarios caros",error : e });
                     topFuncionariosCaros = viajes;
+                    cb();
+                });
+        });
+        asyncTasks.push(function(cb){
+            var query = "select viaje.funcionario as id,funcionario.nombre_completo,funcionario.cargo_nombre,funcionario.institucion,count(*) as countViajes " +
+                "from viaje inner join funcionario on viaje.funcionario = funcionario.id " +
+                "group by viaje.funcionario,funcionario.nombre_completo,funcionario.cargo_nombre,funcionario.institucion " +
+                "order by count(*) desc";
+            Viaje.query(query,
+                function(e,viajes){
+                    //console.log(viajes);
+                    if (e) res.json({ text : "error funcionarios caros",error : e });
+                    topFuncionariosViajeros = viajes;
                     cb();
                 });
         });
@@ -116,14 +130,29 @@ module.exports = {
                 });
         });
 
+//          En lo que metemos la otra bd
+
+//        asyncTasks.push(function(cb){
+//            Viaje.find({ fecha_inicio_part : { '!' : 'No aplica' } ,sort: 'fecha_inicio_part DESC',limit : 3}).populate('funcionario').exec(
+//                function(e,viajes){
+//                    if (e) res.json({ text : "error ultimos viajes",error : e });
+//                    ultimosViajes = viajes;
+//                    cb();
+//                });
+//        });
+
         asyncTasks.push(function(cb){
-            Viaje.find({ fecha_inicio_part : { '!' : 'No aplica' } ,sort: 'fecha_inicio_part DESC',limit : 3}).populate('funcionario').exec(
+            var query = "select viaje.id,viaje.evento,viaje.ciudad_destino,viaje.pais_destino,viaje.fecha_inicio_part as fecha from viaje " +
+                "order by STR_TO_DATE(fecha_inicio_part,'%m/%d/%Y') desc limit 0,3";
+            Viaje.query(query,
                 function(e,viajes){
                     if (e) res.json({ text : "error ultimos viajes",error : e });
                     ultimosViajes = viajes;
                     cb();
                 });
         });
+
+        //
 
         asyncTasks.push(function(cb){
             Viaje.query("select count(*) as total from viaje group by MONTH(STR_TO_DATE(fecha_inicio_part,'%m/%d/%Y'));",
@@ -139,7 +168,7 @@ module.exports = {
 
         async.parallel(asyncTasks,function(){
             var response = {
-                funcionariosList : topFuncionariosCaros,
+                topFuncionariosCaros : topFuncionariosCaros,
                 ciudadesList : ciudadesVisitadas,
                 aerolineasList : aerolineas,
                 internacionalesList  : viajesPorTipo,
@@ -147,8 +176,10 @@ module.exports = {
                 pasajesList : viajesAereosTerrestres,
                 viajesCarosList : top3viajesCaros,
                 ultimosViajesList : ultimosViajes,
-                viajesPorMes : viajesPorMes
+                viajesPorMes : viajesPorMes,
+                topFuncionariosViajeros : topFuncionariosViajeros
             };
+            //console.log(topFuncionariosCaros);
             res.json(response);
         });
 

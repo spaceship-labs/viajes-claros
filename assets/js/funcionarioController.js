@@ -1,7 +1,7 @@
 /**
  * Created by Owner on 9/29/2014.
  */
-app.controller("funcionarioCTL", ['$scope', '$http','$filter' ,function ($scope, $http, $filter) {
+app.controller("funcionarioCTL", ['$scope', '$http','$filter','InternalServices' ,function ($scope, $http, $filter,InternalServices) {
 
     $scope.viajes = window.viajes;
     $scope.funcionario = window.funcionario;
@@ -40,32 +40,17 @@ app.controller("funcionarioCTL", ['$scope', '$http','$filter' ,function ($scope,
     };
 
     $scope.startRadialD3 = function(){
-        var oneDay = 1000 * 60 * 60 * 24;
-        var diff = 218 * oneDay;
-        var day = Math.floor(diff / oneDay);
-
-        var days = 0;
-
-        $scope.viajes.map(function(viaje){
-           var dateInicio = new Date(viaje.fecha_inicio_part);
-           var dateFin = new Date(viaje.fecha_fin_part);
-           var dateDiff = dateInicio - dateFin == 0 ? oneDay : (dateFin - dateInicio);
-           var vacas = Math.floor(dateDiff / oneDay);
-           days += vacas;
-        });
-
-        var value_1 = (days/day) * 100;
-        var value_2 = ((day-days)/day) * 100;
+        var daysPercentage = InternalServices.setDataViajesDias($scope.viajes);
 
         var rp1 = radialProgress(document.getElementById('radial-one'))
             .diameter(150)
-            .value(value_1)
+            .value(daysPercentage.percentageDays1)
             .label('De viaje')
             .render();
 
         var rp2 = radialProgress(document.getElementById('radial-two'))
             .diameter(150)
-            .value(value_2)
+            .value(daysPercentage.percentageDays2)
             .label('En casa')
             .render();
 
@@ -240,7 +225,7 @@ app.controller("listadoCTL", ['$scope', '$http','$filter' ,function ($scope, $ht
     }
 }]);
 
-app.controller("compararCTL", ['$scope', '$http','$filter' ,function ($scope, $http, $filter) {
+app.controller("compararCTL", ['$scope', '$http','$filter','InternalServices' ,function ($scope, $http, $filter,InternalServices) {
     $scope.funcionarios = window.funcionarios;
     $scope.quantity = 1;
     $scope.getTotal = function(viajes){
@@ -252,10 +237,9 @@ app.controller("compararCTL", ['$scope', '$http','$filter' ,function ($scope, $h
         return total;
     };
     $scope.setDataViajes = function(viajes){
-        var now = new Date();
-        var start = new Date(now.getFullYear(), 0, 0);
-        var diff = now - start;
+
         var oneDay = 1000 * 60 * 60 * 24;
+        var diff = oneDay * 218;
         $scope.day = Math.floor(diff / oneDay);
 
         var days = 0;
@@ -268,35 +252,34 @@ app.controller("compararCTL", ['$scope', '$http','$filter' ,function ($scope, $h
            days += days + vacas;
         });
         return days;
-    }
+    };
     $scope.drawDonuts = function(){
         setTimeout(
             function(){
-                console.log(funcionarios);
-                var days1 = $scope.setDataViajes($scope.funcionarios[0].viajes);
-                var days2 = $scope.setDataViajes($scope.funcionarios[1].viajes);
+                var days1 = InternalServices.setDataViajesDias($scope.funcionarios[0].viajes);
+                var days2 = InternalServices.setDataViajesDias($scope.funcionarios[1].viajes);
 
                 var rp1 = radialProgress(document.getElementById('radial-one0'))
                     .diameter(150)
-                    .value((days1/$scope.day) * 100)
+                    .value(days1.percentageDays1)
                     .label('De viaje')
                     .render();
 
                 var rp2 = radialProgress(document.getElementById('radial-two0'))
                     .diameter(150)
-                    .value((($scope.day-days1)/$scope.day) * 100)
+                    .value(days1.percentageDays2)
                     .label('En casa')
                     .render();
 
                 var rp3 = radialProgress(document.getElementById('radial-one1'))
                     .diameter(150)
-                    .value((days2/$scope.day) * 100)
+                    .value(days2.percentageDays1)
                     .label('De viaje')
                     .render();
 
                 var rp4 = radialProgress(document.getElementById('radial-two1'))
                     .diameter(150)
-                    .value((($scope.day-days2)/$scope.day) * 100)
+                    .value(days2.percentageDays2)
                     .label('En casa')
                     .render();
 

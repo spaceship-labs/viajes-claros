@@ -1,4 +1,4 @@
-var app = angular.module("viajesTransparentes", ['leaflet-directive','ui.bootstrap','perfect_scrollbar','ngMaterial' ]);
+var app = angular.module("viajesTransparentes", ['leaflet-directive','ui.bootstrap','perfect_scrollbar','ngMaterial','localytics.directives' ]);
 
 app.directive('countTo', ['$timeout','$filter', function ($timeout,$filter) {
     return {
@@ -68,6 +68,17 @@ app.directive('countTo', ['$timeout','$filter', function ($timeout,$filter) {
     }
 
 }]);
+
+app.directive('stopEvent', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attr) {
+            element.bind('click', function (e) {
+                e.stopPropagation();
+            });
+        }
+    };
+});
 
 app.controller("globalCTL", ['$scope', '$http', '$rootScope','$mdSidenav','limitToFilter',function ($scope, $http,$rootScope,$mdSidenav,limitToFilter) {
     $scope.funcionariosComparador = [];
@@ -274,8 +285,23 @@ app.controller("comparadorCTL", ['$scope', '$http', 'limitToFilter',function ($s
         $scope.setfooter();
     });
 
-
-
-
 }]);
 
+app.service('InternalServices',function(){
+    this.setDataViajesDias = function(viajes){
+        var oneDay = 1000 * 60 * 60 * 24;
+        var diff = oneDay * 218;
+        var day = Math.floor(diff / oneDay);
+
+        var days = 0;
+
+        viajes.map(function(viaje){
+            var dateInicio = new Date(viaje.fecha_inicio_part);
+            var dateFin = new Date(viaje.fecha_fin_part);
+            var dateDiff = dateFin - dateInicio;
+            var vacas = dateDiff == 0 ? 1 : Math.floor(dateDiff / oneDay);
+            days += vacas;
+        });
+        return { percentageDays1 : ((days/day) * 100),percentageDays2 : ((day-days)/day) * 100 };
+    };
+});

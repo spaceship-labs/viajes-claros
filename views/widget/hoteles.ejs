@@ -8,7 +8,7 @@
 					<ul>
 						<li ng-repeat="hotel in hotelList">
 							<a><img src="/images/hotel_icon.png" alt="" class="picture" /></a>
-							<p class="place"><a href="/viaje/search_hotel?filtro={{hotel.hotel}}">{{hotel.hotel}}</a></p>
+							<p class="place"><a href="/viajes?hotel={{hotel.hotel}}">{{hotel.hotel}}</a></p>
 							<p class="location"><a href="#">{{hotel.ciudad_destino}}, {{hotel.pais_destino}}</a></p>
 						</li>
 					</ul>

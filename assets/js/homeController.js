@@ -119,7 +119,7 @@ app.controller("statisticsCTL", ['$scope', '$http','$filter','$rootScope','$loca
     $scope.hotelList = [];
     $scope.ciudadesList = [];
     $scope.aerolineasList = [];
-    $scope.funcionariosList = [];
+    $scope.topFuncionariosCaros = [];
     $scope.ultimosViajesList = [];
     $scope.funcionariosViajesList = [];
     $scope.internacionalesList = [];
@@ -216,12 +216,13 @@ app.controller("statisticsCTL", ['$scope', '$http','$filter','$rootScope','$loca
                 $scope.hotelList = data.hotelList;
                 $scope.ciudadesList = data.ciudadesList;
                 $scope.aerolineasList = data.aerolineasList;
-                $scope.funcionariosList = data.funcionariosList;
+                $scope.topFuncionariosCaros = data.topFuncionariosCaros;
                 $scope.internacionalesList = data.internacionalesList;
                 $scope.pasajesList = data.pasajesList;
                 $scope.viajesCarosList = data.viajesCarosList;
                 $scope.ultimosViajesList = data.ultimosViajesList;
                 $scope.viajesPorMes = data.viajesPorMes;
+                $scope.topFuncionariosViajeros = data.topFuncionariosViajeros;
 
                 //console.log($scope.ultimosViajesList[0]);
                 //console.log($scope.viajesCarosList);

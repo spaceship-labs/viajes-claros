@@ -105,16 +105,10 @@ ENGINE=MyISAM
 AUTO_INCREMENT=1;
 
 
-insert into funcionario (institucion,nombre_completo) 
-select distinct 'IFAI',Nom_SP 
+insert into funcionario (institucion,nombre_completo,cargo_nombre,tipo_personal,email,genero) 
+select distinct 'IFAI',Nom_SP,Cargo,NivelCargo,Correo,Genero
 from viajes_dump;
 
-update funcionario f
-left join viajes_dump v on
-f.nombre_completo = v.Nom_SP
-set 
-	f.cargo_nombre = v.Cargo,f.tipo_personal = v.NivelCargo, f.email = v.Correo , f.genero = v.Genero;
-	
 CREATE TABLE `subscripcion` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`funcionario` INT(11) NOT NULL,
@@ -130,62 +124,62 @@ ENGINE=InnoDB;
 
 CREATE TABLE `viaje` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
-	`mec_origen` VARCHAR(100) NOT NULL COLLATE 'utf8_general_ci',
-	`institucion_genera` VARCHAR(200) NOT NULL COLLATE 'utf8_general_ci',
-	`UR` VARCHAR(100) NOT NULL COLLATE 'utf8_general_ci',
-	`tipo_rep` VARCHAR(100) NOT NULL COLLATE 'utf8_general_ci',
-	`consecutivo` VARCHAR(100) NOT NULL COLLATE 'utf8_general_ci',
-	`nombre` VARCHAR(100) NOT NULL COLLATE 'utf8_general_ci',
-	`cargo` VARCHAR(100) NOT NULL COLLATE 'utf8_general_ci',
-	`grupo` VARCHAR(100) NOT NULL COLLATE 'utf8_general_ci',
-	`tipo_viaje` VARCHAR(100) NOT NULL COLLATE 'utf8_general_ci',
-	`acuerdo` VARCHAR(100) NOT NULL COLLATE 'utf8_general_ci',
-	`oficio` VARCHAR(100) NOT NULL COLLATE 'utf8_general_ci',
-	`pais_origen` VARCHAR(100) NOT NULL COLLATE 'utf8_general_ci',
-	`estado_origen` VARCHAR(100) NOT NULL COLLATE 'utf8_general_ci',
-	`ciudad_origen` VARCHAR(100) NOT NULL COLLATE 'utf8_general_ci',
-	`pais_destino` VARCHAR(100) NOT NULL COLLATE 'utf8_general_ci',
-	`estado_destino` VARCHAR(100) NOT NULL COLLATE 'utf8_general_ci',
-	`ciudad_destino` VARCHAR(100) NOT NULL COLLATE 'utf8_general_ci',
-	`tarifa_diaria` VARCHAR(100) NOT NULL COLLATE 'utf8_general_ci',
-	`moneda` VARCHAR(100) NOT NULL COLLATE 'utf8_general_ci',
-	`tema` VARCHAR(100) NOT NULL COLLATE 'utf8_general_ci',
-	`tipo_com` VARCHAR(100) NOT NULL COLLATE 'utf8_general_ci',
-	`evento` VARCHAR(500) NOT NULL COLLATE 'utf8_general_ci',
-	`evento_url` VARCHAR(100) NOT NULL COLLATE 'utf8_general_ci',
-	`motivo` TEXT NOT NULL COLLATE 'utf8_general_ci',
-	`antecedente` VARCHAR(500) NOT NULL COLLATE 'utf8_general_ci',
-	`actividad` TEXT NOT NULL COLLATE 'utf8_general_ci',
-	`resultado` VARCHAR(500) NOT NULL COLLATE 'utf8_general_ci',
-	`contribucion_ifai` TEXT NOT NULL COLLATE 'utf8_general_ci',
-	`url_comunicado` VARCHAR(100) NOT NULL COLLATE 'utf8_general_ci',
-	`pasaje_cubre` VARCHAR(100) NOT NULL COLLATE 'utf8_general_ci',
-	`pasaje_tipo` VARCHAR(100) NOT NULL COLLATE 'utf8_general_ci',
-	`linea_origen` VARCHAR(100) NOT NULL COLLATE 'utf8_general_ci',
-	`vuelo_origen` VARCHAR(100) NOT NULL COLLATE 'utf8_general_ci',
-	`linea_regreso` VARCHAR(100) NOT NULL COLLATE 'utf8_general_ci',
-	`vuelo_regreso` VARCHAR(100) NOT NULL COLLATE 'utf8_general_ci',
+	`mec_origen` VARCHAR(100) NOT NULL,
+	`institucion_genera` VARCHAR(200) NOT NULL,
+	`UR` VARCHAR(100) NOT NULL,
+	`tipo_rep` VARCHAR(100) NOT NULL,
+	`consecutivo` VARCHAR(100) NOT NULL,
+	`nombre` VARCHAR(100) NOT NULL,
+	`cargo` VARCHAR(100) NOT NULL,
+	`grupo` VARCHAR(100) NOT NULL,
+	`tipo_viaje` VARCHAR(100) NOT NULL,
+	`acuerdo` VARCHAR(100) NOT NULL,
+	`oficio` VARCHAR(100) NOT NULL,
+	`pais_origen` VARCHAR(100) NOT NULL,
+	`estado_origen` VARCHAR(100) NOT NULL,
+	`ciudad_origen` VARCHAR(100) NOT NULL,
+	`pais_destino` VARCHAR(100) NOT NULL,
+	`estado_destino` VARCHAR(100) NOT NULL,
+	`ciudad_destino` VARCHAR(100) NOT NULL,
+	`tarifa_diaria` VARCHAR(100) NOT NULL,
+	`moneda` VARCHAR(100) NOT NULL,
+	`tema` VARCHAR(100) NOT NULL,
+	`tipo_com` VARCHAR(100) NOT NULL,
+	`evento` VARCHAR(500) NOT NULL,
+	`evento_url` VARCHAR(100) NOT NULL,
+	`motivo` TEXT NOT NULL,
+	`antecedente` VARCHAR(500) NOT NULL,
+	`actividad` TEXT NOT NULL,
+	`resultado` VARCHAR(500) NOT NULL,
+	`contribucion_ifai` TEXT NOT NULL,
+	`url_comunicado` VARCHAR(100) NOT NULL,
+	`pasaje_cubre` VARCHAR(100) NOT NULL,
+	`pasaje_tipo` VARCHAR(100) NOT NULL,
+	`linea_origen` VARCHAR(100) NOT NULL,
+	`vuelo_origen` VARCHAR(100) NOT NULL,
+	`linea_regreso` VARCHAR(100) NOT NULL,
+	`vuelo_regreso` VARCHAR(100) NOT NULL,
 	`gasto_pasaje` DECIMAL(14,2) NULL DEFAULT NULL,
 	`gasto_viatico` DECIMAL(14,2) NULL DEFAULT NULL,
 	`gasto_total` DECIMAL(14,2) NOT NULL,
-	`inst_hospedaje` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`hotel` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`fecha_inicio_part` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
-	`fecha_fin_part` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
-	`fecha_inicio_com` VARCHAR(100) NOT NULL COLLATE 'utf8_general_ci',
-	`fecha_fin_com` VARCHAR(100) NOT NULL COLLATE 'utf8_general_ci',
-	`fecha_inicio_hotel` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`fecha_fin_hotel` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`costo_hotel` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
+	`inst_hospedaje` VARCHAR(100) NULL DEFAULT NULL,
+	`hotel` VARCHAR(100) NULL DEFAULT NULL,
+	`fecha_inicio_part` DATE NOT NULL,
+	`fecha_fin_part` DATE NOT NULL,
+	`fecha_inicio_com` DATE NOT NULL,
+	`fecha_fin_com` DATE NOT NULL,
+	`fecha_inicio_hotel` DATE NULL DEFAULT NULL,
+	`fecha_fin_hotel` DATE NULL DEFAULT NULL,
+	`costo_hotel` VARCHAR(100) NULL DEFAULT NULL,
 	`viatico_comprobado` DECIMAL(10,0) NULL DEFAULT NULL,
 	`viatico_sin_comprobar` DECIMAL(10,0) NULL DEFAULT NULL,
 	`viatico_devuelto` DECIMAL(10,0) NULL DEFAULT NULL,
-	`observaciones` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
+	`observaciones` VARCHAR(100) NULL DEFAULT NULL,
 	`funcionario` INT(11) NOT NULL DEFAULT '0',
-	`origen_latitud` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`origen_longitud` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`destino_latitud` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`destino_longitud` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
+	`origen_latitud` VARCHAR(100) NULL DEFAULT NULL,
+	`origen_longitud` VARCHAR(100) NULL DEFAULT NULL,
+	`destino_latitud` VARCHAR(100) NULL DEFAULT NULL,
+	`destino_longitud` VARCHAR(100) NULL DEFAULT NULL,
 	PRIMARY KEY (`id`),
 	FULLTEXT INDEX `nombre` (`nombre`)
 )
@@ -197,12 +191,6 @@ insert into viaje (mec_origen,institucion_genera,UR,tipo_rep,consecutivo,nombre,
 select MecanismoCom,Organizador_Evento,UR_Siglas,TipoRepresentaciomn,Num_comision,Nom_SP,TipoViaje,NoAcuerdo,NoOficio,PaisOrigen,EstadoOrigen,CiudadOrigen,PaisDestino,EstadoDestino,CiudadDestino,TarifaViaticos,Moneda,Tema,TipoComision,Nombre_Evento,URL_Evento,Motivo,Antecedentes,Actividades_realizadas,Resultados,ContribucionesIFAI,Link,InstitucionPasaje,TipoPasaje,AerolineaSalida,NumVueloCorridaSalida,AerolineaLlegada,NumVueloCorridaLlegada,CAST(replace(GastoPasaje, ',', '') AS DECIMAL(14,2)),CAST(replace(GastoTotalViaticos, ',', '') AS DECIMAL(14,2)),CAST(replace(GastoPasaje, ',', '') AS DECIMAL(14,2))+CAST(replace(GastoTotalViaticos, ',', '') AS DECIMAL(14,2)),InstitucionHospedaje,NombreHotel,FechaInicioParticipacion,FechaFinParticipacon,FechaInicioViaticos,FechaFinViaticos,FechaEntrada_1,FechaSalida_1,CostoHospedaje,MontoComprobado,MontoSinComprobar,MontoDevuelto,Observaciones
 from viajes_dump;
 
-update viaje v 
-inner join viajes_dump vd on v.fecha_inicio_part = vd.FechaInicioParticipacion and v.nombre = vd.Nom_SP
-set 
-	gasto_pasaje = CAST(replace(vd.GastoPasaje, ',', '') AS DECIMAL(14,2)),
-	gasto_viatico = CAST(replace(vd.MontoViaticados, ',', '') AS DECIMAL(14,2)),
-	gasto_total = CAST(replace(vd.GastoPasaje, ',', '') AS DECIMAL(14,2)) + CAST(replace(vd.MontoViaticados, ',', '') AS DECIMAL(14,2))
 
 update viaje v
 left join funcionario f on
@@ -225,6 +213,12 @@ where pasaje_tipo = 'Aéreo' and linea_origen != '' and linea_origen != 'No dispo
 group by linea_origen
 
 select tipo_viaje,count(*) total from viaje group by tipo_viaje
+
+select MONTH(STR_TO_DATE(fecha_inicio_part,'%m/%d/%Y')) as mes,count(*) as total from viaje group by MONTH(STR_TO_DATE(fecha_inicio_part,'%m/%d/%Y'));
+
+select count(*) as total from viaje group by MONTH(STR_TO_DATE(fecha_inicio_part,'%m/%d/%Y'));
+
+select STR_TO_DATE(fecha_inicio_part,'%m/%d/%Y'),fecha_inicio_part from viaje order by STR_TO_DATE(fecha_inicio_part,'%m/%d/%Y') desc
 
 
 

@@ -1,0 +1,173 @@
+<div id="viajes-filtros" ng-controller="viajeSearchCTL">
+	<script type="text/javascript">
+		window.viajes = <%- JSON.stringify(viajes) %>;
+        window.search_request = <%- JSON.stringify(search_request) %>;
+        window.catalog = <%- JSON.stringify(catalog) %>;
+
+	</script>
+	<div class="centered-content">
+		<div class="container-fluid">
+
+            <div class="row filter">
+                <p>
+                    <span class="btn btn-default" ng-click="setFilterOption(0)">
+                        Transportacion
+                        <span ng-if="search_request.pasaje_tipo">
+                            : {{search_request.pasaje_tipo}}
+                            <a ng-click="search_request.pasaje_tipo = ''" stop-event class="right">X</a>
+                        </span>
+                    </span>
+                    <div ng-show="getFilterOption(0)" class="custom-overlay">
+                        <ul>
+                            <li><a href="#" class="icon-world" ng-click="search_request.pasaje_tipo = 'terrestre'" style="color:white">Terrestre</a></li>
+                            <li><a href="#" class="icon-vuelos" ng-click="search_request.pasaje_tipo = 'aereo'" style="color:white">Aereo</a></li>
+                        </ul>
+                    </div>
+                </p>
+                <p>
+                    <span class="btn btn-default" ng-click="setFilterOption(1)">
+                        Tipo de viaje
+                        <span ng-if="search_request.tipo_viaje" >
+                            : {{search_request.tipo_viaje}}
+                            <a ng-click="search_request.tipo_viaje = ''" stop-event class="right">X</a>
+                        </span>
+                    </span>
+                    <div ng-show="getFilterOption(1)" class="custom-overlay">
+                        <ul>
+                            <li><a href="#" ng-click="search_request.tipo_viaje = 'nacional'" style="color:white">Nacional</a></li>
+                            <li><a href="#" ng-click="search_request.tipo_viaje = 'internacional'" style="color:white">Internacional</a></li>
+                        </ul>
+                    </div>
+                </p>
+                <p>
+                    <span class="btn btn-default" ng-click="setFilterOption(2)">
+                        Destino
+                        <span ng-if="search_request.ciudad_destino" >
+                            : {{search_request.ciudad_destino}}
+                            <a ng-click="search_request.ciudad_destino = ''" stop-event class="right">X</a>
+                        </span>
+                    </span>
+                    <div ng-show="getFilterOption(2)" class="custom-overlay">
+                        <select chosen ng-model="search_request.ciudad_destino" ng-options="destino.ciudad_destino as destino.ciudad_destino group by destino.pais_destino for destino in catalog.destinos"></select>
+                    </div>
+                </p>
+                <p>
+                    <span class="btn btn-default" ng-click="setFilterOption(3)" class="btn btn-default">
+                        Tema
+                        <span ng-if="search_request.tema" >
+                            : {{search_request.tema}}
+                            <a ng-click="search_request.tema = ''" stop-event class="right">X</a>
+                        </span>
+                    </span>
+                    <div ng-show="getFilterOption(3)" class="custom-overlay">
+                        <select chosen ng-model="search_request.tema" ng-options="tema.tema as tema.tema for tema in catalog.temas"></select>
+                    </div>
+                </p>
+                <p>
+                    <span class="btn btn-default"  ng-click="setFilterOption(4)">
+                        Comisión
+                        <span ng-if="search_request.tipo_com">
+                            : {{search_request.tipo_com}}
+                            <a ng-click="search_request.tipo_com = ''" stop-event class="right">X</a>
+                        </span>
+                    </span>
+                    <div ng-show="getFilterOption(4)" class="custom-overlay">
+                        <select chosen ng-model="search_request.tipo_com" ng-options="comision.tipo_com as comision.tipo_com for comision in catalog.comisiones"></select>
+                    </div>
+                </p>
+                <p>
+                    <span class="btn btn-default"  ng-click="setFilterOption(5)">
+                        Hotel
+                        <span ng-if="search_request.hotel">
+                            : {{search_request.hotel}}
+                            <a ng-click="search_request.hotel = ''" stop-event class="right">X</a>
+                        </span>
+                    </span>
+                    <div ng-show="getFilterOption(5)" class="custom-overlay">
+                        <select chosen ng-model="search_request.hotel" ng-options="hotel.hotel as hotel.hotel for hotel in catalog.hoteles"></select>
+                    </div>
+                </p>
+                <p>
+                    <a role="button" class="btn btn-default" href="#" ng-click="submit()">Buscar</a>
+                </p>
+            </div>
+            <!--<div class="row filter" ng-if="!search_request.hotel && !search_request.tipo_viaje">-->
+            <!--<div layout="row">-->
+            <!--<div flex="20" layout="column">-->
+            <!--<span class="btn btn-default" ng-click="setFilterOption(0)"> Transportacion <a ng-if="search_request.pasaje_tipo" ng-click="search_request.pasaje_tipo = ''" stop-event class="right">X</a></span>-->
+            <!--<div ng-show="getFilterOption(0)" class="custom-overlay">-->
+            <!--<ul>-->
+            <!--<li><a href="#" class="icon-world" ng-click="search_request.pasaje_tipo = 'terrestre'" style="color:white">Terrestre</a></li>-->
+            <!--<li><a href="#" class="icon-vuelos" ng-click="search_request.pasaje_tipo = 'aereo'" style="color:white">Aereo</a></li>-->
+            <!--</ul>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div flex="20" layout="column">-->
+            <!--&lt;!&ndash; getFilterOption(1) ? 'icon-descargar' : 'icon-calendar' &ndash;&gt;-->
+            <!--<span class="btn btn-default" ng-click="setFilterOption(1)"> Destino <a ng-if="search_request.ciudad_destino" ng-click="search_request.ciudad_destino = ''" stop-event class="right">X</a></span>-->
+            <!--<div ng-show="getFilterOption(1)" class="custom-overlay">-->
+            <!--<select chosen ng-model="search_request.ciudad_destino" ng-options="destino.ciudad_destino as destino.ciudad_destino group by destino.pais_destino for destino in catalog.destinos"></select>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div flex="20" layout="column">-->
+            <!--<span class="btn btn-default" ng-click="setFilterOption(2)" class="btn btn-default">Tema <a ng-if="search_request.tema" ng-click="search_request.tema = ''" stop-event class="right">X</a></span>-->
+            <!--<div ng-show="getFilterOption(2)" class="custom-overlay">-->
+            <!--<select chosen ng-model="search_request.tema" ng-options="tema.tema as tema.tema for tema in catalog.temas"></select>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div flex="20" layout="column">-->
+            <!--<span class="btn btn-default"  ng-click="setFilterOption(3)">Comisión <a ng-if="search_request.tipo_com" ng-click="search_request.tipo_com = ''" stop-event class="right">X</a></span>-->
+            <!--<div ng-show="getFilterOption(3)" class="custom-overlay">-->
+            <!--<select chosen ng-model="search_request.tipo_com" ng-options="comision.tipo_com as comision.tipo_com for comision in catalog.comisiones"></select>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;<div layout="column">&ndash;&gt;-->
+            <!--&lt;!&ndash;<a aria-expanded="true" role="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle" href="#" ng-class="request.unidad ? 'strong' : ''">&ndash;&gt;-->
+            <!--&lt;!&ndash;Unidad Responsable <span class="caret"></span>&ndash;&gt;-->
+            <!--&lt;!&ndash;</a>&ndash;&gt;-->
+            <!--&lt;!&ndash;<ul role="menu" class="dropdown-menu">&ndash;&gt;-->
+            <!--&lt;!&ndash;<li>&ndash;&gt;-->
+            <!--&lt;!&ndash;<select chosen ng-model="request.unidad">&ndash;&gt;-->
+            <!--&lt;!&ndash;<option value="1">test 1</option>&ndash;&gt;-->
+            <!--&lt;!&ndash;<option value="2">test 2</option>&ndash;&gt;-->
+            <!--&lt;!&ndash;</select>&ndash;&gt;-->
+            <!--&lt;!&ndash;</li>&ndash;&gt;-->
+            <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--<div flex="20" layout="column">-->
+            <!--<a role="button" class="btn btn-default" href="#" ng-click="submit()">Buscar</a>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <div class="row">
+                <h2 class="text-center"><strong><%- title %></strong></h2>
+            </div>
+			<div class="row trips">
+				<div class="inner-content-list">
+			        <div class="row trip-item ranks " ng-repeat="viaje in viajes | orderBy:fecha_inicio_part">
+			            <div class="col-sm-4 top-places">
+			                <div class="inner-content">
+			                    <a href="{{'/viaje/'+viaje.id}}"><img src="/images/pinlugar.png" alt="" class="picture" /></a>
+			                    <p class="big-blue">{{viaje.gasto_total | currency}}</p>
+                                <p ng-if="viaje.hotel != 'No disponible'" class="hotel">{{viaje.hotel}}</p>
+			                    <p class="location"><a href="#"><strong>{{viaje.ciudad_destino}}, {{viaje.pais_destino}}</strong></a></p>
+			                    <p class="activity">{{viaje.evento | limitTo:50}}</p>
+			                </div>
+			            </div>
+			            <div class="col-sm-4 duration">
+			                <div class="inner-content">
+			                    <i class="icon-calendar"></i>
+			                    <p><strong>Duracion del viaje:</strong></p>
+			                    <p>{{getDateString(viaje)}}</p>
+			                </div>
+			            </div>
+			            <div class="col-sm-4">
+			                <div class="inner-content"><a href="{{'/viaje/'+viaje.id}}" class="custom-button">Ver detalle del viaje</a></div>
+			            </div>
+			        </div>
+			    </div>
+			</div>	
+		</div>
+	</div>
+</div>

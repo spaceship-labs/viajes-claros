@@ -26,7 +26,8 @@ var cssFilesToInject = [
   'bower_components/Leaflet.awesome-markers/dist/leaflet.awesome-markers.css',
   'bower_components/animate.css/animate.min.css',
   'bower_components/angular-material/angular-material.css',
-  'bower_components/less-prefixer/prefixer.less'
+  'bower_components/less-prefixer/prefixer.less',
+  'bower_components/chosen/chosen.min.css'
 ];
 
 
@@ -57,6 +58,8 @@ var jsFilesToInject = [
   'bower_components/leaflet.markerclusterer/dist/leaflet.markercluster.js',
   'bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.min.js',
   'bower_components/Leaflet.awesome-markers/dist/leaflet.awesome-markers.min.js',
+  'bower_components/chosen/chosen.jquery.js',
+  'bower_components/angular-chosen-localytics/chosen.js',
   // All of the rest of your client-side js files
   // will be injected here in no particular order.
   'js/**/*.js'

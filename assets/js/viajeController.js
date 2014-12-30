@@ -60,8 +60,12 @@ app.controller("viajeCTL", ['$scope', '$http','$filter' , function ($scope, $htt
 
 }]);
 
-app.controller("viajeSearchCTL", ['$scope', '$http','$filter' , function ($scope, $http, $filter) {
+app.controller("viajeSearchCTL", ['$scope', '$http','$filter','$location' , function ($scope, $http, $filter,$location) {
     $scope.viajes = window.viajes;
+    $scope.catalog = catalog;
+    $scope.search_request = search_request;
+    $scope.filter_option = [];
+    console.log($scope.search_request);
 
     $scope.getDateString = function(viaje){
         var inicio = new Date(viaje.fecha_inicio_part);
@@ -70,4 +74,68 @@ app.controller("viajeSearchCTL", ['$scope', '$http','$filter' , function ($scope
         var finAux = $filter('date')(fin, 'longDate');
         return inicioAux + " al " + finAux;
     };
+
+    $scope.submit = function() {
+        console.log($scope.search_request);
+        var test = buildUrl($location.absUrl(),$scope.search_request);
+        console.log(test);
+        window.location = test;
+    };
+
+    function forEachSorted(obj, iterator, context) {
+        var keys = sortedKeys(obj);
+        for (var i = 0; i < keys.length; i++) {
+            iterator.call(context, obj[keys[i]], keys[i]);
+        }
+        return keys;
+    }
+
+    function sortedKeys(obj) {
+        var keys = [];
+        for (var key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                keys.push(key);
+            }
+        }
+        return keys.sort();
+    }
+
+    function buildUrl(url, params) {
+        if (!params) return url;
+        var parts = [];
+        forEachSorted(params, function (value, key) {
+            if (value == null || value == undefined) return;
+            if (angular.isObject(value)) {
+                value = angular.toJson(value);
+            }
+            parts.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+        });
+        return url + ((url.indexOf('?') == -1) ? '?' : '&') + parts.join('&');
+    }
+
+    $scope.destinoLabel = function(destino) {
+        return destino.ciudad_destino + " , " + destino.pais_destino;
+    };
+
+    $scope.setFilterOption = function(index) {
+        if (angular.isUndefined($scope.filter_option[index])) {
+            $scope.filter_option.forEach(function(item,i) {
+                $scope.filter_option[i] = false;
+            });
+            $scope.filter_option[index] = true;
+        }
+        else {
+            var value = $scope.filter_option[index];
+            $scope.filter_option.forEach(function(item,i) {
+                $scope.filter_option[i] = false;
+            });
+            $scope.filter_option[index] = !value;
+        }
+
+    };
+
+    $scope.getFilterOption = function(index) {
+        return angular.isUndefined($scope.filter_option[index]) ? false : $scope.filter_option[index];
+    };
+
 }]);
