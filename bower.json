@@ -33,7 +33,8 @@
     "angular-perfect-scrollbar": "*",
     "bootstrap-touch-carousel": "~0.8.0",
     "morris": "~0.5.2",
-    "angular-material": "~0.6.1"
+    "angular-material": "~0.6.1",
+    "angular-chosen-localytics": "~1.0.6"
   },
   "resolutions": {
     "perfect-scrollbar": "~0.5.2",
