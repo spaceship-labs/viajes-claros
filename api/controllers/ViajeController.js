@@ -44,6 +44,8 @@ module.exports = {
         var pasaje_tipo = req.param('pasaje_tipo');
         var orden = req.param('orden') || 'gasto_total desc';
         var mes = req.param('mes');
+        var page = req.param('p');
+        var pageSize = 20;
 
         var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
 
@@ -102,29 +104,37 @@ module.exports = {
             request.tipo_viaje = tipo_viaje;
         }
 
-        Viaje.find(request).sort(orden).exec(function(err,viajes){
+        Viaje.find(request).exec(function(err,totalViajes){
             if (err) {
                 console.log(err);
                 return;
             }
-            async.parallel(asyncTasks,function(){
-                var catalog = {
-                    destinos : destinos,
-                    temas : temas,
-                    comisiones : comisiones,
-                    hoteles : hoteles
-                };
+            Viaje.find(request).paginate({page : page , limit : pageSize}).populate('funcionario').sort(orden).exec(function(err,viajes){
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                async.parallel(asyncTasks,function(){
+                    var catalog = {
+                        destinos : destinos,
+                        temas : temas,
+                        comisiones : comisiones,
+                        hoteles : hoteles
+                    };
 
-                res.view({
-                    viajes : viajes,
-                    fullUrl : fullUrl,
-                    title : 'Listado de viajes',
-                    description : Common.viajesRequestToString(request),
-                    search_request : request || {},
-                    catalog : catalog
+                    res.view({
+                        viajes : viajes,
+                        fullUrl : fullUrl,
+                        title : 'Listado de viajes',
+                        description : Common.viajesRequestToString(request),
+                        search_request : request || {},
+                        catalog : catalog,
+                        pagination : { currentPage : page , total : totalViajes.length , pageSize : pageSize }
+                    });
                 });
             });
         });
+
     },
     searchtipo : function(req,res){
         var term = req.param('filtro');

@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'fontello';
-  src: url('../font/fontello.eot?7049606');
-  src: url('../font/fontello.eot?7049606#iefix') format('embedded-opentype'),
-       url('../font/fontello.woff?7049606') format('woff'),
-       url('../font/fontello.ttf?7049606') format('truetype'),
-       url('../font/fontello.svg?7049606#fontello') format('svg');
+  src: url('../font/fontello.eot?1947962');
+  src: url('../font/fontello.eot?1947962#iefix') format('embedded-opentype'),
+       url('../font/fontello.woff?1947962') format('woff'),
+       url('../font/fontello.ttf?1947962') format('truetype'),
+       url('../font/fontello.svg?1947962#fontello') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -14,7 +14,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'fontello';
-    src: url('../font/fontello.svg?7049606#fontello') format('svg');
+    src: url('../font/fontello.svg?1947962#fontello') format('svg');
   }
 }
 */
@@ -51,37 +51,44 @@
 }
  
 .icon-actividades:before { content: '\e800'; } /* '' */
-.icon-lupita:before { content: '\e801'; } /* '' */
-.icon-moneda:before { content: '\e802'; } /* '' */
-.icon-arrow:before { content: '\e803'; } /* '' */
+.icon-aereo:before { content: '\e801'; } /* '' */
+.icon-arrow:before { content: '\e802'; } /* '' */
+.icon-basura:before { content: '\e803'; } /* '' */
 .icon-calendar:before { content: '\e804'; } /* '' */
-.icon-motivo:before { content: '\e805'; } /* '' */
-.icon-cerrar:before { content: '\e806'; } /* '' */
-.icon-observaciones:before { content: '\e807'; } /* '' */
-.icon-codigo:before { content: '\e808'; } /* '' */
-.icon-origen:before { content: '\e809'; } /* '' */
-.icon-pdf:before { content: '\e80a'; } /* '' */
-.icon-comicion:before { content: '\e80b'; } /* '' */
-.icon-comparar:before { content: '\e80c'; } /* '' */
-.icon-pinmap:before { content: '\e80d'; } /* '' */
-.icon-resultados:before { content: '\e80e'; } /* '' */
-.icon-datos:before { content: '\e80f'; } /* '' */
-.icon-descargar:before { content: '\e810'; } /* '' */
-.icon-documento:before { content: '\e811'; } /* '' */
-.icon-estrella:before { content: '\e812'; } /* '' */
-.icon-face:before { content: '\e813'; } /* '' */
-.icon-flecha:before { content: '\e814'; } /* '' */
-.icon-flechita:before { content: '\e815'; } /* '' */
-.icon-github:before { content: '\e816'; } /* '' */
-.icon-gracias:before { content: '\e817'; } /* '' */
-.icon-graficas:before { content: '\e818'; } /* '' */
-.icon-hotel:before { content: '\e819'; } /* '' */
-.icon-ifai:before { content: '\e81a'; } /* '' */
-.icon-logo:before { content: '\e81b'; } /* '' */
-.icon-vuelos:before { content: '\e81c'; } /* '' */
-.icon-viaticos:before { content: '\e81d'; } /* '' */
-.icon-twit:before { content: '\e81e'; } /* '' */
-.icon-tipodeviaje:before { content: '\e81f'; } /* '' */
-.icon-tema:before { content: '\e820'; } /* '' */
-.icon-suscribirme:before { content: '\e821'; } /* '' */
-.icon-spaceship:before { content: '\e822'; } /* '' */
+.icon-cerrar:before { content: '\e805'; } /* '' */
+.icon-codigo:before { content: '\e806'; } /* '' */
+.icon-comicion:before { content: '\e807'; } /* '' */
+.icon-comparar:before { content: '\e808'; } /* '' */
+.icon-datos:before { content: '\e809'; } /* '' */
+.icon-descargar:before { content: '\e80a'; } /* '' */
+.icon-documento:before { content: '\e80b'; } /* '' */
+.icon-dropdown:before { content: '\e80c'; } /* '' */
+.icon-estrella:before { content: '\e80d'; } /* '' */
+.icon-face:before { content: '\e80e'; } /* '' */
+.icon-flecha:before { content: '\e80f'; } /* '' */
+.icon-flechaderecha:before { content: '\e810'; } /* '' */
+.icon-flechaizq:before { content: '\e811'; } /* '' */
+.icon-flechita:before { content: '\e812'; } /* '' */
+.icon-github:before { content: '\e813'; } /* '' */
+.icon-twit:before { content: '\e814'; } /* '' */
+.icon-tipodeviaje:before { content: '\e815'; } /* '' */
+.icon-terrestre:before { content: '\e816'; } /* '' */
+.icon-tema:before { content: '\e817'; } /* '' */
+.icon-suscribirme:before { content: '\e818'; } /* '' */
+.icon-spaceship:before { content: '\e819'; } /* '' */
+.icon-resultados:before { content: '\e81a'; } /* '' */
+.icon-pinmap:before { content: '\e81b'; } /* '' */
+.icon-pdf:before { content: '\e81c'; } /* '' */
+.icon-palomita:before { content: '\e81d'; } /* '' */
+.icon-origen:before { content: '\e81e'; } /* '' */
+.icon-observaciones:before { content: '\e81f'; } /* '' */
+.icon-motivo:before { content: '\e820'; } /* '' */
+.icon-moneda:before { content: '\e821'; } /* '' */
+.icon-lupita:before { content: '\e822'; } /* '' */
+.icon-logo:before { content: '\e823'; } /* '' */
+.icon-ifai:before { content: '\e824'; } /* '' */
+.icon-hotel:before { content: '\e825'; } /* '' */
+.icon-graficas:before { content: '\e826'; } /* '' */
+.icon-gracias:before { content: '\e827'; } /* '' */
+.icon-viaticos:before { content: '\e828'; } /* '' */
+.icon-vuelos:before { content: '\e829'; } /* '' */

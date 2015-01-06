@@ -3,93 +3,99 @@
 		window.viajes = <%- JSON.stringify(viajes) %>;
         window.search_request = <%- JSON.stringify(search_request) %>;
         window.catalog = <%- JSON.stringify(catalog) %>;
-
+        window.pagination = <%- JSON.stringify(pagination)%>;
 	</script>
 	<div class="centered-content">
 		<div class="container-fluid">
+            <h1 style="color: #5f5f5f">Filtrar viajes por :</h1>
+            <div class="col-xs-6">
+                <span class="btn btn-default" ng-click="setFilterOption(0)">
+                    Transportacion
+                    <span ng-if="search_request.pasaje_tipo">
+                        : {{search_request.pasaje_tipo}}
+                        <a ng-click="search_request.pasaje_tipo = ''" stop-event class="right">X</a>
+                    </span>
+                </span>
+            </div>
+            <div class="col-xs-6">
+                <span class="btn btn-default" ng-click="setFilterOption(1)">
+                    Tipo de viaje
+                    <span ng-if="search_request.tipo_viaje" >
+                        : {{search_request.tipo_viaje}}
+                        <a ng-click="search_request.tipo_viaje = ''" stop-event class="right">X</a>
+                    </span>
+                </span>
+            </div>
+            <div class="col-xs-10">
+                <div ng-show="getFilterOption(0)" class="custom-overlay">
+                    <ul>
+                        <li><md-checkbox class="icon-terrestre" ng-model="search_request.pasaje_tipo" ng-true-value="'terrestre'" ng-false-value="''" style="color:white">Terrestre</md-checkbox></li>
+                        <li><md-checkbox class="icon-vuelos" ng-model="search_request.pasaje_tipo" ng-true-value="'aereo'" ng-false-value="''" style="color:white">Aereo</md-checkbox></li>
+                    </ul>
+                </div>
+                <div ng-show="getFilterOption(1)" class="custom-overlay">
+                    <ul>
+                        <li><md-checkbox ng-model="search_request.tipo_viaje" ng-true-value="'nacional'" ng-false-value="''" style="color:white">Nacional</md-checkbox></li>
+                        <li><md-checkbox ng-model="search_request.tipo_viaje" ng-true-value="'internacional'" ng-false-value="''"  style="color:white">Internacional</md-checkbox></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <span class="btn btn-default" ng-click="setFilterOption(2)">
+                    Destino
+                    <span ng-if="search_request.ciudad_destino" >
+                        : {{search_request.ciudad_destino}}
+                        <a ng-click="search_request.ciudad_destino = ''" stop-event class="right">X</a>
+                    </span>
+                </span>
+            </div>
+            <div class="col-xs-6">
+                <span class="btn btn-default" ng-click="setFilterOption(3)" class="btn btn-default">
+                    Tema
+                    <span ng-if="search_request.tema" >
+                        : {{search_request.tema}}
+                        <a ng-click="search_request.tema = ''" stop-event class="right">X</a>
+                    </span>
+                </span>
+            </div>
+            <div class="col-xs-10">
+                <div ng-show="getFilterOption(3)" class="custom-overlay">
+                    <select chosen ng-model="search_request.tema" ng-options="tema.tema as tema.tema for tema in catalog.temas"></select>
+                </div>
+                <div ng-show="getFilterOption(2)" class="custom-overlay">
+                    <select chosen ng-model="search_request.ciudad_destino" ng-options="destino.ciudad_destino as destino.ciudad_destino group by destino.pais_destino for destino in catalog.destinos"></select>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <span class="btn btn-default"  ng-click="setFilterOption(4)">
+                    Comisión
+                    <span ng-if="search_request.tipo_com">
+                        : {{search_request.tipo_com}}
+                        <a ng-click="search_request.tipo_com = ''" stop-event class="right">X</a>
+                    </span>
+                </span>
 
-            <div class="row filter">
-                <p>
-                    <span class="btn btn-default" ng-click="setFilterOption(0)">
-                        Transportacion
-                        <span ng-if="search_request.pasaje_tipo">
-                            : {{search_request.pasaje_tipo}}
-                            <a ng-click="search_request.pasaje_tipo = ''" stop-event class="right">X</a>
-                        </span>
+            </div>
+            <div class="col-xs-6">
+                <span class="btn btn-default"  ng-click="setFilterOption(5)">
+                    Hotel
+                    <span ng-if="search_request.hotel">
+                        : {{search_request.hotel}}
+                        <a ng-click="search_request.hotel = ''" stop-event class="right">X</a>
                     </span>
-                    <div ng-show="getFilterOption(0)" class="custom-overlay">
-                        <ul>
-                            <li><a href="#" class="icon-world" ng-click="search_request.pasaje_tipo = 'terrestre'" style="color:white">Terrestre</a></li>
-                            <li><a href="#" class="icon-vuelos" ng-click="search_request.pasaje_tipo = 'aereo'" style="color:white">Aereo</a></li>
-                        </ul>
-                    </div>
-                </p>
-                <p>
-                    <span class="btn btn-default" ng-click="setFilterOption(1)">
-                        Tipo de viaje
-                        <span ng-if="search_request.tipo_viaje" >
-                            : {{search_request.tipo_viaje}}
-                            <a ng-click="search_request.tipo_viaje = ''" stop-event class="right">X</a>
-                        </span>
-                    </span>
-                    <div ng-show="getFilterOption(1)" class="custom-overlay">
-                        <ul>
-                            <li><a href="#" ng-click="search_request.tipo_viaje = 'nacional'" style="color:white">Nacional</a></li>
-                            <li><a href="#" ng-click="search_request.tipo_viaje = 'internacional'" style="color:white">Internacional</a></li>
-                        </ul>
-                    </div>
-                </p>
-                <p>
-                    <span class="btn btn-default" ng-click="setFilterOption(2)">
-                        Destino
-                        <span ng-if="search_request.ciudad_destino" >
-                            : {{search_request.ciudad_destino}}
-                            <a ng-click="search_request.ciudad_destino = ''" stop-event class="right">X</a>
-                        </span>
-                    </span>
-                    <div ng-show="getFilterOption(2)" class="custom-overlay">
-                        <select chosen ng-model="search_request.ciudad_destino" ng-options="destino.ciudad_destino as destino.ciudad_destino group by destino.pais_destino for destino in catalog.destinos"></select>
-                    </div>
-                </p>
-                <p>
-                    <span class="btn btn-default" ng-click="setFilterOption(3)" class="btn btn-default">
-                        Tema
-                        <span ng-if="search_request.tema" >
-                            : {{search_request.tema}}
-                            <a ng-click="search_request.tema = ''" stop-event class="right">X</a>
-                        </span>
-                    </span>
-                    <div ng-show="getFilterOption(3)" class="custom-overlay">
-                        <select chosen ng-model="search_request.tema" ng-options="tema.tema as tema.tema for tema in catalog.temas"></select>
-                    </div>
-                </p>
-                <p>
-                    <span class="btn btn-default"  ng-click="setFilterOption(4)">
-                        Comisión
-                        <span ng-if="search_request.tipo_com">
-                            : {{search_request.tipo_com}}
-                            <a ng-click="search_request.tipo_com = ''" stop-event class="right">X</a>
-                        </span>
-                    </span>
-                    <div ng-show="getFilterOption(4)" class="custom-overlay">
-                        <select chosen ng-model="search_request.tipo_com" ng-options="comision.tipo_com as comision.tipo_com for comision in catalog.comisiones"></select>
-                    </div>
-                </p>
-                <p>
-                    <span class="btn btn-default"  ng-click="setFilterOption(5)">
-                        Hotel
-                        <span ng-if="search_request.hotel">
-                            : {{search_request.hotel}}
-                            <a ng-click="search_request.hotel = ''" stop-event class="right">X</a>
-                        </span>
-                    </span>
-                    <div ng-show="getFilterOption(5)" class="custom-overlay">
-                        <select chosen ng-model="search_request.hotel" ng-options="hotel.hotel as hotel.hotel for hotel in catalog.hoteles"></select>
-                    </div>
-                </p>
-                <p>
-                    <a role="button" class="btn btn-default" href="#" ng-click="submit()">Buscar</a>
-                </p>
+                </span>
+
+            </div>
+            <div class="col-xs-10">
+                <div ng-show="getFilterOption(5)" class="custom-overlay">
+                    <select chosen ng-model="search_request.hotel" ng-options="hotel.hotel as hotel.hotel for hotel in catalog.hoteles"></select>
+                </div>
+                <div ng-show="getFilterOption(4)" class="custom-overlay">
+                    <select chosen ng-model="search_request.tipo_com" ng-options="comision.tipo_com as comision.tipo_com for comision in catalog.comisiones"></select>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <a role="button" class="btn btn-primary" href="#" ng-click="submit()">Buscar</a>
             </div>
             <!--<div class="row filter" ng-if="!search_request.hotel && !search_request.tipo_viaje">-->
             <!--<div layout="row">-->
@@ -140,16 +146,17 @@
             <!--</div>-->
             <!--</div>-->
             <!--</div>-->
-            <div class="row">
+            <div class="col-xs-12">
                 <h2 class="text-center"><strong><%- title %></strong></h2>
             </div>
-			<div class="row trips">
+			<div class="col-xs-12 row trips">
 				<div class="inner-content-list">
 			        <div class="row trip-item ranks " ng-repeat="viaje in viajes | orderBy:fecha_inicio_part">
 			            <div class="col-sm-4 top-places">
 			                <div class="inner-content">
 			                    <a href="{{'/viaje/'+viaje.id}}"><img src="/images/pinlugar.png" alt="" class="picture" /></a>
-			                    <p class="big-blue">{{viaje.gasto_total | currency}}</p>
+                                <p class="big-blue">{{viaje.funcionario.nombre_completo}} <a class="comparar-button" ng-click="compare(viaje.funcionario)" href="#" tabindex="0" tooltip="comparar funcionario"><i class="icon icon-comparar"></i></a></p>
+                                <p class="big-blue">{{viaje.gasto_total | currency}}</p>
                                 <p ng-if="viaje.hotel != 'No disponible'" class="hotel">{{viaje.hotel}}</p>
 			                    <p class="location"><a href="#"><strong>{{viaje.ciudad_destino}}, {{viaje.pais_destino}}</strong></a></p>
 			                    <p class="activity">{{viaje.evento | limitTo:50}}</p>
@@ -166,8 +173,13 @@
 			                <div class="inner-content"><a href="{{'/viaje/'+viaje.id}}" class="custom-button">Ver detalle del viaje</a></div>
 			            </div>
 			        </div>
+
 			    </div>
-			</div>	
+			</div>
+            <div class="col-xs-12">
+                <pagination direction-links="false" total-items="pagination.total" ng-model="pagination.currentPage" items-per-page="pagination.pageSize" ng-change="pageChanged()"></pagination>
+            </div>
+
 		</div>
 	</div>
 </div>

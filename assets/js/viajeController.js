@@ -60,12 +60,12 @@ app.controller("viajeCTL", ['$scope', '$http','$filter' , function ($scope, $htt
 
 }]);
 
-app.controller("viajeSearchCTL", ['$scope', '$http','$filter','$location' , function ($scope, $http, $filter,$location) {
+app.controller("viajeSearchCTL", ['$scope', '$http','$filter','$location','comparator' , function ($scope, $http, $filter,$location,comparator) {
     $scope.viajes = window.viajes;
     $scope.catalog = catalog;
     $scope.search_request = search_request;
-    $scope.filter_option = [];
-    console.log($scope.search_request);
+    $scope.pagination = pagination;
+    $scope.filter_option = -1;
 
     $scope.getDateString = function(viaje){
         var inicio = new Date(viaje.fecha_inicio_part);
@@ -75,10 +75,16 @@ app.controller("viajeSearchCTL", ['$scope', '$http','$filter','$location' , func
         return inicioAux + " al " + finAux;
     };
 
+    $scope.compare = function(funcionario){
+        if(typeof funcionario.funcionario != 'undefined'){
+            funcionario.id = funcionario.funcionario;
+        }
+        console.log(funcionario);
+        comparator.setFuncionario(funcionario);
+    };
+
     $scope.submit = function() {
-        console.log($scope.search_request);
-        var test = buildUrl($location.absUrl(),$scope.search_request);
-        console.log(test);
+        var test = buildUrl($location.absUrl().split('?')[0],$scope.search_request);
         window.location = test;
     };
 
@@ -118,24 +124,20 @@ app.controller("viajeSearchCTL", ['$scope', '$http','$filter','$location' , func
     };
 
     $scope.setFilterOption = function(index) {
-        if (angular.isUndefined($scope.filter_option[index])) {
-            $scope.filter_option.forEach(function(item,i) {
-                $scope.filter_option[i] = false;
-            });
-            $scope.filter_option[index] = true;
-        }
-        else {
-            var value = $scope.filter_option[index];
-            $scope.filter_option.forEach(function(item,i) {
-                $scope.filter_option[i] = false;
-            });
-            $scope.filter_option[index] = !value;
-        }
-
+        if ($scope.filter_option == index)
+            $scope.filter_option = -1;
+        else
+            $scope.filter_option = index;
     };
 
     $scope.getFilterOption = function(index) {
-        return angular.isUndefined($scope.filter_option[index]) ? false : $scope.filter_option[index];
+        return $scope.filter_option == index;
+    };
+
+    $scope.pageChanged = function() {
+        $scope.search_request.p = $scope.pagination.currentPage;
+        var test = buildUrl($location.absUrl().split('?')[0],$scope.search_request);
+        window.location = test;
     };
 
 }]);
