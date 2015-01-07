@@ -604,17 +604,42 @@ a:hover{text-decoration: none!important;}
 	}
     #viajes-filtros {
 
-      .custom-overlay {
-        height: 100%;
-        transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
-        width: 100%;
-        padding: 20px;
-        background-color: #2f96e9;
-      }
 
       .chosen-container {
-        width: 100% !important;
+        max-width: 80% !important;
       }
+
+      section.filter-option {
+        background: #2f96e9;
+      }
+      section {
+        border-radius: 3px;
+        margin: 1em;
+        position: relative !important;
+        padding-bottom: 10px;
+      }
+      section .md-button:not(.md-fab) {
+        min-width: 10em;
+      }
+      section .md-button {
+        display: block;
+        margin: 1em;
+        line-height: 25px;
+      }
+      .removeOption {
+        position: absolute;
+        bottom: 5px;
+        left: 7px;
+        color: #ccc;
+        font-size: 14px;
+        cursor : pointer;
+      }
+
+      section.filter-option .chosen-container{
+        padding-top : 20px;
+        padding-bottom : 15px;
+      }
+
     }
 	#comparar{
 		h1{background: @turquoise;color: #fff;font-weight: 700;font-size: 26px;margin: 0;padding: 20px 0;text-align: center;}
