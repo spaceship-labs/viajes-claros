@@ -91,9 +91,10 @@ module.exports = {
                 });
         });
         asyncTasks.push(function(cb){
-            Viaje.query("select linea_origen,count(*) as total from viaje where pasaje_tipo = 'Aéreo' and linea_origen != '' and linea_origen != 'No disponible' and linea_origen != 'Pendiente de captura' and linea_origen != 'No aplica' group by linea_origen",
+            Viaje.query("select linea_regreso as linea_origen,count(*) as total from viaje where pasaje_tipo = 'Aéreo' and linea_regreso != '' and linea_regreso != 'No disponible' and linea_regreso != 'Pendiente de captura' and linea_regreso != 'No aplica' group by linea_regreso",
                 function(e,vo){
                     if (e) res.json({ text : "error aerolineas",error : e });
+                    //console.log(vo);
                     aerolineas = vo;
                     cb();
             });
@@ -143,7 +144,7 @@ module.exports = {
 
         asyncTasks.push(function(cb){
             var query = "select viaje.id,viaje.evento,viaje.ciudad_destino,viaje.pais_destino,viaje.fecha_inicio_part as fecha from viaje " +
-                "order by STR_TO_DATE(fecha_inicio_part,'%m/%d/%Y') desc limit 0,3";
+                "order by fecha_inicio_part desc limit 0,3";
             Viaje.query(query,
                 function(e,viajes){
                     if (e) res.json({ text : "error ultimos viajes",error : e });
@@ -155,7 +156,7 @@ module.exports = {
         //
 
         asyncTasks.push(function(cb){
-            Viaje.query("select count(*) as total from viaje group by MONTH(STR_TO_DATE(fecha_inicio_part,'%m/%d/%Y'));",
+            Viaje.query("select count(*) as total from viaje group by MONTH(fecha_inicio_part);",
                 function(e,viajes){
                     if (e) res.json({ text : "error viajes por mes",error : e });
                     viajesPorMes = _.map(viajes,function(viaje){

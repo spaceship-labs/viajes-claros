@@ -63,7 +63,7 @@ module.exports = {
 
         Subscription.find({ email: email,funcionario : funcionario }).populate('funcionario').exec(function (err, subscriptions) {
             if (subscriptions)
-                return res.json({ text: "ya esta agregado" });;
+                return res.json({ text: "ya esta agregado" });
             if (err) {
                 console.error(err);
                 return res.json({text : "error"});
