@@ -40,15 +40,6 @@ module.exports = {
         });
     },
 
-    viajesPorCiudadYFuncionarioJson : function(req,res) {
-        var ciudad = req.param('ciudad');
-        var funcionario = req.param('funcionario');
-        Viaje.find({ ciudad_destino : ciudad }).populate('funcionario',{id:11}).exec(function(err,viajes) {
-            if (err) res.json({ text : "error",error : err });
-            res.json(viajes);
-        });
-    },    
-
     statisticsJson : function(req,res) {
         var asyncTasks = [];
         var topFuncionariosCaros = [];

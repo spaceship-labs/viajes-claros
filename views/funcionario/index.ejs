@@ -118,7 +118,7 @@
 						<div ng-if="viajes" class="map-container map-small">
 							<leaflet ng-class='mapClass' class='map' layers="layers" markers='markers' defaults='options' event-broadcast="events" ></leaflet>
 							<div class="aside" ng-show="toggleSidebar">
-								<a href="#" ng-click="toggleAside()" class="arrow-button"></a>
+								<a href ng-click="toggleAside()" class="arrow-button"></a>
 								<perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="50" refresh-on-change="someArray" >
 									<div class="aside-inner-content">
 										<h3>Estos son los viajes en: {{mapPlace}}</h3>
