@@ -211,7 +211,7 @@ app.controller("funcionarioCTL", ['$scope', '$http','$filter','InternalServices'
 
         $http({
                 method: 'POST',
-                url: '/home/viajesPorCiudadJson?ciudad=' + ciudad
+                url: '/home/viajesPorCiudadYFuncionarioJson?ciudad=' + ciudad + '&funcionario='+$scope.funcionario.id
             })
             .success(function(data){
                 $scope.items = data;
