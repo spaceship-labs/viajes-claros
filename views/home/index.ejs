@@ -1,36 +1,36 @@
 <div id="home">
-	<div class="home-content-top" ng-controller="homeCtrl">
-		<div class="map-container">
-			<a href="#" class="close-arrow close-arrow-header" ng-show="!toggleJumbotron" ng-click="toggleJumbotron = !toggleJumbotron"><img src="/images/flecha-down.png" alt=""></a>
-			<%- partial('../global/jumbotron') -%>
-			<leaflet center='mapCenter' ng-class='mapClass' class='map' layers="layers" markers='markers' defaults='options' event-broadcast="events" ></leaflet>
-			<div class="aside" ng-show="toggleSidebar">
-				<a href="#" ng-click="toggleSidebar = !toggleSidebar" class="arrow-button"></a>
-				<perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="50" refresh-on-change="someArray">
-					<div class="aside-inner-content">
-						<h3>Estos son los viajes en: {{mapPlace}}</h3>
-						<ul>
+    <div class="home-content-top" ng-controller="homeCtrl">
+        <div class="map-container">
+            <a href="#" class="close-arrow close-arrow-header" ng-show="!toggleJumbotron" ng-click="toggleJumbotron = !toggleJumbotron"><img src="/images/flecha-down.png" alt=""></a>
+            <%- partial('../global/jumbotron') -%>
+            <leaflet center='mapCenter' ng-class='mapClass' class='map' layers="layers" markers='markers' defaults='options' event-broadcast="events" ></leaflet>
+            <div class="aside" ng-show="toggleSidebar">
+                <a href="#" ng-click="toggleSidebar = !toggleSidebar" class="arrow-button"></a>
+                <perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="50" refresh-on-change="someArray">
+                    <div class="aside-inner-content">
+                        <h3>Estos son los viajes en: {{mapPlace}}</h3>
+                        <ul>
                             <li ng-repeat="item in items">
                                 <p>Fecha del viaje: <a href="{{'/viaje/' + item.id}}">{{item.fecha_inicio_part | date}}</a></p>
                                 <p>Funcionario: <a href="{{'/funcionario/' + item.funcionario.id}}">{{item.funcionario.nombre_completo}}</a></p>
                             </li>
 
-						</ul>
+                        </ul>
                     </div>
-			    </perfect-scrollbar>
-			</div>	
-		</div>	
-		<div class="total-money">
-			<h1><span count-to="{{totalGastado}}" value="{{gasto_parcial}}" duration="1" filter="currency"></span></h1>
-			<p>Presupuesto gastado en viajes de trabajo durante <strong>2014</strong></p>
-			<!-- <p>Presupuesto gastado en viajes desde el <strong>2013</strong> hasta el día de hoy en viajes de <strong>SERVIDORES PÚBLICOS</strong></p> -->
-			<!--<a href="#" class="custom-button bordered">Ver todos los viajes</a>-->
-		</div>
-		<%- partial('../global/modal_home')%>
-	</div>
-	<div class="centered-content">
-		<div class="container-fluid" ng-controller="statisticsCTL">
-			<div class="row top-people">
+                </perfect-scrollbar>
+            </div>  
+        </div>  
+        <div class="total-money">
+            <h1><span count-to="{{totalGastado}}" value="{{gasto_parcial}}" duration="1" filter="currency"></span></h1>
+            <p>Presupuesto gastado en viajes de trabajo durante <strong>2014</strong></p>
+            <!-- <p>Presupuesto gastado en viajes desde el <strong>2013</strong> hasta el día de hoy en viajes de <strong>SERVIDORES PÚBLICOS</strong></p> -->
+            <!--<a href="#" class="custom-button bordered">Ver todos los viajes</a>-->
+        </div>
+        <%- partial('../global/modal_home')%>
+    </div>
+    <div class="centered-content">
+        <div class="container-fluid" ng-controller="statisticsCTL">
+            <div class="row top-people">
                 <carousel interval="6000">
                     <slide  active="" >
                         <h2>Los tres servidores públicos con <strong class="big"> mayor gasto</strong> en viajes de trabajo </h2>
@@ -77,17 +77,17 @@
                             </div>
                         </div>
                     </slide>
-				</carousel>
-				<div class="clear"></div>
-				<div class="col-md-4 col-md-offset-4 view-more"><a href="/funcionario/list" class="custom-button see-all">Ver todos los servidores públicos</a></div>
-			</div>
-			<div class="row ranks">
-				<div class="col-md-6 percentage-rank">
-					<carousel interval="6000">
+                </carousel>
+                <div class="clear"></div>
+                <div class="col-md-4 col-md-offset-4 view-more"><a href="/funcionario/list" class="custom-button see-all">Ver todos los servidores públicos</a></div>
+            </div>
+            <div class="row ranks">
+                <div class="col-md-6 percentage-rank">
+                    <carousel interval="6000">
                         <slide active="slide.active">
                             <div class="inner-content">
                                 <a href="#" class="get-iframe" data-toggle="modal" data-target="#modal-code" title="Compartir gráfica" ng-click="openWidgetModal('/widget/aerolineas')"><i class="icon icon-codigo"></i></a>
-                                <h4><strong>Las aerolineas más usadas</strong><br/>por los servidores públicos</h4>
+                                <h4><strong>Las aerolineas más usadas</strong></h4>
                                 <div class="bar-chart">
                                     <canvas id="aerolineas-chart" height="300" width="400"></canvas>
                                 </div>
@@ -104,12 +104,12 @@
                             </div>
                         </slide>
                     </carousel>
-				</div>
+                </div>
                 <div class="col-md-6 percentage-rank">
                     <carousel interval="6000">
                         <slide  active="slide.active" >
                             <div class="inner-content">
-                            	<a href="#" class="get-iframe" data-toggle="modal" data-target="#modal-code" title="Compartir gráfica" ng-click="openWidgetModal('/widget/tipos_de_viajes')"><i class="icon icon-codigo"></i></a>
+                                <a href="#" class="get-iframe" data-toggle="modal" data-target="#modal-code" title="Compartir gráfica" ng-click="openWidgetModal('/widget/tipos_de_viajes')"><i class="icon icon-codigo"></i></a>
                                 <h4><strong>Viajes nacionales e internacionales</strong></h4>
                                 <div class="charts-container">
                                     <div id="radial-one" class="radial-chart" ng-click="redirectTo('/viajes?tipo_viaje=internacional')"></div>
@@ -122,7 +122,7 @@
                         </slide>
                         <slide active="" >
                             <div class="inner-content">
-                            	<a href="#" class="get-iframe" data-toggle="modal" data-target="#modal-code" ng-click="openWidgetModal('/widget/tipos_de_viajes')" title="Compartir gráfica"><i class="icon icon-codigo"></i></a>
+                                <a href="#" class="get-iframe" data-toggle="modal" data-target="#modal-code" ng-click="openWidgetModal('/widget/tipos_de_viajes')" title="Compartir gráfica"><i class="icon icon-codigo"></i></a>
                                 <h4><strong>Viajes por tipo</strong><br/> de transportación</h4>
                                 <div class="charts-container">
                                     <div id="radial-three" class="radial-chart" ng-click="redirectTo('/viajes?pasaje_tipo=terrestre')"></div>
@@ -135,8 +135,8 @@
                         </slide>
                     </carousel>
                 </div>
-			</div>
-			<div class="row ranks">
+            </div>
+            <div class="row ranks">
                 <div class="col-md-6 top-places top-hotels">
                     <div class="inner-content">
                         <a href="#" class="get-iframe" data-toggle="modal" data-target="#modal-code" title="Compartir gráfica" ng-click="openWidgetModal('/widget/hoteles')"><i class="icon icon-codigo"></i></a>
@@ -150,47 +150,47 @@
                         </ul>
                     </div>
                 </div>
-				<div class="col-md-6 top-places">
-					<carousel interval="5000">
-						<slide  active="slide.active" >
-							<div class="inner-content">
-								<a href="#" class="get-iframe" data-toggle="modal" data-target="#modal-code" ng-click="openWidgetModal('/widget/ciudades')" title="Compartir gráfica"><i class="icon icon-codigo"></i></a>
-								<h4><strong>Ciudades Internacionales</strong><br/>más visitadas en viajes de trabajo del IFAI</h4>
-								<ul>
-									<li ng-repeat="ciudad in ciudadesList | filter:{tipo_viaje:'Internacional'} | limitTo:3">
-										<a href="#"><img src="/images/pinlugar.png" alt="" class="picture" /></a>
-										<p class="place"><a href="/viajes?ciudad_destino={{ciudad.ciudad_destino}}">{{ciudad.ciudad_destino}}</a></p>
-										<p class="location"><a href="#">{{ciudad.pais_destino}}</a></p>
-									</li>
-								</ul>
-							</div>
-						</slide>
-						<slide active="" >
-							<div class="inner-content">
-								<a href="#" class="get-iframe" data-toggle="modal" data-target="#modal-code" ng-click="openWidgetModal('/widget/ciudades')" title="Compartir gráfica"><i class="icon icon-codigo"></i></a>
-								<h4><strong>Ciudades Nacionales</strong><br/>más visitadas en viajes de trabajo del IFAI</h4>
-								<ul>
-                                    <li ng-repeat="ciudad in ciudadesList | filter:{tipo_viale:'!Internacional'} | limitTo:3">
-										<a href="#"><img src="/images/pinlugar.png" alt="" class="picture" /></a>
+                <div class="col-md-6 top-places">
+                    <carousel interval="5000">
+                        <slide  active="slide.active" >
+                            <div class="inner-content">
+                                <a href="#" class="get-iframe" data-toggle="modal" data-target="#modal-code" ng-click="openWidgetModal('/widget/ciudades')" title="Compartir gráfica"><i class="icon icon-codigo"></i></a>
+                                <h4><strong>Ciudades Internacionales</strong><br/>más visitadas en viajes de trabajo del IFAI</h4>
+                                <ul>
+                                    <li ng-repeat="ciudad in ciudadesList | filter:{tipo_viaje:'Internacional'} | limitTo:3">
+                                        <a href="#"><img src="/images/pinlugar.png" alt="" class="picture" /></a>
                                         <p class="place"><a href="/viajes?ciudad_destino={{ciudad.ciudad_destino}}">{{ciudad.ciudad_destino}}</a></p>
                                         <p class="location"><a href="#">{{ciudad.pais_destino}}</a></p>
-									</li>
-								</ul>
-							</div>
-						</slide>
-					</carousel>
-				</div>
-			</div>
-			<div class="row code-links">
-				<div class="col-md-2 col-md-offset-4">
-					<a href="https://github.com/IFAI/viajes-claros" target="_blank" class="custom-button"><i class="icon icon-github"></i> Github</a>
-				</div>
-				<div class="col-md-2">
-					<a href="https://github.com/IFAI/viajes-claros#api" class="custom-button" target="_blank"><i class="icon icon-codigo"></i> API</a>
-				</div>
-			</div>
-			<%- partial('../global/modal')%>			
-		</div>
-	</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </slide>
+                        <slide active="" >
+                            <div class="inner-content">
+                                <a href="#" class="get-iframe" data-toggle="modal" data-target="#modal-code" ng-click="openWidgetModal('/widget/ciudades')" title="Compartir gráfica"><i class="icon icon-codigo"></i></a>
+                                <h4><strong>Ciudades Nacionales</strong><br/>más visitadas en viajes de trabajo del IFAI</h4>
+                                <ul>
+                                    <li ng-repeat="ciudad in ciudadesList | filter:{tipo_viale:'!Internacional'} | limitTo:3">
+                                        <a href="#"><img src="/images/pinlugar.png" alt="" class="picture" /></a>
+                                        <p class="place"><a href="/viajes?ciudad_destino={{ciudad.ciudad_destino}}">{{ciudad.ciudad_destino}}</a></p>
+                                        <p class="location"><a href="#">{{ciudad.pais_destino}}</a></p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </slide>
+                    </carousel>
+                </div>
+            </div>
+            <div class="row code-links">
+                <div class="col-md-2 col-md-offset-4">
+                    <a href="https://github.com/IFAI/viajes-claros" target="_blank" class="custom-button"><i class="icon icon-github"></i> Github</a>
+                </div>
+                <div class="col-md-2">
+                    <a href="https://github.com/IFAI/viajes-claros#api" class="custom-button" target="_blank"><i class="icon icon-codigo"></i> API</a>
+                </div>
+            </div>
+            <%- partial('../global/modal')%>            
+        </div>
+    </div>
 </div>
 

@@ -5,6 +5,7 @@ app.controller("funcionarioCTL", ['$scope', '$http','$filter','InternalServices'
 
     $scope.viajes = window.viajes;
     $scope.funcionario = window.funcionario;
+    $scope.toggleSidebar = false;
     $scope.totalViaticos = 0.0;
     $scope.orderField = 'fecha_inicio_part';
     $scope.isReversed = false;
@@ -144,14 +145,17 @@ app.controller("funcionarioCTL", ['$scope', '$http','$filter','InternalServices'
     $scope.options = {
         attributionControl : true, 
         zoomControlPosition: 'bottomright',
-        imagePath : '/bower_components/leaflet/dist/images/'
+        imagePath : '/bower_components/leaflet/dist/images/',
+        zoomControl : false,
+        center: null,
+        zoom: 20
     };
 
-    $scope.mapCenter = {
+    /*$scope.mapCenter = {
         lng : -99.133208,
         lat : 19.4326077,
         zoom : 4,
-    };
+    };*/
 
     $scope.$on('leafletDirectiveMarker.click', function(event, args){
         var lat = args.leafletEvent.latlng.lat;
@@ -160,11 +164,11 @@ app.controller("funcionarioCTL", ['$scope', '$http','$filter','InternalServices'
         place = $.parseHTML(place);
         place = place[2].innerHTML;
         $scope.loadViajes(place);
-        $scope.mapCenter = {
+        /*$scope.mapCenter = {
             lng : lng,
             lat : lat,
             zoom : 4,
-        };
+        };*/
     });
 
     $scope.leafIcon = {
@@ -205,11 +209,18 @@ app.controller("funcionarioCTL", ['$scope', '$http','$filter','InternalServices'
         $scope.mapPlace = ciudad;
         $scope.toggleSidebar = true;
 
-        $http({method: 'POST', url: '/home/viajesPorCiudadJson?ciudad=' + ciudad})
+        $http({
+                method: 'POST',
+                url: '/home/viajesPorCiudadJson?ciudad=' + ciudad
+            })
             .success(function(data){
                 $scope.items = data;
             });
     };
+
+    $scope.toggleAside = function(){
+        $scope.toggleSidebar = !$scope.toggleSidebar;
+    }
 
     $scope.startRadialD3();
     $scope.drawChartHorizontal();
