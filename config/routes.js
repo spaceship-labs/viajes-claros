@@ -50,10 +50,6 @@ module.exports.routes = {
       controller: 'home',
       action : 'viajesPorCiudadJson'
   },
-  '/home/viajesPorCiudadYFuncionarioJson' : {
-      controller: 'home',
-      action : 'viajesPorCiudadYFuncionarioJson'
-  },
   '/home/statisticsJson' : {
       controller: 'home',
       action : 'statisticsJson'
