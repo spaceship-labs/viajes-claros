@@ -88,22 +88,22 @@ module.exports = {
             res.redirect('/');
         }
     },
-    comparar : function(req,res){
-        var func_uno_id = req.param('first_id');
-        var func_dos_id = req.param('second_id');
-        if(!isNaN(func_uno_id) && !isNaN(func_dos_id)){
-            var ids = [func_uno_id,func_dos_id];
-            var funcionarios_arr = [];
+    getFuncionarios : function(req,res){
+        var ids = (req.param('ids')).split(",");
+        if(ids.length > 0){
             Funcionario.find().where({id:ids}).populate('viajes').exec(function(err,funcionarios){
-                if (err) console.log(err);
+                if (err) res.json({ text : "error funcionarios por nombre",error : err });
                 if(funcionarios){
-                    res.view({funcionarios : funcionarios});
+                    res.json(funcionarios);
                 }else{
-                    res.redirect('/');
+                    res.json({ text : "error funcionarios por nombre"});
                 }
             });
         }else{
-            res.redirect('/');
-        }
+            res.json({ text : "error funcionarios por nombre"});
+        }        
+    },
+    comparar : function(req,res){
+        res.view();
     },
 };

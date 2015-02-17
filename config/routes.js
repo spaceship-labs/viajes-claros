@@ -74,6 +74,10 @@ module.exports.routes = {
       controller: 'funcionario',
       action : 'comparar'
   },
+  '/funcionario/getFuncionarios' : {
+      controller: 'funcionario',
+      action : 'getFuncionarios'
+  },  
   '/funcionario/statisticsJson' : {
       controller : 'funcionario',
       action : 'statisticsJson'

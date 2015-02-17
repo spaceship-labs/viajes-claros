@@ -243,9 +243,17 @@ app.controller("listadoCTL", ['$scope', '$http','$filter','$mdSidenav','userInfo
     }
 }]);
 
-app.controller("compararCTL", ['$scope', '$http','$filter','InternalServices' ,function ($scope, $http, $filter,InternalServices) {
-    $scope.funcionarios = window.funcionarios;
+app.controller("compararCTL", 
+    ['$scope', '$http','$filter','InternalServices','userInfo','$mdSidenav' ,
+    function ($scope, $http, $filter,InternalServices, userInfo, $mdSidenav) {
+    //$scope.funcionarios = userInfo.getFuncionarios();
     $scope.quantity = 1;
+    
+    $scope.toggleSidebar = function(){
+        $mdSidenav('comparaSidenav').toggle();
+    }
+
+
     $scope.getTotal = function(viajes){
         var total = 0;
         for(var i = 0; i < viajes.length; i++){
@@ -306,5 +314,21 @@ app.controller("compararCTL", ['$scope', '$http','$filter','InternalServices' ,f
 
     }
     
-    $scope.drawDonuts();
+    $scope.getFuncionarios = function(){
+        var funcionariosids = [];
+        var funcionarios = userInfo.getFuncionarios();
+        angular.forEach(funcionarios.selected, function(f){
+            console.log(f.id)
+            funcionariosids.push(f.id);
+        });
+        
+        var params = {ids: funcionariosids.join(",")};
+        console.log(params);
+        $http({method:'POST',url:'/funcionario/getFuncionarios',data:params}).then(function(response){
+            $scope.funcionarios = response.data;
+        });
+        $scope.drawDonuts();
+    };
+
+    $scope.getFuncionarios();
 }]);
