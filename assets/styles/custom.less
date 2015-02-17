@@ -189,7 +189,7 @@ a:hover{text-decoration: none!important;}
 						a{color: @gray;font-weight: 700;padding: 5px 20px 5px 15px}
 						a:before{
 							.dropdown-item-icon;
-							content: '\e80b';font-size: 16px;color: @gray;margin-left: -4px;
+							content: '\e807';font-size: 16px;color: @gray;margin-left: -4px;
 						}
 						small{display: block;margin-left: 2.1em;font-size: 10px;font-weight: 300}
 					}
@@ -364,7 +364,7 @@ a:hover{text-decoration: none!important;}
 		.person{
 			text-align: center;
 			.person-content{
-				background: #F7F7F7;color: @gray;min-height: 340px;padding: 20px;position: relative;
+				background: #F7F7F7;color: @gray;min-height: 340px;margin-top: 10px;padding: 20px;position: relative;
 				p{margin: 0}
 				.comparar-button{background: mix(@gray,@gray-light);border-radius: 50%;color: #fff;padding: 3px;position: absolute;right: 6px;top: 6px}
 				.picture{display: block;border-radius: 50%;height: 55px;width: 55px;margin:0 auto 20px;}
@@ -455,6 +455,7 @@ a:hover{text-decoration: none!important;}
 						small{font-size: 12px}
 					}
 				}
+				.compare-action{color: #fff}
 				.money{font-size: 30px;margin-top: 20px;}
 			}
 		}
@@ -736,9 +737,9 @@ a:hover{text-decoration: none!important;}
 	#comparador-popup.fixed{bottom: 0;position: fixed;z-index: 999999999;}
 }
 
-.md-sidenav-backdrop{z-index: 9999!important}
+.md-sidenav-backdrop{position: fixed!important;z-index: 9999!important}
 #sidebar-comparador{
-	background: #238BDD;overflow: visible;position: fixed;z-index: 99999;
+	background: #238BDD;color: #fff;overflow: visible;position: fixed;z-index: 99999;
 	md-toolbar{
 		background: #167FD1;padding: 12px 6px;text-align: center;
 		h2{font-weight: 700}
@@ -762,6 +763,7 @@ a:hover{text-decoration: none!important;}
 				.del{color: #fff;font-size: 16px;font-weight: 700;margin-left:6px;}
 			}
 		}
+		a{color: #fff}
 	}
 	.dropdown-menu{
 		background: transparent;border: 0;box-shadow: none!important;border-radius: 0;padding-top: 9px;z-index: 99999;
@@ -770,7 +772,7 @@ a:hover{text-decoration: none!important;}
 			a{color: @gray;font-weight: 700;padding: 5px 20px 5px 15px}
 			a:before{
 				.dropdown-item-icon;
-				content: '\e80b';font-size: 16px;color: @gray;margin-left: -4px;
+				content: '\e807';font-size: 16px;color: @gray;margin-left: -4px;
 			}
 			small{display: block;margin-left: 2.1em;font-size: 10px;font-weight: 300}
 		}

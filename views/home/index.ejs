@@ -12,9 +12,8 @@
                         <ul>
                             <li ng-repeat="item in items">
                                 <p>Fecha del viaje: <a href="{{'/viaje/' + item.id}}">{{item.fecha_inicio_part | date}}</a></p>
-                                <p>Funcionario: <a href="{{'/funcionario/' + item.funcionario.id}}">{{item.funcionario.nombre_completo}}</a></p>
+                                <p>Funcionario: <a href="{{'/funcionario/' + item.funcionario.id}}">{{item.funcionario.nombre_completo}}</a> <a href="" ng-click="toggleFuncionario(item.funcionario)" class="comparar-button"><i class="icon icon-comparar"></i></a></p>
                             </li>
-
                         </ul>
                     </div>
                 </perfect-scrollbar>
@@ -36,7 +35,7 @@
                         <h2>Los tres servidores públicos con <strong class="big"> mayor gasto</strong> en viajes de trabajo </h2>
                         <div class="col-sm-4 person" ng-repeat="funcionario in topFuncionariosCaros | limitTo:3">
                             <div class="person-content">
-                                <a href="#" ng-click="compare(funcionario)" class="comparar-button"><i class="icon icon-comparar"></i></a>
+                                <a href="" ng-click="toggleFuncionario(funcionario)" class="comparar-button"><i class="icon icon-comparar"></i></a>
                                 <img src="/images/funcionario-default.png" alt="" class="picture">
                                 <p class="name">{{funcionario.nombre_completo}}</p>
                                 <p class="charge">{{funcionario.cargo_nombre != 0 ? funcionario.cargo_nombre : "Puesto no disponible"}}</p>
@@ -51,7 +50,7 @@
                         <h2>Los tres servidores públicos <br/> con <strong class="big"> más viajes </strong>de trabajo.</h2>
                         <div class="col-sm-4 person" ng-repeat="funcionario in topFuncionariosViajeros | limitTo:3">
                             <div class="person-content">
-                                <a class="comparar-button" ng-click="compare(funcionario)" href="#" tabindex="0"><i class="icon icon-comparar"></i></a>
+                                <a class="comparar-button" ng-click="toggleFuncionario(funcionario)" href="" tabindex="0"><i class="icon icon-comparar"></i></a>
                                 <img src="/images/funcionario-default.png" alt="" class="picture">
                                 <p class="name">{{funcionario.nombre_completo}}</p>
                                 <p class="charge">{{funcionario.cargo_nombre}}</p>

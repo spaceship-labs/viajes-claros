@@ -1,7 +1,9 @@
 /**
  * Created by Owner on 9/29/2014.
  */
-app.controller("viajeCTL", ['$scope', '$http','$filter' , function ($scope, $http, $filter) {
+app.controller("viajeCTL", 
+    ['$scope', '$http','$filter', '$mdSidenav', 'userInfo' ,
+    function ($scope, $http, $filter, $mdSidenav, userInfo) {
     $scope.viaje = window.viaje;
     $scope.funcionario = window.funcionario;
     $scope.flagResize = true;
@@ -28,6 +30,11 @@ app.controller("viajeCTL", ['$scope', '$http','$filter' , function ($scope, $htt
             $scope.flagResize = true;
         }
     };
+    
+    $scope.toggleFuncionario = function(funcionario){
+        userInfo.toggleFuncionario(funcionario);
+        $mdSidenav('comparaSidenav').toggle();
+    }
 
     $(document).ready(function(){
         var windowSize = $(window).width();
@@ -60,7 +67,9 @@ app.controller("viajeCTL", ['$scope', '$http','$filter' , function ($scope, $htt
 
 }]);
 
-app.controller("viajeSearchCTL", ['$scope', '$http','$filter','$location','comparator' , function ($scope, $http, $filter,$location,comparator) {
+app.controller("viajeSearchCTL", 
+    ['$scope', '$http','$filter','$location', '$mdSidenav', 'userInfo' , 
+    function ($scope, $http, $filter,$location, $mdSidenav, userInfo) {
     $scope.viajes = window.viajes;
     $scope.catalog = catalog;
     $scope.search_request = search_request;
@@ -139,5 +148,10 @@ app.controller("viajeSearchCTL", ['$scope', '$http','$filter','$location','compa
         var test = buildUrl($location.absUrl().split('?')[0],$scope.search_request);
         window.location = test;
     };
+    
+    $scope.toggleFuncionario = function(funcionario){
+        userInfo.toggleFuncionario(funcionario);
+        $mdSidenav('comparaSidenav').toggle();
+    }
 
 }]);

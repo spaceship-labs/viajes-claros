@@ -29,7 +29,9 @@
 						<i class="icon-comicion funcionario-icon"></i> 
 						<h1>{{funcionario.nombre_completo}}</h1>
 						<p><strong>Cargo: </strong>{{funcionario.cargo_nombre != 0 ? funcionario.cargo_nombre : "no disponible"}}</p>
-						<p><strong>Institucion: </strong>{{funcionario.institucion != 0 ? funcionario.institucion : "no disponible"}}</p>
+						<p><strong>Institución: </strong>{{funcionario.institucion != 0 ? funcionario.institucion : "no disponible"}}</p>
+						<p><strong>Número total de viajes: {{viajes.length}}</strong></p>
+						<p><a href="" data-ng-click="toggleFuncionario(funcionario)" class="compare-action" title="Comparar"><strong><i class="icon icon-comparar"></i> <span>COMPARAR</span></strong></a></p>						
 						<p class="money"><strong count-to="{{getTotal()}}" value="{{gasto_parcial}}" duration="2" filter="currency"></strong></p>
 						<p><strong><small>Gastos hasta el momento en viajes</small></strong></p>
 						<div class="share-links">
@@ -116,7 +118,7 @@
 	                <div class="inner-content-list">
 	    				<h2><strong>Viajes de trabajo realizados</strong></h2>
 						<div ng-if="viajes" class="map-container map-small">
-							<leaflet ng-class='mapClass' class='map' layers="layers" markers='markers' defaults='options' event-broadcast="events" ></leaflet>
+							<leaflet ng-class='mapClass' class='map' layers="layers" markers='markers' defaults='options' event-broadcast="events" center="mapCenter" ></leaflet>
 							<div class="aside" ng-show="toggleSidebar">
 								<a href ng-click="toggleAside()" class="arrow-button"></a>
 								<perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="50" refresh-on-change="someArray" >
@@ -125,7 +127,7 @@
 										<ul>
 				                            <li ng-repeat="item in items">
 				                                <p>Fecha del viaje: <a href="{{'/viaje/' + item.id}}">{{item.fecha_inicio_part | date}}</a></p>
-				                                <p>Funcionario: <a href="{{'/funcionario/' + item.funcionario.id}}">{{item.funcionario.nombre_completo}}</a></p>
+				                                <p>Funcionario: <a href="{{'/funcionario/' + item.funcionario.id}}">{{item.funcionario.nombre_completo}}</a> <a href="" ng-click="toggleFuncionario(item.funcionario)" class="comparar-button"><i class="icon icon-comparar"></i></a></p>
 				                            </li>
 
 										</ul>

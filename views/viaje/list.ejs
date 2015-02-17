@@ -107,7 +107,7 @@
 			            <div class="col-sm-4 top-places">
 			                <div class="inner-content">
 			                    <a href="{{'/viaje/'+viaje.id}}"><img src="/images/pinlugar.png" alt="" class="picture" /></a>
-                                <p class="big-blue">{{viaje.funcionario.nombre_completo}} <a class="comparar-button" ng-click="compare(viaje.funcionario)" href="#" tabindex="0" tooltip="comparar funcionario"><i class="icon icon-comparar"></i></a></p>
+                                <p class="big-blue">{{viaje.funcionario.nombre_completo}} <a href="" ng-click="toggleFuncionario(viaje.funcionario)" class="comparar-button"><i class="icon icon-comparar"></i></a></p>
                                 <p class="big-blue">{{viaje.gasto_total | currency}}</p>
                                 <p ng-if="viaje.hotel != 'No disponible'" class="hotel">{{viaje.hotel}}</p>
 			                    <p class="location"><a href="#"><strong>{{viaje.ciudad_destino}}, {{viaje.pais_destino}}</strong></a></p>

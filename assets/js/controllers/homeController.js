@@ -1,4 +1,4 @@
-app.controller("homeCtrl", ['$scope', '$http','$filter',function ($scope, $http ,$filter) {
+app.controller("homeCtrl", ['$scope', '$http','$filter', '$mdSidenav','userInfo',function ($scope, $http ,$filter, $mdSidenav, userInfo) {
 	$scope.nombre = 'mapa';
 	$scope.toggleJumbotron = true;
 	$scope.toggleSidebar = false;
@@ -51,6 +51,10 @@ app.controller("homeCtrl", ['$scope', '$http','$filter',function ($scope, $http 
         iconAnchor:   [16, 36] // point of the icon which will correspond to marker's location
     };
 
+    $scope.toggleFuncionario = function(funcionario){
+        userInfo.toggleFuncionario(funcionario);
+        $mdSidenav('comparaSidenav').toggle();
+    }
 
 	$scope.get_markers = function(){
 	    $http({method: 'POST', url: '/home/viajesJson'})
@@ -115,7 +119,8 @@ app.controller("homeCtrl", ['$scope', '$http','$filter',function ($scope, $http 
 
 }]);
 
-app.controller("statisticsCTL", ['$scope', '$http','$filter','$rootScope','$location','$timeout','$animate','comparator',function ($scope, $http,$filter, $rootScope,$location, $timeout, $animate,comparator) {
+app.controller("statisticsCTL", 
+    ['$scope', '$http','$filter','$rootScope','$location','$timeout','$animate','$mdSidenav','userInfo',function ($scope, $http,$filter, $rootScope,$location, $timeout, $animate, $mdSidenav, userInfo) {
     $scope.hotelList = [];
     $scope.ciudadesList = [];
     $scope.aerolineasList = [];
@@ -129,6 +134,12 @@ app.controller("statisticsCTL", ['$scope', '$http','$filter','$rootScope','$loca
     $scope.totalViajes = 0;
     $scope.totalVuelos = 0;
     $scope.totalAerolineasVuelos = 0;
+
+
+    $scope.toggleFuncionario = function(funcionario){
+        userInfo.toggleFuncionario(funcionario);
+        $mdSidenav('comparaSidenav').toggle();
+    }
 
     $scope.iframecode = '';
     $scope.openWidgetModal = function(path){
@@ -267,14 +278,6 @@ app.controller("statisticsCTL", ['$scope', '$http','$filter','$rootScope','$loca
         $scope.myLine = new Chart(element).Bar(barChartData,options);
         //$scope.myLine.redraw();
     };
-
-    $scope.compare = function(funcionario){
-        if(typeof funcionario.funcionario != 'undefined'){
-            funcionario.id = funcionario.funcionario;
-        }
-        console.log(funcionario);
-        comparator.setFuncionario(funcionario);
-    }
 
 
     $scope.loadData();

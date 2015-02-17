@@ -1,7 +1,9 @@
 /**
  * Created by Owner on 9/29/2014.
  */
-app.controller("funcionarioCTL", ['$scope', '$http','$filter','InternalServices' ,function ($scope, $http, $filter,InternalServices) {
+app.controller("funcionarioCTL", 
+    ['$scope', '$http','$filter','InternalServices','$mdSidenav','userInfo'
+    ,function ($scope, $http, $filter,InternalServices, $mdSidenav, userInfo) {
 
     $scope.viajes = window.viajes;
     $scope.funcionario = window.funcionario;
@@ -147,15 +149,13 @@ app.controller("funcionarioCTL", ['$scope', '$http','$filter','InternalServices'
         zoomControlPosition: 'bottomright',
         imagePath : '/bower_components/leaflet/dist/images/',
         zoomControl : false,
-        center: null,
-        zoom: 20
     };
 
-    /*$scope.mapCenter = {
+    $scope.mapCenter = {
         lng : -99.133208,
         lat : 19.4326077,
-        zoom : 4,
-    };*/
+        zoom : 2,
+    };
 
     $scope.$on('leafletDirectiveMarker.click', function(event, args){
         var lat = args.leafletEvent.latlng.lat;
@@ -217,7 +217,10 @@ app.controller("funcionarioCTL", ['$scope', '$http','$filter','InternalServices'
                 $scope.items = data;
             });
     };
-
+    $scope.toggleFuncionario = function(funcionario){
+        userInfo.toggleFuncionario(funcionario);
+        $mdSidenav('comparaSidenav').toggle();
+    }
     $scope.toggleAside = function(){
         $scope.toggleSidebar = !$scope.toggleSidebar;
     }
@@ -227,10 +230,14 @@ app.controller("funcionarioCTL", ['$scope', '$http','$filter','InternalServices'
     $scope.get_markers();
 }]);
 
-app.controller("listadoCTL", ['$scope', '$http','$filter' ,function ($scope, $http, $filter) {
+app.controller("listadoCTL", ['$scope', '$http','$filter','$mdSidenav','userInfo' ,function ($scope, $http, $filter, $mdSidenav, userInfo) {
     $scope.totalItems = window.count;
     $scope.currentPage = window.page;
     $scope.siteUrl = window.siteUrl;
+    $scope.toggleFuncionario = function(funcionario){
+        userInfo.toggleFuncionario(funcionario);
+        $mdSidenav('comparaSidenav').toggle();
+    }
     $scope.pageChanged = function(){
         window.location.href = $scope.siteUrl + "/funcionario/list?page=" + $scope.currentPage;
     }

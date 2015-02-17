@@ -180,7 +180,7 @@
 							<h4>Puesto</h4>
 							<ul>
 								<li><p><strong>Número de comisión</strong></p><p>{{viaje.consecutivo}}</p></li>
-								<li><p><strong>Servidor público comisionado</strong></p><p><a class="capitalize" href="/funcionario/{{funcionario.id}}">{{funcionario.nombre_completo}}</a></p></li>
+								<li><p><strong>Servidor público comisionado</strong></p><p><a class="capitalize" href="/funcionario/{{funcionario.id}}">{{funcionario.nombre_completo}}</a> <a href="" ng-click="toggleFuncionario(viaje.funcionario)" class="comparar-button"><i class="icon icon-comparar"></i></a></p></li>
 								<li><p><strong>Cargo</strong></p><p>{{funcionario.cargo_nombre}}</p></li>
 								<li><p><strong>Institucion</strong></p><p>{{funcionario.institucion}}</p></li>
 							</ul>
