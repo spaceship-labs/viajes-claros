@@ -93,7 +93,15 @@ module.exports.routes = {
   '/service/subscribe' : {
       controller: 'service',
       action: 'subscribe'
-  }
+  },
+    '/datos/funcionarios' : {
+        controller: 'service',
+        action: 'funcionarios_csv'
+    },
+    '/datos/viajes' : {
+        controller: 'service',
+        action: 'viajes_csv'
+    }
   
 
 

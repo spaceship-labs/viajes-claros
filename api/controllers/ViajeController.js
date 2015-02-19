@@ -18,7 +18,8 @@ module.exports = {
                                 res.forbidden();
                             }
                             res.view({ 
-                                funcionario : viaje.funcionario,viaje : viaje,
+                                funcionario : viaje.funcionario,
+                                viaje : viaje,
                                 fullUrl : fullUrl,
                                 viajes : viajesExtras,
                                 title : 'Detalles del viaje de ' + viaje.funcionario.nombre_completo,

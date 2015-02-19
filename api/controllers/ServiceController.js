@@ -79,10 +79,11 @@ module.exports = {
     },
 
     datos: function (req, res) {
-        var query = "SELECT UPDATE_TIME FROM information_schema.tables WHERE TABLE_SCHEMA = 'viajestransparentes' AND TABLE_NAME = 'viaje'";
+        var database = sails.config.connections['mysql-connection'].database;
+        var query = "SELECT UPDATE_TIME FROM information_schema.tables WHERE TABLE_SCHEMA = '" + database + "' AND TABLE_NAME = 'viaje'";
         Viaje.query(query, function (err, viajeUpdateTime) {
             if (err) console.log(err);
-            var query = "SELECT UPDATE_TIME FROM information_schema.tables WHERE TABLE_SCHEMA = 'viajestransparentes' AND TABLE_NAME = 'funcionario'";
+            var query = "SELECT UPDATE_TIME FROM information_schema.tables WHERE TABLE_SCHEMA = '" + database + "' AND TABLE_NAME = 'funcionario'";
             Funcionario.query(query, function (err, funcionarioUpdateTime) {
                 if (err) console.log(err);
                 res.view({

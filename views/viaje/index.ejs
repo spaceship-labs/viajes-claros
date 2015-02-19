@@ -318,9 +318,9 @@
 								<p class="name"><%- viajeAux.funcionario.nombre_completo %></p>
 								<p class="charge"><%- viajeAux.funcionario.cargo_nombre != 0 ? viajeAux.funcionario.cargo_nombre : "no disponible" %></p>
 								<p class="dependency"><%- viajeAux.funcionario.institucion != 0 ? viajeAux.funcionario.institucion : "no disponible" %></p>
-								<!--<p class="money">$ <%- viajeAux.gasto_total.toFixed(2) %></p>
-								<p class="gray">Gastos al mes</p>-->
-								<a href="/funcionario/<%- viajeAux.funcionario.id %>" class="custom-button">Ver perfil</a>
+								<p class="money">$ <%- viajeAux.gasto_total.toFixed(2) %></p>
+								<p class="gray">Gasto</p>
+								<a href="/viaje/<%- viajeAux.id %>" class="custom-button">Ver viaje</a>
 							</div>
 					</div>
 				<% } %>
