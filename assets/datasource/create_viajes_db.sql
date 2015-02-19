@@ -203,9 +203,9 @@ set
 	/*Querys de control*/
 	
 	
-select funcionario,nombre,fecha_inicio_part,ciudad_destino,count(*) as total 
+select funcionario,nombre,fecha_inicio_part,count(*) as total 
 from viaje 
-group by funcionario,nombre,fecha_inicio_part,ciudad_destino
+group by funcionario,nombre,fecha_inicio_part
 having count(*) > 1
 
 select linea_origen,count(*) as total 

@@ -61,14 +61,15 @@ module.exports = {
         var email = req.param('email');
         var funcionario = req.param('funcionario');
 
-        Subscription.find({ email: email,funcionario : funcionario }).populate('funcionario').exec(function (err, subscriptions) {
+        Subscription.findOne({ email: email,funcionario : funcionario }).exec(function (err, subscriptions) {
             if (subscriptions)
                 return res.json({ text: "ya esta agregado" });
             if (err) {
                 console.error(err);
                 return res.json({text : "error"});
             }
-            Subscription.create({ funcionario: funcionario, email: email }).exec(function (err, subscription) {
+
+            Subscription.create({ funcionario: funcionario, email: email }).exec(function (err, sub) {
                 if (err) {
                     return console.error(err);
                 }

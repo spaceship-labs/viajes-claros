@@ -10,7 +10,11 @@ module.exports = {
             model : "funcionario"
         },
         email : "string",
-        id : 'int'
+        id : {
+            type : 'integer',
+            primaryKey : true,
+            unique : true
+        }
     },
     afterCreate : function(subscription,cb){
         Funcionario.findOne({ id : subscription.funcionario }).exec(function(err,funcionario) {
