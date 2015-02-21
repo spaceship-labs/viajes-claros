@@ -16,11 +16,21 @@
 
 module.exports.policies = {
 
-  // Default policy for all controllers and actions
-  // (`true` allows public access)
-  '*': true,
-  '/api/v1/*' : true,
-
+    // Default policy for all controllers and actions
+    // (`true` allows public access)
+    '*': true,
+    'Funcionario' : {
+      'find' : true,
+      'update' : false,
+      'create' : false,
+      'destroy' : false
+    },
+    'Viaje' : {
+        'find' : true,
+        'update' : false,
+        'create' : false,
+        'destroy' : false
+    }
 	// Here's an example of mapping some policies to run before
   // a controller and its actions
 	// RabbitController: {

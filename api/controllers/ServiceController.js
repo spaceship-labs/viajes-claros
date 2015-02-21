@@ -35,6 +35,7 @@ module.exports = {
 
     updateLongitudViajes: function (req, res) {//de 10 en 10 por que de 20 crashea
         Viaje.find({ destino_latitud : null ,limit: 10}).exec(function (err, viajes) {
+            console.log(viajes);
             async.forEach(viajes, function (viaje, callback) {
                 var url = "http://maps.google.com/maps/api/geocode/json?address=" + (viaje.ciudad_destino != 'No disponible' ? viaje.ciudad_destino : viaje.estado_destino) + "&components=country:" + viaje.pais_destino + (viaje.estado_destino != 'No disponible' ? ("|administrative_area:" + viaje.estado_destino) : "");
                 request({ url: url, json: true }, function (error, response, body) {
@@ -53,7 +54,6 @@ module.exports = {
                 console.log("finish");
                 res.json({text: "success!", err: err});
             });
-
         });
     },
 
@@ -197,6 +197,94 @@ module.exports = {
         Viaje.find().exec(function(err, list){
             if (err) console.log(err);
             res.attachment();
+        });
+    },
+
+    uploadFile : function(req,res) {
+        if (req.param('token') == 'grannysontrannys')
+            res.view({});
+        else
+            res.forbidden();
+    },
+
+    updateFromCSV : function(req,res) {
+        if (req.param('token') != 'grannysontrannys') {
+            return res.forbidden();
+        }
+        var dirSave = __dirname+'/../../assets/uploads/';
+        var i = 0;
+        var dateValue = new Date();
+        var dateString = moment(dateValue);
+        req.file('file').upload({saveAs:dateString + '.csv',dirname:dirSave,maxBytes:52428800},function(e,files){
+            if(e) res.json({text : 'error'});
+            if (files && files[0]) {
+                var fileImported = files[0].filename;
+
+                    if (err) console.log(err);
+                    var lineList = fs.readFileSync(dirSave + dateString +".csv").toString().split('\n');
+                    lineList.shift();
+                    var schemaKeyList = ['UR','UR_Siglas','Nom_SP','No_Emp','Cargo','NivelCargo','Estatus','Correo','Genero','ObservacionesSP','Nombre_Evento','FechaInicio','FechaFin','Organizador_Evento',
+                        'SiglasOrganizador_Evento','PaisDestino','EstadoDestino','CiudadDestino','ObservacionesEvento','Num_Comision','MecanismoCom','InvitaSolicita','UR_Nombre','Obj_Estrategico','Obj_Especifico',
+                        'Tema','Motivo','Antecedentes','TipoViaje','TipoRepresentacion','TipoComision','PaisOrigen','EstadoOrigen','FechaInicioParticipacion','FechaFinParticipacion','InstitucionPasaje','InstitucionHospedaje',
+                        'InstitucionViaticos','NoAcuerdo','NoOficio','Partida','TipoPasaje','AerolineaSalida','NumVueloCorridaSalida','FechaSalida','AerolineaLlegada','NumVueloCorridaLlegada','FechaLlegada',
+                        'SolicitudCambio','FechaSolicitudVuelo','FechaCambioVuelo','MotivoCambio','MontoCambio','EstatusViaje','GastoPasaje','PartidaPresupuestaria','FechaInicioViaticos','FechaFinViaticos','Moneda','ValorTipoCambio',
+                        'Homologacion','Reintegro','TarifaZona','TarifaViaticos','DiasViaticados','MontoViaticados','Observaciones','Actividades Realizadas','Resultados','ContribucionesIFAI','Link','NombreHotel','FechaEntrada','FechaSalida',
+                        'CostoHospedaje','MontoComprobado','MontoSinComprobar','MontoDevueltoHoy','CasoViaticos','ObservacionesMontoDevuelto','GastoTotalViatocsHoy','GastoPasajeYViaticosHoy'];
+
+                    async.forEach(lineList,function(line,cb) {
+                        var viaje = {};
+                        line.split(',').forEach(function (entry, i) {
+                            viaje[schemaKeyList[i]] = entry;
+                        });
+
+                        var waterfallTasks = [];
+                        var funionario = {};
+                        var _viaje = {};
+                        var ciudad = {};
+
+                        waterfallTasks.push(function(err,cb){
+                            Funcionario.findOrCreate({ nombre_completo : viaje.Nom_SP },{ institucion : 'IFAI' , nombre_completo : viaje.Nom_SP , cargo_nombre : viaje.cargo,tipo_personal : viaje.NivelCargo,email : viaje.Correo,genero : viaje.Genero })
+                                .exec(function(err,func){
+                                    if (err) {
+                                        cb(err);
+                                    }
+                                    funcionario = func;
+                                    cb();
+                                }
+                            );
+                        });
+
+                        waterfallTasks.push(function(err,cb){
+                            Ciudad.findOrCreate({ nombre : viaje.ciudad_destino,pais : viaje.pais_destino },{ nombre : viaje.ciudad_destino , estado : estado_destino, pais : pais_destino })
+                                .exec(function(err,ciud){
+                                    if (err) {
+                                        cb(err);
+                                    }
+                                    ciudad = ciud;
+                                    cb();
+                                }
+                            );
+                        });
+
+                        waterfallTasks.push(function(err,cb){
+                            Viaje.findOrCreate({ nombre : viaje.ciudad_destino,pais : viaje.pais_destino },{ nombre : viaje.ciudad_destino , estado : estado_destino, pais : pais_destino })
+                                .exec(function(err,ciud){
+                                    if (err) {
+                                        cb(err);
+                                    }
+                                    ciudad = ciud;
+                                    cb();
+                                }
+                            );
+                        });
+
+
+                    }, function(err) {
+                        if (err)
+                            return res.json({ success : false , error : err});
+                        return res.json({ success : true });
+                    });
+            }
         });
     },
 };

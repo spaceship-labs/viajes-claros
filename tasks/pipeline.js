@@ -61,6 +61,7 @@ var jsFilesToInject = [
   'bower_components/Leaflet.awesome-markers/dist/leaflet.awesome-markers.min.js',
   'bower_components/chosen/chosen.jquery.js',
   'bower_components/angular-chosen-localytics/chosen.js',
+  'bower_components/ng-file-upload/angular-file-upload-all.js',
   // All of the rest of your client-side js files
   // will be injected here in no particular order.
   'js/**/*.js'

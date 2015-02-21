@@ -24,3 +24,8 @@ app.controller("headerCTL", ['$scope', '$http','$mdSidenav',function ($scope, $h
     };
 }]);
 
+app.controller('uploadFileCTL',['$scope','$http'],function($scope,$http) {
+    //$scope.token = '';
+
+});
+

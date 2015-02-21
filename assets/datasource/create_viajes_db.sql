@@ -1,5 +1,6 @@
 CREATE TABLE `viajes_dump` (
 	`NumCuenta` VARCHAR(100) NULL DEFAULT NULL,
+	`UR` VARCHAR(100) NULL DEFAULT NULL,
 	`UR_Siglas` VARCHAR(100) NULL DEFAULT NULL,
 	`Nom_SP` VARCHAR(100) NULL DEFAULT NULL,
 	`No_Emp` VARCHAR(100) NULL DEFAULT NULL,
@@ -14,6 +15,7 @@ CREATE TABLE `viajes_dump` (
 	`FechaFin` VARCHAR(100) NULL DEFAULT NULL,
 	`URL_Evento` VARCHAR(100) NULL DEFAULT NULL,
 	`Organizador_Evento` VARCHAR(300) NULL DEFAULT NULL,
+	`SiglasOrganizador_Evento` VARCHAR(50) NULL DEFAULT NULL,
 	`PaisDestino` VARCHAR(100) NULL DEFAULT NULL,
 	`EstadoDestino` VARCHAR(100) NULL DEFAULT NULL,
 	`CiudadDestino` VARCHAR(100) NULL DEFAULT NULL,
@@ -53,6 +55,7 @@ CREATE TABLE `viajes_dump` (
 	`FechaCambioVuelo` VARCHAR(200) NULL DEFAULT NULL,
 	`MotivoCambio` VARCHAR(200) NULL DEFAULT NULL,
 	`MontoCambio` VARCHAR(200) NULL DEFAULT NULL,
+	`EstatusViaje` VARCHAR(50) NULL DEFAULT NULL,
 	`GastoPasaje` VARCHAR(100) NULL DEFAULT NULL,
 	`PartidaPresupuestaria` VARCHAR(200) NULL DEFAULT NULL,
 	`FechaInicioViaticos` VARCHAR(200) NULL DEFAULT NULL,
@@ -60,6 +63,8 @@ CREATE TABLE `viajes_dump` (
 	`Moneda` VARCHAR(200) NULL DEFAULT NULL,
 	`ValorTipoCambio` VARCHAR(200) NULL DEFAULT NULL,
 	`Homologacion` VARCHAR(200) NULL DEFAULT NULL,
+	`Reintegro` VARCHAR(50) NULL DEFAULT NULL,
+	`TarifaZona` VARCHAR(50) NULL DEFAULT NULL,
 	`TarifaViaticos` VARCHAR(200) NULL DEFAULT NULL,
 	`DiasViaticados` VARCHAR(200) NULL DEFAULT NULL,
 	`MontoViaticados` VARCHAR(200) NULL DEFAULT NULL,
@@ -75,7 +80,10 @@ CREATE TABLE `viajes_dump` (
 	`MontoComprobado` DECIMAL(10,2) NULL DEFAULT NULL,
 	`MontoSinComprobar` DECIMAL(10,2) NULL DEFAULT NULL,
 	`MontoDevuelto` DECIMAL(10,2) NULL DEFAULT NULL,
-	`GastoTotalViaticos` DECIMAL(10,2) NULL DEFAULT NULL
+	`GastoTotalViaticos` DECIMAL(10,2) NULL DEFAULT NULL,
+	`ObservacionesMontoDevuelto` VARCHAR(100) NULL DEFAULT NULL,
+	`GastoTotalViaticosHoy` DECIMAL(10,2) NULL DEFAULT NULL,
+	`GastoPasajeYViaticosHoy` DECIMAL(10,2) NULL DEFAULT NULL
 )
 COMMENT='test'
 COLLATE='utf8_general_ci'
@@ -161,8 +169,8 @@ CREATE TABLE `viaje` (
 	`hotel` VARCHAR(100) NULL DEFAULT NULL,
 	`fecha_inicio_part` DATE NOT NULL,
 	`fecha_fin_part` DATE NOT NULL,
-	`fecha_inicio_com` DATE NOT NULL,
-	`fecha_fin_com` DATE NOT NULL,
+	`fecha_inicio_com` DATE NULL DEFAULT NULL,
+	`fecha_fin_com` DATE NULL DEFAULT NULL,
 	`fecha_inicio_hotel` DATE NULL DEFAULT NULL,
 	`fecha_fin_hotel` DATE NULL DEFAULT NULL,
 	`costo_hotel` VARCHAR(100) NULL DEFAULT NULL,

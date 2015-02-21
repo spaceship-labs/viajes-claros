@@ -26,9 +26,9 @@ app.controller("homeCtrl", ['$scope', '$http','$filter', '$mdSidenav','userInfo'
     };
 
 	$scope.mapCenter = {
-		lng : -99.133208,
+		lng : -50.133208,
 		lat : 19.4326077,
-		zoom : 4,
+		zoom : 3,
 	};
 
 	$scope.$on('leafletDirectiveMarker.click', function(event, args){
