@@ -68,7 +68,6 @@ module.exports = {
                 console.error(err);
                 return res.json({text : "error"});
             }
-
             Subscription.create({ funcionario: funcionario, email: email }).exec(function (err, sub) {
                 if (err) {
                     return console.error(err);
