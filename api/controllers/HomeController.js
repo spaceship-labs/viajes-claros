@@ -114,7 +114,7 @@ module.exports = {
             });
         });
         asyncTasks.push(function(cb){
-            Viaje.query("select hotel,ciudad_destino,pais_destino,sum(gasto_viatico) as gasto_viatico from viaje where hotel != 'No aplica' and hotel != 'No disponible' and hotel != '' group by hotel,ciudad_destino,pais_destino order by sum(gasto_viatico) desc limit 0,3",
+            Viaje.query("select hotel,ciudad_destino,pais_destino,count(*) as visitas from viaje where hotel != 'No aplica' and hotel != 'No disponible' and hotel != '' group by hotel,ciudad_destino,pais_destino order by count(*) desc limit 0,3",
                 function(e,viajes){
                     if (e) res.json({ text : "error hoteles visitados",error : e });
                     hotelVisitado = viajes;
