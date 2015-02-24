@@ -35,15 +35,15 @@ module.exports = {
 
     updateLongitudViajes: function (req, res) {//de 10 en 10 por que de 20 crashea
         Viaje.find({ destino_latitud : null ,limit: 10}).exec(function (err, viajes) {
-            console.log(viajes);
+            var destino_latitud,destino_longitud;
             async.forEach(viajes, function (viaje, callback) {
                 var url = "http://maps.google.com/maps/api/geocode/json?address=" + (viaje.ciudad_destino != 'No disponible' ? viaje.ciudad_destino : viaje.estado_destino) + "&components=country:" + viaje.pais_destino + (viaje.estado_destino != 'No disponible' ? ("|administrative_area:" + viaje.estado_destino) : "");
                 request({ url: url, json: true }, function (error, response, body) {
                     if (!error && response.statusCode == 200) {
                         if (body.results && body.results.length > 0) {
-                            viaje.destino_latitud = body.results[0].geometry.location.lat;
-                            viaje.destino_longitud = body.results[0].geometry.location.lng;
-                            viaje.save(callback);
+                            destino_latitud = body.results[0].geometry.location.lat;
+                            destino_longitud = body.results[0].geometry.location.lng;
+                            Viaje.update({ ciudad_destino : viaje.ciudad_destino,estado_destino : viaje.estado_destino,pais_destino : viaje.pais_destino  },{ destino_latitud : destino_latitud, destino_longitud : destino_longitud}).exec(callback);
                         } else {
                             console.log("error :" + url);
                         }

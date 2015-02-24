@@ -12,7 +12,7 @@ module.exports = {
                     res.forbidden();
                 } else {
                     if(viaje){
-                        Viaje.find({ evento : viaje.evento }).populate('funcionario').exec(function(err,viajesExtras) {
+                        Viaje.find({ evento : viaje.evento,ciudad_destino : viaje.ciudad_destino,funcionario : { '!' : viaje.funcionario.id } }).populate('funcionario').exec(function(err,viajesExtras) {
                             if (err) {
                                 console.log(err);
                                 res.forbidden();
@@ -43,7 +43,7 @@ module.exports = {
         var tipo_com = req.param('tipo_com');
         var hotel = req.param('hotel');
         var pasaje_tipo = req.param('pasaje_tipo');
-        var orden = req.param('orden') || 'gasto_total desc';
+        var orden = /*req.param('orden') || */'gasto_total desc';
         var mes = req.param('mes');
         var page = req.param('p');
         var pageSize = 20;

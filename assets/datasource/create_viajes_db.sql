@@ -13,8 +13,8 @@ CREATE TABLE `viajes_dump` (
 	`Nombre_Evento` VARCHAR(400) NULL DEFAULT NULL,
 	`FechaInicio` VARCHAR(100) NULL DEFAULT NULL,
 	`FechaFin` VARCHAR(100) NULL DEFAULT NULL,
-	`URL_Evento` VARCHAR(100) NULL DEFAULT NULL,
-	`Organizador_Evento` VARCHAR(300) NULL DEFAULT NULL,
+	`URL_Evento` VARCHAR(200) NULL DEFAULT NULL,
+	`Organizador_Evento` VARCHAR(500) NULL DEFAULT NULL,
 	`SiglasOrganizador_Evento` VARCHAR(50) NULL DEFAULT NULL,
 	`PaisDestino` VARCHAR(100) NULL DEFAULT NULL,
 	`EstadoDestino` VARCHAR(100) NULL DEFAULT NULL,
@@ -22,13 +22,13 @@ CREATE TABLE `viajes_dump` (
 	`ObservacionesEvento` VARCHAR(100) NULL DEFAULT NULL,
 	`Num_Comision` VARCHAR(100) NULL DEFAULT NULL,
 	`MecanismoCom` VARCHAR(100) NULL DEFAULT NULL,
-	`InvitaSolicita` VARCHAR(200) NULL DEFAULT NULL,
+	`InvitaSolicita` VARCHAR(500) NULL DEFAULT NULL,
 	`UR_Nombre` VARCHAR(100) NULL DEFAULT NULL,
 	`Obj_Estrategico` VARCHAR(100) NULL DEFAULT NULL,
 	`Obj_Especifico` VARCHAR(100) NULL DEFAULT NULL,
 	`Tema` VARCHAR(100) NULL DEFAULT NULL,
-	`Motivo` TEXT NULL DEFAULT NULL,
-	`Antecedentes` TEXT NULL DEFAULT NULL,
+	`Motivo` TEXT NULL,
+	`Antecedentes` TEXT NULL,
 	`TipoViaje` VARCHAR(100) NULL DEFAULT NULL,
 	`TipoRepresentaciomn` VARCHAR(100) NULL DEFAULT NULL,
 	`TipoComision` VARCHAR(100) NULL DEFAULT NULL,
@@ -80,7 +80,7 @@ CREATE TABLE `viajes_dump` (
 	`MontoComprobado` DECIMAL(10,2) NULL DEFAULT NULL,
 	`MontoSinComprobar` DECIMAL(10,2) NULL DEFAULT NULL,
 	`MontoDevuelto` DECIMAL(10,2) NULL DEFAULT NULL,
-	`GastoTotalViaticos` DECIMAL(10,2) NULL DEFAULT NULL,
+	`CasoViaticos` TINYINT(4) NULL DEFAULT NULL,
 	`ObservacionesMontoDevuelto` VARCHAR(100) NULL DEFAULT NULL,
 	`GastoTotalViaticosHoy` DECIMAL(10,2) NULL DEFAULT NULL,
 	`GastoPasajeYViaticosHoy` DECIMAL(10,2) NULL DEFAULT NULL
@@ -88,6 +88,7 @@ CREATE TABLE `viajes_dump` (
 COMMENT='test'
 COLLATE='utf8_general_ci'
 ENGINE=InnoDB;
+
 
 
 CREATE TABLE `funcionario` (
@@ -167,8 +168,8 @@ CREATE TABLE `viaje` (
 	`gasto_total` DECIMAL(14,2) NOT NULL,
 	`inst_hospedaje` VARCHAR(100) NULL DEFAULT NULL,
 	`hotel` VARCHAR(100) NULL DEFAULT NULL,
-	`fecha_inicio_part` DATE NOT NULL,
-	`fecha_fin_part` DATE NOT NULL,
+	`fecha_inicio_part` DATE NULL DEFAULT NULL,
+	`fecha_fin_part` DATE NULL DEFAULT NULL,
 	`fecha_inicio_com` DATE NULL DEFAULT NULL,
 	`fecha_fin_com` DATE NULL DEFAULT NULL,
 	`fecha_inicio_hotel` DATE NULL DEFAULT NULL,
@@ -197,7 +198,7 @@ select distinct 'IFAI',Nom_SP,Cargo,NivelCargo,Correo,Genero
 from viajes_dump;
 
 insert into viaje (mec_origen,institucion_genera,UR,tipo_rep,consecutivo,nombre,tipo_viaje,acuerdo,oficio,pais_origen,estado_origen,ciudad_origen,pais_destino,estado_destino,ciudad_destino,tarifa_diaria,moneda,tema,tipo_com,evento,evento_url,motivo,antecedente,actividad,resultado,contribucion_ifai,url_comunicado,pasaje_cubre,pasaje_tipo,linea_origen,vuelo_origen,linea_regreso,vuelo_regreso,gasto_pasaje,gasto_viatico,gasto_total,inst_hospedaje,hotel,fecha_inicio_part,fecha_fin_part,fecha_inicio_com,fecha_fin_com,fecha_inicio_hotel,fecha_fin_hotel,costo_hotel,viatico_comprobado,viatico_sin_comprobar,viatico_devuelto,observaciones) 
-select MecanismoCom,Organizador_Evento,UR_Siglas,TipoRepresentaciomn,Num_comision,Nom_SP,TipoViaje,NoAcuerdo,NoOficio,PaisOrigen,EstadoOrigen,CiudadOrigen,PaisDestino,EstadoDestino,CiudadDestino,TarifaViaticos,Moneda,Tema,TipoComision,Nombre_Evento,URL_Evento,Motivo,Antecedentes,Actividades_realizadas,Resultados,ContribucionesIFAI,Link,InstitucionPasaje,TipoPasaje,AerolineaSalida,NumVueloCorridaSalida,AerolineaLlegada,NumVueloCorridaLlegada,CAST(replace(GastoPasaje, ',', '') AS DECIMAL(14,2)),CAST(replace(GastoTotalViaticos, ',', '') AS DECIMAL(14,2)),CAST(replace(GastoPasaje, ',', '') AS DECIMAL(14,2))+CAST(replace(GastoTotalViaticos, ',', '') AS DECIMAL(14,2)),InstitucionHospedaje,NombreHotel,STR_TO_DATE(FechaInicioParticipacion,'%m/%d/%Y'),STR_TO_DATE(FechaFinParticipacon,'%m/%d/%Y'),STR_TO_DATE(FechaInicioViaticos,'%m/%d/%Y'),STR_TO_DATE(FechaFinViaticos,'%m/%d/%Y'),STR_TO_DATE(FechaEntrada_1,'%m/%d/%Y'),STR_TO_DATE(FechaSalida_1,'%m/%d/%Y'),CostoHospedaje,MontoComprobado,MontoSinComprobar,MontoDevuelto,Observaciones
+select MecanismoCom,Organizador_Evento,UR_Siglas,TipoRepresentaciomn,Num_comision,Nom_SP,TipoViaje,NoAcuerdo,NoOficio,PaisOrigen,EstadoOrigen,CiudadOrigen,PaisDestino,EstadoDestino,CiudadDestino,TarifaViaticos,Moneda,Tema,TipoComision,Nombre_Evento,URL_Evento,Motivo,Antecedentes,Actividades_realizadas,Resultados,ContribucionesIFAI,Link,InstitucionPasaje,TipoPasaje,AerolineaSalida,NumVueloCorridaSalida,AerolineaLlegada,NumVueloCorridaLlegada,CAST(replace(GastoPasaje, ',', '') AS DECIMAL(14,2)),CAST(replace(GastoTotalViaticosHoy, ',', '') AS DECIMAL(14,2)),CAST(replace(GastoPasaje, ',', '') AS DECIMAL(14,2))+CAST(replace(GastoTotalViaticosHoy, ',', '') AS DECIMAL(14,2)),InstitucionHospedaje,NombreHotel,STR_TO_DATE(FechaInicioParticipacion,'%m/%d/%Y'),STR_TO_DATE(FechaFinParticipacon,'%m/%d/%Y'),STR_TO_DATE(FechaInicioViaticos,'%m/%d/%Y'),STR_TO_DATE(FechaFinViaticos,'%m/%d/%Y'),STR_TO_DATE(FechaEntrada_1,'%m/%d/%Y'),STR_TO_DATE(FechaSalida_1,'%m/%d/%Y'),CostoHospedaje,MontoComprobado,MontoSinComprobar,MontoDevuelto,Observaciones
 from viajes_dump;
 
 
