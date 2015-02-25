@@ -12,7 +12,7 @@ module.exports = {
                     res.forbidden();
                 } else {
                     if(viaje){
-                        Viaje.find({ evento : viaje.evento,ciudad_destino : viaje.ciudad_destino,funcionario : { '!' : viaje.funcionario.id } }).populate('funcionario').exec(function(err,viajesExtras) {
+                        Viaje.find({ evento : viaje.evento,fecha_inicio_part : viaje.fecha_inicio_part,ciudad_destino : viaje.ciudad_destino,funcionario : { '!' : viaje.funcionario.id } }).populate('funcionario').exec(function(err,viajesExtras) {
                             if (err) {
                                 console.log(err);
                                 res.forbidden();
