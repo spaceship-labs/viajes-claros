@@ -229,7 +229,7 @@ module.exports = {
                         'InstitucionViaticos','NoAcuerdo','NoOficio','Partida','TipoPasaje','AerolineaSalida','NumVueloCorridaSalida','FechaSalida','AerolineaLlegada','NumVueloCorridaLlegada','FechaLlegada',
                         'SolicitudCambio','FechaSolicitudVuelo','FechaCambioVuelo','MotivoCambio','MontoCambio','EstatusViaje','GastoPasaje','PartidaPresupuestaria','FechaInicioViaticos','FechaFinViaticos','Moneda','ValorTipoCambio',
                         'Homologacion','Reintegro','TarifaZona','TarifaViaticos','DiasViaticados','MontoViaticados','Observaciones','Actividades Realizadas','Resultados','ContribucionesIFAI','Link','NombreHotel','FechaEntrada','FechaSalida',
-                        'CostoHospedaje','MontoComprobado','MontoSinComprobar','MontoDevueltoHoy','CasoViaticos','ObservacionesMontoDevuelto','GastoTotalViatocsHoy','GastoPasajeYViaticosHoy'];
+                        'CostoHospedaje','MontoComprobado','MontoSinComprobar','MontoDevuelto','CasoViaticos','ObservacionesMontoDevuelto','GastoTotalViatocs','GastoPasajeYViaticos'];
 
                     async.forEach(lineList,function(line,cb) {
                         var viaje = {};
