@@ -1,4 +1,5 @@
 CREATE TABLE `viajes_dump` (
+	`id_ifai` VARCHAR(100) NULL DEFAULT NULL,
 	`NumCuenta` VARCHAR(100) NULL DEFAULT NULL,
 	`UR` VARCHAR(100) NULL DEFAULT NULL,
 	`UR_Siglas` VARCHAR(100) NULL DEFAULT NULL,
@@ -24,8 +25,8 @@ CREATE TABLE `viajes_dump` (
 	`MecanismoCom` VARCHAR(100) NULL DEFAULT NULL,
 	`InvitaSolicita` VARCHAR(500) NULL DEFAULT NULL,
 	`UR_Nombre` VARCHAR(100) NULL DEFAULT NULL,
-	`Obj_Estrategico` VARCHAR(100) NULL DEFAULT NULL,
-	`Obj_Especifico` VARCHAR(100) NULL DEFAULT NULL,
+	`Obj_Estrategico` VARCHAR(300) NULL DEFAULT NULL,
+	`Obj_Especifico` VARCHAR(300) NULL DEFAULT NULL,
 	`Tema` VARCHAR(100) NULL DEFAULT NULL,
 	`Motivo` TEXT NULL,
 	`Antecedentes` TEXT NULL,
@@ -82,12 +83,14 @@ CREATE TABLE `viajes_dump` (
 	`MontoDevuelto` DECIMAL(10,2) NULL DEFAULT NULL,
 	`CasoViaticos` TINYINT(4) NULL DEFAULT NULL,
 	`ObservacionesMontoDevuelto` VARCHAR(100) NULL DEFAULT NULL,
-	`GastoTotalViaticosHoy` DECIMAL(10,2) NULL DEFAULT NULL,
-	`GastoPasajeYViaticosHoy` DECIMAL(10,2) NULL DEFAULT NULL
+	`GastoTotalViaticos` DECIMAL(10,2) NULL DEFAULT NULL,
+	`GastoPasajeYViaticos` DECIMAL(10,2) NULL DEFAULT NULL
 )
 COMMENT='test'
 COLLATE='utf8_general_ci'
 ENGINE=InnoDB;
+
+
 
 
 
