@@ -91,7 +91,7 @@ module.exports = {
                 });
         });
         asyncTasks.push(function(cb){
-            Viaje.query("select linea_regreso as linea_origen,count(*) as total from viaje where pasaje_tipo = 'Aéreo' and linea_regreso != '' and linea_regreso != 'No disponible' and linea_regreso != 'Pendiente de captura' and linea_regreso != 'No aplica' group by linea_regreso",
+            Viaje.query("select linea_regreso as linea_origen,count(*) as total from viaje where pasaje_tipo = 'Aéreo' and linea_regreso != '' and linea_regreso != 'En proceso' and linea_regreso != 'No disponible' and linea_regreso != 'Pendiente de captura' and linea_regreso != 'No aplica' group by linea_regreso",
                 function(e,vo){
                     if (e) res.json({ text : "error aerolineas",error : e });
                     //console.log(vo);
@@ -114,7 +114,7 @@ module.exports = {
             });
         });
         asyncTasks.push(function(cb){
-            Viaje.query("select hotel,ciudad_destino,pais_destino,count(*) as visitas from viaje where hotel != 'No aplica' and hotel != 'No disponible' and hotel != '' group by hotel,ciudad_destino,pais_destino order by count(*) desc limit 0,3",
+            Viaje.query("select hotel,ciudad_destino,pais_destino,count(*) as visitas from viaje where hotel != 'No aplica' and hotel != 'No disponible' and hotel != 'En proceso' and hotel != '' group by hotel,ciudad_destino,pais_destino order by count(*) desc limit 0,3",
                 function(e,viajes){
                     if (e) res.json({ text : "error hoteles visitados",error : e });
                     hotelVisitado = viajes;
