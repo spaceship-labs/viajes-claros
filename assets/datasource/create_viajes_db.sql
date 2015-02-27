@@ -109,6 +109,7 @@ CREATE TABLE `funcionario` (
 	`nombre_puesto` VARCHAR(100) NULL DEFAULT '0' COLLATE 'utf8_general_ci',
 	`email` VARCHAR(100) NOT NULL DEFAULT '0' COLLATE 'utf8_general_ci',
 	`genero` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
+	`no_empleado` INT(11) NULL DEFAULT NULL,
 	PRIMARY KEY (`id`),
 	FULLTEXT INDEX `nombre_completo` (`nombre_completo`)
 )
@@ -196,12 +197,16 @@ AUTO_INCREMENT=1;
 
 /* Ejecutar despues de la importada de datos */
 
-insert into funcionario (institucion,nombre_completo,cargo_nombre,tipo_personal,email,genero) 
-select distinct 'IFAI',Nom_SP,Cargo,NivelCargo,Correo,Genero
+insert into funcionario (institucion,nombre_completo,no_empleado) 
+select distinct 'IFAI',Nom_SP,No_Emp
 from viajes_dump;
 
+update funcionario f
+left join viajes_dump v on No_Emp = no_empleado 
+set cargo_nombre = Cargo,tipo_personal = NivelCargo,email = Correo,f.genero = v.Genero
+
 insert into viaje (mec_origen,institucion_genera,UR,tipo_rep,consecutivo,nombre,tipo_viaje,acuerdo,oficio,pais_origen,estado_origen,ciudad_origen,pais_destino,estado_destino,ciudad_destino,tarifa_diaria,moneda,tema,tipo_com,evento,evento_url,motivo,antecedente,actividad,resultado,contribucion_ifai,url_comunicado,pasaje_cubre,pasaje_tipo,linea_origen,vuelo_origen,linea_regreso,vuelo_regreso,gasto_pasaje,gasto_viatico,gasto_total,inst_hospedaje,hotel,fecha_inicio_part,fecha_fin_part,fecha_inicio_com,fecha_fin_com,fecha_inicio_hotel,fecha_fin_hotel,costo_hotel,viatico_comprobado,viatico_sin_comprobar,viatico_devuelto,observaciones) 
-select MecanismoCom,Organizador_Evento,UR_Siglas,TipoRepresentaciomn,Num_comision,Nom_SP,TipoViaje,NoAcuerdo,NoOficio,PaisOrigen,EstadoOrigen,CiudadOrigen,PaisDestino,EstadoDestino,CiudadDestino,TarifaViaticos,Moneda,Tema,TipoComision,Nombre_Evento,URL_Evento,Motivo,Antecedentes,Actividades_realizadas,Resultados,ContribucionesIFAI,Link,InstitucionPasaje,TipoPasaje,AerolineaSalida,NumVueloCorridaSalida,AerolineaLlegada,NumVueloCorridaLlegada,CAST(replace(GastoPasaje, ',', '') AS DECIMAL(14,2)),CAST(replace(GastoTotalViaticosHoy, ',', '') AS DECIMAL(14,2)),CAST(replace(GastoPasaje, ',', '') AS DECIMAL(14,2))+CAST(replace(GastoTotalViaticosHoy, ',', '') AS DECIMAL(14,2)),InstitucionHospedaje,NombreHotel,STR_TO_DATE(FechaInicioParticipacion,'%m/%d/%Y'),STR_TO_DATE(FechaFinParticipacon,'%m/%d/%Y'),STR_TO_DATE(FechaInicioViaticos,'%m/%d/%Y'),STR_TO_DATE(FechaFinViaticos,'%m/%d/%Y'),STR_TO_DATE(FechaEntrada_1,'%m/%d/%Y'),STR_TO_DATE(FechaSalida_1,'%m/%d/%Y'),CostoHospedaje,MontoComprobado,MontoSinComprobar,MontoDevuelto,Observaciones
+select MecanismoCom,Organizador_Evento,UR_Siglas,TipoRepresentaciomn,Num_comision,Nom_SP,TipoViaje,NoAcuerdo,NoOficio,PaisOrigen,EstadoOrigen,CiudadOrigen,PaisDestino,EstadoDestino,CiudadDestino,TarifaViaticos,Moneda,Tema,TipoComision,Nombre_Evento,URL_Evento,Motivo,Antecedentes,Actividades_realizadas,Resultados,ContribucionesIFAI,Link,InstitucionPasaje,TipoPasaje,AerolineaSalida,NumVueloCorridaSalida,AerolineaLlegada,NumVueloCorridaLlegada,CAST(replace(GastoPasaje, ',', '') AS DECIMAL(14,2)),CAST(replace(GastoTotalViaticos, ',', '') AS DECIMAL(14,2)),CAST(replace(GastoPasaje, ',', '') AS DECIMAL(14,2))+CAST(replace(GastoTotalViaticos, ',', '') AS DECIMAL(14,2)),InstitucionHospedaje,NombreHotel,STR_TO_DATE(FechaInicioParticipacion,'%m/%d/%Y'),STR_TO_DATE(FechaFinParticipacon,'%m/%d/%Y'),STR_TO_DATE(FechaInicioViaticos,'%m/%d/%Y'),STR_TO_DATE(FechaFinViaticos,'%m/%d/%Y'),STR_TO_DATE(FechaEntrada_1,'%m/%d/%Y'),STR_TO_DATE(FechaSalida_1,'%m/%d/%Y'),CostoHospedaje,MontoComprobado,MontoSinComprobar,MontoDevuelto,Observaciones
 from viajes_dump;
 
 
