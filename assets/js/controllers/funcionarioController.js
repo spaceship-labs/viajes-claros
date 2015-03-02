@@ -20,7 +20,6 @@ app.controller("funcionarioCTL",
         $scope.viajes[i].fecha = el.fecha_inicio_part;
         $scope.viajes[i].fecha_inicio_part = new Date($scope.viajes[i].fecha_inicio_part);
         $scope.viajes[i].fecha_fin_part = new Date($scope.viajes[i].fecha_fin_part);
-
     }
 
     $scope.filterTipo = function (item){
