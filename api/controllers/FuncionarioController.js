@@ -12,7 +12,7 @@ module.exports = {
                 console.log(err);
             }
             if(funcionario){
-                Viaje.find({ funcionario : id }).exec(function(err,viajes) {
+                Viaje.find({ funcionario : id }).sort({ fecha_inicio_part: 'desc' }).exec(function(err,viajes) {
                     if (err) {
                         console.log(err);
                     } else {

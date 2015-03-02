@@ -63,7 +63,7 @@
 						<div class="cell-container">
 							<h4><strong>Últimos tres viajes de trabajo</strong></h4>
 							<ul>
-								<li ng-repeat="viaje in viajes | orderBy:gasto_total | limitTo:3">
+								<li ng-repeat="viaje in viajes | limitTo:3">
 									<a href="/viaje/{{viaje.id}}"><img src="/images/hotel_icon.png" alt="" class="picture" /></a>
 									<p class="big-blue"><a href="/viaje/{{viaje.id}}">{{viaje.gasto_total | currency}}</a></p>
 									<p class="location"><a href="#">{{viaje.ciudad_destino}} {{viaje.pais_destino}}</a></p>
@@ -155,7 +155,7 @@
 								<div class="col-md-4">
 									<div class="inner-content">
 										<select ng-model="orderField" class="form-control">
-											<option value="fecha_inicio_part">Fecha del viaje</option>
+											<option value="fecha">Fecha del viaje</option>
 											<option value="ciudad_destino">Destino del viaje</option>
 											<option value="evento">Nombre del evento</option>
 											<option value="gasto_total">Costo total del viaje</option>

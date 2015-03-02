@@ -9,7 +9,7 @@ app.controller("funcionarioCTL",
     $scope.funcionario = window.funcionario;
     $scope.toggleSidebar = false;
     $scope.totalViaticos = 0.0;
-    $scope.orderField = 'fecha_inicio_part';
+    $scope.orderField = 'fecha';
     $scope.isReversed = false;
     $scope.filterNacionales = true;
     $scope.filterInternacionales = true;
@@ -17,6 +17,7 @@ app.controller("funcionarioCTL",
     for (var i=0;i<$scope.viajes.length;i++) {
         var el = $scope.viajes[i];
         $scope.totalViaticos += el.gasto_viatico;
+        $scope.viajes[i].fecha = el.fecha_inicio_part;
         $scope.viajes[i].fecha_inicio_part = new Date($scope.viajes[i].fecha_inicio_part);
         $scope.viajes[i].fecha_fin_part = new Date($scope.viajes[i].fecha_fin_part);
 
@@ -148,7 +149,7 @@ app.controller("funcionarioCTL",
         attributionControl : true, 
         zoomControlPosition: 'bottomright',
         imagePath : '/bower_components/leaflet/dist/images/',
-        zoomControl : false,
+        zoomControl : false
     };
 
     $scope.mapCenter = {
