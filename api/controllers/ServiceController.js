@@ -78,6 +78,7 @@ module.exports = {
     },
 
     datos: function (req, res) {
+        return res.forbidden();
         var database = sails.config.connections['mysql-connection'].database;
         var query = "SELECT UPDATE_TIME FROM information_schema.tables WHERE TABLE_SCHEMA = '" + database + "' AND TABLE_NAME = 'viaje'";
         Viaje.query(query, function (err, viajeUpdateTime) {
@@ -102,6 +103,7 @@ module.exports = {
     },
 
     funcionarios_csv : function(req,res) {
+        return res.forbidden();
         Funcionario.find().exec(function(err, list){
             if (err) console.log(err);
             // Send a CSV response
@@ -126,6 +128,7 @@ module.exports = {
     },
 
     viajes_csv : function(req,res) {
+        return res.forbidden();
         Viaje.find().exec(function(err, list){
             if (err) console.log(err);
             // Send a CSV response
